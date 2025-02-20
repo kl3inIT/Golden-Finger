@@ -8,9 +8,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html>
+
+<!--<!DOCTYPE html>
 <html>
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:02:22 GMT -->
+     Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:02:22 GMT 
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -20,13 +21,13 @@
         <meta name="description" content="Multipurpose eCommerce Tailwind CSS Template">
         <meta name="author" content="Maraviya Infotech">
 
-        <!-- site Favicon -->
+         site Favicon 
         <link rel="icon" href="assets/img/favicon/favicon.png" sizes="32x32">
 
-        <!-- css Icon Font -->
+         css Icon Font 
         <link rel="stylesheet" href="assets/css/vendor/gicons.css">
 
-        <!-- css All Plugins Files -->
+         css All Plugins Files 
         <link rel="stylesheet" href="assets/css/plugins/animate.css">   
         <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css">
         <link rel="stylesheet" href="assets/css/plugins/owl.carousel.min.css">
@@ -34,15 +35,15 @@
         <link rel="stylesheet" href="assets/css/plugins/slick.min.css">
         <link rel="stylesheet" href="assets/css/plugins/nouislider.css">
 
-        <!-- Tailwindcss -->
+         Tailwindcss 
         <script src="assets/js/plugins/tailwindcss3.4.1"></script>
 
-        <!-- Main Style -->
+         Main Style 
         <link rel="stylesheet" id="main_style" href="assets/css/demo-1.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
 
     </head>
-    <body>
+    <body>-->
         <!-- Loader -->
         <div id="gi-overlay" class=" w-full h-full fixed top-0 right-0 left-0 bottom-0 bg-[#fff] z-[99] flex items-center justify-center overflow-hidden">
             <div class="loader"></div>
@@ -452,83 +453,9 @@
         </header>
         <!-- Header End  -->
 
-        <!-- Cart sidebar Start -->
-        <div class="gi-side-cart-overlay w-full h-screen fixed top-[0] left-[0] bg-[#000000cc] z-[17] hidden"></div>
-        <div id="gi-side-cart" class="gi-side-cart w-[350px] max-[480px]:w-[300px] h-full pt-[15px] px-[20px] text-[14px] font-normal fixed z-[17] top-[0] right-0 left-auto block transition-all duration-[0.5s] ease delay-0 bg-[#fff] overflow-auto">
-            <div class="gi-cart-inner relative z-[9] flex flex-col h-full justify-between">
-                <div class="gi-cart-top">
-                    <div class="gi-cart-title w-full flex flex-wrap justify-between">
-                        <span class="cart_title text-[15px] text-[#4b5966] font-Poppins font-semibold mb-[20px]">My Cart</span>
-                        <a href="javascript:void(0)" class="gi-cart-close relative border-[0] text-[30px] leading-[20px] text-[#4b5966]">
-                            <i class="fi-rr-cross-small text-[20px] leading-[0]"></i>
-                        </a>
-                    </div>
-                    <ul class="gi-cart-pro-items">
-                        <li class="mb-[15px] p-[15px] flex overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
-                            <a href="product-left-sidebar.html" class="gi-pro-img flex grow-[1] basis-[20%] items-center"><img src="assets/img/product-images/25_1.jpg" class="w-full" alt="product"></a>
-                            <div class="gi-pro-content relative grow-[1] basis-[70%] pl-[15px] overflow-hidden">
-                                <a href="product-left-sidebar.html" class="cart-pro-title w-full pr-[30px] text-[#777] whitespace-normal overflow-hidden text-ellipsis block text-[15px] leading-[18px] font-normal">Fresh Lichi</a>
-                                <span class="cart-price text-[14px] block mt-[5px]"><span class="text-[#777] font-semibold text-[16px]">$25.00</span> x 1 kg</span>
-                                <div class="qty-plus-minus border-[1px] border-solid border-[#eee] h-[35px] overflow-hidden relative w-[85px] flex items-center justify-between py-[7px] mt-[7px]">
-                                    <input class="qty-input" type="text" name="gi-qtybtn" value="1">
-                                </div>
-                                <a href="javascript:void(0)" class="remove leading-[15px] absolute top-[0] right-[0] pl-[10px] text-[#ff0000] text-[22px]">×</a>
-                            </div>
-                        </li>
-                        <li class="mb-[15px] p-[15px] flex overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
-                            <a href="product-left-sidebar.html" class="gi-pro-img flex grow-[1] basis-[20%] items-center"><img src="assets/img/product-images/17_1.jpg" class="w-full" alt="product"></a>
-                            <div class="gi-pro-content relative grow-[1] basis-[70%] pl-[15px] overflow-hidden">
-                                <a href="product-left-sidebar.html" class="cart-pro-title w-full pr-[30px] text-[#777] whitespace-normal overflow-hidden text-ellipsis block text-[15px] leading-[18px] font-normal">Ginger - Organic</a>
-                                <span class="cart-price text-[14px] block mt-[5px]"><span class="text-[#777] font-semibold text-[16px]">$5.00</span> x 1 250g</span>
-                                <div class="qty-plus-minus border-[1px] border-solid border-[#eee] h-[35px] overflow-hidden relative w-[85px] flex items-center justify-between py-[7px] mt-[7px]">
-                                    <input class="qty-input" type="text" name="gi-qtybtn" value="1">
-                                </div>
-                                <a href="javascript:void(0)" class="remove leading-[15px] absolute top-[0] right-[0] pl-[10px] text-[#ff0000] text-[22px]">×</a>
-                            </div>
-                        </li>
-                        <li class="mb-[15px] p-[15px] flex overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
-                            <a href="product-left-sidebar.html" class="gi-pro-img flex grow-[1] basis-[20%] items-center"><img src="assets/img/product-images/2_1.jpg" class="w-full" alt="product"></a>
-                            <div class="gi-pro-content relative grow-[1] basis-[70%] pl-[15px] overflow-hidden">
-                                <a href="product-left-sidebar.html" class="cart-pro-title w-full pr-[30px] text-[#777] whitespace-normal overflow-hidden text-ellipsis block text-[15px] leading-[18px] font-normal">Dates Value Pack Pouch</a>
-                                <span class="cart-price text-[14px] block mt-[5px]"><span class="text-[#777] font-semibold text-[16px]">$59.00</span> x 1 pack</span>
-                                <div class="qty-plus-minus border-[1px] border-solid border-[#eee] h-[35px] overflow-hidden relative w-[85px] flex items-center justify-between py-[7px] mt-[7px]">
-                                    <input class="qty-input" type="text" name="gi-qtybtn" value="1">
-                                </div>
-                                <a href="javascript:void(0)" class="remove leading-[15px] absolute top-[0] right-[0] pl-[10px] text-[#ff0000] text-[22px]">×</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="gi-cart-bottom">
-                    <div class="cart-sub-total flex flex-wrap justify-between pt-[0] pb-[8px] border-t-[1px] border-solid border-[#eee] mt-[20px]">
-                        <table class="table cart-table w-full">
-                            <tbody class="mt-[10px]">
-                                <tr>
-                                    <td class="text-left font-medium text-[#777] p-[6px]">Sub-Total :</td>
-                                    <td class="text-right font-bold text-[#777] p-[6px]">$300.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-left font-medium text-[#777] p-[6px]">VAT (20%) :</td>
-                                    <td class="text-right font-bold text-[#777] p-[6px]">$60.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-left font-medium text-[#777] p-[6px]">Total :</td>
-                                    <td class="text-right font-bold text-[#777] primary-color p-[6px]">$360.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="cart_btn flex justify-between mb-[20px]">
-                        <a href="cart.html" class="gi-btn-1 w-[48%] h-[40px] block uppercase font-semibold text-[14px] py-[8px] px-[15px] leading-[22px] bg-[#4b5966] text-[#fff] border-[0] transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]">View Cart</a>
-                        <a href="checkout.html" class="gi-btn-2 w-[48%] h-[40px] block uppercase font-semibold text-[14px] py-[8px] px-[15px] leading-[22px] bg-[#5caf90] text-[#fff] text-center rounded-[5px] transition-all dummy-[0.3s] ease-in-out hover:bg-[#4b5966]">Checkout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Cart sidebar End -->
-        
-        
-        <!-- Plugins JS -->
+
+<!--        
+         Plugins JS 
         <script src="assets/js/plugins/jquery-3.7.1.min.js"></script>
         <script src="assets/js/plugins/popper.min.js"></script>
         <script src="assets/js/plugins/swiper-bundle.min.js"></script>
@@ -541,8 +468,8 @@
         <script src="assets/js/plugins/nouislider.js"></script>
         <script src="assets/js/plugins/wow.js"></script>
 
-        <!-- Main Js -->
+         Main Js 
         <script src="assets/js/main.js"></script>
         <script src="assets/js/demo-1.js"></script>
     </body>
-</html>
+</html>-->
