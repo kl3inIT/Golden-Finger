@@ -174,11 +174,11 @@
                                     <c:forEach items="${requestScope.productList}" var="p">
                                         <div class="min-[992px]:w-[25%] min-[768px]:w-[50%] min-[576px]:w-[50%] max-[420px]:w-full px-[12px] gi-product-box max-[575px]:w-[50%] max-[575px]:mx-auto pro-gl-content">
                                             <div class="gi-product-content pb-[24px] h-full flex">
-                                                <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
+                                                <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-grow flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
 
                                                     <div class="gi-pro-image-outer transition-all duration-[0.3s] ease delay-[0s] z-[11] relative">
                                                         <div class="gi-pro-image overflow-hidden">
-                                                            <a href="product-left-sidebar.html" class="image relative block overflow-hidden pointer-events-none transition-all duration-[0.3s] ease-in-out">
+                                                            <a href="product?pid=${p.id}" class="image relative block overflow-hidden pointer-events-none transition-all duration-[0.3s] ease-in-out">
 
                                                                 <span class="label veg max-[991px]:hidden">
                                                                     <span class="dot"></span>
@@ -197,12 +197,6 @@
                                                                 <a class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:bg-[#5CAF90]" title="Wishlist">
                                                                     <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                                 </a>
-                                                                <a href="javascript:void(0)" class="gi-btn-group modal-toggle quickview transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:bg-[#5CAF90]">
-                                                                    <i class="fi-rr-eye transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
-                                                                </a>
-                                                                <a href="javascript:void(0)" class="gi-btn-group compare transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:bg-[#5CAF90]" title="Compare">
-                                                                    <i class="fi fi-rr-arrows-repeat transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
-                                                                </a>
                                                                 <a href="javascript:void(0)" title="Add To Cart" class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:bg-[#5CAF90]">
                                                                     <i class="fi-rr-shopping-basket transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                                 </a>
@@ -210,15 +204,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
-                                                        <a href="shop-left-sidebar-col-4.html">
+                                                        <a href="product?pid=${p.id}">
                                                             <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] capitalize font-manrope tracking-[0.01rem] leading-[1.2]">${p.category.name}</h6>
                                                         </a>
                                                         <h5 class="gi-pro-title h-full mb-[10px] text-[16px] tracking-[0.01rem] font-normal leading-[1.2]">
-                                                            <a href="product-left-sidebar.html" class="text-[#4b5966] block text-[14px] leading-[22px] font-normal tracking-[0.85px] capitalize font-Poppins">${p.name}</a>
+                                                            <a href="product?pid=${p.id}" class="text-[#4b5966] block text-[14px] leading-[22px] font-normal tracking-[0.85px] capitalize font-Poppins">${p.name}</a>
                                                         </h5>
-                                                        <p class="gi-info text-[15px] leading-[28px] font-light tracking-[0.02rem] mb-[16px] hidden">Contrary to popular belief, Lorem Ipsum is not simply
-                                                            random text. It has roots in a piece of classical Latin literature
-                                                            from 45 BC, making it over 2000 years old.</p>
+
                                                         <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
                                                             <span class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
                                                                 <c:forEach var="i" begin="1" end="${p.starRating}" step="1">
