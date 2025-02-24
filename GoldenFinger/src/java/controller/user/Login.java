@@ -1,6 +1,7 @@
-package controller.shop;
+package controller.user;
 
 import dal.CategoryDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -8,41 +9,46 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
  * @author nhudi
  */
-@WebServlet(name="FooterServlet", urlPatterns={"/footer"})
-public class FooterServlet extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+@WebServlet(name = "Login", urlPatterns = {"/login"})
+public class Login extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FooterServlet</title>");  
+            out.println("<title>Servlet Login</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FooterServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -50,15 +56,16 @@ public class FooterServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         CategoryDAO cd = new CategoryDAO();
         request.setAttribute("categoryList", cd.getAllCategory());
-        request.getRequestDispatcher("footer.jsp").include(request, response);
-    } 
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -66,12 +73,26 @@ public class FooterServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException {
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String message = "Invalid information!";
+        UserDAO userDao = new UserDAO();
+        User user = userDao.getUser(username, password);
+        if (user != null) {
+            response.sendRedirect("home");
+        } else {
+   
+            request.setAttribute("error", message);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

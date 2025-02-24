@@ -1,5 +1,6 @@
 package controller.shop;
 
+import dal.CategoryDAO;
 import dal.ProductDAO;
 import dal.SupplierDAO;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * @author nhudi
  */
 @WebServlet(name = "ProductListServlet", urlPatterns = {"/shop"})
-public class ProductListServlet extends HttpServlet {
+public class ShopServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,6 +30,8 @@ public class ProductListServlet extends HttpServlet {
         }
         ProductDAO p = new ProductDAO();
         SupplierDAO sd = new SupplierDAO();
+        CategoryDAO cd = new CategoryDAO();
+        request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
         request.setAttribute("productList", p.getAllProductByCid(cid));
         request.getRequestDispatcher("shop.jsp").forward(request, response);
