@@ -82,7 +82,7 @@
                                         </span>
                                         <span class="gi-login-wrap gi-login-btn mt-[30px] flex flex-row justify-between items-center">
                                             <span class="text-[#777] text-[14px]">
-                                                <a href="register.html" class="text-[#4b5966] hover:text-[#5caf90]">Create Account?</a>
+                                                <a href="register" class="text-[#4b5966] hover:text-[#5caf90]">Create Account?</a>
                                             </span>
                                             <button type="submit" class="gi-btn-1 btn py-[8px] px-[15px] bg-[#4b5966] text-[#fff] border-[0] transition-all duration-[0.3s] ease-in-out overflow-hidden text-center text-[14px] font-semibold relative rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]">Login</button>
                                         </span>

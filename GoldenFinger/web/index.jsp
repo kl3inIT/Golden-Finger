@@ -54,7 +54,7 @@ Copyright 2024
 
 
     <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">                
-        
+
         <!-- Loader -->
         <div id="gi-overlay" class=" w-full h-full fixed top-0 right-0 left-0 bottom-0 bg-[#fff] z-[99] flex items-center justify-center overflow-hidden">
             <div class="loader"></div>
@@ -207,14 +207,30 @@ Copyright 2024
                                                 <i class="fi-rr-user text-[24px] leading-[17px]"></i>
                                             </div>
                                             <div class="gi-btn-desc flex flex-col uppercase ml-[10px]">
-                                                <span class="gi-btn-title transition-all duration-[0.3s] ease-in-out text-[12px] leading-[1] text-[#777] mb-[6px] tracking-[0.6px] capitalize font-medium">Account</span>
-                                                <span class="gi-btn-stitle transition-all duration-[0.3s] ease-in-out text-[13px] font-medium text-[#4b5966] leading-[14px] max-[1199px]:text-[11px] max-[1199px]:min-w-[48px]">Login</span>
+                                                <c:if test="${sessionScope.account != null}">
+                                                    <span class="gi-btn-title transition-all duration-[0.3s] ease-in-out text-[12px] leading-[1] text-[#777] mb-[6px] tracking-[0.6px] capitalize font-medium">${sessionScope.account.fullName}</span>
+                                                    <span class="gi-btn-stitle transition-all duration-[0.3s] ease-in-out text-[13px] font-medium text-[#4b5966] leading-[14px] max-[1199px]:text-[11px] max-[1199px]:min-w-[48px]">
+                                                       See more<i class="fi-rr-angle-small-down text-[18px] uppercase text-[#4B5966] text-center absolute  leading-[0] max-[1199px]:hidden" aria-hidden="true"></i>
+                                                    </span>
+                                                </c:if>
+                                                <c:if test="${sessionScope.account == null}">
+                                                    <span class="gi-btn-title transition-all duration-[0.3s] ease-in-out text-[12px] leading-[1] text-[#777] mb-[6px] tracking-[0.6px] capitalize font-medium">GUEST</span>
+                                                    <span class="gi-btn-stitle transition-all duration-[0.3s] ease-in-out text-[13px] font-medium text-[#4b5966] leading-[14px] max-[1199px]:text-[11px] max-[1199px]:min-w-[48px]">
+                                                       See more<i class="fi-rr-angle-small-down text-[18px] uppercase text-[#4B5966] text-center absolute  leading-[0] max-[1199px]:hidden" aria-hidden="true"></i>
+                                                    </span>
+                                                </c:if>
                                             </div>
                                         </a>
                                         <ul class="gi-dropdown-menu min-w-[150px] py-[5px] transition-all duration-[0.3s] ease-in-out mt-[25px] absolute z-[16] text-left bg-[#fff] block opacity-0 invisible left-[0] right-[auto] border-[1px] border-solid border-[#eee] rounded-[5px]">
-                                            <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="register.html">Register</a></li>
-                                            <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="checkout.html">Checkout</a></li>
-                                            <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="login.html">Login</a></li>
+                                            <c:if test="${sessionScope.account != null}">
+                                               <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="logout">Log out</a></li>
+                                               <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="checkout.html">Checkout</a></li>
+                                            </c:if>
+                                             <c:if test="${sessionScope.account == null}">
+                                               <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="login">Log in</a></li>
+                                               <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="register">Register</a></li>
+                                            </c:if>
+                                            
                                         </ul>
                                     </div>
                                     <!-- Header User End -->
@@ -3061,7 +3077,7 @@ Copyright 2024
 
 
 
-               <!-- Footer Start -->
+        <!-- Footer Start -->
         <footer class="gi-footer bg-[#fff] border-t-[1px] border-solid border-[#eee] mt-[40px]">
             <div class="footer-container">
                 <div class="footer-top pt-[80px] pb-0 max-[767px]:pt-[60px] max-[767px]:pb-0">
@@ -3080,9 +3096,9 @@ Copyright 2024
                                     <div class="gi-footer-links gi-footer-dropdown">
                                         <ul class="align-itegi-center">
                                             <c:forEach items="${requestScope.categoryList}" var="c" >
-                                            <li class="gi-footer-link m-[0] leading-[1.5] border-[0] p-[0] font-normal text-[16px] text-[#5caf90] flex items-center mb-[16px]">
-                                                <a href="shop?cid=${c.id}" class="transition-all duration-[0.3s] ease-in-out text-[14px] leading-[20px] p-[0] text-[#777] mb-[0] inline-block relative break-all tracking-[0] font-normal hover:text-[#5caf90] hover:opacity-[1]">${c.name}</a>
-                                            </li>
+                                                <li class="gi-footer-link m-[0] leading-[1.5] border-[0] p-[0] font-normal text-[16px] text-[#5caf90] flex items-center mb-[16px]">
+                                                    <a href="shop?cid=${c.id}" class="transition-all duration-[0.3s] ease-in-out text-[14px] leading-[20px] p-[0] text-[#777] mb-[0] inline-block relative break-all tracking-[0] font-normal hover:text-[#5caf90] hover:opacity-[1]">${c.name}</a>
+                                                </li>
                                             </c:forEach>
                                         </ul>
                                     </div>

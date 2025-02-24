@@ -17,7 +17,7 @@ import model.User;
  * @author nhudi
  */
 @WebServlet(name = "Login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -81,9 +81,11 @@ public class Login extends HttpServlet {
         UserDAO userDao = new UserDAO();
         User user = userDao.getUser(username, password);
         if (user != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("account", user);
             response.sendRedirect("home");
         } else {
-   
+            
             request.setAttribute("error", message);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
