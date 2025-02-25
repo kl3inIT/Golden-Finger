@@ -31,6 +31,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("product", pd.getProductById(pid));
         request.setAttribute("supplier", sd.getSupplierByProductId(pid));
         request.setAttribute("category", cd.getCategoryByProductId(pid));
+        request.setAttribute("categoryList", cd.getAllCategory());
         request.getRequestDispatcher("product.jsp").forward(request, response);
     } 
 

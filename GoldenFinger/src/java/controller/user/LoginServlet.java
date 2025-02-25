@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -74,18 +75,40 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String rememberMe = request.getParameter("remember");
         String message = "Invalid information!";
+        
+        Cookie u = new Cookie("username", username);
+        Cookie p = new Cookie("password", password);
+        Cookie r = new Cookie("rememberMe", rememberMe);
+        
+        //if user choose remember me
+        if(rememberMe != null){
+            u.setMaxAge(60 * 60 * 24 * 60); // cookie 2 thang
+            p.setMaxAge(60 * 60 * 24 * 60); // cookie 2 thang
+            r.setMaxAge(60 * 60 * 24 * 60); // cookie 2 thang
+        }
+        else{
+            u.setMaxAge(0); 
+            p.setMaxAge(0); 
+            r.setMaxAge(0); 
+        }
+        
+        // save in browser
+        response.addCookie(u);
+        response.addCookie(p);
+        response.addCookie(r);
+        
+        
         UserDAO userDao = new UserDAO();
         User user = userDao.getUser(username, password);
-        if (user != null) {
+        if (user != null && user.getStatus() == 1) {
             HttpSession session = request.getSession();
             session.setAttribute("account", user);
             response.sendRedirect("home");
         } else {
-            
             request.setAttribute("error", message);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }

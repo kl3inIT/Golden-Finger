@@ -63,22 +63,26 @@
                             <div class="gi-login-container p-[30px] max-[575px]:p-[15px] border-[1px] border-solid border-[#eee] rounded-[5px] text-left bg-[#fff]">
                                 <div class="gi-login-form">
                                     <form action="login" method="post" class="flex flex-col">
+                                        <c:set var="cookie" value="${pageContext.request.cookies}"/>
                                         <span class="gi-login-wrap flex flex-col">
                                             <label class="mb-[10px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Username*</label>
-                                            <input type="text" name="username" placeholder="Enter your username" class="mb-[27px] px-[15px] bg-transparent border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0] h-[50px]" required>
+                                            <input type="text" name="username" value="${cookie.username.value}" placeholder="Enter your username" class="mb-[27px] px-[15px] bg-transparent border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0] h-[50px]" required>
                                         </span>
                                         <span class="gi-login-wrap flex flex-col">
                                             <label class="mb-[10px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Password*</label>
-                                            <input type="password" name="password" placeholder="Enter your password" class="mb-[15px] px-[15px] bg-transparent border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0] h-[50px]" required>
+                                            <input type="password" name="password"  value="${cookie.password.value}" placeholder="Enter your password" class="mb-[15px] px-[15px] bg-transparent border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0] h-[50px]" required>
                                         </span>
                                         <c:set var="m" value="${requestScope.error}" />
                                         <c:if test="${not empty m}">
                                             <span class="text-red-500 text-sm font-medium block mt-2">${m}</span>
                                         </c:if>
                                         <span class="gi-login-wrap flex flex-col gi-login-fp">
-                                            <label class="mb-[0] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
-                                                <a href="javascript:void(0)" class="mt-[10px] text-[#777] text-[14px] font-normal tracking-[0] flex justify-end">Forgot Password?</a>
+                                            <label class="flex items-center space-x-2 text-[#4b5966] text-[14px]">
+                                                <input type="checkbox" name="remember" value="on" ${cookie.rememberMe.value != null ? 'checked' : ''} class="w-4 h-4 text-[#4b5966] border-gray-300 rounded focus:ring-[#5caf90]">
+                                                <span>Remember me</span>
                                             </label>
+                                            <a href="javascript:void(0)" class="mt-[10px] text-[#777] text-[14px] font-normal tracking-[0] flex justify-end">Forgot Password?</a>
+                                            
                                         </span>
                                         <span class="gi-login-wrap gi-login-btn mt-[30px] flex flex-row justify-between items-center">
                                             <span class="text-[#777] text-[14px]">
