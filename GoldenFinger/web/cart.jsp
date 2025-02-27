@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +50,7 @@
     <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">
 
         <jsp:include page="header.jsp" />
+        
         <!-- Breadcrumb start -->
         <div class="gi-breadcrumb mb-[40px]">
             <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
@@ -201,8 +205,6 @@
         <!-- Cart section End -->
 
         <jsp:include page="footer.jsp" />
-
-
 
 
 

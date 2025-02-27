@@ -2654,9 +2654,7 @@ Copyright 2024
         </section>
         <!-- Trending, Top Rated End -->
 
-
-
-       
+      
         <jsp:include page="footer.jsp" />
 
 

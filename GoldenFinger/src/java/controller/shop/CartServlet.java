@@ -1,5 +1,6 @@
 package controller.shop;
 
+import dal.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -51,6 +52,8 @@ public class CartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        CategoryDAO cd = new CategoryDAO();
+        request.setAttribute("categoryList", cd.getAllCategory());
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     } 
 

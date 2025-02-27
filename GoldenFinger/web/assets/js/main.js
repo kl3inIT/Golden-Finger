@@ -75,16 +75,7 @@
   });
 
   /*--------------------- Cart sidebar JS -------------------------------- */
-  $('.gi-cart-toggle').on("click", function (e) {
-    e.preventDefault();
-    $(".gi-side-cart-overlay").fadeIn();
-    $('.gi-side-cart').addClass("gi-open-cart");
-  });
-  $('.gi-side-cart-overlay, .gi-cart-close').on("click", function (e) {
-    e.preventDefault();
-    $(".gi-side-cart-overlay").fadeOut();
-    $('.gi-side-cart').removeClass("gi-open-cart");
-  });
+  
 
   /*--------------------- location Toggle MenuBar ---------------------- */
   $('.loc-list').on('click', function () {
