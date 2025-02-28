@@ -3,19 +3,20 @@ package dal;
 import utils.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Product;
 
-/**
- *
- * @author nhudi
- */
 public class ProductDAO extends DBConnect {
+    
+    private static final Logger LOGGER = Logger.getLogger(ProductDAO.class.getName());
+    private CategoryDAO cd = new CategoryDAO();
+    private SupplierDAO sd = new SupplierDAO();
 
     public ArrayList<Product> getAllProductByCid(int cid) {
         ArrayList<Product> listProduct = new ArrayList<>();
-        CategoryDAO cd = new CategoryDAO();
-        SupplierDAO sd = new SupplierDAO();
         if (connection != null) {
             try {
                 StringBuilder sqlQuery = new StringBuilder("SELECT * FROM Products WHERE 1=1");
@@ -35,8 +36,8 @@ public class ProductDAO extends DBConnect {
                     listProduct.add(p);
                 }
                 return listProduct;
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Error fetching products", e);
             }
         }
         return null;
@@ -51,11 +52,8 @@ public class ProductDAO extends DBConnect {
         return res;
     }
 
-    // DAY OF THE DEAL - top 5 lowest price product
     public ArrayList<Product> getSaleProduct() {
         ArrayList<Product> listProduct = new ArrayList<>();
-        CategoryDAO cd = new CategoryDAO();
-        SupplierDAO sd = new SupplierDAO();
         if (connection != null) {
             try {
                 String sqlQuery = "SELECT TOP 5 * FROM Products ORDER BY UnitPrice * Discount;";
@@ -83,8 +81,6 @@ public class ProductDAO extends DBConnect {
     
     public ArrayList<Product> getNewProduct() {
         ArrayList<Product> listProduct = new ArrayList<>();
-        CategoryDAO cd = new CategoryDAO();
-        SupplierDAO sd = new SupplierDAO();
         if (connection != null) {
             try {
                 String sqlQuery = "SELECT TOP 10 * FROM Products ORDER BY ProductID DESC;";
@@ -111,8 +107,6 @@ public class ProductDAO extends DBConnect {
     // GET NUMBER OF PRODUCT BY SUPPLIER ID
    public ArrayList<Product> getProductBySupplierID(int sid) {
         ArrayList<Product> listProduct = new ArrayList<>();
-        CategoryDAO cd = new CategoryDAO();
-        SupplierDAO sd = new SupplierDAO();
         if (connection != null) {
             try {
                 String sqlQuery = "SELECT * FROM Products WHERE SupplierID = ?;";
@@ -138,8 +132,6 @@ public class ProductDAO extends DBConnect {
     }
     
    public Product getProductById(int pid) {
-        CategoryDAO cd = new CategoryDAO();
-        SupplierDAO sd = new SupplierDAO();
         if (connection != null) {
             try {
                 String sqlQuery = "SELECT * FROM Products WHERE ProductID = ?;";
