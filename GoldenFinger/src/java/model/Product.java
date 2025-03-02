@@ -1,18 +1,15 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author nhudi
- */
 public class Product {
     private int id;
     private String name;
     private float price;
     private int unitInStock;
     private int discontinue;
-    private ArrayList<String> image;
+    private List<String> image;
     private String include;
     private String warranty;
     private String dimensions;
@@ -50,11 +47,11 @@ public class Product {
         this.supplier = supplier;
     }
 
-    public ArrayList<String> getImage() {
+    public List<String> getImage() {
         return image;
     }
 
-    public void setImage(ArrayList<String> image) {
+    public void setImage(List<String> image) {
         this.image = image;
     }
     
