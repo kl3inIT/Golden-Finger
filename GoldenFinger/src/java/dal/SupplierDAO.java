@@ -3,35 +3,38 @@ package dal;
 import utils.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import model.Supplier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author nhudi
- */
 public class SupplierDAO extends DBConnect {
 
-    public ArrayList<Supplier> getAllSupplier() {
-        ArrayList<Supplier> listSupplier = new ArrayList<>();
-        if (connection != null) {
-            try {
-                String sqlQuery = "SELECT * FROM Suppliers";
-                PreparedStatement stm = connection.prepareStatement(sqlQuery);
-                ResultSet res = stm.executeQuery();
-                while (res.next()) {
-                    Supplier s = new Supplier(res.getInt(1), res.getString(2), res.getString(3),
-                            res.getString(4), res.getString(5), res.getString(6), res.getString(7));
-                    listSupplier.add(s);
-                }
-                return listSupplier;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    private static final Logger LOGGER = Logger.getLogger(SupplierDAO.class.getName());
+
+    public List<Supplier> getAllSupplier() {
+        List<Supplier> listSupplier = new ArrayList<>();
+
+        if (connection == null) { // check db connection
+            LOGGER.log(Level.WARNING, "Database connection is null");
+            return listSupplier; // return empty list if db connection is null
         }
-        return null;
+        String sqlQuery = "SELECT * FROM Suppliers";
+
+        try (PreparedStatement stm = connection.prepareStatement(sqlQuery); ResultSet res = stm.executeQuery();) {
+            while (res.next()) {
+                Supplier s = new Supplier(res.getInt(1), res.getString(2), res.getString(3),
+                        res.getString(4), res.getString(5), res.getString(6), res.getString(7));
+                listSupplier.add(s);
+            }
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error fetching all suppliers", e);
+        }
+        return listSupplier; //return empty list if have error
     }
 
     public Supplier getSupplierById(int id) {
@@ -42,12 +45,11 @@ public class SupplierDAO extends DBConnect {
                 stm.setInt(1, id);
                 ResultSet res = stm.executeQuery();
                 while (res.next()) {
-                    Supplier s = new Supplier(res.getInt(1), res.getString(2), res.getString(3),
+                    return new Supplier(res.getInt(1), res.getString(2), res.getString(3),
                             res.getString(4), res.getString(5), res.getString(6), res.getString(7));
-                    return s;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Error fetching all suppliers", e);
             }
         }
         return null;
@@ -68,8 +70,8 @@ public class SupplierDAO extends DBConnect {
                     map.put(new Supplier(res.getInt(1), res.getString(2), res.getString(3)), res.getInt(4));
                 }
                 return map;
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Error fetching all suppliers", e);
             }
         }
         return null;
@@ -86,12 +88,11 @@ public class SupplierDAO extends DBConnect {
                 stm.setInt(1, pid);
                 ResultSet res = stm.executeQuery();
                 while (res.next()) {
-                    Supplier s = new Supplier(res.getInt(1), res.getString(2), res.getString(3),
+                    return new Supplier(res.getInt(1), res.getString(2), res.getString(3),
                             res.getString(4), res.getString(5), res.getString(6), res.getString(7));
-                    return s;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Error fetching all suppliers", e);
             }
         }
         return null;
