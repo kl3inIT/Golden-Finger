@@ -49,9 +49,9 @@ public class ProductDAO extends DBConnect {
         return listProduct; // return List of products matching the category, or empty list if error occurs
     }
 
-    public List<String> getImage(String str) {
+    public ArrayList<String> getImage(String str) {
         String[] word = str.split("[, ]+");
-        List<String> listImage = new ArrayList<>();
+        ArrayList<String> listImage = new ArrayList<>();
         listImage.addAll(Arrays.asList(word));
         return listImage;
     }
