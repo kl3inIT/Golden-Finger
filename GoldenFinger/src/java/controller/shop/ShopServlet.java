@@ -21,19 +21,23 @@ public class ShopServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int cid = -1;
+        
+        int cid = 0;
         try {
             cid = Integer.parseInt(request.getParameter("cid"));
         } catch (Exception e) {
-            cid = 0;
+           
             e.printStackTrace();
         }
+        
         ProductDAO p = new ProductDAO();
         SupplierDAO sd = new SupplierDAO();
         CategoryDAO cd = new CategoryDAO();
+        int countProduct = p.getTotalProduct();
         request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
         request.setAttribute("productList", p.getAllProductByCid(cid));
+        request.setAttribute("", p);
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
