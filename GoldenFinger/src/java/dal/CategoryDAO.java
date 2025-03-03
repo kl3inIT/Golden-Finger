@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.Category;
 
-/**
- *
- * @author nhudi
- */
+
 public class CategoryDAO extends DBConnect {
 
     public ArrayList<Category> getAllCategory() {
