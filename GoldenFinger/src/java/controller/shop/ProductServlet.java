@@ -4,17 +4,12 @@ import dal.CategoryDAO;
 import dal.ProductDAO;
 import dal.SupplierDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author nhudi
- */
 @WebServlet(name="ProductDetailServlet", urlPatterns={"/product"})
 public class ProductServlet extends HttpServlet {
    
