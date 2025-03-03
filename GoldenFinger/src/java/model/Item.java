@@ -10,6 +10,10 @@ public class Item {
     private int quantity;
     private double price;
 
+    public Item() {
+    }
+
+    
     public Item(Product product, int quantity, double price) {
         this.product = product;
         this.quantity = quantity;

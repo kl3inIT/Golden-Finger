@@ -56,7 +56,7 @@ Copyright 2024
     <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">                
 
         <jsp:include page="header.jsp" />
-        
+
         <!-- Hero Slider Start -->
         <section class="section gi-hero h-full w-full my-[40px] max-[575px]:my-[30px] max-[1199px]:relative">
             <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
@@ -169,7 +169,7 @@ Copyright 2024
                                                             <a class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist">
                                                                 <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                             </a>
-                                                            <a href="javascript:void(0)" title="Add To Cart" class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" >
+                                                            <a href="javascript:void(0)" title="Add To Cart" onclick="addToCart(${p.id}, 1)" class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" >
                                                                 <i class="fi-rr-shopping-basket transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                             </a>
                                                         </div>
@@ -276,7 +276,7 @@ Copyright 2024
                                                                 <a class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist">
                                                                     <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                                 </a>
-                                                                <a href="javascript:void(0)" title="Add To Cart"
+                                                                <a href="javascript:void(0)" title="Add To Cart" onclick="addToCart(${p.id}, 1)"
                                                                    class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]">
                                                                     <i class="fi-rr-shopping-basket transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                                 </a>
@@ -2653,7 +2653,7 @@ Copyright 2024
         </section>
         <!-- Trending, Top Rated End -->
 
-      
+
         <jsp:include page="footer.jsp" />
 
 
@@ -2675,6 +2675,19 @@ Copyright 2024
         <!-- Main Js -->
         <script src="assets/js/main.js"></script>
         <script src="assets/js/demo-1.js"></script>
+        
+        <script>
+            function addToCart(productId, quantity) {
+                $.ajax({
+                    type: "POST",
+                    url: "cart",
+                    data: {
+                        productId: productId,
+                        quantity: quantity
+                    }
+                });
+            }
+        </script>
     </body>
 
 
