@@ -1,9 +1,9 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
+
     private int id;
     private String name;
     private float price;
@@ -26,7 +26,10 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, float price, int unitInStock, int discontinue, ArrayList<String> image, String include, String warranty, String dimensions, String speakerPower, float starRating, String weight, String describe, String releaseDate, float discount, int status, Category category, Supplier supplier) {
+    public Product(int id, String name, float price, int unitInStock, int discontinue,
+            List<String> image, String include, String warranty, String dimensions,
+            String speakerPower, float starRating, String weight, String describe,
+            String releaseDate, float discount, int status, Category category, Supplier supplier) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -54,7 +57,7 @@ public class Product {
     public void setImage(List<String> image) {
         this.image = image;
     }
-    
+
     public String getWeight() {
         return weight;
     }
@@ -62,7 +65,6 @@ public class Product {
     public void setWeight(String weight) {
         this.weight = weight;
     }
-
 
     public String getInclude() {
         return include;
@@ -80,7 +82,6 @@ public class Product {
         this.describe = describe;
     }
 
-   
     public int getId() {
         return id;
     }
@@ -153,7 +154,6 @@ public class Product {
         this.starRating = starRating;
     }
 
-   
     public String getReleaseDate() {
         return releaseDate;
     }
@@ -193,6 +193,5 @@ public class Product {
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
-    
-    
+
 }
