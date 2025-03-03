@@ -237,14 +237,28 @@
                             </div>
                             <!-- Pagination Start -->
                             <div class="gi-pro-pagination pt-[15px] flex justify-between items-center border-t-[1px] border-solid border-[#eee] max-[575px]:flex-col">
-                                <span class="text-[14px] text-[#777] max-[575px]:mb-[10px]">Showing 1-12 of 21 item(s)</span>
+                                <span class="text-[14px] text-[#777] max-[575px]:mb-[10px]">
+                                    Showing 3 of ${totalProducts} products
+                                </span>
                                 <ul class="gi-pro-pagination-inner">
-                                    <li class="inline-block float-left mr-[5px]"><a class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#777] leading-[32px] bg-[#eee] flex text-center align-top text-[16px] justify-center items-center rounded-[5px] active" href="#">1</a></li>
-                                    <li class="inline-block float-left mr-[5px]"><a class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#777] leading-[32px] bg-[#eee] flex text-center align-top text-[16px] justify-center items-center rounded-[5px] hover:text-[#fff] hover:bg-[#5CAF90]" href="#">2</a></li>
-                                    <li class="inline-block float-left mr-[5px]"><a class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#777] leading-[32px] bg-[#eee] flex text-center align-top text-[16px] justify-center items-center rounded-[5px] hover:text-[#fff] hover:bg-[#5CAF90]" href="#">3</a></li>
-                                    <li class="inline-block float-left mr-[5px]"><span class="w-[20px] text-[#777] block text-center text-[14px] tracking-[0.02rem] max-[575px]:mb-[10px]">...</span></li>
-                                    <li class="inline-block float-left mr-[5px]"><a class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#777] leading-[32px] bg-[#eee] flex text-center align-top text-[16px] justify-center items-center rounded-[5px] hover:text-[#fff] hover:bg-[#5CAF90]" href="#">8</a></li>
-                                    <li class="inline-block float-left"><a class="next w-auto px-[13px] text-[#fff] bg-[#5CAF90] leading-[30px] h-[32px] bg-[#eee] flex text-center align-top text-[16px] justify-center items-center rounded-[5px]" href="#">Next <i class="gicon gi-angle-right ml-[10px] transition-all duration-[0.3s] ease-in-out text-[#fff]"></i></a></li>
+                                    <c:forEach begin="1" end="${endPage}" var="i">
+                                        <li class="inline-block float-left mr-[5px]">
+                                            <a class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#777]
+                                               leading-[32px] bg-[#eee] flex text-center align-top text-[16px] justify-center
+                                               items-center rounded-[5px] ${i==page?'active':'hover:text-[#fff] hover:bg-[#5CAF90]'}" 
+                                               href="shop?page=${i}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+
+                                    <c:if test="${page < endPage}">
+                                        <li class="inline-block float-left">
+                                            <a class="next w-auto px-[13px] text-[#fff] bg-[#5CAF90] leading-[30px] h-[32px] flex
+                                               text-center align-top text-[16px] justify-center items-center rounded-[5px]" 
+                                               href="shop?page=${page+1}">
+                                                Next <i class="gicon gi-angle-right ml-[10px] transition-all duration-[0.3s] ease-in-out text-[#fff]"></i>
+                                            </a>
+                                        </li>
+                                    </c:if>
                                 </ul>
                             </div>
                             <!-- Pagination End -->
