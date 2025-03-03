@@ -1,9 +1,6 @@
 package model;
 
-/**
- *
- * @author nhudi
- */
+
 public class User {
     private int id;
     private String username;
