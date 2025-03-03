@@ -24,7 +24,7 @@ public class Cart {
                 Item item = new Item();
                 item.setProduct(p);
                 item.setQuantity(quantity);
-                item.setPrice(p.getPrice() * p.getDiscount());
+                item.setPrice(p.getPrice() - p.getPrice() * p.getDiscount());
                 addItem(item);
             } catch (Exception e) {
             }
