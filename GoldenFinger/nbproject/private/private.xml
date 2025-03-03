@@ -4,24 +4,33 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/dal/CategoryDAO.java</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/admin/AdminHomeServlet.java</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/FooterServlet.java</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/model/User.java</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/user/RegisterServlet.java</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/ProductServlet.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/util/DBConnect.java</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/HeaderSevlet.java</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/register.jsp</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/ShopServlet.java</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/product.jsp</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/dal/ProductDAO.java</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/shop.jsp</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/model/Item.java</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/HomeServlet.java</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/header.jsp</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/dal/UserDAO.java</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/user/LoginServlet.java</file>
-            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/user/LogoutServlet.java</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/index.jsp</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/login.jsp</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/dal/SupplierDAO.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/admin/AdminHomeServlet.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/FooterServlet.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/user/RegisterServlet.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/model/User.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/ProductServlet.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/assets/js/demo-1.js</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/ShopServlet.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/product.jsp</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/model/Cart.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/dal/UserDAO.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/user/LogoutServlet.java</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/model/Order.java</file>
             <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/footer.jsp</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/web/cart.jsp</file>
+            <file>file:/D:/FPT_Curriculum/Semester_4/PRJ301/Project/Golden-Finger/GoldenFinger/src/java/controller/shop/CartServlet.java</file>
         </group>
     </open-files>
 </project-private>

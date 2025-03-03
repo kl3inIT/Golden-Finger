@@ -1,5 +1,6 @@
 package dal;
 
+import util.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -77,9 +78,8 @@ public class ProductDAO extends DBConnect {
         }
         return null;
     }
-    
+
     // NEW ARRIVALS - TOP 10 PRODUCT HAVE HIGHTEST ID 
-    
     public ArrayList<Product> getNewProduct() {
         ArrayList<Product> listProduct = new ArrayList<>();
         CategoryDAO cd = new CategoryDAO();
@@ -106,9 +106,9 @@ public class ProductDAO extends DBConnect {
         }
         return null;
     }
-    
+
     // GET NUMBER OF PRODUCT BY SUPPLIER ID
-   public ArrayList<Product> getProductBySupplierID(int sid) {
+    public ArrayList<Product> getProductBySupplierID(int sid) {
         ArrayList<Product> listProduct = new ArrayList<>();
         CategoryDAO cd = new CategoryDAO();
         SupplierDAO sd = new SupplierDAO();
@@ -135,8 +135,8 @@ public class ProductDAO extends DBConnect {
         }
         return null;
     }
-    
-   public Product getProductById(int pid) {
+
+    public Product getProductById(int pid) {
         CategoryDAO cd = new CategoryDAO();
         SupplierDAO sd = new SupplierDAO();
         if (connection != null) {
@@ -161,6 +161,5 @@ public class ProductDAO extends DBConnect {
         }
         return null;
     }
-   
 
 }

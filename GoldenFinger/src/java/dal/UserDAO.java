@@ -1,5 +1,6 @@
 package dal;
 
+import util.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import model.User;
