@@ -212,10 +212,42 @@ public class ProductDAO extends DBConnect {
 
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        List<Product> lp = dao.pagingProduct(1);
+        List<Product> lp = dao.getProductByName("g");
         for (Product product : lp) {
             System.out.println(product.getId());
         }
+    }
+
+    // Gets all products by category name 
+    public List<Product> getProductByName(String txtSearch) {
+        List<Product> listProduct = new ArrayList<>();
+
+        if (connection == null) { // check db connection
+            LOGGER.log(Level.WARNING, "Database connection is null");
+            return listProduct; // return empty list if db connection is null
+        }
+
+        String sql = "SELECT * FROM Products WHERE ProductName LIKE ?";
+
+        try (PreparedStatement stm = connection.prepareStatement(sql)) { 
+            stm.setString(1, "%" + txtSearch + "%");
+
+            try (ResultSet res = stm.executeQuery()) { 
+                while (res.next()) {
+                    Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
+                            res.getInt(4), res.getInt(5), getImage(res.getString(6)),
+                            res.getString(7), res.getString(8), res.getString(9),
+                            res.getString(10), res.getFloat(11), res.getString(12),
+                            res.getString(13), res.getString(14), res.getFloat(15),
+                            res.getInt(16), cd.getCategoryById(res.getInt(17)),
+                            sd.getSupplierById(res.getInt(1)));
+                    listProduct.add(p);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error fetching products", e);
+        }
+        return listProduct; // return List of products or empty list if error occurs
     }
 
 }
