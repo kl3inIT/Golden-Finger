@@ -20,12 +20,12 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8"); 
+        response.setContentType("text/html;charset=UTF-8");
         int cid = 0, sid = 0;
         try {
             cid = Integer.parseInt(request.getParameter("cid"));
             sid = Integer.parseInt(request.getParameter("sid"));
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,8 +34,13 @@ public class ShopServlet extends HttpServlet {
         CategoryDAO cd = new CategoryDAO();
         request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
-        request.setAttribute("productList", p.getAllProductByCid(cid));
+        if (sid != 0) {
+            request.setAttribute("productList", p.getProductBySupplierID(sid));
+        } else {
+            request.setAttribute("productList", p.getAllProductByCid(cid));
+        }
 
+        System.out.println(sid);
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 

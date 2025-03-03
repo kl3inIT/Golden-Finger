@@ -162,4 +162,11 @@ public class ProductDAO extends DBConnect {
         return null;
     }
 
+    
+    public static void main(String[] args) {
+        ProductDAO p = new ProductDAO();
+        for(Product x : p.getProductBySupplierID(1)){
+            System.out.println(x.getName());
+        }
+    }
 }
