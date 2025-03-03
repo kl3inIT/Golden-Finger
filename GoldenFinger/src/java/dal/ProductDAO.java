@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Product;
-import model.Category;
 
 public class ProductDAO extends DBConnect {
 
@@ -159,7 +158,7 @@ public class ProductDAO extends DBConnect {
 
     // Gets total number of products in database
     public int getTotalProduct() {
-        String sql = "SELECT COUNT(*) FROM Products";
+        String sql = "SELECT COUNT(*) FROM Products ";
 
         if (connection == null) {
             LOGGER.log(Level.WARNING, "Database connection is null");
