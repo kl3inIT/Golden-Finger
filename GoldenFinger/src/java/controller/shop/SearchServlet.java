@@ -32,6 +32,7 @@ public class SearchServlet extends HttpServlet {
         
         List<Product> productList = pd.getProductByName(txtSearch);
         request.setAttribute("productList", productList);
+        request.setAttribute("txtS", txtSearch);
         request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
         request.getRequestDispatcher("shop.jsp").forward(request, response);
