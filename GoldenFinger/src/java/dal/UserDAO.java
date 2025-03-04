@@ -5,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import model.User;
 
-/**
- *
- * @author nhudi
- */
 public class UserDAO extends DBConnect {
 
     public User getUser(String username, String password) {

@@ -1,16 +1,16 @@
 package dal;
-
 import utils.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import model.Category;
 
 
 public class CategoryDAO extends DBConnect {
 
-    public ArrayList<Category> getAllCategory() {
-        ArrayList<Category> listCategory = new ArrayList<>();
+    public List<Category> getAllCategory() {
+        List<Category> listCategory = new ArrayList<>();
         if (connection != null) {
             try {
                 String sqlQuery = "SELECT * FROM Categories";

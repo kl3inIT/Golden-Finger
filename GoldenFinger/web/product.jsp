@@ -47,9 +47,9 @@
     </head>
 
     <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">
-        
+
         <jsp:include page="header.jsp" />
-        
+
         <!-- Breadcrumb start -->
         <div class="gi-breadcrumb mb-[40px]">
             <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
@@ -196,7 +196,7 @@
                                                     <input class="qty-input" type="text" name="ms_qtybtn" value="1">
                                                 </div>
                                                 <div class="gi-single-cart">
-                                                    <button type="button" class="btn btn-primary gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center bg-[#4b5966] text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-[#5caf90] hover:text-[#fff]">Add To Cart</button>
+                                                    <button type="button" onclick="addToCart(${p.id})" class=" btn btn-primary add-to-cart gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center bg-[#4b5966] text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-[#5caf90] hover:text-[#fff]">Add To Cart</button>
                                                 </div>
                                                 <div class="gi-single-wishlist m-[5px]">
                                                     <a class="gi-btn-group wishlist w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90]" title="Wishlist">
@@ -300,6 +300,21 @@
 
         <!-- Main Js -->
         <script src="assets/js/main.js"></script>
+
+        <script>
+            function addToCart(productId) {
+                var quantity = $(".qty-input").val();
+                $.ajax({
+                    type: "POST",
+                    url: "cart",
+                    data: {
+                        productId: productId,
+                        quantity: quantity
+                    }
+                });
+            }
+
+        </script>
     </body>
 
 
