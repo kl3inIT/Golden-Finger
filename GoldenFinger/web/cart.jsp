@@ -124,7 +124,7 @@
                                                                 $<fmt:formatNumber value="${cart.price * cart.quantity}" maxFractionDigits="2" minFractionDigits="0" />
                                                             </td>
                                                             <td data-label="Remove" class="gi-cart-pro-remove text-[#4b5966] w-[90px] text-[16px] py-[15px] px-[14px] text-right max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                                <a href="#" class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
+                                                                <a href="javascript:void(0)" onclick="sendProductId(${cart.product.id})" on class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -177,9 +177,19 @@
         <script src="assets/js/main.js"></script>
 
         <script>
-            function calculateTotalPerProduct() {
-                var quantity = document.getElementsByClassName("")
+            function sendProductId(productId) {
+                $.ajax({
+                    type: "POST",
+                    url: "cart",
+                    data: {
+                        productId: productId
+                    },
+                    success: function() {
+                    window.location.reload(); // Tải lại trang sau khi thêm vào giỏ hàng
+                    }
+                });
             }
+
         </script>
 
 

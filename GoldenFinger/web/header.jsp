@@ -117,7 +117,8 @@
                                             <i class="fi-rr-shopping-bag text-[24px] leading-[17px]"></i>
                                             <span class="main-label-note-new"></span>
                                         </div>
-                                        <span class="gi-header-count gi-cart-count  w-[15px] h-[15px] text-[#fff] flex items-center justify-center rounded-[50%] text-[11px] absolute top-[-2px] right-[-6px] opacity-[0.8]">3</span>
+                                        
+                                        <span class="gi-header-count gi-cart-count  w-[15px] h-[15px] text-[#fff] flex items-center justify-center rounded-[50%] text-[11px] absolute top-[-2px] right-[-6px] opacity-[0.8]">4</span>
                                     </a>
                                     <!-- Header Cart End -->
                                     <!-- Header menu Start -->
@@ -220,7 +221,7 @@
                                         <div class="gi-btn-desc flex flex-col uppercase ml-[10px]">
                                             <span class="gi-btn-title transition-all duration-[0.3s] ease-in-out text-[12px] leading-[1] text-[#777] mb-[6px] tracking-[0.6px] capitalize font-medium">Cart</span>
                                             <span class="gi-btn-stitle transition-all duration-[0.3s] ease-in-out text-[13px] font-medium text-[#4b5966] leading-[14px] max-[1199px]:text-[11px] max-[1199px]:min-w-[48px]">
-                                                <b class="gi-cart-count">3</b>-items
+                                                <b class="gi-cart-count">${requestScope.sizeCart}</b>-items
                                             </span>
                                         </div>
                                     </a>

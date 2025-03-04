@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Cart;
 
 /**
  *
@@ -58,6 +60,20 @@ public class HomeServlet extends HttpServlet {
         ProductDAO pd = new ProductDAO();
         CategoryDAO cd = new CategoryDAO();
         SupplierDAO sd = new SupplierDAO();
+        
+        
+        
+        
+        String txt = "";
+        Cookie[] cookies = request.getCookies();
+        for(Cookie c : cookies){
+            if(c.getName().equals("cart")){
+                txt = c.getValue();
+            }
+        }
+        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
+        
+        request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("saleProduct", pd.getSaleProduct());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());

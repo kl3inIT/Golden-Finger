@@ -6,9 +6,11 @@ import dal.SupplierDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Cart;
 
 /**
  *
@@ -21,6 +23,11 @@ public class ShopServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        ProductDAO p = new ProductDAO();
+        SupplierDAO sd = new SupplierDAO();
+        CategoryDAO cd = new CategoryDAO();
+        
         int cid = 0, sid = 0;
         try {
             cid = Integer.parseInt(request.getParameter("cid"));
@@ -29,18 +36,26 @@ public class ShopServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ProductDAO p = new ProductDAO();
-        SupplierDAO sd = new SupplierDAO();
-        CategoryDAO cd = new CategoryDAO();
-        request.setAttribute("categoryList", cd.getAllCategory());
-        request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
+        
+
+        String txt = "";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie c : cookies) {
+            if (c.getName().equals("cart")) {
+                txt = c.getValue();
+            }
+        }
+        Cart cart = new Cart(txt, p.getAllProductByCid(0));
+
         if (sid != 0) {
             request.setAttribute("productList", p.getProductBySupplierID(sid));
         } else {
             request.setAttribute("productList", p.getAllProductByCid(cid));
         }
 
-        System.out.println(sid);
+        request.setAttribute("sizeCart", cart.getSizeCart());
+        request.setAttribute("categoryList", cd.getAllCategory());
+        request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
