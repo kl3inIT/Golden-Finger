@@ -45,7 +45,7 @@ public class ShopServlet extends HttpServlet {
 
         if (cid != 0) {
             request.setAttribute("productList", p.getAllProductByCid(cid));
-        } else if (sid > 0) {
+        } else if (sid != 0) {
             request.setAttribute("productList", p.getProductBySupplierID(sid));
         } else {
             int totalProducts = p.getTotalProduct();
