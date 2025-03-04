@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Cart;
+import model.WishList;
 
 /**
  *
@@ -62,15 +63,22 @@ public class CartServlet extends HttpServlet {
         ProductDAO pd = new ProductDAO();
 
         String txt = "";
+        String txt2 = "";
         Cookie[] cookies = request.getCookies();
         for (Cookie c : cookies) {
             if (c.getName().equals("cart")) {
                 txt = c.getValue();
             }
+            if (c.getName().equals("wishlist")) {
+                txt2 = c.getValue();
+            }
         }
         Cart cart = new Cart(txt, pd.getAllProductByCid(0));
-        request.setAttribute("cart", cart.getListItems());
+        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
+        
         request.setAttribute("sizeCart", cart.getSizeCart());
+        request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
+        request.setAttribute("cart", cart.getListItems());
         request.setAttribute("totalAmount", cart.getTotalAmount());
         request.setAttribute("categoryList", cd.getAllCategory());
         request.getRequestDispatcher("cart.jsp").forward(request, response);

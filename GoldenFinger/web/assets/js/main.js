@@ -334,24 +334,64 @@
     });
 
     /*--------------------- Wishlist notify js ---------------------- */
-    $('.wishlist').on("click", function () {
+//    $('.wishlist').on("click", function () {
+//        $('.gi-wish-notify').remove();
+//        $('.gi-compare-notify').remove();
+//        $('.gi-cart-notify').remove();
+//
+//        var isWishlist = $(this).hasClass("active");
+//        if (isWishlist) {
+//            $(this).removeClass("active");
+//            $('body').append('<div class="gi-wish-notify"><p class="wish-note">Remove product on <a href="wishlist"> Wishlist</a> Successfully!</p></div>');
+//        } else {
+//            $(this).addClass("active");
+//            $('body').append('<div class="gi-wish-notify"><p class="wish-note">Add product on <a href="wishlist"> Wishlist</a> Successfully!</p></div>');
+//        }
+//
+//        setTimeout(function () {
+//            $('.gi-wish-notify').fadeOut();
+//        }, 2000);
+//    });
+
+    $('.wishlist').on("click", function (e) {
+        e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
+
         $('.gi-wish-notify').remove();
         $('.gi-compare-notify').remove();
         $('.gi-cart-notify').remove();
 
-        var isWishlist = $(this).hasClass("active");
-        if (isWishlist) {
-            $(this).removeClass("active");
-            $('footer').after('<div class="gi-wish-notify"><p class="wish-note">Remove product on <a href="wishlist.html"> Wishlist</a> Successfully!</p></div>');
-        } else {
-            $(this).addClass("active");
-            $('body').append('<div class="gi-wish-notify"><p class="wish-note">Add product insdfsd <a href="wishli"> Wishlist</a> Successfully!</p></div>');
-        }
+        var $this = $(this);
+        var productId = $this.attr("data-product-id"); // Lấy productId từ thuộc tính data
+        var actionType = $this.hasClass("active") ? "remove" : "add"; // Xác định loại hành động
 
-        setTimeout(function () {
-            $('.gi-wish-notify').fadeOut();
-        }, 2000);
+        // Gửi Ajax đến servlet
+        $.ajax({
+            type: "POST",
+            url: "wishlist", // Đường dẫn servlet xử lý
+            data: {
+                productId: productId,
+                type: actionType
+            },
+            success: function (response) {
+                if (actionType === "remove") {
+                    $this.removeClass("active");
+                    $('body').append('<div class="gi-wish-notify"><p class="wish-note">Removed product from <a href="wishlist">Wishlist</a> Successfully!</p></div>');
+                } else {
+                    $this.addClass("active");
+                    $('body').append('<div class="gi-wish-notify"><p class="wish-note">Added product to <a href="wishlist">Wishlist</a> Successfully!</p></div>');
+                }
+
+                setTimeout(function () {
+                    $('.gi-wish-notify').fadeOut();
+                }, 2000);
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi gửi request:", status, error);
+            }
+        });
     });
+
+
 
     /*--------------------- Compare notify js ---------------------- */
 //  $('.compare').on("click", function () {
@@ -702,6 +742,6 @@
     });
 
 
-    
+
 
 })(jQuery);
