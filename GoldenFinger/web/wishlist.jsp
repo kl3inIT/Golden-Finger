@@ -1,9 +1,3 @@
-<%-- 
-    Document   : wishlist
-    Created on : Mar 4, 2025, 11:34:39 AM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>

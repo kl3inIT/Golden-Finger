@@ -1,8 +1,3 @@
-<%-- 
-    Document   : footer
-    Created on : Feb 26, 2025, 11:23:57 PM
-    Author     : nhudi
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
