@@ -1,20 +1,11 @@
-<%-- 
-    Document   : shop
-    Created on : Feb 13, 2025, 11:04:47 PM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/shop-full-width-col-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:21 GMT -->
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">

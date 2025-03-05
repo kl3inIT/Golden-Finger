@@ -1,9 +1,5 @@
 package model;
 
-/**
- *
- * @author nhudi
- */
 public class Item {
     
     private Product product;
@@ -13,7 +9,6 @@ public class Item {
     public Item() {
     }
 
-    
     public Item(Product product, int quantity, double price) {
         this.product = product;
         this.quantity = quantity;
@@ -43,7 +38,5 @@ public class Item {
     public void setPrice(double price) {
         this.price = price;
     }
-    
-    
-    
+     
 }

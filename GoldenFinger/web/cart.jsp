@@ -1,9 +1,3 @@
-<%-- 
-    Document   : cart
-    Created on : Feb 27, 2025, 12:44:41 PM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>

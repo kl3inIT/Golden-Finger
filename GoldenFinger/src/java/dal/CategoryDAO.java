@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.Category;
-
+import java.util.List;
 
 public class CategoryDAO extends DBConnect {
 

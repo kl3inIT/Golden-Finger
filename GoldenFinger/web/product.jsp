@@ -1,9 +1,3 @@
-<%-- 
-    Document   : product
-    Created on : Feb 17, 2025, 3:14:31 PM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -11,8 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/product-full-width.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:23 GMT -->
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -317,6 +309,4 @@
         </script>
     </body>
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/product-full-width.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:23 GMT -->
 </html>

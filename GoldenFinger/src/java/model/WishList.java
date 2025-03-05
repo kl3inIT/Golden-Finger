@@ -11,7 +11,7 @@ public class WishList {
 
     private List<Item> listItems;
 
-    public WishList(String txt, ArrayList<Product> productList) {
+    public WishList(String txt, List<Product> productList) {
         listItems = new ArrayList<>();
         String[] items = txt.split("/");
         for (String x : items) {
@@ -51,7 +51,7 @@ public class WishList {
         return null;
     }
 
-    public Product getProductById(int id, ArrayList<Product> productList) {
+    public Product getProductById(int id, List<Product> productList) {
         for (Product p : productList) {
             if (p.getId() == id) {
                 return p;
