@@ -6,11 +6,14 @@ import dal.SupplierDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cart;
+import model.WishList;
 
 @WebServlet(name = "ProductListServlet", urlPatterns = {"/shop"})
 public class ShopServlet extends HttpServlet {
@@ -36,19 +39,16 @@ public class ShopServlet extends HttpServlet {
             LOGGER.log(Level.WARNING, "Invalid category or supplier ID", e);
         }
 
-        ProductDAO p = new ProductDAO();
+        ProductDAO pd = new ProductDAO();
         SupplierDAO sd = new SupplierDAO();
         CategoryDAO cd = new CategoryDAO();
 
-        request.setAttribute("categoryList", cd.getAllCategory());
-        request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
-
         if (cid != 0) {
-            request.setAttribute("productList", p.getAllProductByCid(cid));
+            request.setAttribute("productList", pd.getAllProductByCid(cid));
         } else if (sid != 0) {
-            request.setAttribute("productList", p.getProductBySupplierID(sid));
+            request.setAttribute("productList", pd.getProductBySupplierID(sid));
         } else {
-            int totalProducts = p.getTotalProduct();
+            int totalProducts = pd.getTotalProduct();
             int endPage = totalProducts / 3;
             if (totalProducts % 3 != 0) {
                 endPage++;
@@ -65,12 +65,28 @@ public class ShopServlet extends HttpServlet {
                 LOGGER.log(Level.WARNING, "Invalid page parameter", e);
             }
 
-            request.setAttribute("productList", p.pagingProduct(page));
+            request.setAttribute("productList", pd.pagingProduct(page));
             request.setAttribute("totalProducts", totalProducts);
             request.setAttribute("page", page);
             request.setAttribute("endPage", endPage);
+        }       
+        String txt = "";
+        String txt2 = "";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie c : cookies) {
+            if (c.getName().equals("cart")) {
+                txt = c.getValue();
+            }
+            if (c.getName().equals("wishlist")) {
+                txt2 = c.getValue();
+            }
         }
-        
+        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
+        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
+        request.setAttribute("sizeCart", cart.getSizeCart());
+        request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
+        request.setAttribute("categoryList", cd.getAllCategory());
+        request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 

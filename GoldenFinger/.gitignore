@@ -1,5 +1,4 @@
 
-
 ### NetBeans ###
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
@@ -9,4 +8,3 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-
