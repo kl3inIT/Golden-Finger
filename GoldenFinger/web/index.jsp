@@ -946,15 +946,7 @@ Copyright 2024
                 });
             }
             
-            function addToWishlist(productId) {
-                $.ajax({
-                    type: "POST",
-                    url: "wishlist",
-                    data: {
-                        productId: productId
-                    }
-                });
-            }
+            
             
         </script>
     </body>

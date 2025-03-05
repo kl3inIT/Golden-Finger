@@ -58,7 +58,7 @@
                             <div class="min-[768px]:w-[50%] w-full px-[12px]">
                                 <!-- gi-breadcrumb-list start -->
                                 <ul class="gi-breadcrumb-list text-right max-[767px]:text-center">
-                                    <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize"><a href="index.html" class="relative text-[#4b5966]">Home</a></li>
+                                    <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize"><a href="home" class="relative text-[#4b5966]">Home</a></li>
                                     <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize active">Shop Page</li>
                                 </ul>
                                 <!-- gi-breadcrumb-list end -->
@@ -159,7 +159,7 @@
                                                                 <span class="sale py-[5px] px-[10px] text-[11px] font-medium leading-[12px] text-left uppercase flex items-center bg-[#ff7070] text-[#fff] tracking-[0.5px] relative rounded-[5px]">Sale</span>
                                                             </span>
                                                             <div class="gi-pro-actions transition-all duration-[0.3s] ease-in-out absolute z-[9] left-[0] right-[0] bottom-[-10px] max-[991px]:opacity-[1] max-[991px]:bottom-[10px] flex flex-row items-center justify-center my-[0] mx-auto opacity-[0]">
-                                                                <a class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:bg-[#5CAF90]" title="Wishlist">
+                                                                <a data-product-id="${p.id}" class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist">
                                                                     <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                                 </a>
                                                                 <a href="javascript:void(0)" onclick="addToCart(${p.id}, 1)" title="Add To Cart" class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:bg-[#5CAF90]">
@@ -230,7 +230,156 @@
                         <!--Shop content End -->
 
                     </div>
-                   
+                    <!-- Sidebar Area Start -->
+                    <div class="filter-sidebar-overlay w-full h-screen bg-[#00000080] fixed top-[0] left-[0] z-[16] hidden"></div>
+                    <div class="gi-shop-sidebar gi-filter-sidebar transition-all duration-[0.3s] ease-in-out w-[300px] h-screen p-[0] fixed top-[0] left-[0] z-[16] bg-[#fff] translate-x-[-100%] overflow-auto">
+                        <div class="sidebar-filter-title p-[15px] flex flex-row justify-between bg-[#f8f8fb]">
+                            <h5 class="m-[0] text-[20px] font-bold font-manrope tracking-[0.01rem] leading-[1.2]">Filters</h5>
+                            <a class="filter-close ml-[15px] text-[#ff8585] text-[24px] leading-[1]" href="javascript:void(0)">×</a>
+                        </div>
+                        <div id="shop_sidebar">
+                            <div class="gi-sidebar-wrap p-[15px] rounded-[5px] border-[1px] border-solid border-[#eee]">
+                                <!-- Sidebar Category Block -->
+                                <div class="gi-sidebar-block mb-[15px]">
+                                    <div class="gi-sb-title border-b-[1px] border-solid border-[#eee] pb-[15px]">
+                                        <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Category</h3>
+                                    </div>
+                                    <div class="gi-sb-block-content mt-[15px]">
+                                        <ul>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                        <span class="flex">Grand Piano</span>
+                                                    </a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                        <span class="flex">Upright Piano</span>
+                                                    </a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                        <span class="flex">Digital Piano</span>
+                                                    </a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                        <span class="flex">Stage Piano</span>
+                                                    </a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                        <span class="flex">Hybrid Piano</span>
+                                                    </a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                        <span class="flex">Player Piano</span>
+                                                    </a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Sidebar Brand Block -->
+                                <div class="gi-sidebar-block mb-[15px]">
+                                    <div class="gi-sb-title border-b-[1px] border-solid border-[#eee] pb-[15px]">
+                                        <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Brand</h3>
+                                    </div>
+                                    <div class="gi-sb-block-content mt-[15px]">
+                                        <ul>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Yamaha</a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Roland</a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Casio</a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Korg</a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Steinway & Son</a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Kawai</a>
+                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Sidebar Price Block -->
+                                <div class="gi-sidebar-block mb-[15px]">
+                                    <div class="gi-sb-title border-b-[1px] border-solid border-[#eee] pb-[15px]">
+                                        <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Price</h3>
+                                    </div>
+                                    <div class="gi-sb-block-content gi-price-range-slider es-price-slider mt-[20px]">
+                                        <div class="gi-price-filter flex justify-between flex-col">
+                                            <div class="gi-price-input mb-[15px] p-[10px] flex justify-center items-center rounded-[5px] bg-[#f8f8fb]">
+                                                <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">
+                                                    From
+                                                    <input type="text" class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[48px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]">
+                                                </label>
+                                                <span class="gi-price-divider relative border-b-[1px] border-solid border-[#777] w-[10px] h-[1px] mx-[10px]"></span>
+                                                <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">
+                                                    To<input type="text" class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[48px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]">
+                                                </label>
+                                            </div>
+                                            <div id="gi-sliderPrice" class="filter__slider-price" data-min="0" data-max="10000" data-step="10"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -264,11 +413,12 @@
                     type: "POST",
                     url: "cart",
                     data: {
-                        productId: productId,
-                        quantity: quantity
+                    productId: productId,
+                    quantity: quantity
                     }
                 });
             }
+
         </script>
     </body>
 
