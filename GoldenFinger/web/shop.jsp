@@ -118,18 +118,28 @@
                             </div>
                             <div class="min-[768px]:w-[50%] w-full gi-sort-select flex justify-end items-center">
                                 <div class="gi-select-inner relative flex w-[140px] h-[50px] leading-[1.5] bg-[#fff] overflow-hidden rounded-[0] border-l-[1px] border-solid border-[#eee]">
-                                    <select name="gi-select" id="gi-select" class="appearance-none outline-[0] border-[0] bg-[#fff] grow-[1] px-[10px] text-[#777] cursor-pointer">
-                                        <option selected disabled>Sort by</option>
-                                        <option value="1">Position</option>
-                                        <option value="2">Relevance</option>
-                                        <option value="3">Name, A to Z</option>
-                                        <option value="4">Name, Z to A</option>
-                                        <option value="5">Price, low to high</option>
-                                        <option value="6">Price, high to low</option>
-                                    </select>
+                                    <form id="sortForm" action="${pageContext.request.contextPath}/shop" method="GET">
+                                        <input type="hidden" name="sid" value="${sid}" /> <!-- keep param to sort -->
+                                        <input type="hidden" name="cid" value="${cid}" />
+                                        <select name="sort" id="gi-select" class="appearance-none outline-[0] border-[0] bg-[#fff] grow-[1] px-[10px] text-[#777] cursor-pointer">
+                                            <option selected disabled>Sort by</option>
+                                            <option value="1" ${sort == 1 ? 'selected' : ''}>Position</option>
+                                            <option value="2" ${sort == 2 ? 'selected' : ''}>Relevance</option>
+                                            <option value="2" ${sort == 2 ? 'selected' : ''}>Name, A to Z</option>
+                                            <option value="3" ${sort == 3 ? 'selected' : ''}>Name, Z to A</option>
+                                            <option value="4" ${sort == 4 ? 'selected' : ''}>Price, low to high</option>
+                                            <option value="5" ${sort == 5 ? 'selected' : ''}>Price, high to low</option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
+
                         </div>
+                        <script> // auto submit when user select
+                            document.getElementById('gi-select').addEventListener('change', function () {
+                                document.getElementById('sortForm').submit();
+                            });
+                        </script>
                         <!-- Shop Top End -->
 
                         <!-- Shop content Start -->
@@ -246,60 +256,22 @@
                                     </div>
                                     <div class="gi-sb-block-content mt-[15px]">
                                         <ul>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
-                                                        <span class="flex">Grand Piano</span>
-                                                    </a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
-                                                        <span class="flex">Upright Piano</span>
-                                                    </a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
-                                                        <span class="flex">Digital Piano</span>
-                                                    </a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
-                                                        <span class="flex">Stage Piano</span>
-                                                    </a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
-                                                        <span class="flex">Hybrid Piano</span>
-                                                    </a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
-                                                        <span class="flex">Player Piano</span>
-                                                    </a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
+                                            <c:forEach items="${categoryList}" var="category">
+                                                <li>
+                                                    <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                        <input type="checkbox" 
+                                                               name="categories" 
+                                                               value="${category.id}" 
+                                                               ${cid == category.id ? 'checked' : ''}
+                                                               class="filter-checkbox w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]"
+                                                               onchange="applyFilters()">
+                                                        <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                            <span class="flex">${category.name}</span>
+                                                        </a>
+                                                        <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                    </div>
+                                                </li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </div>
@@ -310,48 +282,22 @@
                                     </div>
                                     <div class="gi-sb-block-content mt-[15px]">
                                         <ul>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Yamaha</a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Roland</a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Casio</a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Korg</a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Steinway & Son</a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                                                    <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
-                                                    <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">Kawai</a>
-                                                    <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                                </div>
-                                            </li>
+                                            <c:forEach items="${supplierCountProductList}" var="supplier" >
+                                                <li>
+                                                    <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                                                        <input type="checkbox" 
+                                                               name="supplier" 
+                                                               value="${supplier.key.id}"
+                                                               ${sid == supplier.key.id ? 'checked' : ''}
+                                                               class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]"
+                                                               onchange="applyFilters()">
+                                                        <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                            <span class="flex">${supplier.key.companyName}</span>
+                                                        </a>
+                                                        <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                    </div>
+                                                </li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </div>
@@ -365,14 +311,18 @@
                                             <div class="gi-price-input mb-[15px] p-[10px] flex justify-center items-center rounded-[5px] bg-[#f8f8fb]">
                                                 <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">
                                                     From
-                                                    <input type="text" class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[48px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]">
+                                                    <input type="number" id="minPrice" name="minPrice" value=""${minPrice}"
+                                                           class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[80px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]"
+                                                           onchange="applyFilters()">
                                                 </label>
                                                 <span class="gi-price-divider relative border-b-[1px] border-solid border-[#777] w-[10px] h-[1px] mx-[10px]"></span>
                                                 <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">
-                                                    To<input type="text" class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[48px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]">
+                                                    To
+                                                    <input type="number" id="maxPrice" name="maxPrice" value="${maxPrice}"
+                                                           class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[80px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]"
+                                                           onchange="applyFilters()">
                                                 </label>
                                             </div>
-                                            <div id="gi-sliderPrice" class="filter__slider-price" data-min="0" data-max="10000" data-step="10"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -408,20 +358,18 @@
         <script src="assets/js/main.js"></script>
 
         <script>
-            function addToCart(productId, quantity) {
-                $.ajax({
-                    type: "POST",
-                    url: "cart",
-                    data: {
-                    productId: productId,
-                    quantity: quantity
-                    }
-                });
-            }
+                               function addToCart(productId, quantity) {
+                                   $.ajax({
+                                       type: "POST",
+                                       url: "cart",
+                                       data: {
+                                           productId: productId,
+                                           quantity: quantity
+                                       }
+                                   });
+                               }
 
         </script>
     </body>
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/shop-full-width-col-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:21 GMT -->
 </html>

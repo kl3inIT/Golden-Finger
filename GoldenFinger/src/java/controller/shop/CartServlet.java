@@ -35,7 +35,7 @@ public class CartServlet extends HttpServlet {
         }
         Cart cart = new Cart(txt, pd.getAllProductByCid(0));
         WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
-        
+
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("cart", cart.getListItems());
@@ -77,7 +77,7 @@ public class CartServlet extends HttpServlet {
         if (pid != null && quantity == null) {
             try {
                 int id = Integer.parseInt(pid);
-                
+
                 // get cart on cookie
                 ProductDAO pd = new ProductDAO();
                 String txt = "";
@@ -88,7 +88,7 @@ public class CartServlet extends HttpServlet {
                     }
                 }
                 Cart cart = new Cart(txt, pd.getAllProductByCid(0));
-                
+
                 //remove item
                 cart.removeItemByProductId(id);
 
@@ -102,7 +102,7 @@ public class CartServlet extends HttpServlet {
                 Cookie cartCookie = new Cookie("cart", cart.listCartToString());
                 cartCookie.setMaxAge(60 * 60 * 24 * 60);
                 response.addCookie(cartCookie);
-                
+
                 // call doGet to reload page
                 response.sendRedirect("cart");
             } catch (Exception e) {

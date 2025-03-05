@@ -19,29 +19,19 @@ import model.WishList;
 public class ShopServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(ShopServlet.class.getName());
+    private static final int PRODUCTS_PER_PAGE = 3;
+    private final ProductDAO pd = new ProductDAO();
+    private final SupplierDAO sd = new SupplierDAO();
+    private final CategoryDAO cd = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int cid = 0;
-        int sid = 0;
-
-        try {
-            String cidParam = request.getParameter("cid");
-            String sidParam = request.getParameter("sid");
-            if (cidParam != null && !cidParam.trim().isEmpty()) {
-                cid = Integer.parseInt(cidParam);
-            }
-            if (sidParam != null && !sidParam.trim().isEmpty()) {
-                sid = Integer.parseInt(sidParam);
-            }
-        } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Invalid category or supplier ID", e);
-        }
-
-        ProductDAO pd = new ProductDAO();
-        SupplierDAO sd = new SupplierDAO();
-        CategoryDAO cd = new CategoryDAO();
+        int cid = parseIntParameter(request, "cid", 0);
+        int sort = parseIntParameter(request, "sort", 0);
+        int sid = parseIntParameter(request, "sid", 0);
+        int minPrice = parseIntParameter(request, "minPrice", 0);
+        int maxPrice = parseIntParameter(request, "maxPrice", 10000);
 
         if (cid != 0) {
             request.setAttribute("productList", pd.getAllProductByCid(cid));
@@ -49,27 +39,16 @@ public class ShopServlet extends HttpServlet {
             request.setAttribute("productList", pd.getProductBySupplierID(sid));
         } else {
             int totalProducts = pd.getTotalProduct();
-            int endPage = totalProducts / 3;
-            if (totalProducts % 3 != 0) {
-                endPage++;
-            }
-
-
-            int page = 1;
-            try {
-                String pageParam = request.getParameter("page");
-                if (pageParam != null && !pageParam.trim().isEmpty()) {
-                    page = Integer.parseInt(pageParam);
-                }
-            } catch (NumberFormatException e) {
-                LOGGER.log(Level.WARNING, "Invalid page parameter", e);
-            }
+            int endPage = calculateEndPage(totalProducts);
+            int page = parseIntParameter(request, "page", 1);
 
             request.setAttribute("productList", pd.pagingProduct(page));
             request.setAttribute("totalProducts", totalProducts);
             request.setAttribute("page", page);
             request.setAttribute("endPage", endPage);
-        }       
+        }
+
+        request.setAttribute("productList", pd.getProductsWithSort(cid, sid, sort));
         String txt = "";
         String txt2 = "";
         Cookie[] cookies = request.getCookies();
@@ -87,7 +66,34 @@ public class ShopServlet extends HttpServlet {
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
+
+        request.setAttribute("sid", sid);
+        request.setAttribute("cid", cid);
+        request.setAttribute("sort", sort);
+        request.setAttribute("minPrice", minPrice);
+        request.setAttribute("maxPrice", maxPrice);
+
         request.getRequestDispatcher("shop.jsp").forward(request, response);
+    }
+
+    private int calculateEndPage(int totalProducts) {
+        int endPage = totalProducts / PRODUCTS_PER_PAGE;
+        if (totalProducts % PRODUCTS_PER_PAGE != 0) {
+            endPage++;
+        }
+        return endPage;
+    }
+
+    private int parseIntParameter(HttpServletRequest request, String paramName, int defaultValue) {
+        try {
+            String param = request.getParameter(paramName);
+            if (param != null && !param.trim().isEmpty()) {
+                return Integer.parseInt(param);
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.WARNING, "Invalid parameter", e);
+        }
+        return defaultValue;
     }
 
     @Override

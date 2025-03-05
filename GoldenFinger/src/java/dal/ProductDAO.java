@@ -28,11 +28,13 @@ public class ProductDAO extends DBConnect {
 
         StringBuilder sqlQuery = new StringBuilder("SELECT * FROM Products WHERE 1=1"); // always true (all product)
         if (cid != 0) {
-            sqlQuery.append(" AND CategoryID = ").append(cid);
+            sqlQuery.append(" AND CategoryID = ?");
         }
-
-        try (PreparedStatement stm = connection.prepareStatement(sqlQuery.toString()); ResultSet res = stm.executeQuery()) { //try with resourse (auto close)
-            while (res.next()) {
+        try (PreparedStatement stm = connection.prepareStatement(sqlQuery.toString())) {
+            if (cid != 0) {
+                stm.setInt(1, cid);
+            }
+            try (ResultSet res = stm.executeQuery()) {
                 Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
                         res.getInt(4), res.getInt(5), getImage(res.getString(6)),
                         res.getString(7), res.getString(8), res.getString(9),
@@ -229,10 +231,10 @@ public class ProductDAO extends DBConnect {
 
         String sql = "SELECT * FROM Products WHERE ProductName LIKE ?";
 
-        try (PreparedStatement stm = connection.prepareStatement(sql)) { 
+        try (PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setString(1, "%" + txtSearch + "%");
 
-            try (ResultSet res = stm.executeQuery()) { 
+            try (ResultSet res = stm.executeQuery()) {
                 while (res.next()) {
                     Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
                             res.getInt(4), res.getInt(5), getImage(res.getString(6)),
@@ -250,4 +252,66 @@ public class ProductDAO extends DBConnect {
         return listProduct; // return List of products or empty list if error occurs
     }
 
+    public List<Product> getProductsWithSort(int cid, int sid, int sort) {
+        List<Product> listProduct = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT * FROM Products WHERE 1=1");
+
+        // Thêm điều kiện category nếu có
+        if (cid > 0) {
+            sql.append(" AND CategoryID = ?");
+        }
+
+        if (sid > 0) {
+            sql.append(" AND SupplierID = ?");
+        }
+
+        // Thêm điều kiện sắp xếp
+        switch (sort) {
+            case 1: // Position
+                sql.append(" ORDER BY ProductID");
+                break;
+            case 2: // Name, A to Z
+                sql.append(" ORDER BY ProductName ASC");
+                break;
+            case 3: // Name, Z to A
+                sql.append(" ORDER BY ProductName DESC");
+                break;
+            case 4: // Price, low to high
+                sql.append(" ORDER BY (UnitPrice * (1 - Discount)) ASC");
+                break;
+            case 5: // Price, high to low
+                sql.append(" ORDER BY (UnitPrice * (1 - Discount)) DESC");
+                break;
+            default:
+                // default sort by id
+                sql.append(" ORDER BY ProductID");
+        }
+
+        try (PreparedStatement stm = connection.prepareStatement(sql.toString())) {
+            // Set category ID nếu có
+            if (cid > 0) {
+                stm.setInt(1, cid);
+            }
+
+            if (sid > 0) {
+                stm.setInt(1, sid);
+            }
+
+            try (ResultSet res = stm.executeQuery()) {
+                while (res.next()) {
+                    Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
+                            res.getInt(4), res.getInt(5), getImage(res.getString(6)),
+                            res.getString(7), res.getString(8), res.getString(9),
+                            res.getString(10), res.getFloat(11), res.getString(12),
+                            res.getString(13), res.getString(14), res.getFloat(15),
+                            res.getInt(16), cd.getCategoryById(res.getInt(17)),
+                            sd.getSupplierById(res.getInt(1)));
+                    listProduct.add(p);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error fetching products with sort", e);
+        }
+        return listProduct;
+    }
 }
