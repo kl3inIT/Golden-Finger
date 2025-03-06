@@ -1,8 +1,8 @@
 package controller.shop;
 
 import dal.CategoryDAO;
+import dal.OrderDAO;
 import dal.ProductDAO;
-import dal.SupplierDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,7 +11,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Cart;
+import model.User;
 import model.WishList;
 
 /**
@@ -57,6 +59,13 @@ public class OrderHistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession session = request.getSession(false); // Không tạo session mới nếu chưa có
+        if (session == null || session.getAttribute("account") == null) {
+            response.sendRedirect("login");
+            return;
+        }
+        
         CategoryDAO cd = new CategoryDAO();
         ProductDAO pd = new ProductDAO();
         
@@ -93,7 +102,23 @@ public class OrderHistoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        String fullName = request.getParameter("fullname");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String comment = request.getParameter("comment");
+        
+        HttpSession session = request.getSession(); 
+        User user = (User) session.getAttribute("account");
+        OrderDAO od = new OrderDAO();
+        if(od.isCreateOrder(user.getId(), fullName, phone, address, comment)){
+            response.sendRedirect("orderhistory");
+        }
+        else{
+            System.out.println("failed");
+            response.sendRedirect("checkout");
+        }
+                
     }
 
     /** 

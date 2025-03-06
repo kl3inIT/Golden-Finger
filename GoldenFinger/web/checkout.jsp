@@ -91,70 +91,58 @@
                                 </div>
                                 <div class="gi-sb-block-content mt-[15px]">
                                     <div class="gi-checkout-summary">
+
                                         <div class="gi-checkout-summary-total border-t-[1px] border-solid border-[#eee] pt-[19px] mb-[0] mt-[16px] flex justify-between items-center">
                                             <span class="text-left text-[16px] font-semibold text-[#4b5966] tracking-[0] font-manrope">Total Amount</span>
-                                            <span class="text-right text-[16px] font-semibold text-[#4b5966] font-manrope">$80.00</span>
+                                            <span class="text-right text-[16px] font-semibold text-[#FF0000] font-manrope">
+                                                $<fmt:formatNumber value="${requestScope.totalAmount}" maxFractionDigits="2" minFractionDigits="0" />
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="gi-checkout-pro">
-                                        <div class="w-full mb-[15px]">
-                                            <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
-                                                <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
-                                                    <div class="gi-pro-image overflow-hidden">
-                                                        <a href="product-left-sidebar.html" class="image relative block overflow-hidden pointer-events-none">
-                                                            <img class="main-image max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="assets/img/product-images/2_1.jpg" alt="Product">
-                                                            <img class="hover-image absolute z-[1] top-[0] left-[0] opacity-[0] transition-all duration-[0.3s] ease delay-[0s]" src="assets/img/product-images/2_2.jpg" alt="Product">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
-                                                    <h5 class="gi-pro-title h-full mb-[10px] text-[16px]">
-                                                        <a href="product-left-sidebar.html" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">Dates Value Pack Pouch</a>
-                                                    </h5>
-                                                    <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
-                                                        <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
-                                                        <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
-                                                        <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
-                                                        <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
-                                                        <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left mr-[3px]"></i>
-                                                    </div>
-                                                    <span class="gi-price flex items-center">
-                                                        <span class="old-price text-[14px] text-[#777] line-through">$95.00</span>
-                                                        <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">$79.00</span>
-                                                        <span class="new-price text-[#4b5966] font-bold text-[14px] ml-auto pr-[10px]">x1</span>
-                                                    </span>
+                                        <c:forEach var="cart" items="${requestScope.cart}">
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full mb-0">
-                                            <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
-                                                <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
-                                                    <div class="gi-pro-image overflow-hidden">
-                                                        <a href="product-left-sidebar.html" class="image relative block overflow-hidden pointer-events-none">
-                                                            <img class="main-image max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="assets/img/product-images/8_1.jpg" alt="Product">
-                                                            <img class="hover-image absolute z-[1] top-[0] left-[0] opacity-[0] transition-all duration-[0.3s] ease delay-[0s]" src="assets/img/product-images/8_2.jpg" alt="Product">
-                                                        </a>
+
+                                            <div class="w-full mb-[15px]">
+                                                <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
+                                                    <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
+                                                        <div class="gi-pro-image overflow-hidden">
+                                                            <a href="product-left-sidebar.html" class="image relative block overflow-hidden pointer-events-none">
+                                                                <c:if test="${not empty cart.product.image[0]}">
+                                                                    <img class="main-image max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="${cart.product.image[0]}" alt="Product">
+                                                                </c:if>
+                                                                <c:if test="${not empty cart.product.image[1]}">
+                                                                    <img class="hover-image absolute z-[1] top-[0] left-[0] opacity-[0] transition-all duration-[0.3s] ease delay-[0s]" src="${cart.product.image[1]}" alt="Product">
+                                                                </c:if> 
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
+                                                        <h5 class="gi-pro-title h-full mb-[10px] text-[16px]">
+                                                            <a href="product-left-sidebar.html" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">Dates Value Pack Pouch</a>
+                                                        </h5>
+                                                        <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
+                                                            <c:forEach var="i" begin="1" end="${cart.product.starRating}" step="1">
+                                                                <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
+                                                            </c:forEach>
+                                                            <c:forEach var="i" begin="${cart.product.starRating + 1}" end="5" step="1">
+                                                                <i class="gicon gi-star inline-block text-[#777] float-left text-[14px] mr-[3px]"></i>
+                                                            </c:forEach>
+                                                        </div>
+                                                        <span class="gi-price flex items-center">
+                                                            <span class="old-price text-[14px] text-[#777] line-through">
+                                                                $<fmt:formatNumber value="${cart.product.price}" maxFractionDigits="2" minFractionDigits="0" />
+                                                            </span>
+                                                            <span class="new-price text-[#4b5966] font-bold text-[14px] ml-[7px]">
+                                                                $<fmt:formatNumber value="${cart.product.price - cart.product.price * cart.product.discount}" maxFractionDigits="2" minFractionDigits="0" />
+                                                            </span>
+                                                            <span class="new-price text-[#4b5966] font-bold text-[14px] ml-auto pr-[10px]">x${cart.quantity}</span>
+                                                        </span>
+
                                                     </div>
                                                 </div>
-                                                <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
-                                                    <h5 class="gi-pro-title h-full mb-[10px] text-[16px]">
-                                                        <a href="product-left-sidebar.html" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">Smoked Honey Spiced Nuts</a>
-                                                    </h5>
-                                                    <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
-                                                        <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
-                                                        <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
-                                                        <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
-                                                        <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left mr-[3px]"></i>
-                                                        <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left mr-[3px]"></i>
-                                                    </div>
-                                                    <span class="gi-price">
-                                                        <span class="old-price text-[14px] text-[#777] line-through">$58.00</span>
-                                                        <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">$45.00</span>
-                                                    </span>
-                                                </div>
                                             </div>
-                                        </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
@@ -175,31 +163,35 @@
                                         <div class="gi-bl-block-content">
 
                                             <div class="gi-check-bill-form mb-[2px]">
-                                                <form action="#" method="post" class="flex flex-row flex-wrap mx-[-15px]">
+                                                <form action="orderhistory" method="post" class="flex flex-row flex-wrap mx-[-15px]">
                                                     <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Full Name*</label>
-                                                        <input type="text" name="fullname" placeholder="Enter your full name" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
+                                                        <input value="${requestScope.user.fullName}" type="text" name="fullname" placeholder="Enter your full name" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
                                                     </span>
                                                     <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Phone*</label>
-                                                        <input type="text" name="phone" placeholder="Enter your phone" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
+                                                        <input value="${requestScope.user.phone}" type="text" name="phone" placeholder="Enter your phone" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
                                                     </span>
                                                     <span class="gi-bill-wrap w-full px-[15px]">
-                                                        <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Address</label>
-                                                        <input type="text" name="address" placeholder="Enter your address" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]">
+                                                        <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Address*</label>
+                                                        <input value="${requestScope.user.address}" type="text" name="address" placeholder="Enter your address" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]">
                                                     </span>
                                                     <span class="gi-bill-wrap w-full px-[15px]">
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Comment</label>
                                                         <input type="text" name="comment" placeholder="Enter your comment" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]">
                                                     </span>
+                                                    <span class="gi-check-order-btn block text-right p-[0] w-full">
+                                                        <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">
+                                                            Place Order
+                                                        </button>
+                                                    </span>
+
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <span class="gi-check-order-btn flex flex-end p-[0]">
-                                    <a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">Place Order</a>
-                                </span>
+
                             </div>
                         </div>
                         <!--cart content End -->
