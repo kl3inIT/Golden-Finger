@@ -10,10 +10,12 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cart;
 import model.WishList;
+import model.Product;
 
 @WebServlet(name = "ProductListServlet", urlPatterns = {"/shop"})
 public class ShopServlet extends HttpServlet {
@@ -31,24 +33,18 @@ public class ShopServlet extends HttpServlet {
         int sort = parseIntParameter(request, "sort", 0);
         int sid = parseIntParameter(request, "sid", 0);
         int minPrice = parseIntParameter(request, "minPrice", 0);
-        int maxPrice = parseIntParameter(request, "maxPrice", 10000);
+        int maxPrice = parseIntParameter(request, "maxPrice", pd.getMaxPrice());
+        int page = parseIntParameter(request, "page", 1);
+        List<Product> productList = pd.getFilteredProducts(cid, sid, minPrice, maxPrice, sort, page, PRODUCTS_PER_PAGE);
 
-        if (cid != 0) {
-            request.setAttribute("productList", pd.getAllProductByCid(cid));
-        } else if (sid != 0) {
-            request.setAttribute("productList", pd.getProductBySupplierID(sid));
-        } else {
-            int totalProducts = pd.getTotalProduct();
-            int endPage = calculateEndPage(totalProducts);
-            int page = parseIntParameter(request, "page", 1);
+        // Calculate pagination
+        int totalFilteredProducts = pd.getTotalFilteredProducts(cid, sid, minPrice, maxPrice);
+        int endPage = calculateEndPage(totalFilteredProducts);
 
-            request.setAttribute("productList", pd.pagingProduct(page));
-            request.setAttribute("totalProducts", totalProducts);
-            request.setAttribute("page", page);
-            request.setAttribute("endPage", endPage);
-        }
-
-        request.setAttribute("productList", pd.getProductsWithSort(cid, sid, sort));
+        // Set attributes for JSP
+        request.setAttribute("productList", productList);
+        request.setAttribute("totalProducts", totalFilteredProducts);
+        setFilterAttributes(request, cid, sid, sort, minPrice, maxPrice, page, endPage);
         String txt = "";
         String txt2 = "";
         Cookie[] cookies = request.getCookies();
@@ -66,14 +62,18 @@ public class ShopServlet extends HttpServlet {
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
+        request.getRequestDispatcher("shop.jsp").forward(request, response);
+    }
 
+    private void setFilterAttributes(HttpServletRequest request, int cid, int sid, int sort,
+            int minPrice, int maxPrice, int page, int endPage) {
         request.setAttribute("sid", sid);
         request.setAttribute("cid", cid);
         request.setAttribute("sort", sort);
         request.setAttribute("minPrice", minPrice);
         request.setAttribute("maxPrice", maxPrice);
-
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
+        request.setAttribute("page", page);
+        request.setAttribute("endPage", endPage);
     }
 
     private int calculateEndPage(int totalProducts) {

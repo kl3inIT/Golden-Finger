@@ -121,6 +121,7 @@
                                     <form id="sortForm" action="${pageContext.request.contextPath}/shop" method="GET">
                                         <input type="hidden" name="sid" value="${sid}" /> <!-- keep param to sort -->
                                         <input type="hidden" name="cid" value="${cid}" />
+                                        <input type="hidden" name="page" value="${page}" />
                                         <select name="sort" id="gi-select" class="appearance-none outline-[0] border-[0] bg-[#fff] grow-[1] px-[10px] text-[#777] cursor-pointer">
                                             <option selected disabled>Sort by</option>
                                             <option value="1" ${sort == 1 ? 'selected' : ''}>Position</option>
