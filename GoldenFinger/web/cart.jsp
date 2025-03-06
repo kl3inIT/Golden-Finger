@@ -86,7 +86,7 @@
                         <div class="gi-cart-content">
                             <div class="gi-cart-inner">
                                 <div class="flex flex-wrap w-full">
-                                    <form action="#" class="w-full">
+                                    <form action="checkout" method="POST" class="w-full">
                                         <div class="table-content cart-table-content">
                                             <table class="w-full bg-[#fff] ">
                                                 <thead class="max-[767px]:border-[0] max-[767px]:h-[1px] max-[767px]:m-[-1px] max-[767px]:overflow-hidden max-[767px]:p-[0] max-[767px]:absolute max-[767px]:w-[1px]">

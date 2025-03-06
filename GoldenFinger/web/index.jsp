@@ -944,10 +944,7 @@ Copyright 2024
                         quantity: quantity
                     }
                 });
-            }
-            
-            
-            
+            }                     
         </script>
     </body>
 
