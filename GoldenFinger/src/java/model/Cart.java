@@ -92,5 +92,10 @@ public class Cart {
         }
         return str;
     }
+    
+    
+    public void removeAllItem(){
+        listItems.clear();
+    }
 
 }

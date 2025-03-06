@@ -83,14 +83,18 @@
                     <div class="w-full px-[12px]">
                         <div class="gi-vendor-dashboard-card border-[1px] border-solid border-[#eee] rounded-[5px] overflow-y-auto">
                             <div class="gi-vendor-card-header min-w-[700px] p-[30px] border-b-[1px] border-solid border-[#eee] flex justify-between items-center">
+
                                 <h5 class="m-[0] text-[18px] uppercase font-bold text-[#777] tracking-[0.01rem] leading-[1.2]">
-                                    Order 123 : 
-                                    <span class="text-right text-[18px] font-medium text-red-600 leading-[24px] tracking-[0] ml-3">
-                                        $<fmt:formatNumber value="1203123" maxFractionDigits="2" minFractionDigits="0" />
-                                    </span></h5>
-                                <div class="gi-header-btn">
-                                    <a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#FF0000] text-[#fff] text-center rounded-[5px] hover:bg-[#FF6666] hover:text-[#fff]" href="shop">Cancel order</a>
-                                </div>
+                                    Order ${requestScope.order.id} :    <span class="max-[767px]:text-[14px] py-[14px]  text-[#5caf90] tracking-[0.02rem]">
+                                        $<fmt:formatNumber value="${requestScope.order.totalAmount}" maxFractionDigits="2" minFractionDigits="0" />
+                                    </span>
+
+                                </h5>
+                                <c:if test="${requestScope.order.status.id == 1 || requestScope.order.status.id == 2}">
+                                    <div class="gi-header-btn">
+                                        <a onclick="sendOrderId(${requestScope.order.id})"  class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#FF0000] text-[#fff] text-center rounded-[5px] hover:bg-[#FF6666] hover:text-[#fff]" href="javascript:void(0)">Cancel order</a>
+                                    </div>
+                                </c:if>
                             </div>
                             <div class="gi-vendor-card-body min-w-[700px] p-[30px]">
                                 <div class="gi-vendor-card-table">
@@ -107,42 +111,38 @@
                                             </tr>
                                         </thead>
                                         <tbody class="wish-empt border-t-[3px] border-solid border-[#eee] border-solid border-[#dee2e6]">
-                                            <c:forEach var="w" items="${requestScope.wishlist}">
+                                            <c:forEach var="odd" items="${requestScope.orderDetailList}">
 
 
                                                 <tr class="pro-gl-content">
 
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
                                                         <a href="product?pid=${w.product.id}">
-                                                            <c:if test="${not empty w.product.image[0]}">
-                                                                <img class="prod-img h-[58px] w-[58px]" src="${w.product.image[0]}" alt="product image">
+                                                            <c:if test="${not empty odd.product.image[0]}">
+                                                                <img class="prod-img h-[58px] w-[58px]" src="${odd.product.image[0]}" alt="product image">
                                                             </c:if>
 
                                                         </a>
                                                     </td>
-                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">${w.product.name}</span></td>
+                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">${odd.product.name}</span></td>
 
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6] text-center">
                                                         <span class="max-[767px]:text-[14px] py-[14px] flex justify-center text-[#777] tracking-[0.02rem]">
-                                                            1
+                                                            ${odd.quantity}
                                                         </span>
                                                     </td>
 
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
                                                         <span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">
-                                                            $<fmt:formatNumber value="10000" maxFractionDigits="2" minFractionDigits="0" />
+                                                            $<fmt:formatNumber value="${odd.unitPrice - odd.unitPrice * odd.discount}" maxFractionDigits="2" minFractionDigits="0" />
                                                         </span>
                                                     </td>
 
 
 
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
-                                                        <span class="tbl-btn py-[14px] flex text-[#777]">
-                                                            <a onclick="addToCart(${w.product.id}, 1)" class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart">
-                                                                <i class="fi-rr-shopping-basket leading-[10px]"></i>
-                                                            </a>
-
-
+                                                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">
+                                                            $<fmt:formatNumber value="${(odd.unitPrice - odd.unitPrice * odd.discount) * odd.quantity}" maxFractionDigits="2" minFractionDigits="0" />
                                                         </span>
                                                     </td>
                                                 </tr>  
@@ -183,6 +183,23 @@
         <!-- Main Js -->
         <script src="assets/js/main.js"></script>
 
+
+        <script>
+                                            function sendOrderId(orderId) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "cancel",
+                                                    data: {orderId: orderId},
+                                                    success: function (response) {
+                                                        window.location.href = "orderhistory"; // ✅ Chuyển hướng đúng sau khi hủy đơn
+                                                    },
+                                                    error: function () {
+                                                        alert("error");
+                                                    }
+                                                });
+                                            }
+
+        </script>
 
     </body>
 

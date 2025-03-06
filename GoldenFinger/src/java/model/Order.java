@@ -7,10 +7,27 @@ package model;
 public class Order {
     private int id;
     private String date;
-    private int status;
+    private OrderStatus status;
     private int userId;
     private String fullName;
     private String phone;
+    private float totalAmount;
+
+    public float getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(float totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
     private String address;
     private String comment;
 
@@ -41,13 +58,7 @@ public class Order {
         this.date = date;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+  
 
     public int getUserId() {
         return userId;

@@ -103,34 +103,29 @@
                                             </tr>
                                         </thead>
                                         <tbody class="wish-empt border-t-[3px] border-solid border-[#eee] border-solid border-[#dee2e6]">
-                                            <c:forEach var="w" items="${requestScope.wishlist}">
+                                            <c:forEach var="ol" items="${requestScope.orderList}">
 
 
                                                 <tr class="pro-gl-content">
 
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
-                                                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">123</span>
+                                                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">${ol.id}</span>
                                                     </td>
-                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">2025-02-01</span></td>
+                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">${ol.date}</span></td>
 
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
                                                         <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">
-                                                            $<fmt:formatNumber value="${w.price}" maxFractionDigits="2" minFractionDigits="0" />
+                                                            $<fmt:formatNumber value="${ol.totalAmount}" maxFractionDigits="2" minFractionDigits="0" />
                                                         </span>
                                                     </td>
-                                                    <c:if test="${w.product.unitInStock > 0}">
-                                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">Available</span></td>
-                                                    </c:if>
-                                                    
-                                                    <c:if test="${w.product.unitInStock <= 0}">
-                                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#e9abab] tracking-[0.02rem]">Out Of Stock</span></td>
-                                                    </c:if>
+
+                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">${ol.status.statusName}</span></td>
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
                                                         <span class="tbl-btn py-[14px] flex text-[#777]">
-                                                            <a href="#" class="gi-btn-2 w-[60px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart">
+                                                            <a href="orderdetail?oid=${ol.id}" class="gi-btn-2 w-[60px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart">
                                                                 view
                                                             </a>
-                                                          
+
                                                         </span>
                                                     </td>
                                                 </tr>  
@@ -170,7 +165,7 @@
 
         <!-- Main Js -->
         <script src="assets/js/main.js"></script>
-        
+
         <script>
             function addToCart(productId, quantity) {
                 $.ajax({
@@ -182,7 +177,7 @@
                     }
                 });
             }
-            
+
             function removeFromWishlist(productId, type) {
                 $.ajax({
                     type: "POST",
@@ -191,12 +186,12 @@
                         productId: productId,
                         type: type
                     },
-                    success: function() {
-                    window.location.reload(); // Tải lại trang sau khi thêm vào giỏ hàng
+                    success: function () {
+                        window.location.reload(); // Tải lại trang sau khi thêm vào giỏ hàng
                     }
                 });
             }
-                      
+
         </script>
     </body>
 

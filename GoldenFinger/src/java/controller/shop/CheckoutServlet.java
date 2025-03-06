@@ -88,13 +88,18 @@ public class CheckoutServlet extends HttpServlet {
         Cart cart = new Cart(txt, pd.getAllProductByCid(0));
         WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
 
-        request.setAttribute("user", user);
-        request.setAttribute("cart", cart.getListItems());
-        request.setAttribute("sizeCart", cart.getSizeCart());
-        request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
-        request.setAttribute("categoryList", cd.getAllCategory());
-        request.setAttribute("totalAmount", cart.getTotalAmount());
-        request.getRequestDispatcher("checkout.jsp").forward(request, response);
+        if (cart.getSizeCart() == 0) {
+            response.sendRedirect("shop");
+        } else {
+            request.setAttribute("user", user);
+            request.setAttribute("cart", cart.getListItems());
+            request.setAttribute("sizeCart", cart.getSizeCart());
+            request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
+            request.setAttribute("categoryList", cd.getAllCategory());
+            request.setAttribute("totalAmount", cart.getTotalAmount());
+            request.getRequestDispatcher("checkout.jsp").forward(request, response);
+        }
+
     }
 
     /**
