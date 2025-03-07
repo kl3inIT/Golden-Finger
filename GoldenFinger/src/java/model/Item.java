@@ -1,14 +1,13 @@
 package model;
 
-/**
- *
- * @author nhudi
- */
 public class Item {
     
     private Product product;
     private int quantity;
     private double price;
+
+    public Item() {
+    }
 
     public Item(Product product, int quantity, double price) {
         this.product = product;
@@ -39,7 +38,5 @@ public class Item {
     public void setPrice(double price) {
         this.price = price;
     }
-    
-    
-    
+     
 }

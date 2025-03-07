@@ -1,77 +1,120 @@
 package controller.shop;
 
 import dal.CategoryDAO;
+import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Cart;
+import model.WishList;
 
-/**
- *
- * @author nhudi
- */
-@WebServlet(name="CartServlet", urlPatterns={"/cart"})
+@WebServlet(name = "CartServlet", urlPatterns = {"/cart"})
 public class CartServlet extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CartServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CartServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    } 
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         CategoryDAO cd = new CategoryDAO();
+        ProductDAO pd = new ProductDAO();
+
+        String txt = "";
+        String txt2 = "";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie c : cookies) {
+            if (c.getName().equals("cart")) {
+                txt = c.getValue();
+            }
+            if (c.getName().equals("wishlist")) {
+                txt2 = c.getValue();
+            }
+        }
+        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
+        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
+
+        request.setAttribute("sizeCart", cart.getSizeCart());
+        request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
+        request.setAttribute("cart", cart.getListItems());
+        request.setAttribute("totalAmount", cart.getTotalAmount());
         request.setAttribute("categoryList", cd.getAllCategory());
         request.getRequestDispatcher("cart.jsp").forward(request, response);
-    } 
-
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
     }
 
-    /** 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String pid = request.getParameter("productId");
+        String quantity = request.getParameter("quantity");
+
+        // add to cart
+        if (pid != null && quantity != null) {
+            String txt = "";
+            // lay cookie 
+            Cookie[] cookies = request.getCookies();
+            for (Cookie x : cookies) {
+                if (x.getName().equals("cart")) {
+                    txt += x.getValue();
+                    x.setMaxAge(0);
+                    response.addCookie(x);
+                }
+            }
+
+            if (txt.isEmpty()) {
+                txt += pid + ":" + quantity;
+            } else {
+                txt += "/" + pid + ":" + quantity;
+            }
+
+            Cookie cart = new Cookie("cart", txt);
+            cart.setMaxAge(60 * 60 * 24 * 60);
+            response.addCookie(cart);
+        }
+        // remove items into cart 
+        if (pid != null && quantity == null) {
+            try {
+                int id = Integer.parseInt(pid);
+
+                // get cart on cookie
+                ProductDAO pd = new ProductDAO();
+                String txt = "";
+                Cookie[] cookies = request.getCookies();
+                for (Cookie c : cookies) {
+                    if (c.getName().equals("cart")) {
+                        txt = c.getValue();
+                    }
+                }
+                Cart cart = new Cart(txt, pd.getAllProductByCid(0));
+
+                //remove item
+                cart.removeItemByProductId(id);
+
+                //set cookie after delete
+                for (Cookie c : cookies) {
+                    if (c.getName().equals("cart")) {
+                        txt = c.getValue();
+                        c.setMaxAge(0);
+                    }
+                }
+                Cookie cartCookie = new Cookie("cart", cart.listCartToString());
+                cartCookie.setMaxAge(60 * 60 * 24 * 60);
+                response.addCookie(cartCookie);
+
+                // call doGet to reload page
+                response.sendRedirect("cart");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

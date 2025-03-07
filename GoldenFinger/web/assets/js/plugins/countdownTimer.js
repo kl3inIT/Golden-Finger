@@ -1,6 +1,6 @@
 function updateTimera() {
 
-    future = Date.parse("Mar 2, 2025 11:30:00");
+    future = Date.parse("Jun 2, 2025 11:30:00");
     now = new Date();
     diff = future - now;
 

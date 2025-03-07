@@ -6,72 +6,94 @@ import dal.SupplierDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cart;
+import model.WishList;
+import model.Product;
 
 @WebServlet(name = "ProductListServlet", urlPatterns = {"/shop"})
 public class ShopServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(ShopServlet.class.getName());
+    private static final int PRODUCTS_PER_PAGE = 3;
+    private final ProductDAO pd = new ProductDAO();
+    private final SupplierDAO sd = new SupplierDAO();
+    private final CategoryDAO cd = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int cid = 0;
-        int sid = 0;
+        int cid = parseIntParameter(request, "cid", 0);
+        int sort = parseIntParameter(request, "sort", 0);
+        int sid = parseIntParameter(request, "sid", 0);
+        int minPrice = parseIntParameter(request, "minPrice", 0);
+        int maxPrice = parseIntParameter(request, "maxPrice", pd.getMaxPrice());
+        int page = parseIntParameter(request, "page", 1);
+        List<Product> productList = pd.getFilteredProducts(cid, sid, minPrice, maxPrice, sort, page, PRODUCTS_PER_PAGE);
 
-        try {
-            String cidParam = request.getParameter("cid");
-            String sidParam = request.getParameter("sid");
-            if (cidParam != null && !cidParam.trim().isEmpty()) {
-                cid = Integer.parseInt(cidParam);
+        // Calculate pagination
+        int totalFilteredProducts = pd.getTotalFilteredProducts(cid, sid, minPrice, maxPrice);
+        int endPage = calculateEndPage(totalFilteredProducts);
+
+        // Set attributes for JSP
+        request.setAttribute("productList", productList);
+        request.setAttribute("totalProducts", totalFilteredProducts);
+        setFilterAttributes(request, cid, sid, sort, minPrice, maxPrice, page, endPage);
+        String txt = "";
+        String txt2 = "";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie c : cookies) {
+            if (c.getName().equals("cart")) {
+                txt = c.getValue();
             }
-            if (sidParam != null && !sidParam.trim().isEmpty()) {
-                sid = Integer.parseInt(sidParam);
+            if (c.getName().equals("wishlist")) {
+                txt2 = c.getValue();
             }
-        } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Invalid category or supplier ID", e);
         }
-
-        ProductDAO p = new ProductDAO();
-        SupplierDAO sd = new SupplierDAO();
-        CategoryDAO cd = new CategoryDAO();
-
+        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
+        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
+        request.setAttribute("sizeCart", cart.getSizeCart());
+        request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
-
-        if (cid != 0) {
-            request.setAttribute("productList", p.getAllProductByCid(cid));
-        } else if (sid != 0) {
-            request.setAttribute("productList", p.getProductBySupplierID(sid));
-        } else {
-            int totalProducts = p.getTotalProduct();
-            int endPage = totalProducts / 3;
-            if (totalProducts % 3 != 0) {
-                endPage++;
-            }
-
-
-            int page = 1;
-            try {
-                String pageParam = request.getParameter("page");
-                if (pageParam != null && !pageParam.trim().isEmpty()) {
-                    page = Integer.parseInt(pageParam);
-                }
-            } catch (NumberFormatException e) {
-                LOGGER.log(Level.WARNING, "Invalid page parameter", e);
-            }
-
-            request.setAttribute("productList", p.pagingProduct(page));
-            request.setAttribute("totalProducts", totalProducts);
-            request.setAttribute("page", page);
-            request.setAttribute("endPage", endPage);
-        }
-        
         request.getRequestDispatcher("shop.jsp").forward(request, response);
+    }
+
+    private void setFilterAttributes(HttpServletRequest request, int cid, int sid, int sort,
+            int minPrice, int maxPrice, int page, int endPage) {
+        request.setAttribute("sid", sid);
+        request.setAttribute("cid", cid);
+        request.setAttribute("sort", sort);
+        request.setAttribute("minPrice", minPrice);
+        request.setAttribute("maxPrice", maxPrice);
+        request.setAttribute("page", page);
+        request.setAttribute("endPage", endPage);
+    }
+
+    private int calculateEndPage(int totalProducts) {
+        int endPage = totalProducts / PRODUCTS_PER_PAGE;
+        if (totalProducts % PRODUCTS_PER_PAGE != 0) {
+            endPage++;
+        }
+        return endPage;
+    }
+
+    private int parseIntParameter(HttpServletRequest request, String paramName, int defaultValue) {
+        try {
+            String param = request.getParameter(paramName);
+            if (param != null && !param.trim().isEmpty()) {
+                return Integer.parseInt(param);
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.WARNING, "Invalid parameter", e);
+        }
+        return defaultValue;
     }
 
     @Override
