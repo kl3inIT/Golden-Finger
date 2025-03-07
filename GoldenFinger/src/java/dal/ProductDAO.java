@@ -99,7 +99,7 @@ public class ProductDAO extends DBConnect {
             LOGGER.log(Level.WARNING, "Database connection is null");
             return listProduct; // return empty list if db connection is null
         }
-        
+
         String sqlQuery = "SELECT TOP 10 * FROM Products ORDER BY ProductID DESC";
 
         try (PreparedStatement stm = connection.prepareStatement(sqlQuery); ResultSet res = stm.executeQuery()) {
@@ -141,24 +141,23 @@ public class ProductDAO extends DBConnect {
     }
 
     public Product getProductById(int pid) {
-        if (connection != null) {
-            try {
-                String sqlQuery = "SELECT * FROM Products WHERE ProductID = ?;";
-                PreparedStatement stm = connection.prepareStatement(sqlQuery);
-                stm.setInt(1, pid);
-                ResultSet res = stm.executeQuery();
-                while (res.next()) {
-                    return new Product(res.getInt(1), res.getString(2), res.getFloat(3),
-                            res.getInt(4), res.getInt(5), getImage(res.getString(6)),
-                            res.getString(7), res.getString(8), res.getString(9),
-                            res.getString(10), res.getFloat(11), res.getString(12),
-                            res.getString(13), res.getString(14), res.getFloat(15),
-                            res.getInt(16), cd.getCategoryById(res.getInt(17)),
-                            sd.getSupplierById(res.getInt(1)));
+
+        if (connection == null) { // check db connection
+            LOGGER.log(Level.WARNING, "Database connection is null");
+            return null; // return null if db connection is null
+        }
+
+        String sqlQuery = "SELECT * FROM Products WHERE ProductID = ?";
+
+        try (PreparedStatement stm = connection.prepareStatement(sqlQuery)) {
+            stm.setInt(1, pid);
+            try (ResultSet res = stm.executeQuery()) {
+                if (res.next()) {
+                    return mapResultSetToProduct(res);
                 }
-            } catch (SQLException e) {
-                LOGGER.log(Level.SEVERE, "Error fetching products", e);
             }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error fetching products", e);
         }
         return null;
     }
@@ -179,13 +178,7 @@ public class ProductDAO extends DBConnect {
 
             try (ResultSet res = stm.executeQuery()) {
                 while (res.next()) {
-                    Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
-                            res.getInt(4), res.getInt(5), getImage(res.getString(6)),
-                            res.getString(7), res.getString(8), res.getString(9),
-                            res.getString(10), res.getFloat(11), res.getString(12),
-                            res.getString(13), res.getString(14), res.getFloat(15),
-                            res.getInt(16), cd.getCategoryById(res.getInt(17)),
-                            sd.getSupplierById(res.getInt(1)));
+                    Product p = mapResultSetToProduct(res);
                     listProduct.add(p);
                 }
             }
