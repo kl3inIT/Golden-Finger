@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +12,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
         <title>Shop</title>
-        <meta name="keywords" content="tailwindcss, ecommerce, farming, food market, grocery market, grocery shop, grocery store, grocery supper market, multi vendor, organic food, supermarket, supermarket grocery">
-        <meta name="description" content="Multipurpose eCommerce Tailwind CSS Template">
-        <meta name="author" content="Maraviya Infotech">
+        <meta name="keywords" content="tailwindcss, ecommerce, piano">
+        <meta name="description" content="Piano Shop">
+        <meta name="author" content="">
 
         <!-- site Favicon -->
         <link rel="icon" href="assets/img/favicon/favicon.png" sizes="32x32">
@@ -39,10 +39,7 @@
 
     </head>
 
-
-
     <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">
-
 
         <jsp:include page="header.jsp" />
 
@@ -117,30 +114,30 @@
                                 </div>
                             </div>
                             <div class="min-[768px]:w-[50%] w-full gi-sort-select flex justify-end items-center">
-                                <div class="gi-select-inner relative flex w-[140px] h-[50px] leading-[1.5] bg-[#fff] overflow-hidden rounded-[0] border-l-[1px] border-solid border-[#eee]">
-                                    <form id="sortForm" action="${pageContext.request.contextPath}/shop" method="GET">
+                                <form id="sortForm" action="${pageContext.request.contextPath}/shop" method="GET">
+
+                                    <div class="gi-select-inner relative flex w-[140px] h-[50px] leading-[1.5] bg-[#fff] overflow-hidden rounded-[0] border-l-[1px] border-solid border-[#eee]">
+                                        <c:if test="${requestScope.sid ne 0}">
+                                            <input type="hidden" name="sid" value="${sid}" /> <!-- keep param to sort -->
+                                        </c:if>
                                         <input type="hidden" name="sid" value="${sid}" /> <!-- keep param to sort -->
                                         <input type="hidden" name="cid" value="${cid}" />
                                         <input type="hidden" name="page" value="${page}" />
+                                        <input type="hidden" name="minPrice" value="${minPrice}" />
+                                        <input type="hidden" name="maxPrice" value="${maxPrice}" />
                                         <select name="sort" id="gi-select" class="appearance-none outline-[0] border-[0] bg-[#fff] grow-[1] px-[10px] text-[#777] cursor-pointer">
                                             <option selected disabled>Sort by</option>
                                             <option value="1" ${sort == 1 ? 'selected' : ''}>Position</option>
-                                            <option value="2" ${sort == 2 ? 'selected' : ''}>Relevance</option>
                                             <option value="2" ${sort == 2 ? 'selected' : ''}>Name, A to Z</option>
                                             <option value="3" ${sort == 3 ? 'selected' : ''}>Name, Z to A</option>
                                             <option value="4" ${sort == 4 ? 'selected' : ''}>Price, low to high</option>
                                             <option value="5" ${sort == 5 ? 'selected' : ''}>Price, high to low</option>
                                         </select>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form> 
                             </div>
-
                         </div>
-                        <script> // auto submit when user select
-                            document.getElementById('gi-select').addEventListener('change', function () {
-                                document.getElementById('sortForm').submit();
-                            });
-                        </script>
+
                         <!-- Shop Top End -->
 
                         <!-- Shop content Start -->
@@ -213,7 +210,12 @@
                             <!-- Pagination Start -->
                             <div class="gi-pro-pagination pt-[15px] flex justify-between items-center border-t-[1px] border-solid border-[#eee] max-[575px]:flex-col">
                                 <span class="text-[14px] text-[#777] max-[575px]:mb-[10px]">
-                                    Showing 3 of ${totalProducts} products
+                                    <c:if test="${totalProducts ge 3}">
+                                        Showing 3 of ${totalProducts} products
+                                    </c:if>
+                                    <c:if test="${totalProducts lt 3}">
+                                        Showing ${totalProducts} of ${totalProducts} products
+                                    </c:if>    
                                 </span>
                                 <ul class="gi-pro-pagination-inner">
                                     <c:forEach begin="1" end="${endPage}" var="i">
@@ -221,7 +223,7 @@
                                             <a class="transition-all duration-[0.3s] ease-in-out w-[32px] h-[32px] font-light text-[#777]
                                                leading-[32px] bg-[#eee] flex text-center align-top text-[16px] justify-center
                                                items-center rounded-[5px] ${i==page?'active':'hover:text-[#fff] hover:bg-[#5CAF90]'}" 
-                                               href="shop?page=${i}">${i}</a>
+                                               href="javascript:void(0)" onclick="navigateToPage(${i})">${i}</a>
                                         </li>
                                     </c:forEach>
 
@@ -229,7 +231,7 @@
                                         <li class="inline-block float-left">
                                             <a class="next w-auto px-[13px] text-[#fff] bg-[#5CAF90] leading-[30px] h-[32px] flex
                                                text-center align-top text-[16px] justify-center items-center rounded-[5px]" 
-                                               href="shop?page=${page+1}">
+                                               href="javascript:void(0)" onclick="navigateToPage(${page+1})">
                                                 Next <i class="gicon gi-angle-right ml-[10px] transition-all duration-[0.3s] ease-in-out text-[#fff]"></i>
                                             </a>
                                         </li>
@@ -239,8 +241,8 @@
                             <!-- Pagination End -->
                         </div>
                         <!--Shop content End -->
-
                     </div>
+
                     <!-- Sidebar Area Start -->
                     <div class="filter-sidebar-overlay w-full h-screen bg-[#00000080] fixed top-[0] left-[0] z-[16] hidden"></div>
                     <div class="gi-shop-sidebar gi-filter-sidebar transition-all duration-[0.3s] ease-in-out w-[300px] h-screen p-[0] fixed top-[0] left-[0] z-[16] bg-[#fff] translate-x-[-100%] overflow-auto">
@@ -312,18 +314,22 @@
                                             <div class="gi-price-input mb-[15px] p-[10px] flex justify-center items-center rounded-[5px] bg-[#f8f8fb]">
                                                 <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">
                                                     From
-                                                    <input type="number" id="minPrice" name="minPrice" value=""${minPrice}"
+                                                    <input type="number" id="minPrice" name="minPrice" value="${minPrice}"
                                                            class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[80px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]"
-                                                           onchange="applyFilters()">
+                                                           >
                                                 </label>
                                                 <span class="gi-price-divider relative border-b-[1px] border-solid border-[#777] w-[10px] h-[1px] mx-[10px]"></span>
                                                 <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">
                                                     To
                                                     <input type="number" id="maxPrice" name="maxPrice" value="${maxPrice}"
                                                            class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[80px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]"
-                                                           onchange="applyFilters()">
+                                                           >
                                                 </label>
                                             </div>
+                                            <button type="button" onclick="applyFilters()" 
+                                                    class="filter-apply-btn bg-[#5CAF90] text-white py-[5px] px-[15px] rounded-[5px] text-[14px] hover:bg-[#4a9a7d] transition-all duration-300">
+                                                Apply
+                                            </button>            
                                         </div>
                                     </div>
                                 </div>
@@ -335,8 +341,6 @@
             </div>
         </section>
         <!-- Shop section End -->
-
-
 
         <!-- Back to top  -->
         <a class="gi-back-to-top inline-block bg-[#4b5966] w-[40px] h-[40px] text-center rounded-[4px] fixed bottom-[30px] right-[30px] opacity-[0] invisible z-[16] border-[1px] border-solid border-[#fff] hover:cursor-pointer hover:bg-[#000] hover:opacity-[1] max-[767px]:bottom-[15px] max-[767px]:right-[15px]"></a>
@@ -359,16 +363,86 @@
         <script src="assets/js/main.js"></script>
 
         <script>
-                               function addToCart(productId, quantity) {
-                                   $.ajax({
-                                       type: "POST",
-                                       url: "cart",
-                                       data: {
-                                           productId: productId,
-                                           quantity: quantity
-                                       }
-                                   });
-                               }
+                                                function applyFilters() {
+                                                    // Get selected categories
+                                                    const selectedCategories = Array.from(document.querySelectorAll('input[name="categories"]:checked'))
+                                                            .map(cb => cb.value);
+
+                                                    const selectedSupplier = Array.from(document.querySelectorAll('input[name="supplier"]:checked'))
+                                                            .map(cb => cb.value);
+
+                                                    // Get price range
+                                                    const minPrice = document.getElementById('minPrice').value;
+                                                    const maxPrice = document.getElementById('maxPrice').value;
+
+                                                    // Get current sort value
+                                                    const sortSelect = document.getElementById('gi-select');
+                                                    const sortValue = sortSelect.value;
+
+                                                    // Build query string
+                                                    let queryParams = new URLSearchParams();
+
+                                                    // Add categories
+                                                    if (selectedCategories.length > 0) {
+                                                        queryParams.append('cid', selectedCategories[0]);
+                                                    }
+
+                                                    if (selectedSupplier.length > 0) {
+                                                        queryParams.append('sid', selectedSupplier[0]);
+                                                    }
+
+                                                    // Add price range
+                                                    if (minPrice)
+                                                        queryParams.append('minPrice', minPrice);
+                                                    if (maxPrice)
+                                                        queryParams.append('maxPrice', maxPrice);
+
+                                                    // Add sort
+                                                    if (sortValue && sortValue !== 'Sort by') {
+                                                        queryParams.append('sort', sortValue);
+                                                    }
+
+                                                    // Add current page if exists
+                                                    const currentPage = new URLSearchParams(window.location.search).get('page');
+                                                    if (currentPage) {
+                                                        queryParams.append('page', currentPage);
+                                                    }
+
+                                                    // Redirect with filters
+                                                    window.location.href = 'shop?' + queryParams.toString();
+                                                }
+
+        </script>
+        <script> // auto submit when user select
+            document.getElementById('gi-select').addEventListener('change', function () {
+                document.getElementById('sortForm').submit();
+            });
+        </script>
+
+        <script>
+            function navigateToPage(pageNumber) {
+                // Lấy các tham số hiện tại
+                const urlParams = new URLSearchParams(window.location.search);
+
+                // Cập nhật tham số page
+                urlParams.set('page', pageNumber);
+
+                // Chuyển hướng đến URL mới
+                window.location.href = 'shop?' + urlParams.toString();
+            }
+        </script>
+
+        <script>
+            function addToCart(productId, quantity) {
+                $.ajax({
+                    type: "POST",
+                    url: "cart",
+                    data: {
+                        productId: productId,
+                        quantity: quantity
+                    }
+                });
+            }
 
         </script>
     </body>

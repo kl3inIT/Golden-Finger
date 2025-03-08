@@ -38,12 +38,12 @@ public class ShopServlet extends HttpServlet {
         List<Product> productList = pd.getFilteredProducts(cid, sid, minPrice, maxPrice, sort, page, PRODUCTS_PER_PAGE);
 
         // Calculate pagination
-        int totalFilteredProducts = pd.getTotalFilteredProducts(cid, sid, minPrice, maxPrice);
-        int endPage = calculateEndPage(totalFilteredProducts);
+        int totalProduct = pd.getTotalFilteredProducts(cid, sid, minPrice, maxPrice);
+        int endPage = calculateEndPage(totalProduct);
 
         // Set attributes for JSP
         request.setAttribute("productList", productList);
-        request.setAttribute("totalProducts", totalFilteredProducts);
+        request.setAttribute("totalProducts", totalProduct);
         setFilterAttributes(request, cid, sid, sort, minPrice, maxPrice, page, endPage);
         String txt = "";
         String txt2 = "";

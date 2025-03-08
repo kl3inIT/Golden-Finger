@@ -1,10 +1,3 @@
-<%-- 
-    Document   : register
-    Created on : Feb 24, 2025, 4:39:13 PM
-    Author     : nhudi
---%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -12,19 +5,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:03 GMT -->
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
         <title>Register</title>
-        <meta name="keywords"
-              content="tailwindcss, ecommerce, farming, food market, grocery market, grocery shop, grocery store, grocery supper market, multi vendor, organic food, supermarket, supermarket grocery">
-        <meta name="description" content="Multipurpose eCommerce Tailwind CSS Template">
-        <meta name="author" content="Maraviya Infotech">
+        <meta name="keywords" content="tailwindcss, ecommerce, piano">
+        <meta name="description" content="Piano Shop">
+        <meta name="author" content="">
 
         <!-- site Favicon -->
         <link rel="icon" href="assets/img/favicon/favicon.png" sizes="32x32">
@@ -50,11 +39,6 @@
     </head>
 
     <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">
-
-
-
-
-
 
         <!-- Register section -->
         <section class="gi-register py-[40px] max-[767px]:py-[30px]">
@@ -135,7 +119,6 @@
                                                required>
                                     </span>
 
-                                    
                                     <c:set var="m" value="${requestScope.error}" />
                                     <c:if test="${not empty m}">
                                         <span class="text-red-500 text-sm font-medium block mt-2 pl-[16px] mb-[25px]">${m}</span>

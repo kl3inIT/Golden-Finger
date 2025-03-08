@@ -8,6 +8,7 @@ import model.User;
 public class UserDAO extends DBConnect {
 
     public User getUser(String username, String password) {
+        
         if (connection != null) {
             try {
                 String sqlQuery = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
