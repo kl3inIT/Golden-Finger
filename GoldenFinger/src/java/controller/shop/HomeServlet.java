@@ -81,6 +81,7 @@ public class HomeServlet extends HttpServlet {
         
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
+        request.setAttribute("wishlist", wishlist.getListItems());
         request.setAttribute("categoryList", cd.getAllCategory());
         request.setAttribute("saleProduct", pd.getSaleProduct());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
