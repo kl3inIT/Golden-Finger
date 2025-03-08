@@ -316,22 +316,27 @@
                                                     From
                                                     <input type="number" id="minPrice" name="minPrice" value="${minPrice}"
                                                            class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[80px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]"
-                                                           >
+                                                           onchange="applyFilters()">
                                                 </label>
                                                 <span class="gi-price-divider relative border-b-[1px] border-solid border-[#777] w-[10px] h-[1px] mx-[10px]"></span>
                                                 <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">
                                                     To
                                                     <input type="number" id="maxPrice" name="maxPrice" value="${maxPrice}"
                                                            class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[80px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]"
-                                                           >
+                                                           onchange="applyFilters()">
                                                 </label>
-                                            </div>
-                                            <button type="button" onclick="applyFilters()" 
-                                                    class="filter-apply-btn bg-[#5CAF90] text-white py-[5px] px-[15px] rounded-[5px] text-[14px] hover:bg-[#4a9a7d] transition-all duration-300">
-                                                Apply
-                                            </button>            
+                                            </div>         
                                         </div>
                                     </div>
+                                </div>
+                                <!-- Clear All Filters Button -->
+                                <div class="gi-sidebar-block mb-[15px] mt-[20px]">
+                                    <button onclick="clearAllFilters()" 
+                                            class="w-full py-[10px] px-[15px] bg-[#f8f8fb] text-[#777] text-[14px]
+                                            rounded-[5px] border-[1px] border-solid border-[#eee] hover:bg-[#5CAF90] hover:text-white
+                                            transition-all duration-[0.3s] ease-in-out">
+                                        Clear All Filters
+                                    </button>
                                 </div>
 
                             </div>
@@ -361,57 +366,65 @@
 
         <!-- Main Js -->
         <script src="assets/js/main.js"></script>
+        <script>
+                                        function clearAllFilters() {
+                                            window.location.href = 'shop';
+                                        }
+        </script>
 
         <script>
-                                                function applyFilters() {
-                                                    // Get selected categories
-                                                    const selectedCategories = Array.from(document.querySelectorAll('input[name="categories"]:checked'))
-                                                            .map(cb => cb.value);
+            function applyFilters() {
+                // Get selected categories
+                const selectedCategories = Array.from(document.querySelectorAll('input[name="categories"]:checked'))
+                        .map(cb => cb.value);
 
-                                                    const selectedSupplier = Array.from(document.querySelectorAll('input[name="supplier"]:checked'))
-                                                            .map(cb => cb.value);
+                const selectedSupplier = Array.from(document.querySelectorAll('input[name="supplier"]:checked'))
+                        .map(cb => cb.value);
 
-                                                    // Get price range
-                                                    const minPrice = document.getElementById('minPrice').value;
-                                                    const maxPrice = document.getElementById('maxPrice').value;
+                // Get price range
+                const minPrice = document.getElementById('minPrice').value;
+                const maxPrice = document.getElementById('maxPrice').value;
 
-                                                    // Get current sort value
-                                                    const sortSelect = document.getElementById('gi-select');
-                                                    const sortValue = sortSelect.value;
+                // Get current sort value
+                const sortSelect = document.getElementById('gi-select');
+                const sortValue = sortSelect.options[sortSelect.selectedIndex].value;
+                const isSortBySelected = sortSelect.options[sortSelect.selectedIndex].disabled;
 
-                                                    // Build query string
-                                                    let queryParams = new URLSearchParams();
+                // Build query string
+                let queryParams = new URLSearchParams();
 
-                                                    // Add categories
-                                                    if (selectedCategories.length > 0) {
-                                                        queryParams.append('cid', selectedCategories[0]);
-                                                    }
+                // Add categories - only if selected
+                if (selectedCategories.length > 0) {
+                    queryParams.append('cid', selectedCategories[0]);
+                }
+                // If no category is selected, don't include cid parameter at all
 
-                                                    if (selectedSupplier.length > 0) {
-                                                        queryParams.append('sid', selectedSupplier[0]);
-                                                    }
+                // Add supplier - only if selected
+                if (selectedSupplier.length > 0) {
+                    queryParams.append('sid', selectedSupplier[0]);
+                }
+                // If no supplier is selected, don't include sid parameter at all
 
-                                                    // Add price range
-                                                    if (minPrice)
-                                                        queryParams.append('minPrice', minPrice);
-                                                    if (maxPrice)
-                                                        queryParams.append('maxPrice', maxPrice);
+                // Add price range
+                if (minPrice && minPrice.trim() !== '')
+                    queryParams.append('minPrice', minPrice);
+                if (maxPrice && maxPrice.trim() !== '')
+                    queryParams.append('maxPrice', maxPrice);
 
-                                                    // Add sort
-                                                    if (sortValue && sortValue !== 'Sort by') {
-                                                        queryParams.append('sort', sortValue);
-                                                    }
+                // Add sort
+                if (sortValue && !isSortBySelected) {
+                    queryParams.append('sort', sortValue);
+                }
 
-                                                    // Add current page if exists
-                                                    const currentPage = new URLSearchParams(window.location.search).get('page');
-                                                    if (currentPage) {
-                                                        queryParams.append('page', currentPage);
-                                                    }
+                // Add current page if exists
+                const currentPage = new URLSearchParams(window.location.search).get('page');
+                if (currentPage && currentPage !== '1') {
+                    queryParams.append('page', currentPage);
+                }
 
-                                                    // Redirect with filters
-                                                    window.location.href = 'shop?' + queryParams.toString();
-                                                }
-
+                // Redirect with filters
+                window.location.href = 'shop?' + queryParams.toString();
+            }
         </script>
         <script> // auto submit when user select
             document.getElementById('gi-select').addEventListener('change', function () {
