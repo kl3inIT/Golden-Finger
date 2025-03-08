@@ -7,58 +7,37 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
-import utils.PasswordUtils;
 
 @WebServlet(name = "ForgotPasswordServlet", urlPatterns = {"/forgot-password"})
 public class ForgotPasswordServlet extends HttpServlet {
-
+    
     private static final Logger LOGGER = Logger.getLogger(ForgotPasswordServlet.class.getName());
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+        request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("forgotpassword.jsp");
         try {
-            String email = request.getParameter("email");
-
-            if (email == null || email.trim().isEmpty()) {
-                request.setAttribute("error", "Email is required");
-                request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
-                return;
-            }
-
-            UserDAO userDao = new UserDAO();
-            User user = userDao.getUserByEmail(email);
-
-            if (user == null) {
-                request.setAttribute("error", "Email not found");
-                request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
-                return;
-            }
-
-            // Tạo mật khẩu mới ngẫu nhiên
-            String newPassword = PasswordUtils.generateRandomPassword(10);
-
-            // Cập nhật mật khẩu mới
-            boolean updated = userDao.updatePassword(user.getUsername(), newPassword);
-
-            if (updated) {
-                // Trong thực tế, bạn sẽ gửi email với mật khẩu mới
-                // Ở đây chúng ta chỉ hiển thị trên trang web để demo
-                LOGGER.log(Level.INFO, "Password reset for user: {0}", user.getUsername());
-                request.setAttribute("success", "Password has been reset. New password: " + newPassword);
-                request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+            String step = request.getParameter("step");
+            
+            if ("1".equals(step)) {
+                // Step 1: Email verification
+                handleEmailVerification(request, response);
+            } else if ("2".equals(step)) {
+                // Step 2: Password reset
+                handlePasswordReset(request, response);
             } else {
-                request.setAttribute("error", "Failed to reset password. Please try again.");
+                // Invalid step
+                request.setAttribute("error", "Invalid request");
                 request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
             }
         } catch (ServletException | IOException e) {
@@ -67,10 +46,59 @@ public class ForgotPasswordServlet extends HttpServlet {
             request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
         }
     }
-
+    
+    private void handleEmailVerification(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        String email = request.getParameter("email");
+        
+        // Check if email exists in database
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserByEmail(email);
+        
+        if (user == null) {
+            // Email not found
+            request.setAttribute("error", "Email not valid");
+            request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+            return;
+        }
+        
+        // Email exists, store in session
+        HttpSession session = request.getSession();
+        session.setAttribute("email", email);
+        session.setAttribute("userName", user.getUsername());
+        
+        // Redirect to step 2
+        response.sendRedirect("forgot-password?step=2");
+    }
+    
+    private void handlePasswordReset(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        
+        String newPassword = request.getParameter("newPassword");
+        
+        // Update password
+        UserDAO userDAO = new UserDAO();
+        
+        boolean passwordUpdated = userDAO.updatePassword(userName, newPassword);
+        
+        if (passwordUpdated) {
+            // Password updated successfully
+            // Clear session attributes
+            session.removeAttribute("email");
+            session.removeAttribute("userName");
+            
+            request.setAttribute("success", "Password has been reset successfully");
+            request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+        } else {
+            request.setAttribute("error", "Failed to update password. Please try again.");
+            request.getRequestDispatcher("forgot-password.jsp?step=2").forward(request, response);
+        }
+    }
+    
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "Forgot Password Servlet";
+    }
 }
