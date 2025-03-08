@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                             <div class="min-[768px]:w-[50%] w-full gi-sort-select flex justify-end items-center">
-                                <form id="sortForm" action="${pageContext.request.contextPath}/shop" method="GET">
+                                <form id="sortForm" action="shop" method="GET">
 
                                     <div class="gi-select-inner relative flex w-[140px] h-[50px] leading-[1.5] bg-[#fff] overflow-hidden rounded-[0] border-l-[1px] border-solid border-[#eee]">
                                         <c:if test="${requestScope.sid ne 0}">
