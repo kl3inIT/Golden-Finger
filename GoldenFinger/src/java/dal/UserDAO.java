@@ -58,7 +58,7 @@ public class UserDAO extends DBConnect {
         return true;
     }
 
-    public boolean createUser(String username, String fullName, String password, String email, String phone, String birhDate, String address) {
+    public boolean createUser(String username, String fullName, String password, String email, String phone, String birthDate, String address) {
         if (connection != null) {
             try {
                 String sqlQuery = "insert into Users(UserName, FullName, Password, Email, BirthDay, Address, Phone)"
@@ -68,7 +68,7 @@ public class UserDAO extends DBConnect {
                 stm.setString(2, fullName);
                 stm.setString(3, password);
                 stm.setString(4, email);
-                stm.setString(5, birhDate);
+                stm.setString(5, birthDate);
                 stm.setString(6, address);
                 stm.setString(7, phone);
                 return stm.executeUpdate() > 0;
