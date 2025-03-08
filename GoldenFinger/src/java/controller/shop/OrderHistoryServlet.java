@@ -58,16 +58,6 @@ public class OrderHistoryServlet extends HttpServlet {
         Cart cart = new Cart(txt, pd.getAllProductByCid(0));
         WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
 
-        //remove cookie cart and listItem into cart
-        for (Cookie c : cookies) {
-            if (c.getName().equals("cart")) {
-                c.setMaxAge(0);
-                response.addCookie(c);
-                break;
-            }
-        }
-        cart.removeAllItem();
-
         request.setAttribute("orderList", od.getAllOrderByUserId(user.getId()));
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("sizeCart", cart.getSizeCart());
@@ -94,7 +84,7 @@ public class OrderHistoryServlet extends HttpServlet {
         String comment = request.getParameter("comment");
 
         ProductDAO pd = new ProductDAO();
-        
+
         Cookie[] cookies = request.getCookies();
         String txt = "";
         for (Cookie c : cookies) {
@@ -106,8 +96,7 @@ public class OrderHistoryServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("account");
-        
-        
+
         OrderDAO od = new OrderDAO();
         int orderId = od.createOrder(user.getId(), fullName, phone, address, comment, cart);
         if (orderId > 0) {
@@ -115,6 +104,15 @@ public class OrderHistoryServlet extends HttpServlet {
             OrderDetailDAO odd = new OrderDetailDAO();
 
             odd.createOrderDetail(cart, orderId);
+            //remove cookie cart and listItem into cart
+            for (Cookie c : cookies) {
+                if (c.getName().equals("cart")) {
+                    c.setMaxAge(0);
+                    response.addCookie(c);
+                    break;
+                }
+            }
+            cart.removeAllItem();
 
             response.sendRedirect("orderhistory");
         } else {
