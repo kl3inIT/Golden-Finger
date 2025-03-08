@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,12 +56,12 @@
                         <div
                             class="gi-register-container border-[1px] border-solid border-[#eee] p-[30px] text-left bg-[#fff] rounded-[5px] max-[575px]:p-[15px]">
                             <div class="gi-register-form">
-                                <form action="register" method="post" class="flex flex-row flex-wrap mx-[-15px]">
+                                <form action="register" method="post" class="flex flex-row flex-wrap mx-[-15px]" onsubmit="return validateForm()">
 
                                     <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Username*</label>
-                                        <input type="text" name="username" placeholder="Enter your username"
+                                        <input type="text" name="username" value="${param.username}" placeholder="Enter your username"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
@@ -69,14 +69,14 @@
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Full Name
                                             *</label>
-                                        <input type="text" name="fullname" placeholder="Enter your full name"
+                                        <input type="text" name="fullname" value="${param.fullname}" placeholder="Enter your full name"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
                                     <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Password*</label>
-                                        <input type="password" name="password" placeholder="Enter your password"
+                                            <input type="password" name="password" id="password" placeholder="Enter your password" value="${param.password}"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
@@ -84,14 +84,14 @@
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
                                             Confirm Password*</label>
-                                        <input type="password" name="cpassword" placeholder="Enter your comfirm password"
+                                        <input type="password" name="cpassword" id="cpassword" placeholder="Enter your comfirm password" value="${param.cpassword}"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
                                     <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Email*</label>
-                                        <input type="email" name="email" placeholder="Enter your email"
+                                        <input type="email" name="email" value="${param.email}" placeholder="Enter your email"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
@@ -99,14 +99,14 @@
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Phone
                                             *</label>
-                                        <input type="text" name="phone" placeholder="Enter your phone"
+                                        <input type="text" name="phone" placeholder="Enter your phone" value="${param.phone}"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
                                     <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Birh Date*</label>
-                                        <input type="date" name="birthdate" placeholder="Enter your username"
+                                        <input type="date" name="birthdate" placeholder="Enter your username" value="${param.birthdate}"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
@@ -114,7 +114,7 @@
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Address
                                             *</label>
-                                        <input type="text" name="address" placeholder="Enter your address"
+                                        <input type="text" name="address" placeholder="Enter your address" value="${param.address}"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
@@ -140,6 +140,26 @@
         </section>
         <!-- Sample section End -->
 
+        <!--valid form in jsp  -->
+        <script>
+            function validateForm() {
+                var password = document.getElementById("password").value;
+                var cpassword = document.getElementById("cpassword").value;
+
+                if (password.length < 6) {
+                    alert("Password must be at least 6 characters");
+                    return false;
+                }
+
+                if (password !== cpassword) {
+                    alert("Passwords do not match Comfirm Password");
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+
         <!-- Plugins JS -->
         <script src="assets/js/plugins/jquery-3.7.1.min.js"></script>
         <script src="assets/js/plugins/popper.min.js"></script>
@@ -155,8 +175,5 @@
         <!-- Main Js -->
         <script src="assets/js/main.js"></script>
     </body>
-
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:03 GMT -->
 
 </html>
