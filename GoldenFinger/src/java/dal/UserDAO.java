@@ -7,21 +7,21 @@ import model.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
+import utils.PasswordUtils;
 
 public class UserDAO extends DBConnect {
 
     private static final Logger LOGGER = Logger.getLogger(UserDAO.class.getName());
 
-    public User getUser(String username, String password) {
+    public User getUser(String username) {
         if (connection == null) {
             LOGGER.severe("Database connection is null");
             return null;
         }
 
-        String sql = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
+        String sql = "SELECT * FROM Users WHERE Username = ?";
         try (PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setString(1, username);
-            stm.setString(2, password);
 
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
@@ -30,6 +30,7 @@ public class UserDAO extends DBConnect {
                     user.setUsername(rs.getString("UserName"));
                     user.setFullName(rs.getString("FullName"));
                     user.setPassword(rs.getString("Password"));
+                    user.setSalt(rs.getString("Salt"));
                     user.setRoleId(rs.getInt("RoleID"));
                     user.setImage(rs.getString("Image"));
                     user.setEmail(rs.getString("Email"));
@@ -66,7 +67,7 @@ public class UserDAO extends DBConnect {
             return true; // Assume account exists to avoid registering on error
         }
     }
-    
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
         System.out.println(dao.isAccountExists("nhat", "nhudinhnhat2004@gmail.co", "098222637"));
@@ -78,15 +79,20 @@ public class UserDAO extends DBConnect {
             return false;
         }
 
-        String sql = "INSERT INTO Users(Username, FullName, Password, Email, BirthDay, Address, Phone, RoleID, Status) VALUES (?, ?, ?, ?, ?, ?, ?, 2, 1)";
+        // Generate salt and hash password with SHA-256
+        String salt = PasswordUtils.generateSalt();
+        String hashedPassword = PasswordUtils.hashPassword(password, salt);
+
+        String sql = "INSERT INTO Users(Username, FullName, Password, Salt, Email, BirthDay, Address, Phone, RoleID, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, 1)";
         try (PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setString(1, username);
             stm.setString(2, fullName);
-            stm.setString(3, password); // Nên mã hóa mật khẩu
-            stm.setString(4, email);
-            stm.setString(5, birthDate);
-            stm.setString(6, address);
-            stm.setString(7, phone);
+            stm.setString(3, hashedPassword);
+            stm.setString(4, salt);
+            stm.setString(5, email);
+            stm.setString(6, birthDate);
+            stm.setString(7, address);
+            stm.setString(8, phone);
 
             int rowsAffected = stm.executeUpdate();
             return rowsAffected > 0;
@@ -95,4 +101,63 @@ public class UserDAO extends DBConnect {
             return false;
         }
     }
+
+    public boolean updatePassword(String username, String newPassword) {
+        if (connection == null) {
+            LOGGER.severe("Database connection is null");
+            return false;
+        }
+
+        // Generate new salt and hash new password with SHA-256
+        String salt = PasswordUtils.generateSalt();
+        String hashedPassword = PasswordUtils.hashPassword(newPassword, salt);
+
+        String sql = "UPDATE Users SET Password = ?, Salt = ? WHERE Username = ?";
+        try (PreparedStatement stm = connection.prepareStatement(sql)) {
+            stm.setString(1, hashedPassword);
+            stm.setString(2, salt);
+            stm.setString(3, username);
+
+            int rowsAffected = stm.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error updating password", e);
+            return false;
+        }
+    }
+
+    public User getUserByEmail(String email) {
+        if (connection == null) {
+            LOGGER.severe("Database connection is null");
+            return null;
+        }
+
+        String sql = "SELECT * FROM Users WHERE Email = ?";
+        try (PreparedStatement stm = connection.prepareStatement(sql)) {
+            stm.setString(1, email);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    User user = new User();
+                    user.setId(rs.getInt("UserID"));
+                    user.setUsername(rs.getString("UserName"));
+                    user.setFullName(rs.getString("FullName"));
+                    user.setPassword(rs.getString("Password"));
+                    user.setSalt(rs.getString("Salt"));
+                    user.setRoleId(rs.getInt("RoleID"));
+                    user.setImage(rs.getString("Image"));
+                    user.setEmail(rs.getString("Email"));
+                    user.setBirthDate(rs.getString("BirthDay"));
+                    user.setAddress(rs.getString("Address"));
+                    user.setPhone(rs.getString("Phone"));
+                    user.setStatus(rs.getInt("status"));
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error getting user by email", e);
+        }
+        return null;
+    }
+
 }
