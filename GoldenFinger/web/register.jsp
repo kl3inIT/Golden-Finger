@@ -76,7 +76,7 @@
                                     <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                         <label
                                             class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Password*</label>
-                                            <input type="password" name="password" id="password" placeholder="Enter your password" value="${param.password}"
+                                        <input type="password" name="password" id="password" placeholder="Enter your password" value="${param.password}"
                                                class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                                required>
                                     </span>
@@ -119,9 +119,13 @@
                                                required>
                                     </span>
 
-                                    <c:set var="m" value="${requestScope.error}" />
-                                    <c:if test="${not empty m}">
-                                        <span class="text-red-500 text-sm font-medium block mt-2 pl-[16px] mb-[25px]">${m}</span>
+                                    <c:if test="${not empty requestScope.error}">
+                                        <div class="w-full px-[15px] mb-[15px]">
+                                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                                <strong class="font-bold">Error!</strong>
+                                                <span class="block sm:inline">${requestScope.error}</span>
+                                            </div>
+                                        </div>
                                     </c:if>
                                     <span
                                         class="gi-register-wrap gi-register-btn flex flex-row justify-between items-center w-full px-[15px] max-[767px]:flex-col ">
