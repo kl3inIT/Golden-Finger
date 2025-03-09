@@ -17,6 +17,7 @@ import model.Cart;
 import model.WishList;
 import model.Product;
 
+
 @WebServlet(name = "ProductListServlet", urlPatterns = {"/shop"})
 public class ShopServlet extends HttpServlet {
 
@@ -29,6 +30,7 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         int cid = parseIntParameter(request, "cid", 0);
         int sort = parseIntParameter(request, "sort", 0);
         int sid = parseIntParameter(request, "sid", 0);

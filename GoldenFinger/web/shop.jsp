@@ -263,14 +263,14 @@
                                                 <li>
                                                     <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
                                                         <input type="checkbox" 
+                                                               id="category-${category.id}"
                                                                name="categories" 
                                                                value="${category.id}" 
                                                                ${cid == category.id ? 'checked' : ''}
-                                                               class="filter-checkbox w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]"
-                                                               onchange="applyFilters()">
-                                                        <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                               class="filter-checkbox w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                        <label for="category-${category.id}" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
                                                             <span class="flex">${category.name}</span>
-                                                        </a>
+                                                        </label>
                                                         <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
                                                     </div>
                                                 </li>
@@ -289,14 +289,14 @@
                                                 <li>
                                                     <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
                                                         <input type="checkbox" 
+                                                               id="supplier-${supplier.key.id}"
                                                                name="supplier" 
                                                                value="${supplier.key.id}"
                                                                ${sid == supplier.key.id ? 'checked' : ''}
-                                                               class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]"
-                                                               onchange="applyFilters()">
-                                                        <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                                               class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]">
+                                                        <label for="supplier-${supplier.key.id}" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
                                                             <span class="flex">${supplier.key.companyName}</span>
-                                                        </a>
+                                                        </label>
                                                         <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
                                                     </div>
                                                 </li>
@@ -374,13 +374,30 @@
 
         <script>
             function applyFilters() {
-                // Get selected categories
-                const selectedCategories = Array.from(document.querySelectorAll('input[name="categories"]:checked'))
-                        .map(cb => cb.value);
-
-                const selectedSupplier = Array.from(document.querySelectorAll('input[name="supplier"]:checked'))
-                        .map(cb => cb.value);
-
+                // Lấy tất cả checkbox category
+                const categoryCheckboxes = document.querySelectorAll('input[name="categories"]');
+                let selectedCategoryId = null;
+                
+                // Kiểm tra xem có checkbox nào được chọn không
+                for (let i = 0; i < categoryCheckboxes.length; i++) {
+                    if (categoryCheckboxes[i].checked) {
+                        selectedCategoryId = categoryCheckboxes[i].value;
+                        break;
+                    }
+                }
+                
+                // Lấy tất cả checkbox supplier
+                const supplierCheckboxes = document.querySelectorAll('input[name="supplier"]');
+                let selectedSupplierId = null;
+                
+                // Kiểm tra xem có checkbox nào được chọn không
+                for (let i = 0; i < supplierCheckboxes.length; i++) {
+                    if (supplierCheckboxes[i].checked) {
+                        selectedSupplierId = supplierCheckboxes[i].value;
+                        break;
+                    }
+                }
+                
                 // Get price range
                 const minPrice = document.getElementById('minPrice').value;
                 const maxPrice = document.getElementById('maxPrice').value;
@@ -391,36 +408,40 @@
                 const isSortBySelected = sortSelect.options[sortSelect.selectedIndex].disabled;
 
                 // Build query string
-                let queryParams = new URLSearchParams();
-
-                // Add categories - only if selected
-                if (selectedCategories.length > 0) {
-                    queryParams.append('cid', selectedCategories[0]);
+                let queryParams = new URLSearchParams(window.location.search);
+                
+                // Xóa các tham số cũ
+                queryParams.delete('cid');
+                queryParams.delete('sid');
+                queryParams.delete('minPrice');
+                queryParams.delete('maxPrice');
+                
+                // Thêm category nếu được chọn
+                if (selectedCategoryId) {
+                    queryParams.set('cid', selectedCategoryId);
                 }
-                // If no category is selected, don't include cid parameter at all
-
-                // Add supplier - only if selected
-                if (selectedSupplier.length > 0) {
-                    queryParams.append('sid', selectedSupplier[0]);
+                
+                // Thêm supplier nếu được chọn
+                if (selectedSupplierId) {
+                    queryParams.set('sid', selectedSupplierId);
                 }
-                // If no supplier is selected, don't include sid parameter at all
-
-                // Add price range
+                
+                // Thêm price range
                 if (minPrice && minPrice.trim() !== '')
-                    queryParams.append('minPrice', minPrice);
+                    queryParams.set('minPrice', minPrice);
                 if (maxPrice && maxPrice.trim() !== '')
-                    queryParams.append('maxPrice', maxPrice);
+                    queryParams.set('maxPrice', maxPrice);
 
-                // Add sort
+                // Thêm sort
                 if (sortValue && !isSortBySelected) {
-                    queryParams.append('sort', sortValue);
+                    queryParams.set('sort', sortValue);
                 }
+                
+                // Reset page về 1 khi thay đổi filter
+                queryParams.set('page', '1');
 
-                // Add current page if exists
-                const currentPage = new URLSearchParams(window.location.search).get('page');
-                if (currentPage && currentPage !== '1') {
-                    queryParams.append('page', currentPage);
-                }
+                // Log for debugging
+                console.log('Redirecting to: shop?' + queryParams.toString());
 
                 // Redirect with filters
                 window.location.href = 'shop?' + queryParams.toString();
@@ -457,6 +478,62 @@
                 });
             }
 
+        </script>
+
+        <script>
+            // Đảm bảo chỉ một checkbox category được chọn
+            function setupCategoryCheckboxes() {
+                const categoryCheckboxes = document.querySelectorAll('input[name="categories"]');
+                
+                categoryCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('click', function() {
+                        // Bỏ chọn tất cả các checkbox khác
+                        categoryCheckboxes.forEach(cb => {
+                            if (cb !== this) {
+                                cb.checked = false;
+                            }
+                        });
+                        
+                        // Nếu checkbox này đã được chọn trước đó và được click lại, cho phép bỏ chọn
+                        if (!this.checked) {
+                            this.checked = false;
+                        }
+                        
+                        // Áp dụng filter
+                        setTimeout(applyFilters, 100);
+                    });
+                });
+            }
+            
+            // Đảm bảo chỉ một checkbox supplier được chọn
+            function setupSupplierCheckboxes() {
+                const supplierCheckboxes = document.querySelectorAll('input[name="supplier"]');
+                
+                supplierCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('click', function() {
+                        // Bỏ chọn tất cả các checkbox khác
+                        supplierCheckboxes.forEach(cb => {
+                            if (cb !== this) {
+                                cb.checked = false;
+                            }
+                        });
+                        
+                        // Nếu checkbox này đã được chọn trước đó và được click lại, cho phép bỏ chọn
+                        if (!this.checked) {
+                            this.checked = false;
+                        }
+                        
+                        // Áp dụng filter
+                        setTimeout(applyFilters, 100);
+                    });
+                });
+            }
+            
+            // Thiết lập các checkbox khi trang được tải
+            document.addEventListener('DOMContentLoaded', function() {
+                setupCategoryCheckboxes();
+                setupSupplierCheckboxes();
+            });
         </script>
     </body>
 

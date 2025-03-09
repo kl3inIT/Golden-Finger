@@ -36,8 +36,7 @@ public class CategoryDAO extends DBConnect {
                 stm.setInt(1, id);
                 ResultSet res = stm.executeQuery();
                 while (res.next()) {
-                    Category c = new Category(res.getInt(1), res.getString(2), res.getString(3));
-                    return c;
+                    return new Category(res.getInt(1), res.getString(2), res.getString(3));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -57,8 +56,7 @@ public class CategoryDAO extends DBConnect {
                 stm.setInt(1, pid);
                 ResultSet res = stm.executeQuery();
                 while (res.next()) {
-                    Category c = new Category(res.getInt(1), res.getString(2), res.getString(3));
-                    return c;
+                    return new Category(res.getInt(1), res.getString(2), res.getString(3));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
