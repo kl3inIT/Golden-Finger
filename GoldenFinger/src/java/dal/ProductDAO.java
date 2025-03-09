@@ -49,15 +49,16 @@ public class ProductDAO extends DBConnect {
 
         return listProduct; // return List of products matching the category, or empty list if error occurs
     }
+    
 
     private Product mapResultSetToProduct(ResultSet res) throws SQLException {
-        return new Product(res.getInt(1), res.getString(2), res.getFloat(3),
-                res.getInt(4), res.getInt(5), getImage(res.getString(6)),
-                res.getString(7), res.getString(8), res.getString(9),
-                res.getString(10), res.getFloat(11), res.getString(12),
-                res.getString(13), res.getString(14), res.getFloat(15),
-                res.getInt(16), cd.getCategoryById(res.getInt(17)),
-                sd.getSupplierById(res.getInt(1)));
+        return new Product(res.getInt("ProductID"), res.getString("ProductName"), res.getFloat("UnitPrice"),
+                res.getInt("UnitsInStock"), res.getInt("Discontinued"), getImage(res.getString("Image")),
+                res.getString("Include"), res.getString("Warranty"), res.getString("Dimensions"),
+                res.getString("SpeakerPower"), res.getFloat("StarRating"), res.getString("Weight"),
+                res.getString("Describe"), res.getString("ReleaseDate"), res.getFloat("Discount"),
+                res.getInt("Status"), cd.getCategoryById(res.getInt("CategoryID")),
+                sd.getSupplierById(res.getInt("SupplierID")));
     }
 
     private ArrayList<String> getImage(String str) {

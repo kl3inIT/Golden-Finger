@@ -36,7 +36,7 @@ public class HomeFilter implements Filter {
         
         String url = httpRequest.getServletPath();
         
-        // Prevent direct access to JSP files
+        //Prevent direct access to JSP files
         if (url.endsWith(".jsp") && !url.equals("/error.jsp")) {
             LOGGER.info("Redirecting direct JSP access");
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/home");

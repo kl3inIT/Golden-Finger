@@ -1,11 +1,12 @@
 package model;
 
-
 public class User {
+
     private int id;
     private String username;
     private String fullName;
     private String password;
+    private String salt;
     private int roleId;
     private String image;
     private String email;
@@ -13,15 +14,23 @@ public class User {
     private String address;
     private String phone;
     private int status;
+    
+//ALTER TABLE Users 
+//ALTER COLUMN Password VARCHAR(100);
+//
+//ALTER TABLE Users 
+//ADD Salt VARCHAR(100);
+
 
     public User() {
     }
 
-    public User(int id, String username, String fullName, String password, int roleId, String image, String email, String birthDate, String address, String phone, int status) {
+    public User(int id, String username, String fullName, String password, String salt, int roleId, String image, String email, String birthDate, String address, String phone, int status) {
         this.id = id;
         this.username = username;
         this.fullName = fullName;
         this.password = password;
+        this.salt = salt;
         this.roleId = roleId;
         this.image = image;
         this.email = email;
@@ -61,6 +70,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public int getRoleId() {
@@ -118,5 +135,5 @@ public class User {
     public void setStatus(int status) {
         this.status = status;
     }
-    
+
 }
