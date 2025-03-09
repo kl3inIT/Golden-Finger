@@ -69,8 +69,10 @@ public class UserDAO extends DBConnect {
     }
 
     public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        System.out.println(dao.isAccountExists("nhat", "nhudinhnhat2004@gmail.co", "098222637"));
+//        UserDAO dao = new UserDAO();
+//        System.out.println(dao.isAccountExists("nhat", "nhudinhnhat2004@gmail.co", "098222637"));
+        String salt = PasswordUtils.generateSalt();
+        System.out.println(salt);
     }
 
     public boolean createUser(String username, String fullName, String password, String email, String phone, String birthDate, String address) {
