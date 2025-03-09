@@ -167,7 +167,15 @@
                                                                 <span class="sale py-[5px] px-[10px] text-[11px] font-medium leading-[12px] text-left uppercase flex items-center bg-[#ff7070] text-[#fff] tracking-[0.5px] relative rounded-[5px]">Sale</span>
                                                             </span>
                                                             <div class="gi-pro-actions transition-all duration-[0.3s] ease-in-out absolute z-[9] left-[0] right-[0] bottom-[-10px] max-[991px]:opacity-[1] max-[991px]:bottom-[10px] flex flex-row items-center justify-center my-[0] mx-auto opacity-[0]">
-                                                                <a data-product-id="${p.id}" class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist">
+
+                                                                <c:set var="isActive" value="false"/>
+                                                                <c:forEach var="w" items="${requestScope.wishlist}">
+                                                                    <c:if test="${w.product.id eq p.id}">
+                                                                        <c:set var="isActive" value="true"/>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                                
+                                                                <a data-product-id="${p.id}" class="${isActive ? 'active' : ''} gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist">
                                                                     <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                                 </a>
                                                                 <a href="javascript:void(0)" onclick="addToCart(${p.id}, 1)" title="Add To Cart" class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out w-[30px] h-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:bg-[#5CAF90]">
@@ -467,6 +475,7 @@
         </script>
 
         <script>
+
             function addToCart(productId, quantity) {
                 $.ajax({
                     type: "POST",
@@ -477,6 +486,18 @@
                     }
                 });
             }
+
+                                                                    function addToCart(productId, quantity) {
+                                                                        $.ajax({
+                                                                            type: "POST",
+                                                                            url: "cart",
+                                                                            data: {
+                                                                                productId: productId,
+                                                                                quantity: quantity
+                                                                            }
+                                                                        });
+                                                                    }
+
 
         </script>
 

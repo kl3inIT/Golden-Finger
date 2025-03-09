@@ -63,6 +63,7 @@ public class ShopServlet extends HttpServlet {
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("categoryList", cd.getAllCategory());
+               request.setAttribute("wishlist", wishlist.getListItems());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }

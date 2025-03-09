@@ -8,6 +8,7 @@ delete
 from OrderDetails
 where OrderID > 1
 
+<<<<<<< HEAD
 
 
 DBCC CHECKIDENT ('Orders', RESEED, 0);
@@ -29,3 +30,7 @@ DISABLE TRIGGER ALL ON Users;
 
 
 
+=======
+DBCC CHECKIDENT ('Orders', RESEED, 0);
+
+>>>>>>> develop-1

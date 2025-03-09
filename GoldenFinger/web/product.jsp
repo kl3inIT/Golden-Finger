@@ -191,7 +191,14 @@
                                                     <button type="button" onclick="addToCart(${p.id})" class=" btn btn-primary add-to-cart gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center bg-[#4b5966] text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-[#5caf90] hover:text-[#fff]">Add To Cart</button>
                                                 </div>
                                                 <div class="gi-single-wishlist m-[5px]">
-                                                    <a data-product-id="${p.id}" class="gi-btn-group wishlist w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90]" title="Wishlist">
+                                                    <c:set var="isActive" value="false"/>
+                                                    <c:forEach var="w" items="${requestScope.wishlist}">
+                                                        <c:if test="${w.product.id eq p.id}">
+                                                            <c:set var="isActive" value="true"/>
+                                                        </c:if>
+                                                    </c:forEach>
+
+                                                    <a data-product-id="${p.id}" class="${isActive ? 'active' : ''} gi-btn-group wishlist w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90]" title="Wishlist">
                                                         <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#4b5966] leading-[0]"></i>
                                                     </a>
                                                 </div>
@@ -294,17 +301,17 @@
         <script src="assets/js/main.js"></script>
 
         <script>
-            function addToCart(productId) {
-                var quantity = $(".qty-input").val();
-                $.ajax({
-                    type: "POST",
-                    url: "cart",
-                    data: {
-                        productId: productId,
-                        quantity: quantity
-                    }
-                });
-            }
+                                                        function addToCart(productId) {
+                                                            var quantity = $(".qty-input").val();
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: "cart",
+                                                                data: {
+                                                                    productId: productId,
+                                                                    quantity: quantity
+                                                                }
+                                                            });
+                                                        }
 
         </script>
     </body>

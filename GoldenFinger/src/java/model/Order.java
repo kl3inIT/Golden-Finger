@@ -6,17 +6,40 @@ package model;
  */
 public class Order {
     private int id;
-    private String username;
-    private String Date;
-    private int status;
+    private String date;
+    private OrderStatus status;
     private int userId;
+    private String fullName;
+    private String phone;
+    private float totalAmount;
 
-    public Order(int id, String username, String Date, int status, int userId) {
-        this.id = id;
-        this.username = username;
-        this.Date = Date;
+    public float getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(float totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
         this.status = status;
-        this.userId = userId;
+    }
+    private String address;
+    private String comment;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Order() {
     }
 
     public int getId() {
@@ -27,29 +50,15 @@ public class Order {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getDate() {
-        return Date;
+        return date;
     }
 
-    public void setDate(String Date) {
-        this.Date = Date;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+  
 
     public int getUserId() {
         return userId;
@@ -59,8 +68,29 @@ public class Order {
         this.userId = userId;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
    
-    
-    
-    
 }

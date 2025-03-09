@@ -5,10 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import model.Cart;
+import model.Item;
+
 import model.Product;
 
 public class ProductDAO extends DBConnect {
@@ -162,6 +167,7 @@ public class ProductDAO extends DBConnect {
         }
         return null;
     }
+
 
     // Gets all products by category name 
     public List<Product> getProductByName(String txtSearch) {
@@ -320,12 +326,27 @@ public class ProductDAO extends DBConnect {
         return 0;
     }
 
-    public static void main(String[] args) {
-        ProductDAO pd = new ProductDAO();
-        List<Product> lp = pd.getFilteredProducts(1, 2, 0, 10000, 2, 1, 3);
-        for (Product product : lp) {
-            System.out.println(product.getName());
+
+
+    public void updateUnitInStock(Cart cart) {
+        if (connection != null) {
+            try {
+                String sql = "UPDATE Products "
+                        + " SET UnitsInStock = UnitsInStock - ? "
+                        + " WHERE ProductID  = ?;";
+                PreparedStatement stm = connection.prepareStatement(sql);
+
+                for (Item i : cart.getListItems()) {
+                    stm.setInt(1, i.getQuantity());
+                    stm.setInt(2, i.getProduct().getId());
+                    stm.execute();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
+
+   
 
 }

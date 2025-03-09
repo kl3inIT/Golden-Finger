@@ -1,3 +1,6 @@
+
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -80,19 +83,21 @@
                         <div class="gi-cart-content">
                             <div class="gi-cart-inner">
                                 <div class="flex flex-wrap w-full">
-                                    <form action="#" class="w-full">
+                                    <form action="checkout" method="POST" class="w-full">
                                         <div class="table-content cart-table-content">
                                             <table class="w-full bg-[#fff] ">
                                                 <thead class="max-[767px]:border-[0] max-[767px]:h-[1px] max-[767px]:m-[-1px] max-[767px]:overflow-hidden max-[767px]:p-[0] max-[767px]:absolute max-[767px]:w-[1px]">
                                                     <tr class="bg-[#fff] border-b-[2px] border-solid border-[#eee]">
                                                         <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Product</th>
-                                                        <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Price</th>
+                                                        <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Price</th> 
                                                         <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-center capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Quantity</th>
+                                                        <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Status</th>
                                                         <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Total</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <c:set var="isAvailable" value="true"/>
                                                     <c:forEach var="cart" items="${requestScope.cart}">
 
                                                         <tr class="border-b-[1px] border-solid border-[#eee] max-[767px]:border-[1px] max-[767px]:block max-[767px]:mb-[15px]">
@@ -108,12 +113,19 @@
                                                                     $<fmt:formatNumber value="${cart.price}" maxFractionDigits="2" minFractionDigits="0" />
                                                                 </span>
                                                             </td>
+
                                                             <td data-label="Quantity" class="gi-cart-pro-qty text-[#4b5966] text-[16px] py-[15px] px-[14px] text-center max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
                                                                 <div class="h-[35px] overflow-hidden p-[0] relative w-[84px] flex items-center justify-center my-[0] mx-auto max-[767px]:m-[0]">
                                                                     <input class="cart-plus-minus border-[0] text-[#4b5966] text-[14px] h-auto m-[0] p-[0] text-center w-[40px] outline-[0] leading-[38px] font-semibold" type="text" name="cartqtybutton" value="${cart.quantity}">
                                                                 </div>
                                                             </td>
+                                                            <c:if test="${cart.product.unitInStock > 0}">
+                                                                <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">Available</span></td>
+                                                            </c:if>
 
+                                                            <c:if test="${cart.product.unitInStock <= 0}">
+                                                                <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-red-600 tracking-[0.02rem]">Out Of Stock</span></td>
+                                                            </c:if>
                                                             <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
                                                                 $<fmt:formatNumber value="${cart.price * cart.quantity}" maxFractionDigits="2" minFractionDigits="0" />
                                                             </td>
@@ -121,6 +133,12 @@
                                                                 <a href="javascript:void(0)" onclick="sendProductId(${cart.product.id})" on class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
                                                             </td>
                                                         </tr>
+
+                                                        <c:if test="${cart.product.unitInStock <= 0}">
+                                                            <c:set var="isAvailable" value="false"/>
+                                                        </c:if>
+
+
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
@@ -134,8 +152,17 @@
                                                             $<fmt:formatNumber value="${requestScope.totalAmount}" maxFractionDigits="2" minFractionDigits="0" />
                                                         </span>
                                                     </div>
+                                                    <c:if test="${requestScope.sizeCart > 0}">
+                                                        <c:if test="${isAvailable}">
+                                                            <a href="${(sessionScope.account != null) ? 'checkout' : 'login'}">
+                                                                <button type="button" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[10px] max-[767px]:py-[6px] px-[15px] max-[767px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[767px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]">Check Out</button>
+                                                            </a>
+                                                        </c:if>
+                                                        <c:if test="${isAvailable eq false}">
+                                                            <span class="text-left text-[16px] font-medium text-red-600 leading-[24px] tracking-[0]">Some product in not available, please remove that items before checkout!</span>
+                                                        </c:if>
 
-                                                    <button type="button" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[10px] max-[767px]:py-[6px] px-[15px] max-[767px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[767px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]">Check Out</button>
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,18 +198,19 @@
         <script src="assets/js/main.js"></script>
 
         <script>
-            function sendProductId(productId) {
-                $.ajax({
-                    type: "POST",
-                    url: "cart",
-                    data: {
-                        productId: productId
-                    },
-                    success: function() {
-                    window.location.reload(); // Tải lại trang sau khi thêm vào giỏ hàng
-                    }
-                });
-            }
+                                                                    function sendProductId(productId) {
+                                                                        $.ajax({
+                                                                            type: "POST",
+                                                                            url: "cart",
+                                                                            data: {
+                                                                                productId: productId
+                                                                            },
+                                                                            success: function () {
+                                                                                window.location.reload(); // Tải lại trang sau khi thêm vào giỏ hàng
+                                                                            }
+                                                                        });
+                                                                    }
+
 
         </script>
 
