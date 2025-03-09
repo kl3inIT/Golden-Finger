@@ -4,6 +4,8 @@ import util.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import model.Cart;
+import model.Item;
 import model.Product;
 
 /**
@@ -162,10 +164,28 @@ public class ProductDAO extends DBConnect {
         return null;
     }
 
-    
+    public void updateUnitInStock(Cart cart) {
+        if (connection != null) {
+            try {
+                String sql = "UPDATE Products "
+                        + " SET UnitsInStock = UnitsInStock - ? "
+                        + " WHERE ProductID  = ?;";
+                PreparedStatement stm = connection.prepareStatement(sql);
+
+                for (Item i : cart.getListItems()) {
+                    stm.setInt(1, i.getQuantity());
+                    stm.setInt(2, i.getProduct().getId());
+                    stm.execute();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        for(Product x : p.getProductBySupplierID(1)){
+        for (Product x : p.getProductBySupplierID(1)) {
             System.out.println(x.getName());
         }
     }

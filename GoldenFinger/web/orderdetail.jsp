@@ -117,7 +117,7 @@
                                                 <tr class="pro-gl-content">
 
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
-                                                        <a href="product?pid=${w.product.id}">
+                                                        <a href="product?pid=${odd.product.id}">
                                                             <c:if test="${not empty odd.product.image[0]}">
                                                                 <img class="prod-img h-[58px] w-[58px]" src="${odd.product.image[0]}" alt="product image">
                                                             </c:if>

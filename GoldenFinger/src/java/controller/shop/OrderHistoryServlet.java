@@ -112,6 +112,7 @@ public class OrderHistoryServlet extends HttpServlet {
                     break;
                 }
             }
+            pd.updateUnitInStock(cart);
             cart.removeAllItem();
 
             response.sendRedirect("orderhistory");
