@@ -18,7 +18,7 @@ import model.WishList;
 import model.Product;
 
 
-@WebServlet(name = "ProductListServlet", urlPatterns = {"/shop"})
+@WebServlet(name = "ShopServlet", urlPatterns = {"/shop"})
 public class ShopServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(ShopServlet.class.getName());
