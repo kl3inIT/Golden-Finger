@@ -160,4 +160,67 @@ public class UserDAO extends DBConnect {
         return null;
     }
 
+    public boolean updateUser(User user) {
+        if (connection == null) {
+            LOGGER.severe("Database connection is null");
+            return false;
+        }
+
+        String sql = "UPDATE Users SET FullName = ?, Email = ?, Phone = ?, BirthDay = ?, Address = ? WHERE Username = ?";
+        try (PreparedStatement stm = connection.prepareStatement(sql)) {
+            stm.setString(1, user.getFullName());
+            stm.setString(2, user.getEmail());
+            stm.setString(3, user.getPhone());
+            stm.setString(4, user.getBirthDate());
+            stm.setString(5, user.getAddress());
+            stm.setString(6, user.getUsername());
+
+            int rowsAffected = stm.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error updating user", e);
+            return false;
+        }
+    }
+
+    public boolean isEmailInUseByOtherUser(String email, String currentUsername) {
+        if (connection == null) {
+            LOGGER.severe("Database connection is null");
+            return true; // Assume email is in use to prevent updates on error
+        }
+
+        String sql = "SELECT * FROM Users WHERE Email = ? AND Username != ?";
+        try (PreparedStatement stm = connection.prepareStatement(sql)) {
+            stm.setString(1, email);
+            stm.setString(2, currentUsername);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                return rs.next(); // return true if email is used by another user
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error checking email usage", e);
+            return true; // Assume email is in use to prevent updates on error
+        }
+    }
+
+    public boolean isPhoneInUseByOtherUser(String phone, String currentUsername) {
+        if (connection == null) {
+            LOGGER.severe("Database connection is null");
+            return true; // Assume phone is in use to prevent updates on error
+        }
+
+        String sql = "SELECT * FROM Users WHERE Phone = ? AND Username != ?";
+        try (PreparedStatement stm = connection.prepareStatement(sql)) {
+            stm.setString(1, phone);
+            stm.setString(2, currentUsername);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                return rs.next(); // return true if phone is used by another user
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error checking phone usage", e);
+            return true; // Assume phone is in use to prevent updates on error
+        }
+    }
+
 }
