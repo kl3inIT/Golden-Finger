@@ -49,7 +49,6 @@ public class ProductDAO extends DBConnect {
 
         return listProduct; // return List of products matching the category, or empty list if error occurs
     }
-    
 
     private Product mapResultSetToProduct(ResultSet res) throws SQLException {
         return new Product(res.getInt("ProductID"), res.getString("ProductName"), res.getFloat("UnitPrice"),
@@ -318,6 +317,105 @@ public class ProductDAO extends DBConnect {
         }
 
         return 0;
+    }
+
+    // Top 6 Products selling in 2 month
+    public List<Product> getTrendingProducts() {
+        List<Product> listProduct = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    P.ProductID, P.ProductName, P.UnitPrice, P.UnitsInStock, \n"
+                + "    P.Discontinued, P.Image, P.Include, P.Warranty, \n"
+                + "    P.Dimensions, P.SpeakerPower, P.StarRating, P.Weight, \n"
+                + "    CAST(P.Describe AS NVARCHAR(MAX)) AS Describe, \n"
+                + "    P.ReleaseDate, P.Discount, P.Status, P.CategoryID, P.SupplierID, \n"
+                + "    SUM(OD.Quantity) AS TotalSold\n"
+                + "FROM Products P\n"
+                + "JOIN OrderDetails OD ON P.ProductID = OD.ProductID\n"
+                + "JOIN Orders O ON OD.OrderID = O.OrderID\n"
+                + "WHERE O.Date >= DATEADD(MONTH, -2, GETDATE())  -- Lọc đơn hàng trong 2 tháng gần nhất\n"
+                + "GROUP BY \n"
+                + "    P.ProductID, P.ProductName, P.UnitPrice, P.UnitsInStock, \n"
+                + "    P.Discontinued, P.Image, P.Include, P.Warranty, \n"
+                + "    P.Dimensions, P.SpeakerPower, P.StarRating, P.Weight, \n"
+                + "    CAST(P.Describe AS NVARCHAR(MAX)), \n"
+                + "    P.ReleaseDate, P.Discount, P.Status, P.CategoryID, P.SupplierID\n"
+                + "ORDER BY TotalSold DESC;\n"
+                + "";
+        try (PreparedStatement ps = connection.prepareStatement(sql); ResultSet res = ps.executeQuery()) {
+            while (res.next()) {
+                Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
+                        res.getInt(4), res.getInt(5), getImage(res.getString(6)),
+                        res.getString(7), res.getString(8), res.getString(9),
+                        res.getString(10), res.getFloat(11), res.getString(12),
+                        res.getString(13), res.getString(14), res.getFloat(15),
+                        res.getInt(16), cd.getCategoryById(res.getInt(17)),
+                        sd.getSupplierById(res.getInt(1)));
+                listProduct.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listProduct;
+    }
+
+    //Top 6 Products with hight rating
+    public List<Product> getTopRatedProducts() {
+        List<Product> listProduct = new ArrayList<>();
+        String sql = "SELECT TOP 6 P.*\n"
+                + "FROM Products P\n"
+                + "ORDER BY P.StarRating DESC;";
+        try (PreparedStatement ps = connection.prepareStatement(sql); ResultSet res = ps.executeQuery()) {
+            while (res.next()) {
+                Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
+                        res.getInt(4), res.getInt(5), getImage(res.getString(6)),
+                        res.getString(7), res.getString(8), res.getString(9),
+                        res.getString(10), res.getFloat(11), res.getString(12),
+                        res.getString(13), res.getString(14), res.getFloat(15),
+                        res.getInt(16), cd.getCategoryById(res.getInt(17)),
+                        sd.getSupplierById(res.getInt(1)));
+                listProduct.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listProduct;
+    }
+
+    //Top 6 Products selling
+    public List<Product> getTopSellingProducts() {
+        List<Product> listProduct = new ArrayList<>();
+        String sql = "SELECT TOP 6\n"
+                + "    P.ProductID, P.ProductName, P.UnitPrice, P.UnitsInStock, \n"
+                + "    P.Discontinued, P.Image, P.Include, P.Warranty, \n"
+                + "    P.Dimensions, P.SpeakerPower, P.StarRating, P.Weight, \n"
+                + "    CAST(P.Describe AS NVARCHAR(MAX)) AS Describe, \n"
+                + "    P.ReleaseDate, P.Discount, P.Status, P.CategoryID, P.SupplierID, \n"
+                + "    SUM(OD.Quantity) AS TotalSold\n"
+                + "FROM Products P\n"
+                + "JOIN OrderDetails OD ON P.ProductID = OD.ProductID\n"
+                + "JOIN Orders O ON OD.OrderID = O.OrderID\n"
+                + "GROUP BY \n"
+                + "    P.ProductID, P.ProductName, P.UnitPrice, P.UnitsInStock, \n"
+                + "    P.Discontinued, P.Image, P.Include, P.Warranty, \n"
+                + "    P.Dimensions, P.SpeakerPower, P.StarRating, P.Weight, \n"
+                + "    CAST(P.Describe AS NVARCHAR(MAX)), \n"
+                + "    P.ReleaseDate, P.Discount, P.Status, P.CategoryID, P.SupplierID\n"
+                + "ORDER BY TotalSold DESC;";
+        try (PreparedStatement ps = connection.prepareStatement(sql); ResultSet res = ps.executeQuery()) {
+            while (res.next()) {
+                Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
+                        res.getInt(4), res.getInt(5), getImage(res.getString(6)),
+                        res.getString(7), res.getString(8), res.getString(9),
+                        res.getString(10), res.getFloat(11), res.getString(12),
+                        res.getString(13), res.getString(14), res.getFloat(15),
+                        res.getInt(16), cd.getCategoryById(res.getInt(17)),
+                        sd.getSupplierById(res.getInt(1)));
+                listProduct.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listProduct;
     }
 
     public static void main(String[] args) {
