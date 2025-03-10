@@ -28,7 +28,7 @@ Copyright 2024
         <title>Dashboard</title>
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="dashboard/assets/img/favicon/favicon.ico">
+        <link rel="shortcut icon" href="assets/img/favicon/favicon.png">
 
         <!-- Icon CSS -->
         <link href="dashboard/assets/css/vendor/materialdesignicons.min.css" rel="stylesheet">
@@ -93,7 +93,7 @@ Copyright 2024
                                             <li><a href="team-update.html">Settings</a></li>
                                         </ul>
                                         <ul class="border-top">
-                                            <li><a href="signin.html"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
+                                            <li><a href="login"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -134,45 +134,20 @@ Copyright 2024
                                                 class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
                                     <li><a href="addproduct" class="gi-page-link drop"><i
                                                 class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
-                                    <li><a href="add-category.html" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Category</a></li>
-                                    <li><a href="add-sub-category.html" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Sub Category</a></li>
-                                    <li><a href="order-list.html" class="gi-page-link drop"><i
+                                    <li><a href="orderlist" class="gi-page-link drop"><i
                                                 class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
-                                    <li class="gi-sb-item sb-subdrop-item">
-                                        <a href="javascript:void(0)" class="gi-sub-drop-toggle">
-                                            <i class="ri-shield-user-line"></i><span class="condense">Vendor<i
-                                                    class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-                                        <ul class="gi-sb-subdrop condense">
-                                            <li><a href="vendor-profile.html" class="gi-page-link subdrop"><i
-                                                        class="ri-checkbox-blank-circle-line"></i>Profile</a></li>
-                                            <li><a href="vendor-update.html" class="gi-page-link subdrop"><i
-                                                        class="ri-checkbox-blank-circle-line"></i>Vendor Update</a></li>
-                                            <li><a href="vendor-list.html" class="gi-page-link subdrop"><i
-                                                        class="ri-checkbox-blank-circle-line"></i>Vendor List</a></li>
-                                            <li><a href="invoice.html" class="gi-page-link subdrop"><i
-                                                        class="ri-checkbox-blank-circle-line"></i>Invoice</a></li>
-                                        </ul>
-                                    </li>
+
                                 </ul>
                             </li>
                             <li class="gi-sb-item sb-drop-item">
                                 <a href="javascript:void(0)" class="gi-drop-toggle">
-                                    <i class="ri-shopping-cart-line"></i><span class="condense">Account<i
+                                    <i class="mdi mdi-account"></i><span class="condense">Account<i
                                             class="drop-arrow ri-arrow-down-s-line"></i></span></a>
                                 <ul class="gi-sb-drop condense">
-                                    <li><a href="product-list.html" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
-                                    <li><a href="add-product.html" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
-                                    <li><a href="add-category.html" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Category</a></li>
-                                    <li><a href="add-sub-category.html" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Sub Category</a></li>
-                                    <li><a href="order-list.html" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
-
+                                    <li><a href="accountlist" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Account list</a></li>
+                                    <li><a href="addaccount" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Add Account</a></li>
                                 </ul>
                             </li>
 

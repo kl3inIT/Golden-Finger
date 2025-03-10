@@ -51,7 +51,7 @@ public class ProductListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.getRequestDispatcher("dashboard/productList.jsp").forward(request, response);
+        request.getRequestDispatcher("dashboard/productlist.jsp").forward(request, response);
     } 
 
     /** 

@@ -1,4 +1,4 @@
-package controller.admin.product;
+package controller.admin.account;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author nhudi
  */
-@WebServlet(name="addProductServlet", urlPatterns={"/addproduct"})
-public class AddProductServlet extends HttpServlet {
+@WebServlet(name="AddAccountServlet", urlPatterns={"/addaccount"})
+public class AddAccountServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,10 +30,10 @@ public class AddProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet addProductServlet</title>");  
+            out.println("<title>Servlet AddAccountServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet addProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet AddAccountServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -50,8 +50,7 @@ public class AddProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.getRequestDispatcher("dashboard/addproduct.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 

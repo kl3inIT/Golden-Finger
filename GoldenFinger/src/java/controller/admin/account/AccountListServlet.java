@@ -1,4 +1,4 @@
-package controller.admin.product;
+package controller.admin.account;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author nhudi
  */
-@WebServlet(name="addProductServlet", urlPatterns={"/addproduct"})
-public class AddProductServlet extends HttpServlet {
+@WebServlet(name="AccountListServlet", urlPatterns={"/accountlist"})
+public class AccountListServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,10 +30,10 @@ public class AddProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet addProductServlet</title>");  
+            out.println("<title>Servlet AccountListServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet addProductServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet AccountListServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -50,8 +50,8 @@ public class AddProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.getRequestDispatcher("dashboard/addproduct.jsp").forward(request, response);
+         response.setContentType("text/html;charset=UTF-8");
+        request.getRequestDispatcher("dashboard/accountlist.jsp").forward(request, response);
     } 
 
     /** 

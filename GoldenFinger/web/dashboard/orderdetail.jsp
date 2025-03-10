@@ -25,7 +25,7 @@ Copyright 2024
         <meta name="description" content="Grabit - Admin.">
         <meta name="author" content="Maraviya Infotech">
 
-        <title>Add Product</title>
+        <title>Order detail</title>
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/img/favicon/favicon.png">
@@ -103,7 +103,7 @@ Copyright 2024
                 </div>
             </header>
 
-             <!-- sidebar -->
+            <!-- sidebar -->
             <div class="gi-sidebar-overlay"></div>
             <div class="gi-sidebar" data-mode="dark">
                 <div class="gi-sb-logo">
@@ -156,139 +156,156 @@ Copyright 2024
                     </div>
                 </div>
             </div>
-
-
             <!-- main content -->
             <div class="gi-main-content">
                 <div class="container-fluid">
-                    <!-- Page title & breadcrumb -->
-                    <div class="gi-page-title gi-page-title-2">
-                        <div class="gi-breadcrumb">
-                            <h5>Add Product</h5>
-
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="gi-card card-default">
-                                <div class="gi-card-content">
-                                    <div class="row gi-product-uploads">
-                                        <div class="col-lg-2 mb-991">
-                                            <div class="gi-vendor-img-upload">
-                                                <div class="gi-vendor-main-img">
-                                                    <div class="avatar-upload">
-                                                        <div class="avatar-edit">
-                                                            <input type='file' id="product_main" class="gi-image-upload"
-                                                                   accept=".png, .jpg, .jpeg">
-                                                            <label><i class="ri-pencil-line"></i></label>
-                                                        </div>
-                                                        <div class="avatar-preview gi-preview">
-                                                            <div class="imagePreview gi-div-preview">
-                                                                <img class="gi-image-preview"
-                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="avatar-upload">
-                                                        <div class="avatar-edit">
-                                                            <input type='file' id="product_main" class="gi-image-upload"
-                                                                   accept=".png, .jpg, .jpeg">
-                                                            <label><i class="ri-pencil-line"></i></label>
-                                                        </div>
-                                                        <div class="avatar-preview gi-preview">
-                                                            <div class="imagePreview gi-div-preview">
-                                                                <img class="gi-image-preview"
-                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="avatar-upload">
-                                                        <div class="avatar-edit">
-                                                            <input type='file' id="product_main" class="gi-image-upload"
-                                                                   accept=".png, .jpg, .jpeg">
-                                                            <label><i class="ri-pencil-line"></i></label>
-                                                        </div>
-                                                        <div class="avatar-preview gi-preview">
-                                                            <div class="imagePreview gi-div-preview">
-                                                                <img class="gi-image-preview"
-                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                            <div class="gi-card gi-invoice max-width-1170">
+
+                                <div class="gi-card-content card-default">
+
+                                    <div class="invoice-wrapper">
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-4 col-sm-6">
+                                                <img src="assets/img/logo/logo.png" alt="logo" style="height: 100px; width: 200px;">
+
+                                                <address>
+                                                    <br> Khu cong nghe cao Hoa Lac - Km29, ĐCT08, Thach Hoa, Thach That, Ha Noi, Viet Nam
+                                                </address>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 col-sm-6">
+                                                <p class="text-dark mb-2">From</p>
+
+                                                <address>
+                                                    <span>Golden Finger</span>
+                                                    <br> FPT University - PRJ301
+                                                    <br> <span>Email:</span> chande36@gmail.com
+                                                    <br> <span>Phone:</span> 0982226376
+                                                </address>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 col-sm-6">
+                                                <p class="text-dark mb-2">To</p>
+
+                                                <address>
+                                                    <span>John Marle</span>
+                                                    <br> 58 Jamie Ways, North Faye, Q5 5ZP
+                                                    <br> <span>Email</span>: example@gmail.com
+                                                    <br> <span>Phone:</span> +91 5264 521 943
+                                                </address>
+                                            </div>
+
+                                        </div>
+                                        <div class="gi-chart-header">
+                                            <div class="block">
+                                                <h6>Invoice</h6>
+                                                <h5>#FX6874
+                                                </h5>
+                                            </div>
+                                            <div class="block">
+                                                <h6>Amount</h6>
+                                                <h5>$8954.00
+                                                </h5>
+                                            </div>
+                                            <div class="block">
+                                                <h6>Quantity</h6>
+                                                <h5>30
+                                                </h5>
+                                            </div>
+                                            <div class="block">
+                                                <h6>Date</h6>
+                                                <h5>25/05/2023
+                                                </h5>
                                             </div>
                                         </div>
-                                        <div class="col-lg-10">
-                                            <div class="gi-vendor-upload-detail">
-                                                <form class="row g-3">
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Product name</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Select Categories</label>
-                                                        <select class="form-control form-select">
+                                        <div class="table-responsive tbl-800">
+                                            <div>
+                                                <table class="table-invoice table-striped" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Product</th>
+                                                            <th>Name</th>
+                                                            <th>Category</th>
+                                                            <th>Quantity</th>
+                                                            <th>Unit_Cost</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
 
-                                                            <option value="1">Grand Piano</option>
-                                                            <option value="2">Upright Piano</option>
-                                                            <option value="3">Digital Piano</option>
-                                                            <option value="4">Stage Piano</option>
-                                                            <option value="5">Hybrid Piano</option>
-                                                            <option value="6">Player Piano</option>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td><img class="invoice-item-img" src="assets/img/product/1.jpg"
+                                                                     alt="product-image"></td>
+                                                            <td>Man T-Shirt with Cap Style </td>
+                                                            <td>Half Sleeve men T-shirt with cap in Dark Blue Color.</td>
+                                                            <td>4</td>
+                                                            <td>$50.00</td>
+                                                            <td>$200.00</td>
+                                                        </tr>
 
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td><img class="invoice-item-img" src="assets/img/product/2.jpg"
+                                                                     alt="product-image"></td>
+                                                            <td>Sofa seat</td>
+                                                            <td>Pure Leather sofa seat for office furniture.</td>
+                                                            <td>10</td>
+                                                            <td>$50.00</td>
+                                                            <td>$500.00</td>
+                                                        </tr>
 
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td><img class="invoice-item-img" src="assets/img/product/3.jpg"
+                                                                     alt="product-image"></td>
+                                                            <td>Night lamp</td>
+                                                            <td>Best night lamp for bedroom frniture.</td>
+                                                            <td>10</td>
+                                                            <td>$20.00</td>
+                                                            <td>$200.00</td>
+                                                        </tr>
 
-                                                        </select>
-                                                    </div>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td><img class="invoice-item-img" src="assets/img/product/4.jpg"
+                                                                     alt="product-image"></td>
+                                                            <td>Men black hoodie</td>
+                                                            <td>Cotton fabric best hoodie for mens and womens.</td>
+                                                            <td>6</td>
+                                                            <td>$50.00</td>
+                                                            <td>$300.00</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
 
+                                        <div class="row justify-content-end inc-total">
+                                            <div class="col-lg-9 order-lg-1 order-md-2 order-sm-2">
+                                                <div class="note">
+                                                    <label>Comment</label>
+                                                    <p>Your country territory tax has been apply.</p>
+                                                    <p>Your voucher cannot be applied, because you enter wrong code.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 order-lg-2 order-md-1 order-sm-1">
+                                                <ul class="list-unstyled">
+                                                    <li class="mid pb-3 text-dark"> Subtotal
+                                                        <span
+                                                            class="d-inline-block float-right text-default">$1200.00</span>
+                                                    </li>
 
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Price <span>( In USD
-                                                                )</span></label>
-                                                        <input type="number" class="form-control" id="price1">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Discount</label>
-                                                        <input type="number" class="form-control" id="quantity1">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Quantity</label>
-                                                        <input type="number" class="form-control" id="quantity1">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Warranty</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Demension</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Weight</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Speaker</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Release Date</label>
-                                                        <input type="date" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label for="" class="form-label">Include</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
+                                                    <li class="mid pb-3 text-dark">Vat(0%)
+                                                        <span class="d-inline-block float-right text-default">$0.00</span>
+                                                    </li>
 
-                                                    <div class="col-md-12">
-                                                        <label class="form-label">Ful Detail</label>
-                                                        <textarea class="form-control" rows="4"></textarea>
-                                                    </div>
-
-                                                    <div class="col-md-12">
-                                                        <button type="submit" class="btn gi-btn-primary">Submit</button>
-                                                    </div>
-                                                </form>
+                                                    <li class="text-dark">Total
+                                                        <span class="d-inline-block float-right">$1300.00</span>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -298,6 +315,9 @@ Copyright 2024
                     </div>
                 </div>
             </div>
+
+
+
 
             <!-- Footer -->
             <footer>
