@@ -10,7 +10,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import model.Cart;
+import model.Product;
 import model.WishList;
 
 @WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
@@ -38,7 +40,14 @@ public class HomeServlet extends HttpServlet {
         Cart cart = new Cart(txt, pd.getAllProductByCid(0));
         WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
         
-        
+        //Get list trending
+        List<Product> listProductsTrending = pd.getTrendingProducts();
+        List<Product> listProductsRate = pd.getTopRatedProducts();
+        List<Product> listProductsSelling = pd.getTopSellingProducts();
+
+        request.setAttribute("listProductsTrending", listProductsTrending);
+        request.setAttribute("listProductsRate", listProductsRate);
+        request.setAttribute("listProductsSelling", listProductsSelling);
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("wishlist", wishlist.getListItems());

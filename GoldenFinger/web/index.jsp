@@ -408,168 +408,39 @@ Copyright 2024
                             </div>
                         </div>
                         <div class="gi-trending-slider">
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/10_1.jpg" alt="Product">
+                            <!--add listTrending-->
+                            <c:forEach var="p" items="${listProductsTrending}">
+                                <div class="w-full gi-all-product-block">
+                                    <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
+                                        <div class="gi-pro-image-outer basis-[70px]">
+                                            <div class="gi-pro-image overflow-hidden rounded-[15px]">
+                                                <a href="product?pid=${p.id}" class="image">
+                                                    <c:if test="${not empty p.image[0]}">
+                                                        <img class="main-image w-full" src="${p.image[0]}" alt="Product">
+                                                    </c:if>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
+                                            <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product?pid=${p.id}" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize" title="${p.name}">${p.name}</a></h5>
+                                            <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="product?pid=${p.id}" class="text-[#999] hover:text-[#5caf90]">${p.category.name}</a></h6>
+                                            <div class="gi-pro-rat-price">
+                                                <div class="gi-pro-rat-pri-inner">
+                                                    <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
+                                                        <span class="new-price text-[#4b5966] font-bold text-[14px]">
+                                                            $<fmt:formatNumber value="${p.price - p.price * p.discount}" maxFractionDigits="2" minFractionDigits="0" />
+                                                        </span>
+                                                        <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${p.price}</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0)" title="Add To Cart" onclick="addToCart(${p.id}, 1)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]">
+                                                <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize" title="Healthy Nutmix, 200g Pack">Healthy Nutmix, 200g Pack</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Driedfruit</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$42.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$45.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 5 kg</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/11_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Organic fresh tomato</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Vegetables</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$25.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$30.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 250 g</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/19_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Coffee with chocolate cream mix pack</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Coffee</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$62.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$65.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 1 kg</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/25_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Fresh Lichi</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Fruits</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$10.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$11.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 500 g</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/5_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Berry & Graps Mix Snack</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Driedfruit</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$52.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$55.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 1 pcs</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/29_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Pineapple</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Fruits</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$20.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$30.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 12 pcs</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <!-- Top Rated -->
@@ -582,168 +453,38 @@ Copyright 2024
                             </div>
                         </div>
                         <div class="gi-rated-slider">
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/17_1.jpg" alt="Product">
+                            <c:forEach  var="p" items="${listProductsRate}">
+                                <div class="w-full gi-all-product-block">
+                                    <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
+                                        <div class="gi-pro-image-outer basis-[70px]">
+                                            <div class="gi-pro-image overflow-hidden rounded-[15px]">
+                                                <a href="product?pid=${p.id}" class="image">
+                                                    <c:if test="${not empty p.image[0]}">
+                                                        <img class="main-image w-full" src="${p.image[0]}" alt="Product">
+                                                    </c:if>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
+                                            <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product?pid=${p.id}" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize" title="${p.name}">${p.name}</a></h5>
+                                            <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="product?pid=${p.id}" class="text-[#999] hover:text-[#5caf90]">${p.category.name}</a></h6>
+                                            <div class="gi-pro-rat-price">
+                                                <div class="gi-pro-rat-pri-inner">
+                                                    <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
+                                                        <span class="new-price text-[#4b5966] font-bold text-[14px]">
+                                                            $<fmt:formatNumber value="${p.price - p.price * p.discount}" maxFractionDigits="2" minFractionDigits="0" />
+                                                        </span>
+                                                        <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${p.price}</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0)" title="Add To Cart" onclick="addToCart(${p.id}, 1)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]">
+                                                <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Ginger - Organic</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">vegetables</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$62.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$65.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 1 kg</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/2_2.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Dates Value Pouch Dates  Pouch</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Driedfruit</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$56.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$78.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 3 pcs</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/23_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Blue berry</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Fruits</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$25.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$30.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 250 g</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/13_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Onion - Hybrid</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">vegetables</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$20.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$30.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 12 pcs</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/12_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Potato</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Vegetables</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$50.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$55.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 2 pack</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/28_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Mango - Kesar</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Fruits</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$52.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$55.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 1 pcs</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <!-- Top Selling -->
@@ -756,174 +497,45 @@ Copyright 2024
                             </div>
                         </div>
                         <div class="gi-trending-slider">
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/18_1.jpg" alt="Product">
+                            <c:forEach var="p" items="${listProductsSelling}">
+                                <div class="w-full gi-all-product-block">
+                                    <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
+                                        <div class="gi-pro-image-outer basis-[70px]">
+                                            <div class="gi-pro-image overflow-hidden rounded-[15px]">
+                                                <a href="product?pid=${p.id}" class="image">
+                                                    <c:if test="${not empty p.image[0]}">
+                                                        <img class="main-image w-full" src="${p.image[0]}" alt="Product">
+                                                    </c:if>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
+                                            <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product?pid=${p.id}" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize" title="${p.name}">${p.name}</a></h5>
+                                            <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="product?pid=${p.id}" class="text-[#999] hover:text-[#5caf90]">${p.category.name}</a></h6>
+                                            <div class="gi-pro-rat-price">
+                                                <div class="gi-pro-rat-pri-inner">
+                                                    <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
+                                                        <span class="new-price text-[#4b5966] font-bold text-[14px]">
+                                                            $<fmt:formatNumber value="${p.price - p.price * p.discount}" maxFractionDigits="2" minFractionDigits="0" />
+                                                        </span>
+                                                        <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${p.price}</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0)" title="Add To Cart" onclick="addToCart(${p.id}, 1)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]">
+                                                <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Lemon - Seedless</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Vegetables</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$42.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$45.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 5 kg</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/28_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Mango - Kesar</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Fruits</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$62.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$65.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 1 kg</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/7_2.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Mixed Nuts & Almonds Dry Fruits</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Driedfruit</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$10.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$11.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 500 g</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/3_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Californian Almonds Value Pack</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Driedfruit</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$25.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$30.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 250 g</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/13_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Onion - Hybrid</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">vegetables</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$20.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$30.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 12 pcs</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full gi-all-product-block">
-                                <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                                    <div class="gi-pro-image-outer basis-[70px]">
-                                        <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                            <a href="product-left-sidebar.html" class="image">
-                                                <img class="main-image w-full" src="assets/img/product-images/5_1.jpg" alt="Product">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                        <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Berry & Graps Mix Snack</a></h5>
-                                        <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Driedfruit</a></h6>
-                                        <div class="gi-pro-rat-price">
-                                            <div class="gi-pro-rat-pri-inner">
-                                                <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">$52.00</span>
-                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$55.00</span>
-                                                    <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 1 pcs</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                            <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Trending, Top Rated End -->
+
 
 
         <jsp:include page="footer.jsp" />
@@ -959,6 +571,7 @@ Copyright 2024
                                                                             }
                                                                         });
                                                                     }
+
         </script>
     </body>
 
