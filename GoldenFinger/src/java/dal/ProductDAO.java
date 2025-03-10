@@ -233,12 +233,12 @@ public class ProductDAO extends DBConnect {
 
         // price range filter
         if (minPrice > 0) {
-            sql.append(" AND UnitPrice >= ?");
+            sql.append(" AND UnitPrice * (1 - Discount) >= ?");
             params.add(minPrice);
         }
 
         if (maxPrice < getMaxPrice()) {
-            sql.append(" AND UnitPrice <= ?");
+            sql.append(" AND UnitPrice * (1 - Discount) <= ?");
             params.add(maxPrice);
         }
 
@@ -254,10 +254,10 @@ public class ProductDAO extends DBConnect {
                 sql.append(" ORDER BY ProductName DESC");
                 break;
             case 4:
-                sql.append(" ORDER BY UnitPrice ASC");
+                sql.append(" ORDER BY UnitPrice * (1 - Discount) ASC");
                 break;
             case 5:
-                sql.append(" ORDER BY UnitPrice DESC");
+                sql.append(" ORDER BY UnitPrice * (1 - Discount) DESC");
                 break;
             default:
                 sql.append(" ORDER BY ProductID");
@@ -301,11 +301,11 @@ public class ProductDAO extends DBConnect {
         }
 
         if (minPrice > 0) {
-            sql.append(" AND UnitPrice >= ?");
+            sql.append(" AND UnitPrice * (1 - Discount) >= ?");
             params.add(minPrice);
         }
         if (maxPrice < getMaxPrice()) {
-            sql.append(" AND UnitPrice <= ?");
+            sql.append(" AND UnitPrice * (1 - Discount) <= ?");
             params.add(maxPrice);
         }
 
