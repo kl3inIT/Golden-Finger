@@ -86,7 +86,6 @@ Copyright 2024
                                         <img class="user" src="dashboard/assets/img/user/1.jpg" alt="user">
                                     </div>
                                     <div class="gi-hover-drop-panel right">
-
                                         <ul class="">
                                             <li><a href="team-profile.html">Profile</a></li>
                                             <li><a href="faq.html">Help</a></li>
@@ -106,59 +105,59 @@ Copyright 2024
             </header>
 
             <!-- sidebar -->
-            <div class="gi-sidebar-overlay"></div>
-            <div class="gi-sidebar" data-mode="dark">
-                <div class="gi-sb-logo">
-                    <a href="home" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                    <a href="home" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                </div>
-                <div class="gi-sb-wrapper">
-                    <div class="gi-sb-content">
-                        <ul class="gi-sb-list">
-                            <li class="gi-sb-item">
-                                <a href="admin" class="gi-page-link">
-                                    <i class="ri-dashboard-3-line"></i><span class="condense"><span
-                                            class="hover-title">Dashboard</span> </span>
-                                </a>
-                            </li>
-                            <li class="gi-sb-item-separator"></li>
-                            <li class="gi-sb-title condense">Apps</li>
+            <div class="gi-sidebar-overlay">
+                <div class="gi-sidebar" data-mode="dark">
+                    <div class="gi-sb-logo">
+                        <a href="home" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                        <a href="home" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                    </div>
+                    <div class="gi-sb-wrapper">
+                        <div class="gi-sb-content">
+                            <ul class="gi-sb-list">
+                                <li class="gi-sb-item">
+                                    <a href="admin" class="gi-page-link">
+                                        <i class="ri-dashboard-3-line"></i><span class="condense"><span
+                                                class="hover-title">Dashboard</span> </span>
+                                    </a>
+                                </li>
+                                <li class="gi-sb-item-separator"></li>
+                                <li class="gi-sb-title condense">Apps</li>
 
-                            <li class="gi-sb-item">
+                                <li class="gi-sb-item">
 
-                            </li>
-                            <li class="gi-sb-item sb-drop-item">
-                                <a href="javascript:void(0)" class="gi-drop-toggle">
-                                    <i class="ri-shopping-cart-line"></i><span class="condense">eCommerce<i
-                                            class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-                                <ul class="gi-sb-drop condense">
-                                    <li><a href="productlist" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
-                                    <li><a href="addproduct" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
-                                    <li><a href="orderlist" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
+                                </li>
+                                <li class="gi-sb-item sb-drop-item">
+                                    <a href="javascript:void(0)" class="gi-drop-toggle">
+                                        <i class="ri-shopping-cart-line"></i><span class="condense">eCommerce<i
+                                                class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                                    <ul class="gi-sb-drop condense">
+                                        <li><a href="productlist" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
+                                        <li><a href="addproduct" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
+                                        <li><a href="orderlist" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
 
-                                </ul>
-                            </li>
-                            <li class="gi-sb-item sb-drop-item">
-                                <a href="javascript:void(0)" class="gi-drop-toggle">
-                                    <i class="mdi mdi-account"></i><span class="condense">Account<i
-                                            class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-                                <ul class="gi-sb-drop condense">
-                                    <li><a href="accountlist" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Account list</a></li>
-                                    <li><a href="addaccount" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Account</a></li>
-                                </ul>
-                            </li>
+                                    </ul>
+                                </li>
+                                <li class="gi-sb-item sb-drop-item">
+                                    <a href="javascript:void(0)" class="gi-drop-toggle">
+                                        <i class="mdi mdi-account"></i><span class="condense">Account<i
+                                                class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                                    <ul class="gi-sb-drop condense">
+                                        <li><a href="accountlist" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Account list</a></li>
+                                        <li><a href="addaccount" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Add Account</a></li>
+                                    </ul>
+                                </li>
 
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <!-- main content -->
             <div class="gi-main-content">
                 <div class="container-fluid">
