@@ -4,6 +4,7 @@
     Author     : nhudi
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-----------------------------------------------------------------------------------
 Item Name: Grabit - Multipurpose eCommerce HTML Template.
@@ -103,12 +104,12 @@ Copyright 2024
                 </div>
             </header>
 
-           <!-- sidebar -->
+            <!-- sidebar -->
             <div class="gi-sidebar-overlay"></div>
             <div class="gi-sidebar" data-mode="dark">
                 <div class="gi-sb-logo">
-                    <a href="admin" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                    <a href="admin" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                    <a href="home" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                    <a href="home" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
                 </div>
                 <div class="gi-sb-wrapper">
                     <div class="gi-sb-content">
@@ -165,7 +166,7 @@ Copyright 2024
                         <div class="gi-breadcrumb">
                             <h5>Product List</h5>
                             <ul>
-                                <li><a href="index.html">Grabit</a></li>
+                                <li><a href="admin">Dashboard</a></li>
                                 <li>Product List</li>
                             </ul>
                         </div>
@@ -189,35 +190,49 @@ Copyright 2024
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Mens t-shirt</td>
-                                                    <td>$20</td>
-                                                    <td>25% OFF</td>
-                                                    <td>61</td>
+                                                <c:forEach var="u" items="${requestScope.listUser}" varStatus="idAccount">
+                                                    <tr>
+                                                        <td>${idAccount.index + 1}</td>
+                                                        <td>${u.username}</td>
+                                                        <td>${u.fullName}</td>
+                                                        <td>${u.email}</td>
+                                                        <td>${u.phone}</td>
+                                                        <c:if test="${u.status == 1}"> 
+                                                            <td> <span class="active">Enable</span></td>
+                                                        </c:if>
+                                                        <c:if test="${u.status != 1}"> 
+                                                            <td class="active">Disable</td>
+                                                        </c:if>
+                                                        <td>
+                                                            <div class="d-flex ">
+                                                                <button type="button"
+                                                                        class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                        aria-expanded="false" data-display="static">
+                                                                    <span class="sr-only"><i
+                                                                            class="ri-settings-3-line"></i></span>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <form action="accountlist" method="post" id="updateForm">
+                                                                        <input type="hidden" name="action" value="update">
+                                                                        <input type="hidden" name="id" id="userId">
+                                                                    </form>
 
-                                                    <td><span class="active">active</span></td>
-       
-                                                    <td>
-                                                        <div class="d-flex ">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                                    <script>
+                                                                        function updateStatusUser(id) {
+                                                                            document.getElementById("userId").value = id;
+                                                                            document.getElementById("updateForm").submit();
+                                                                        }
+                                                                    </script>
+                                                                    <a class="dropdown-item" href="#" onclick="updateStatusUser(${u.id})">Disable</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
 
-
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>

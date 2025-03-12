@@ -342,7 +342,8 @@ public class ProductDAO extends DBConnect {
             }
         }
     }
-            // Top 6 Products selling in 2 month
+    // Top 6 Products selling in 2 month
+
     public List<Product> getTrendingProducts() {
         List<Product> listProduct = new ArrayList<>();
         String sql = "SELECT \n"
@@ -441,13 +442,23 @@ public class ProductDAO extends DBConnect {
         return listProduct;
     }
 
+    public boolean updateStatusOfProduct(int id) {
+        try {
+            String sql = "UPDATE Products\n"
+                    + "SET Status = 0\n"
+                    + "WHERE ProductID = ?;";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         ProductDAO pd = new ProductDAO();
-        List<Product> lp = pd.getFilteredProducts(1, 2, 0, 10000, 2, 1, 3);
-        for (Product product : lp) {
-            System.out.println(product.getName());
-
-        }
+        System.out.println(pd.updateStatusOfProduct(1));
     }
 
 }

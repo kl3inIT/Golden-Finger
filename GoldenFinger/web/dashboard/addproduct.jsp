@@ -25,7 +25,7 @@ Copyright 2024
         <meta name="description" content="Grabit - Admin.">
         <meta name="author" content="Maraviya Infotech">
 
-        <title>Order List</title>
+        <title>Add Product</title>
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/img/favicon/favicon.png">
@@ -103,7 +103,7 @@ Copyright 2024
                 </div>
             </header>
 
-           <!-- sidebar -->
+             <!-- sidebar -->
             <div class="gi-sidebar-overlay"></div>
             <div class="gi-sidebar" data-mode="dark">
                 <div class="gi-sb-logo">
@@ -157,76 +157,143 @@ Copyright 2024
                 </div>
             </div>
 
+
             <!-- main content -->
             <div class="gi-main-content">
                 <div class="container-fluid">
                     <!-- Page title & breadcrumb -->
+                    <!-- Page title & breadcrumb -->
                     <div class="gi-page-title gi-page-title-2">
                         <div class="gi-breadcrumb">
-                            <h5>Order List</h5>
+                            <h5>Add Product</h5>
                             <ul>
                                 <li><a href="admin">Dashboard</a></li>
-                                <li>Order List</li>
+                                <li>Add Product</li>
                             </ul>
                         </div>
-                    </div>
+                    </div
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="gi-card" id="ordertbl">
-                                <div class="gi-card-header">
-                                    <h4 class="gi-card-title">Recent Orders</h4>
-                                    <div class="header-tools">
-                                        <a href="javascript:void(0)" class="m-r-10 gi-full-card"><i
-                                                class="ri-fullscreen-line"></i></a>
-                                        <div class="gi-date-range dots">
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gi-card-content card-default">
-                                    <div class="order-table">
-                                        <div class="table-responsive tbl-1200">
-                                            <table id="recent_order" class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-
-                                                        <th>Customer</th>
-                                                        <th>Amount</th>
-                                                        <th>Date</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="token">#fx2650</td>
-
-                                                        <td>Avira Venusio</td>
-                                                        <td>$15</td>
-                                                        <td>2025-01-01</td>
-
-                                                        <td class="paid">
-                                                            <div class="dropdown">
-                                                                <span class="dropdown-toggle ">Pending</span>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a class="canceled" href="#">Canceled</a></li>
-                                                                    <li><a class="pending" href="#">Pending</a></li>
-                                                                    <li><a class="comfirmed" href="#">Comfirmed</a></li>
-                                                                    <li><a class="shipping" href="#">Shipping</a></li>
-                                                                    <li><a class="delivered" href="#">Delivered</a></li>
-                                                                    <li><a class="failed" href="#">Failed</a></li>
-
-                                                                </ul>
+                            <div class="gi-card card-default">
+                                <div class="gi-card-content">
+                                    <div class="row gi-product-uploads">
+                                        <div class="col-lg-2 mb-991">
+                                            <div class="gi-vendor-img-upload">
+                                                <div class="gi-vendor-main-img">
+                                                    <div class="avatar-upload">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="product_main" class="gi-image-upload"
+                                                                   accept=".png, .jpg, .jpeg">
+                                                            <label><i class="ri-pencil-line"></i></label>
+                                                        </div>
+                                                        <div class="avatar-preview gi-preview">
+                                                            <div class="imagePreview gi-div-preview">
+                                                                <img class="gi-image-preview"
+                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-upload">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="product_main" class="gi-image-upload"
+                                                                   accept=".png, .jpg, .jpeg">
+                                                            <label><i class="ri-pencil-line"></i></label>
+                                                        </div>
+                                                        <div class="avatar-preview gi-preview">
+                                                            <div class="imagePreview gi-div-preview">
+                                                                <img class="gi-image-preview"
+                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-upload">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="product_main" class="gi-image-upload"
+                                                                   accept=".png, .jpg, .jpeg">
+                                                            <label><i class="ri-pencil-line"></i></label>
+                                                        </div>
+                                                        <div class="avatar-preview gi-preview">
+                                                            <div class="imagePreview gi-div-preview">
+                                                                <img class="gi-image-preview"
+                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <div class="gi-vendor-upload-detail">
+                                                <form class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Product name</label>
+                                                        <input type="text" class="form-control slug-title" id="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Select Categories</label>
+                                                        <select class="form-control form-select">
 
-                                                        </td>
-                                                        <td><button class="gi-btn default-btn color-info">view</button></td>
-                                                    </tr>
+                                                            <option value="1">Grand Piano</option>
+                                                            <option value="2">Upright Piano</option>
+                                                            <option value="3">Digital Piano</option>
+                                                            <option value="4">Stage Piano</option>
+                                                            <option value="5">Hybrid Piano</option>
+                                                            <option value="6">Player Piano</option>
 
 
-                                                </tbody>
-                                            </table>
+
+                                                        </select>
+                                                    </div>
+
+
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Price <span>( In USD
+                                                                )</span></label>
+                                                        <input type="number" class="form-control" id="price1">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Discount</label>
+                                                        <input type="number" class="form-control" id="quantity1">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Quantity</label>
+                                                        <input type="number" class="form-control" id="quantity1">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Warranty</label>
+                                                        <input type="text" class="form-control slug-title" id="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Demension</label>
+                                                        <input type="text" class="form-control slug-title" id="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Weight</label>
+                                                        <input type="text" class="form-control slug-title" id="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Speaker</label>
+                                                        <input type="text" class="form-control slug-title" id="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label">Release Date</label>
+                                                        <input type="date" class="form-control slug-title" id="">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="" class="form-label">Include</label>
+                                                        <input type="text" class="form-control slug-title" id="">
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">Ful Detail</label>
+                                                        <textarea class="form-control" rows="4"></textarea>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <button type="submit" class="btn gi-btn-primary">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -235,8 +302,6 @@ Copyright 2024
                     </div>
                 </div>
             </div>
-
-
 
             <!-- Footer -->
             <footer>

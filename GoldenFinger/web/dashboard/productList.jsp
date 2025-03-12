@@ -103,13 +103,13 @@ Copyright 2024
                     </div>
                 </div>
             </header>
-           
+
             <!-- sidebar -->
             <div class="gi-sidebar-overlay">
                 <div class="gi-sidebar" data-mode="dark">
                     <div class="gi-sb-logo">
-                        <a href="admin" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                        <a href="admin" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                        <a href="home" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                        <a href="home" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
                     </div>
                     <div class="gi-sb-wrapper">
                         <div class="gi-sb-content">
@@ -166,7 +166,7 @@ Copyright 2024
                         <div class="gi-breadcrumb">
                             <h5>Product List</h5>
                             <ul>
-                                <li><a href="index.jsp">Home</a></li>
+                                <li><a href="admin">Dashboard</a></li>
                                 <li>Product List</li>
                             </ul>
                         </div>
@@ -192,8 +192,7 @@ Copyright 2024
                                             <tbody>
                                                 <c:forEach var="p" items="${requestScope.listProduct}">
                                                     <tr>
-                                                        <td><img class="tbl-thumb" src="${p.image[0]}"
-                                                                 alt="Product Image"></td>
+                                                        <td><img class="tbl-thumb" src="${p.image[0]}" alt="Product Image"></td>
                                                         <td>${p.name}</td>
                                                         <td>${p.category.name}</td>
                                                         <td>
@@ -203,26 +202,45 @@ Copyright 2024
                                                             <fmt:formatNumber value="${p.discount * 100}" maxFractionDigits="2" minFractionDigits="0" />%
                                                         </td>
                                                         <td>${p.unitInStock}</td>
-                                                        <td><span class="active">....</span></td>
+
+                                                        <c:if test="${p.status == 1}"> 
+                                                            <td> <span class="active">Enable</span></td>
+                                                        </c:if>
+                                                        <c:if test="${p.status != 1}"> 
+                                                            <td class="active">Disable</td>
+                                                        </c:if>
+
                                                         <td>
-                                                            <div class="d-flex justify-content-start">
+                                                            <div class="dropdown">
                                                                 <button type="button"
-                                                                        class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                        data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false" data-display="static">
-                                                                    <span class="sr-only"><i
-                                                                            class="ri-settings-3-line"></i></span>
+                                                                        class="btn btn-outline-success dropdown-toggle"
+                                                                        data-bs-toggle="dropdown"
+                                                                        aria-haspopup="true"
+                                                                        aria-expanded="false">
+                                                                    <i class="ri-settings-3-line"></i>
                                                                 </button>
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item" href="#">Edit</a>
-                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                    <form action="productlist" method="post" id="deleteForm">
+                                                                        <input type="hidden" name="action" value="update">
+                                                                        <input type="hidden" name="id" id="deleteProductId">
+                                                                    </form>
+
+                                                                    <script>
+                                                                        function updateStatusProduct(id) {
+                                                                            document.getElementById("deleteProductId").value = id;
+                                                                            document.getElementById("deleteForm").submit();
+                                                                        }
+                                                                    </script>
+                                                                    <a class="dropdown-item" href="#" onclick="updateStatusProduct(${p.id})">Disable</a>
+
                                                                 </div>
                                                             </div>
                                                         </td>
                                                     </tr>
-
                                                 </c:forEach>
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>
@@ -239,6 +257,7 @@ Copyright 2024
 
 
         </main>
+
 
         <!-- Vendor Custom -->
         <script src="dashboard/assets/js/vendor/jquery-3.6.4.min.js"></script>
