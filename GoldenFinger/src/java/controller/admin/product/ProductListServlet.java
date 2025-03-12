@@ -61,7 +61,7 @@ public class ProductListServlet extends HttpServlet {
         List<Product> listProduct = pd.getAllProductByCid(0);
         
         request.setAttribute("listProduct", listProduct);
-        request.getRequestDispatcher("dashboard/productList.jsp").forward(request, response);
+        request.getRequestDispatcher("dashboard/productlist.jsp").forward(request, response);
     }
 
     /**

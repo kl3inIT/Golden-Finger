@@ -109,8 +109,8 @@ Copyright 2024
             <div class="gi-sidebar-overlay"></div>
             <div class="gi-sidebar" data-mode="dark">
                 <div class="gi-sb-logo">
-                    <a href="admin" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                    <a href="admin" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                    <a href="home" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                    <a href="home" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
                 </div>
                 <div class="gi-sb-wrapper">
                     <div class="gi-sb-content">
