@@ -3,7 +3,9 @@
     Created on : Mar 10, 2025, 11:23:45 AM
     Author     : nhudi
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-----------------------------------------------------------------------------------
 Item Name: Grabit - Multipurpose eCommerce HTML Template.
@@ -103,7 +105,7 @@ Copyright 2024
                 </div>
             </header>
 
-           <!-- sidebar -->
+            <!-- sidebar -->
             <div class="gi-sidebar-overlay"></div>
             <div class="gi-sidebar" data-mode="dark">
                 <div class="gi-sb-logo">
@@ -165,7 +167,7 @@ Copyright 2024
                         <div class="gi-breadcrumb">
                             <h5>Product List</h5>
                             <ul>
-                                <li><a href="index.html">Grabit</a></li>
+                                <li><a href="index.jsp">Home</a></li>
                                 <li>Product List</li>
                             </ul>
                         </div>
@@ -182,41 +184,45 @@ Copyright 2024
                                                     <th>Name</th>
                                                     <th>Category</th>
                                                     <th>Price</th>
-                                                    <th>Offer</th>
+                                                    <th>Discount</th>
                                                     <th>Stock</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-
                                             <tbody>
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/1.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Mens t-shirt</td>
-                                                    <td>...</td>
-                                                    <td>...</td>
-           
-                                                    <td>...</td>
-                                                    <td><span class="active">....</span></td>
-                                                    <td>....</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-start">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                <c:forEach var="p" items="${requestScope.listProduct}">
+                                                    <tr>
+                                                        <td><img class="tbl-thumb" src="${p.image[0]}"
+                                                                 alt="Product Image"></td>
+                                                        <td>${p.name}</td>
+                                                        <td>${p.category.name}</td>
+                                                        <td>
+                                                            $<fmt:formatNumber value="${p.price}" maxFractionDigits="2" minFractionDigits="0" />
+                                                        </td>
+                                                        <td>
+                                                            <fmt:formatNumber value="${p.discount * 100}" maxFractionDigits="2" minFractionDigits="0" />%
+                                                        </td>
+                                                        <td>${p.unitInStock}</td>
+                                                        <td><span class="active">....</span></td>
+                                                        <td>
+                                                            <div class="d-flex justify-content-start">
+                                                                <button type="button"
+                                                                        class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                        aria-expanded="false" data-display="static">
+                                                                    <span class="sr-only"><i
+                                                                            class="ri-settings-3-line"></i></span>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
 
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
