@@ -88,9 +88,8 @@ public class Cart {
         }
         return str;
     }
-    
-    
-    public void removeAllItem(){
+
+    public void removeAllItem() {
         listItems.clear();
     }
 

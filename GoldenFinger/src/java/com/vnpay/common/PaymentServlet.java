@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.TimeZone;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,6 +34,7 @@ import java.util.logging.Logger;
 public class PaymentServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(PaymentServlet.class.getName());
+    private final ProductDAO pd = new ProductDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -73,7 +75,6 @@ public class PaymentServlet extends HttpServlet {
             return;
         }
 
-        ProductDAO pd = new ProductDAO();
         Cart cart = ServletUtils.getCartFromCookie(req, pd.getAllProductByCid(0));
         if (cart.getListItems().isEmpty()) {
             resp.sendRedirect("cart");
@@ -81,7 +82,7 @@ public class PaymentServlet extends HttpServlet {
         }
 
         if ("COD".equals(paymentMethod)) {
-            processCodPayment(req, resp, user, cart, pd, fullName, phone, address, comment);
+            processCodPayment(req, resp, user, cart, fullName, phone, address, comment);
         } else if ("VNPAY".equals(paymentMethod)) {
             processVnpayPayment(req, resp, amountUsd, bankCode);
         } else {
@@ -92,24 +93,24 @@ public class PaymentServlet extends HttpServlet {
     }
 
     private void processCodPayment(HttpServletRequest req, HttpServletResponse resp,
-            User user, Cart cart, ProductDAO pd,
+            User user, Cart cart,
             String fullName, String phone, String address, String comment)
             throws ServletException, IOException {
+        Cookie[] cookies = req.getCookies();
 
         OrderDAO od = new OrderDAO();
-        int orderId = od.createOrder(user.getId(), fullName, phone, address, comment, cart);
+        int orderId = od.createOrder(user.getId(), 1, fullName, phone, address, comment, cart);
 
         if (orderId > 0) {
             OrderDetailDAO odd = new OrderDetailDAO();
             odd.createOrderDetail(cart, orderId);
             pd.updateUnitInStock(cart);
-            // Trong VNPayReturnServlet.java
-            LOGGER.log(Level.INFO, "About to delete cart cookie");
-            ServletUtils.deleteCookie(req, resp, "cart");
-            LOGGER.log(Level.INFO, "Cart cookie deletion completed");
-            // Sau khi xóa cookie
-            Cart checkCart = ServletUtils.getCartFromCookie(req, pd.getAllProductByCid(0));
-            LOGGER.log(Level.INFO, "Cart size after deletion: {0}", checkCart.getSizeCart());
+            for (Cookie c : cookies) {
+                if (c.getName().equals("cart")) {
+                    c.setMaxAge(0);
+                    resp.addCookie(c);
+                }
+            }
             resp.sendRedirect("orderhistory");
         } else {
             req.setAttribute("error", "Failed to create order. Please try again.");

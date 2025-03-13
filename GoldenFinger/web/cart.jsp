@@ -17,6 +17,10 @@
         <meta name="description" content="Piano Shop">
         <meta name="author" content="">
 
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+
         <!-- site Favicon -->
         <link rel="icon" href="assets/img/favicon/favicon.png" sizes="32x32">
 
@@ -150,9 +154,14 @@
                                                     </div>
                                                     <c:if test="${requestScope.sizeCart > 0}">
                                                         <c:if test="${isAvailable}">
-                                                            <a href="${(sessionScope.account != null) ? 'checkout' : 'login'}">
-                                                                <button type="button" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[10px] max-[767px]:py-[6px] px-[15px] max-[767px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[767px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]">Check Out</button>
-                                                            </a>
+                                                            <div class="flex gap-4">
+                                                                <a href="cart?action=clear" class="gi-btn-2 transition-all duration-300 ease-in-out py-2 px-4 text-sm font-medium bg-red-600 text-white rounded-md hover:bg-gray-600">
+                                                                    Clear Cart
+                                                                </a>
+                                                                <a href="${(sessionScope.account != null) ? 'checkout' : 'login'}" class="gi-btn-2 transition-all duration-300 ease-in-out py-2 px-4 text-sm font-medium bg-green-600 text-white rounded-md hover:bg-gray-600">
+                                                                    Check Out
+                                                                </a>
+                                                            </div>
                                                         </c:if>
                                                         <c:if test="${isAvailable eq false}">
                                                             <span class="text-left text-[16px] font-medium text-red-600 leading-[24px] tracking-[0]">Some product in not available, please remove that items before checkout!</span>

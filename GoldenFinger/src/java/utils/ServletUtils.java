@@ -59,38 +59,6 @@ public class ServletUtils {
         return "";
     }
 
-    public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String cookieName) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(cookieName)) {
-                    cookie.setValue("");
-                    cookie.setMaxAge(0);
-                    cookie.setPath("/");
-                    response.addCookie(cookie);
-                    break;
-                }
-            }
-        }
-    }
-
-    public static void setCookie(HttpServletResponse response, String cookieName, String cookieValue, int maxAge) {
-        Cookie cookie = new Cookie(cookieName, cookieValue);
-        cookie.setMaxAge(maxAge);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-    }
-
-    public static void updateCartCookie(HttpServletRequest request, HttpServletResponse response, Cart cart) {
-        deleteCookie(request, response, "cart");
-        setCookie(response, "cart", cart.listCartToString(), 60 * 60 * 24 * 60); // 60 ngày
-    }
-
-    public static void updateWishlistCookie(HttpServletRequest request, HttpServletResponse response, WishList wishlist) {
-        deleteCookie(request, response, "wishlist");
-        setCookie(response, "wishlist", wishlist.listWishListToString(), 60 * 60 * 24 * 60); // 60 ngày
-    }
-
     public static Cart getCartFromCookie(HttpServletRequest request, List<Product> productList) {
         String cartStr = getCookieValue(request, "cart");
         return new Cart(cartStr, productList);

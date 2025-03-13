@@ -22,6 +22,7 @@ public class CheckoutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+
         HttpSession session = request.getSession(false); // Không tạo session mới nếu chưa có
         if (session == null || session.getAttribute("account") == null) {
             response.sendRedirect("login");
@@ -31,7 +32,7 @@ public class CheckoutServlet extends HttpServlet {
 
         ProductDAO pd = new ProductDAO();
         CategoryDAO cd = new CategoryDAO();
-        
+
         Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
         WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
 
@@ -54,6 +55,7 @@ public class CheckoutServlet extends HttpServlet {
             throws ServletException, IOException {
 
     }
+
     @Override
     public String getServletInfo() {
         return "Short description";
