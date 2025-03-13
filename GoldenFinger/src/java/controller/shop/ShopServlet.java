@@ -15,7 +15,6 @@ import model.WishList;
 import model.Product;
 import utils.ServletUtils;
 
-
 @WebServlet(name = "ShopServlet", urlPatterns = {"/shop"})
 public class ShopServlet extends HttpServlet {
 
@@ -45,13 +44,12 @@ public class ShopServlet extends HttpServlet {
         request.setAttribute("totalProducts", totalProduct);
         setFilterAttributes(request, cid, sid, sort, minPrice, maxPrice, page, endPage);
 
-        
         Cart cart = ServletUtils.getCartFromCookie(request, productList);
         WishList wishlist = ServletUtils.getWishlistFromCookie(request, productList);
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("categoryList", cd.getAllCategory());
-               request.setAttribute("wishlist", wishlist.getListItems());
+        request.setAttribute("wishlist", wishlist.getListItems());
         request.setAttribute("supplierCountProductList", sd.getNumberOfProductAlongSuplier());
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }

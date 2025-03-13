@@ -5,7 +5,6 @@ import dal.OrderDAO;
 import dal.OrderDetailDAO;
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -14,8 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Cart;
-import model.Order;
-import model.User;
+
 import model.WishList;
 
 @WebServlet(name = "OrderDetailServlet", urlPatterns = {"/orderdetail"})

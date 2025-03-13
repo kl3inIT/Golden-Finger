@@ -15,7 +15,7 @@ import utils.ServletUtils;
 
 @WebServlet(name = "CartServlet", urlPatterns = {"/cart"})
 public class CartServlet extends HttpServlet {
-    
+
     private final ProductDAO pd = new ProductDAO();
     private final CategoryDAO cd = new CategoryDAO();
 
@@ -23,8 +23,25 @@ public class CartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        Cookie[] cookies = request.getCookies();
 
         Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
+
+        String action = request.getParameter("action");
+        if ("clear".equals(action)) {
+            // Xóa giỏ hàng
+            for (Cookie c : cookies) {
+                if (c.getName().equals("cart")) {
+                    c.setMaxAge(0);
+                    response.addCookie(c);
+                }
+            }
+            // Chuyển hướng lại trang giỏ hàng
+        cart.removeAllItem();
+            response.sendRedirect("cart");
+            return;
+        }
+
         WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
 
         request.setAttribute("sizeCart", cart.getSizeCart());

@@ -26,15 +26,15 @@ import utils.ServletUtils;
 
 @WebServlet(name = "VNPayReturnServlet", urlPatterns = {"/vnpayreturn"})
 public class VNPayReturnServlet extends HttpServlet {
-    
+
     private static final Logger LOGGER = Logger.getLogger(VNPayReturnServlet.class.getName());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         LOGGER.log(Level.INFO, "VNPay Return received");
-        
+
         // Lấy thông tin từ VNPay trả về
         Map<String, String> fields = new HashMap<>();
         for (Enumeration<String> params = request.getParameterNames(); params.hasMoreElements();) {
@@ -44,7 +44,7 @@ public class VNPayReturnServlet extends HttpServlet {
                 fields.put(fieldName, URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
             }
         }
-        
+
         // Log all parameters for debugging
         for (Map.Entry<String, String> entry : fields.entrySet()) {
             LOGGER.log(Level.INFO, "VNPay Return parameter: {0}={1}", new Object[]{entry.getKey(), entry.getValue()});
@@ -79,7 +79,7 @@ public class VNPayReturnServlet extends HttpServlet {
         String orderDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
         double amountUsd = 0.0;
         long amountVnd = 0;
-        
+
         try {
             // Chuyển đổi số tiền từ VND (đã nhân 100) về USD
             if (vnp_Amount != null && !vnp_Amount.isEmpty()) {
@@ -93,7 +93,7 @@ public class VNPayReturnServlet extends HttpServlet {
         // Lấy thông tin người dùng từ session
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("account");
-        
+
         if (user == null) {
             LOGGER.log(Level.WARNING, "User not found in session");
             request.setAttribute("paymentSuccess", false);
@@ -101,51 +101,57 @@ public class VNPayReturnServlet extends HttpServlet {
             request.getRequestDispatcher("vnpayreturn.jsp").forward(request, response);
             return;
         }
-        
+
         // Lấy thông tin giao hàng từ session
         String fullName = (String) session.getAttribute("fullName");
         String phone = (String) session.getAttribute("phone");
         String address = (String) session.getAttribute("address");
         String comment = (String) session.getAttribute("comment");
+        
+        Cookie[] cookies = request.getCookies();
 
         // Kiểm tra kết quả thanh toán
         if (checkSignature) {
             if ("00".equals(vnp_ResponseCode)) {
                 try {
-                // Thanh toán thành công, tạo đơn hàng
-                ProductDAO pd = new ProductDAO();
+                    // Thanh toán thành công, tạo đơn hàng
+                    ProductDAO pd = new ProductDAO();
                     Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
 
-                if (cart.getListItems().isEmpty()) {
+                    if (cart.getListItems().isEmpty()) {
                         LOGGER.log(Level.WARNING, "Cart is empty when processing VNPay return");
                         request.setAttribute("paymentSuccess", false);
                         request.setAttribute("errorMessage", "Your cart is empty!");
                         request.getRequestDispatcher("vnpayreturn.jsp").forward(request, response);
-                    return;
-                }
+                        return;
+                    }
 
-                OrderDAO od = new OrderDAO();
-                OrderDetailDAO odd = new OrderDetailDAO();
+                    OrderDAO od = new OrderDAO();
+                    OrderDetailDAO odd = new OrderDetailDAO();
 
-                // Tạo đơn hàng
-                    orderId = od.createOrder(user.getId(), fullName, phone, address, comment, cart);
+                    // Tạo đơn hàng
+                    orderId = od.createOrder(user.getId(), 2, fullName, phone, address, comment, cart);
 
-                if (orderId > 0) {
-                    // Tạo chi tiết đơn hàng
+                    if (orderId > 0) {
+                        // Tạo chi tiết đơn hàng
                         odd.createOrderDetail(cart, orderId);
 
-                    // Cập nhật số lượng sản phẩm
-                    pd.updateUnitInStock(cart);
+                        // Cập nhật số lượng sản phẩm
+                        pd.updateUnitInStock(cart);
 
-                    // Xóa giỏ hàng
-                        ServletUtils.deleteCookie(request, response, "cart");
-
-                        // Đánh dấu thanh toán thành công
+                        // Xóa giỏ hàng
+                        for (Cookie c : cookies) {
+                            if (c.getName().equals("cart")) {
+                                c.setMaxAge(0);
+                                response.addCookie(c);
+                            }
+                        }
+                        cart.removeAllItem();
                         paymentSuccess = true;
                         errorMessage = "";
-                        
+
                         LOGGER.log(Level.INFO, "Order created successfully: {0}", orderId);
-                } else {
+                    } else {
                         LOGGER.log(Level.WARNING, "Failed to create order after successful payment");
                         errorMessage = "Payment was successful, but order creation failed. Please contact customer support.";
                     }
@@ -181,18 +187,13 @@ public class VNPayReturnServlet extends HttpServlet {
         // Chuyển hướng đến trang kết quả thanh toán
         request.getRequestDispatcher("vnpayreturn.jsp").forward(request, response);
     }
-    
-    private void removeSessionAttribute(HttpSession session, String key) {
-        if (session.getAttribute(key) != null) {
-            session.removeAttribute(key);
-        }
-    }
-    
+
+
     private String formatVnpayDate(String vnpDate) {
         if (vnpDate == null || vnpDate.length() != 14) {
             return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
         }
-        
+
         try {
             SimpleDateFormat vnpFormat = new SimpleDateFormat("yyyyMMddHHmmss");
             SimpleDateFormat displayFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -203,10 +204,7 @@ public class VNPayReturnServlet extends HttpServlet {
             return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
         }
     }
-    
-    /**
-     * Chuyển đổi mã phản hồi thành thông báo lỗi
-     */
+
     private String getResponseCodeMessage(String responseCode) {
         switch (responseCode) {
             case "01":

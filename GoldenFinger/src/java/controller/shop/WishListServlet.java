@@ -21,7 +21,7 @@ public class WishListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         CategoryDAO cd = new CategoryDAO();
-        ProductDAO pd = new ProductDAO();             
+        ProductDAO pd = new ProductDAO();
 
         Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
         WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
@@ -42,7 +42,7 @@ public class WishListServlet extends HttpServlet {
         ProductDAO pd = new ProductDAO();
         String txt = "";
         Cookie[] cookies = request.getCookies();
-        
+
         // add to wishlist
         if (type.equals("add")) {
             // get wishlist from cookie
