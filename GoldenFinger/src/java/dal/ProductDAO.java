@@ -12,9 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import model.Cart;
+import model.Category;
 import model.Item;
 
 import model.Product;
+import model.Supplier;
 
 public class ProductDAO extends DBConnect {
 
@@ -342,7 +344,8 @@ public class ProductDAO extends DBConnect {
             }
         }
     }
-            // Top 6 Products selling in 2 month
+    // Top 6 Products selling in 2 month
+
     public List<Product> getTrendingProducts() {
         List<Product> listProduct = new ArrayList<>();
         String sql = "SELECT \n"
@@ -441,6 +444,72 @@ public class ProductDAO extends DBConnect {
         return listProduct;
     }
 
+    public int getHighestProductId() {
+        if (connection != null) {
+            try {
+                String sql = "SELECT MAX(ProductID) FROM Products";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ResultSet res = ps.executeQuery();
+                if (res.next()) {
+                    return res.getInt(1);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    public void addProduct(
+            String name,
+            String price,
+            String unitInStock,
+            String discontinue,
+            String image,
+            String include,
+            String warranty,
+            String dimensions,
+            String speakerPower,
+            String starRating,
+            String weight,
+            String describe,
+            String releaseDate,
+            String discount,
+            String status,
+            String categoryId,
+            String supplierId) {
+        
+        if (connection != null) {
+            try {
+                String sql = "INSERT INTO Products "
+                        + " VALUES "
+                        + " (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1, name);
+                ps.setString(2, price);
+                ps.setString(3, unitInStock);
+                ps.setString(4, discontinue);
+                ps.setString(5, image);
+                ps.setString(6, include);
+                ps.setString(7, warranty);
+                ps.setString(8, dimensions);
+                ps.setString(9, speakerPower);
+                ps.setString(10, starRating);
+                ps.setString(11, weight);
+                ps.setString(12, describe);
+                ps.setString(13, releaseDate);
+                ps.setString(14, discount);
+                ps.setString(15, status);
+                ps.setString(16, categoryId);
+                ps.setString(17, supplierId);
+                ps.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
         ProductDAO pd = new ProductDAO();
         List<Product> lp = pd.getFilteredProducts(1, 2, 0, 10000, 2, 1, 3);
@@ -448,6 +517,7 @@ public class ProductDAO extends DBConnect {
             System.out.println(product.getName());
 
         }
+
     }
 
 }

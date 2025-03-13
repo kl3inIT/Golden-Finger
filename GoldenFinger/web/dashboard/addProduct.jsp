@@ -103,7 +103,7 @@ Copyright 2024
                 </div>
             </header>
 
-             <!-- sidebar -->
+            <!-- sidebar -->
             <div class="gi-sidebar-overlay"></div>
             <div class="gi-sidebar" data-mode="dark">
                 <div class="gi-sb-logo">
@@ -168,134 +168,146 @@ Copyright 2024
 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="gi-card card-default">
-                                <div class="gi-card-content">
-                                    <div class="row gi-product-uploads">
-                                        <div class="col-lg-2 mb-991">
-                                            <div class="gi-vendor-img-upload">
-                                                <div class="gi-vendor-main-img">
-                                                    <div class="avatar-upload">
-                                                        <div class="avatar-edit">
-                                                            <input type='file' id="product_main" class="gi-image-upload"
-                                                                   accept=".png, .jpg, .jpeg">
-                                                            <label><i class="ri-pencil-line"></i></label>
-                                                        </div>
-                                                        <div class="avatar-preview gi-preview">
-                                                            <div class="imagePreview gi-div-preview">
-                                                                <img class="gi-image-preview"
-                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
+                    <form action="addproduct" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="gi-card card-default">
+                                    <div class="gi-card-content">
+                                        <div class="row gi-product-uploads">
+                                            <div class="col-lg-2 mb-991">
+                                                <div class="gi-vendor-img-upload">
+                                                    <div class="gi-vendor-main-img">
+                                                        <div class="avatar-upload">
+                                                            <div class="avatar-edit">
+                                                                <input type='file' id="product_main" class="gi-image-upload"
+                                                                       accept=".png, .jpg, .jpeg" name="file" required>
+                                                                <label><i class="ri-pencil-line"></i></label>
+                                                            </div>
+                                                            <div class="avatar-preview gi-preview">
+                                                                <div class="imagePreview gi-div-preview">
+                                                                    <img class="gi-image-preview"
+                                                                         src="dashboard/assets/img/product/preview.jpg" alt="edit">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="avatar-upload">
-                                                        <div class="avatar-edit">
-                                                            <input type='file' id="product_main" class="gi-image-upload"
-                                                                   accept=".png, .jpg, .jpeg">
-                                                            <label><i class="ri-pencil-line"></i></label>
-                                                        </div>
-                                                        <div class="avatar-preview gi-preview">
-                                                            <div class="imagePreview gi-div-preview">
-                                                                <img class="gi-image-preview"
-                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
+                                                        <div class="avatar-upload">
+                                                            <div class="avatar-edit">
+                                                                <input type='file' id="product_main" class="gi-image-upload"
+                                                                       accept=".png, .jpg, .jpeg" name="file" required>
+                                                                <label><i class="ri-pencil-line"></i></label>
+                                                            </div>
+                                                            <div class="avatar-preview gi-preview">
+                                                                <div class="imagePreview gi-div-preview">
+                                                                    <img class="gi-image-preview"
+                                                                         src="dashboard/assets/img/product/preview.jpg" alt="edit">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="avatar-upload">
-                                                        <div class="avatar-edit">
-                                                            <input type='file' id="product_main" class="gi-image-upload"
-                                                                   accept=".png, .jpg, .jpeg">
-                                                            <label><i class="ri-pencil-line"></i></label>
-                                                        </div>
-                                                        <div class="avatar-preview gi-preview">
-                                                            <div class="imagePreview gi-div-preview">
-                                                                <img class="gi-image-preview"
-                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
+                                                        <div class="avatar-upload">
+                                                            <div class="avatar-edit">
+                                                                <input type='file' id="product_main" class="gi-image-upload"
+                                                                       accept=".png, .jpg, .jpeg" name="file" required>
+                                                                <label><i class="ri-pencil-line"></i></label>
+                                                            </div>
+                                                            <div class="avatar-preview gi-preview">
+                                                                <div class="imagePreview gi-div-preview">
+                                                                    <img class="gi-image-preview"
+                                                                         src="dashboard/assets/img/product/preview.jpg" alt="edit">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-10">
-                                            <div class="gi-vendor-upload-detail">
-                                                <form class="row g-3">
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Product name</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Select Categories</label>
-                                                        <select class="form-control form-select">
+                                            <div class="col-lg-10">
+                                                <div class="gi-vendor-upload-detail">
+                                                    <div class="row g-3">
+                                                        <div class="col-md-6">
+                                                            <label for="" class="form-label">Product name</label>
+                                                            <input type="text" class="form-control slug-title" id="" name="name" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Quantity</label>
+                                                            <input type="number" class="form-control" id="quantity1" name="quantity" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Select Categories</label>
+                                                            <select class="form-control form-select" name="category">
+                                                                <option value="1">Grand Piano</option>
+                                                                <option value="2">Upright Piano</option>
+                                                                <option value="3">Digital Piano</option>
+                                                                <option value="4">Stage Piano</option>
+                                                                <option value="5">Hybrid Piano</option>
+                                                                <option value="6">Player Piano</option>
 
-                                                            <option value="1">Grand Piano</option>
-                                                            <option value="2">Upright Piano</option>
-                                                            <option value="3">Digital Piano</option>
-                                                            <option value="4">Stage Piano</option>
-                                                            <option value="5">Hybrid Piano</option>
-                                                            <option value="6">Player Piano</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Select Suppliers</label>
+                                                            <select class="form-control form-select" name="supplier">
+
+                                                                <option value="1">Yamaha</option>
+                                                                <option value="2">Roland</option>
+                                                                <option value="3">Casio</option>
+                                                                <option value="4">Korg</option>
+                                                                <option value="5">Steinway & Son</option>
+                                                                <option value="6">Kawai</option>
+
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Price <span>( In USD
+                                                                    )</span></label>
+                                                            <input type="number" class="form-control" id="price1" name="pirce" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Discount</label>
+                                                            <input type="number" min="0" max="1" step="0.1" class="form-control" id="quantity1" name="discount" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Include</label>
+                                                            <input type="text" class="form-control" id="quantity1" name="include" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="" class="form-label">Warranty</label>
+                                                            <input type="text" class="form-control slug-title" name="warranty" id="" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="" class="form-label">Demension</label>
+                                                            <input type="text" class="form-control slug-title" name="demension" id="" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="" class="form-label">Weight</label>
+                                                            <input type="text" class="form-control slug-title" name="weight" id="" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="" class="form-label">Speaker</label>
+                                                            <input type="text" class="form-control slug-title" name="speaker" id="" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="" class="form-label">Release Date</label>
+                                                            <input type="date" class="form-control slug-title" name="date" id="" required>
+                                                        </div>
 
 
+                                                        <div class="col-md-12">
+                                                            <label class="form-label">Ful Detail</label>
+                                                            <textarea class="form-control" rows="4" name="detail" required></textarea>
+                                                        </div>
 
-                                                        </select>
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn gi-btn-primary">Submit</button>
+                                                        </div>
                                                     </div>
-
-
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Price <span>( In USD
-                                                                )</span></label>
-                                                        <input type="number" class="form-control" id="price1">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Discount</label>
-                                                        <input type="number" class="form-control" id="quantity1">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Quantity</label>
-                                                        <input type="number" class="form-control" id="quantity1">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Warranty</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Demension</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Weight</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Speaker</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="" class="form-label">Release Date</label>
-                                                        <input type="date" class="form-control slug-title" id="">
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label for="" class="form-label">Include</label>
-                                                        <input type="text" class="form-control slug-title" id="">
-                                                    </div>
-
-                                                    <div class="col-md-12">
-                                                        <label class="form-label">Ful Detail</label>
-                                                        <textarea class="form-control" rows="4"></textarea>
-                                                    </div>
-
-                                                    <div class="col-md-12">
-                                                        <button type="submit" class="btn gi-btn-primary">Submit</button>
-                                                    </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 
@@ -329,6 +341,16 @@ Copyright 2024
         <!-- Main Custom -->
         <script src="dashboard/assets/js/main.js"></script>
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let today = new Date().toISOString().split("T")[0];
+                document.querySelectorAll("input[type='date']").forEach(input => {
+                    input.setAttribute("max", today);
+                });
+            });
+        </script>
+
     </body>
 
 
