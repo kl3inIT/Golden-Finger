@@ -15,7 +15,7 @@ public class User {
     private String phone;
     private int status;
     
-//ALTER TABLE Users 
+    //ALTER TABLE Users 
 //ALTER COLUMN Password VARCHAR(100);
 //
 //ALTER TABLE Users 

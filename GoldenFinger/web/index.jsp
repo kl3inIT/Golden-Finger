@@ -1,20 +1,8 @@
-<%-- 
-    Document   : index.jsp
-    Created on : Feb 15, 2025, 9:43:58 AM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<!--
-Item Name: Grabit - Multipurpose eCommerce Tailwind CSS Template.
-Author: Maraviya Infotech
-Version: 1.0.0
-Copyright 2024
--->
 <!DOCTYPE html>
 <html lang="en">
 

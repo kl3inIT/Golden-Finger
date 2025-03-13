@@ -14,6 +14,7 @@ import java.util.List;
 import model.Cart;
 import model.Product;
 import model.WishList;
+import utils.ServletUtils;
 
 @WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
 public class HomeServlet extends HttpServlet {
@@ -26,19 +27,8 @@ public class HomeServlet extends HttpServlet {
         CategoryDAO cd = new CategoryDAO();
         SupplierDAO sd = new SupplierDAO();
 
-        String txt = "";
-        String txt2 = "";
-        Cookie[] cookies = request.getCookies();
-        for (Cookie c : cookies) {
-            if (c.getName().equals("cart")) {
-                txt = c.getValue();
-            }
-            if (c.getName().equals("wishlist")) {
-                txt2 = c.getValue();
-            }
-        }
-        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
-        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
         
         //Get list trending
         List<Product> listProductsTrending = pd.getTrendingProducts();

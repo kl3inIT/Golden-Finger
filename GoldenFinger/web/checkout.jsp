@@ -1,9 +1,3 @@
-<%-- 
-    Document   : wishlist
-    Created on : Mar 4, 2025, 11:34:39 AM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -11,17 +5,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:03 GMT -->
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
         <title>Order History</title>
-        <meta name="keywords" content="tailwindcss, ecommerce, farming, food market, grocery market, grocery shop, grocery store, grocery supper market, multi vendor, organic food, supermarket, supermarket grocery">
-        <meta name="description" content="Multipurpose eCommerce Tailwind CSS Template">
-        <meta name="author" content="Maraviya Infotech">
+        <meta name="keywords" content="tailwindcss, ecommerce, piano">
+        <meta name="description" content="Piano Shop">
+        <meta name="author" content="">
 
         <!-- site Favicon -->
         <link rel="icon" href="assets/img/favicon/favicon.png" sizes="32x32">
@@ -163,7 +155,7 @@
                                         <div class="gi-bl-block-content">
 
                                             <div class="gi-check-bill-form mb-[2px]">
-                                                <form action="orderhistory" method="post" class="flex flex-row flex-wrap mx-[-15px]">
+                                                <form action="payment" method="post" class="flex flex-row flex-wrap mx-[-15px]">
                                                     <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Full Name*</label>
                                                         <input value="${requestScope.user.fullName}" type="text" name="fullname" placeholder="Enter your full name" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
@@ -180,6 +172,27 @@
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Comment</label>
                                                         <input type="text" name="comment" placeholder="Enter your comment" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]">
                                                     </span>
+                                                    <input type="hidden" name="totalBill" value="${requestScope.totalAmount}">
+                                                           <input type="hidden" name="paymentMethod" id="paymentMethod" value="COD">
+                                                    <!-- Payment Method Section -->
+                                                    <div class="w-full px-[15px] mb-[30px]">
+                                                        <h4 class="text-[#4b5966] text-[16px] font-semibold mb-[15px]">Payment Method</h4>
+                                                        <div class="flex flex-wrap gap-[15px]">
+                                                            <!-- Cash on Delivery Option -->
+                                                            <div id="cod-option" class="flex-1 min-w-[150px] border border-[#eee] hover:border-[#5caf90] rounded-[5px] p-[15px] cursor-pointer transition-all duration-[0.3s] flex flex-col items-center justify-center border-[#5caf90]" onclick="selectPaymentMethod('COD')">
+                                                                <img src="assets/img/payment/cod.png" alt="Cash On Delivery" class="h-[40px] mb-[10px]">
+                                                                <div class="font-medium text-[#4b5966] text-center">Cash On Delivery</div>
+                                                                <div class="text-[12px] text-[#777] mt-[5px] text-center">Pay when you receive your order</div>
+                                                            </div>
+
+                                                            <!-- VNPay Option -->
+                                                            <div id="vnpay-option" class="flex-1 min-w-[150px] border border-[#eee] hover:border-[#5caf90] rounded-[5px] p-[15px] cursor-pointer transition-all duration-[0.3s] flex flex-col items-center justify-center" onclick="selectPaymentMethod('VNPAY')">
+                                                                <img src="assets/img/payment/vnpay.png" alt="VNPay" class="h-[40px] mb-[10px]">
+                                                                <div class="font-medium text-[#4b5966] text-center">VNPay</div>
+                                                                <div class="text-[12px] text-[#777] mt-[5px] text-center">Pay online with VNPay</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <span class="gi-check-order-btn block text-right p-[0] w-full">
                                                         <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">
                                                             Place Order
@@ -201,14 +214,7 @@
         </section>
         <!-- Checkout section End -->
 
-
-
-
-
         <jsp:include page="footer.jsp" />
-
-
-
 
         <!-- Plugins JS -->
         <script src="assets/js/plugins/jquery-3.7.1.min.js"></script>
@@ -225,8 +231,86 @@
         <!-- Main Js -->
         <script src="assets/js/main.js"></script>
 
+        <!-- Payment Method Script -->
+        <script>
+                                                                // Initialize selected payment method
+                                                                document.addEventListener('DOMContentLoaded', function () {
+                                                                    // Set default payment method to COD
+                                                                    selectPaymentMethod('COD');
+                                                                });
+
+                                                                /**
+                                                                 * Select payment method and update UI
+                                                                 */
+                                                                function selectPaymentMethod(method) {
+                                                                    // Update hidden input
+                                                                    document.getElementById('paymentMethod').value = method;
+
+                                                                    // Get payment option elements
+                                                                    const codOption = document.getElementById('cod-option');
+                                                                    const vnpayOption = document.getElementById('vnpay-option');
+
+                                                                    // Reset styling
+                                                                    resetPaymentOptionStyles(codOption, vnpayOption);
+
+                                                                    // Apply active styling to selected option
+                                                                    applyActiveStyle(method, codOption, vnpayOption);
+                                                                }
+
+                                                                /**
+                                                                 * Reset styling for payment options
+                                                                 */
+                                                                function resetPaymentOptionStyles(codOption, vnpayOption) {
+                                                                    // Remove active styling from both options
+                                                                    codOption.classList.remove('bg-[rgba(92,175,144,0.1)]', 'border-[#5caf90]');
+                                                                    vnpayOption.classList.remove('bg-[rgba(92,175,144,0.1)]', 'border-[#5caf90]');
+                                                                }
+
+                                                                /**
+                                                                 * Apply active styling to selected payment option
+                                                                 */
+                                                                function applyActiveStyle(method, codOption, vnpayOption) {
+                                                                    if (method === 'COD') {
+                                                                        codOption.classList.add('bg-[rgba(92,175,144,0.1)]', 'border-[#5caf90]');
+                                                                    } else {
+                                                                        vnpayOption.classList.add('bg-[rgba(92,175,144,0.1)]', 'border-[#5caf90]');
+                                                                    }
+                                                                }
+
+                                                                /**
+                                                                 * Validate form before submission
+                                                                 */
+                                                                function validateAndSubmitForm() {
+                                                                    const form = document.querySelector('form[action="payment"]');
+
+                                                                    // Check required fields
+                                                                    const requiredFields = form.querySelectorAll('[required]');
+                                                                    let isValid = true;
+
+                                                                    requiredFields.forEach(field => {
+                                                                        if (!field.value.trim()) {
+                                                                            isValid = false;
+                                                                            field.classList.add('border-red-500');
+                                                                        } else {
+                                                                            field.classList.remove('border-red-500');
+                                                                        }
+                                                                    });
+
+                                                                    if (!isValid) {
+                                                                        alert('Please fill in all required fields');
+                                                                        return false;
+                                                                    }
+
+                                                                    return true;
+                                                                }
+
+                                                                // Fix: Remove the event listener for placeOrderBtn since it doesn't exist
+                                                                // Instead, add onsubmit to the form
+                                                                document.querySelector('form[action="payment"]').onsubmit = function (e) {
+                                                                    return validateAndSubmitForm();
+                                                                };
+        </script>
+
     </body>
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:03 GMT -->
 </html>

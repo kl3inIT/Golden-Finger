@@ -8,10 +8,6 @@ import model.Item;
 import model.OrderDetail;
 import utils.DBConnect;
 
-/**
- *
- * @author nhudi
- */
 public class OrderDetailDAO extends DBConnect {
 
     private final ProductDAO pd = new ProductDAO();

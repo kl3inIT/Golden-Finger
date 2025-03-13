@@ -446,7 +446,12 @@ public class ProductDAO extends DBConnect {
         List<Product> lp = pd.getFilteredProducts(1, 2, 0, 10000, 2, 1, 3);
         for (Product product : lp) {
             System.out.println(product.getName());
+            
 
+        }
+        
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("Anh yêu em Vân Anh xinh đẹp cute đáng yêu dưa hấu");
         }
     }
 

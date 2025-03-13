@@ -34,4 +34,9 @@ public class OrderStatusDAO extends DBConnect {
         }
         return null;
     }
+    
+    public static void main(String[] args) {
+        OrderStatusDAO od = new OrderStatusDAO();
+        System.out.println(od.getOrderStatusByOrderId(13).getStatusName());
+    }
 }

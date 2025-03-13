@@ -452,6 +452,20 @@
 </header>
 <!-- Header End  -->
 
+<script>
+// Tải lại thông tin giỏ hàng mỗi khi trang được tải
+window.onload = function() {
+    // Gọi AJAX để lấy thông tin giỏ hàng mới nhất
+    fetch('cart?action=count')
+        .then(response => response.json())
+        .then(data => {
+            // Cập nhật số lượng sản phẩm trong giỏ hàng
+            document.getElementById('cart-count').textContent = data.count;
+        })
+        .catch(error => console.error('Error:', error));
+}
+</script>
+
 <!--
     </body>
 </html>-->

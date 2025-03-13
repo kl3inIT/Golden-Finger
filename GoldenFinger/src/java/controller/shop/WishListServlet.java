@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Cart;
 import model.WishList;
+import utils.ServletUtils;
 
 @WebServlet(name = "WishListServlet", urlPatterns = {"/wishlist"})
 public class WishListServlet extends HttpServlet {
@@ -20,24 +21,10 @@ public class WishListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         CategoryDAO cd = new CategoryDAO();
-        ProductDAO pd = new ProductDAO();
-        
-        //get cart and wishlist from cookie
-        String txt = "";
-        String txt2 = "";
-        Cookie[] cookies = request.getCookies();
-        for (Cookie c : cookies) {
-            if (c.getName().equals("cart")) {
-                txt = c.getValue();
-            }
-            if(c.getName().equals("wishlist")){
-                txt2 = c.getValue();
-            }
-        }
-        
+        ProductDAO pd = new ProductDAO();             
 
-        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
-        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("wishlist", wishlist.getListItems());

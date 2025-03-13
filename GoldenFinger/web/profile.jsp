@@ -103,7 +103,7 @@
                                     </li>
                                     <li class="mb-[10px] last:mb-[0]">
                                         <a href="cart" class="py-[10px] px-[15px] flex items-center text-[14px] text-[#4b5966] bg-[#f8f8fb] rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff] transition-all duration-[0.3s] ease-in-out">
-                                            <i class="fi fi-rr-heart mr-[10px]"></i> My Cart
+                                            <i class="fi fi-rr-shopping-bag mr-[10px]"></i> My Cart
                                         </a>
                                     </li>
                                     <li class="mb-[10px] last:mb-[0]">

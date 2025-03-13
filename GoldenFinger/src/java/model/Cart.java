@@ -3,10 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author nhudi
- */
 public class Cart {
 
     private List<Item> listItems;
