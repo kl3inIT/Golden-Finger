@@ -129,7 +129,7 @@
                                                     <a href="https://www.facebook.com/nhat.nhu.35" class="h-[30px] w-[30px] bg-[#4b5966] rounded-[5px] capitalize flex items-center justify-center text-[15px]"><i class="gicon gi-twitter text-[16px] text-[#fff]" aria-hidden="true"></i></a>
                                                 </li>
                                                 <li class="gi-footer-link pr-[5px]">
-                                                    <a href="https://www.facebook.com/nhat.nhu.35" class="h-[30px] w-[30px] bg-[#4b5966] rounded-[5px] capitalize flex items-center justify-center text-[15px]"><i class="gicon gi-linkedin text-[16px] text-[#fff]" aria-hidden="true"></i></a>
+                                                    <a href="https://www.linkedin.com/in/kl3init/" class="h-[30px] w-[30px] bg-[#4b5966] rounded-[5px] capitalize flex items-center justify-center text-[15px]"><i class="gicon gi-linkedin text-[16px] text-[#fff]" aria-hidden="true"></i></a>
                                                 </li>
                                                 <li class="gi-footer-link pr-[5px]">
                                                     <a href="https://www.facebook.com/nhat.nhu.35" class="h-[30px] w-[30px] bg-[#4b5966] rounded-[5px] capitalize flex items-center justify-center text-[15px]"><i class="gicon gi-instagram text-[16px] text-[#fff]" aria-hidden="true"></i></a>

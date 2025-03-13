@@ -4,10 +4,8 @@ import dal.CategoryDAO;
 import dal.ProductDAO;
 import dal.SupplierDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,6 +13,7 @@ import java.util.List;
 import model.Cart;
 import model.Product;
 import model.WishList;
+import utils.ServletUtils;
 
 @WebServlet(name = "SearchServlet", urlPatterns = {"/search"})
 public class SearchServlet extends HttpServlet {
@@ -22,7 +21,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     @Override
@@ -33,21 +32,9 @@ public class SearchServlet extends HttpServlet {
         SupplierDAO sd = new SupplierDAO();
         CategoryDAO cd = new CategoryDAO();
 
-        String txt = "";
-        String txt2 = "";
-        Cookie[] cookies = request.getCookies();
-        for (Cookie c : cookies) {
-            if (c.getName().equals("cart")) {
-                txt = c.getValue();
-            }
-            if (c.getName().equals("wishlist")) {
-                txt2 = c.getValue();
-            }
-        }
-        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
-        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
-        
-        
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
+
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("wishlist", wishlist.getListItems());

@@ -3,14 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<!--<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>-->
-<!-- Loader -->
 <div id="gi-overlay" class=" w-full h-full fixed top-0 right-0 left-0 bottom-0 bg-[#fff] z-[99] flex items-center justify-center overflow-hidden">
     <div class="loader"></div>
 </div>
@@ -452,19 +444,6 @@
 </header>
 <!-- Header End  -->
 
-<script>
-// Tải lại thông tin giỏ hàng mỗi khi trang được tải
-window.onload = function() {
-    // Gọi AJAX để lấy thông tin giỏ hàng mới nhất
-    fetch('cart?action=count')
-        .then(response => response.json())
-        .then(data => {
-            // Cập nhật số lượng sản phẩm trong giỏ hàng
-            document.getElementById('cart-count').textContent = data.count;
-        })
-        .catch(error => console.error('Error:', error));
-}
-</script>
 
 <!--
     </body>
