@@ -1117,4 +1117,12 @@
     var date = new Date().getFullYear();
     document.getElementById("copyright_year").innerHTML = date;
 
+    document.addEventListener("DOMContentLoaded", function () {
+        let today = new Date().toISOString().split("T")[0];
+        document.querySelectorAll("input[type='date']").forEach(input => {
+            input.setAttribute("max", today);
+        });
+    });
+
+
 })(jQuery);
