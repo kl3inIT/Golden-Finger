@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!-----------------------------------------------------------------------------------
 Item Name: Grabit - Multipurpose eCommerce HTML Template.
 Author: Maraviya Infotech
@@ -103,7 +106,7 @@ Copyright 2024
                 </div>
             </header>
 
-           <!-- sidebar -->
+            <!-- sidebar -->
             <div class="gi-sidebar-overlay"></div>
             <div class="gi-sidebar" data-mode="dark">
                 <div class="gi-sb-logo">
@@ -190,33 +193,47 @@ Copyright 2024
                                             </thead>
 
                                             <tbody>
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/1.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Mens t-shirt</td>
-                                                    <td>...</td>
-                                                    <td>...</td>
-           
-                                                    <td>...</td>
-                                                    <td><span class="active">....</span></td>
-                                                    <td>....</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-start">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                <c:forEach var="p" items="${requestScope.listProduct}">
+                                                    <tr>
+                                                        <td>
 
+                                                            <img class="tbl-thumb" src="${p.image[0]}"
+                                                                 alt="Product Image">
+                                                        </td>
+                                                        <td>${p.name}</td>
+                                                        <td>${p.category.name}</td>
+                                                        <td>$<fmt:formatNumber value="${p.price}" maxFractionDigits="2" minFractionDigits="0" /></td>
+
+                                                        <td><fmt:formatNumber value="${p.discount * 100}" maxFractionDigits="0" minFractionDigits="0" />%</td>
+                                                        <td><span class="active">${p.unitInStock}</span></td>
+                                                            <c:if test="${p.status == 1}">
+                                                            <td>
+                                                                <span class="active">Enable</span>
+                                                            </td>
+                                                        </c:if>
+                                                        <c:if test="${p.status == 0}">
+                                                            <td>
+                                                                <span style="color: #ff4f7f;">Disable</span>
+                                                            </td>
+                                                        </c:if>
+                                                        <td>
+                                                            <div class="d-flex justify-content-start">
+                                                                <button type="button"
+                                                                        class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                        aria-expanded="false" data-display="static">
+                                                                    <span class="sr-only"><i
+                                                                            class="ri-settings-3-line"></i></span>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="updateproduct?pid=${p.id}">Edit</a>
+                                                                    <a class="dropdown-item" onclick="action(${p.id}, 'disable')" href="javascript:void(0)">Disable</a>
+                                                                    <a class="dropdown-item" onclick="action(${p.id}, 'enable')"  href="javascript:void(0)">Enable</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -257,6 +274,23 @@ Copyright 2024
         <!-- Main Custom -->
         <script src="dashboard/assets/js/main.js"></script>
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
+        <script>
+                                                                        function action(productId, type) {
+                                                                            $.ajax({
+                                                                                type: "POST",
+                                                                                url: "productlist",
+                                                                                data: {
+                                                                                    productId: productId,
+                                                                                    type: type
+                                                                                },
+                                                                                success: function () {
+                                                                                    window.location.reload();
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                        
+
+        </script>
     </body>
 
 

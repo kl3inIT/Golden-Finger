@@ -460,6 +460,30 @@ public class ProductDAO extends DBConnect {
         return -1;
     }
 
+    public void disableStatus(String id) {
+        try {
+            String sql = "UPDATE Products "
+                    + " SET Status = 0 "
+                    + " WHERE ProductID = " + "'" + id + "'";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void enableStatus(String id) {
+        try {
+            String sql = "UPDATE Products "
+                    + " SET Status = 1 "
+                    + " WHERE ProductID = " + "'" + id + "'";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addProduct(
             String name,
             String price,
@@ -478,7 +502,7 @@ public class ProductDAO extends DBConnect {
             String status,
             String categoryId,
             String supplierId) {
-        
+
         if (connection != null) {
             try {
                 String sql = "INSERT INTO Products "
