@@ -23,8 +23,8 @@ public class WishListServlet extends HttpServlet {
         CategoryDAO cd = new CategoryDAO();
         ProductDAO pd = new ProductDAO();
 
-        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
-        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCidForUser(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCidForUser(0));
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("wishlist", wishlist.getListItems());
@@ -58,7 +58,7 @@ public class WishListServlet extends HttpServlet {
                 txt += "/" + pid;
             }
 
-            WishList wishlist = new WishList(txt, pd.getAllProductByCid(0));
+            WishList wishlist = new WishList(txt, pd.getAllProductByCidForUser(0));
 
             //set cookie after add
             for (Cookie c : cookies) {
@@ -81,7 +81,7 @@ public class WishListServlet extends HttpServlet {
                 }
             }
 
-            WishList wishlist = new WishList(txt, pd.getAllProductByCid(0));
+            WishList wishlist = new WishList(txt, pd.getAllProductByCidForUser(0));
             wishlist.removeItemByProductId(pid);
             //set cookie after after
             for (Cookie c : cookies) {

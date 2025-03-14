@@ -25,7 +25,7 @@ public class CartServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Cookie[] cookies = request.getCookies();
 
-        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCidForUser(0));
 
         String action = request.getParameter("action");
         if ("clear".equals(action)) {
@@ -42,7 +42,7 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCidForUser(0));
 
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
@@ -94,7 +94,7 @@ public class CartServlet extends HttpServlet {
                         txt = c.getValue();
                     }
                 }
-                Cart cart = new Cart(txt, pd.getAllProductByCid(0));
+                Cart cart = new Cart(txt, pd.getAllProductByCidForUser(0));
 
                 //remove item
                 cart.removeItemByProductId(id);

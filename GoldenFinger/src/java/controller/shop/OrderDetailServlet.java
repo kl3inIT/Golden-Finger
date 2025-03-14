@@ -51,8 +51,8 @@ public class OrderDetailServlet extends HttpServlet {
             }
         }
         
-        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
-        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
+        Cart cart = new Cart(txt, pd.getAllProductByCidForUser(0));
+        WishList wishlist = new WishList(txt2, pd.getAllProductByCidForUser(0));
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("wishlist", wishlist.getListItems());

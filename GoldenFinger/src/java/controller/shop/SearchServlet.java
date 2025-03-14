@@ -32,8 +32,8 @@ public class SearchServlet extends HttpServlet {
         SupplierDAO sd = new SupplierDAO();
         CategoryDAO cd = new CategoryDAO();
 
-        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
-        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCidForUser(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCidForUser(0));
 
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());

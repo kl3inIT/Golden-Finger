@@ -61,7 +61,7 @@ public class SupplierDAO extends DBConnect {
             try {
                 String sqlQuery = "SELECT S.SupplierID, S.CompanyName, S.Image, COUNT(P.ProductID) "
                         + "FROM Suppliers S "
-                        + "JOIN Products P ON S.SupplierID = P.SupplierID "
+                        + "JOIN Products P ON S.SupplierID = P.SupplierID WHERE Status = 1"
                         + "GROUP BY S.SupplierID, S.CompanyName, S.Image";
                 PreparedStatement stm = connection.prepareStatement(sqlQuery);
                 ResultSet res = stm.executeQuery();

@@ -166,7 +166,7 @@
                                                     </span>
                                                     <span class="gi-bill-wrap w-full px-[15px]">
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Address*</label>
-                                                        <input value="${requestScope.user.address}" type="text" name="address" placeholder="Enter your address" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]">
+                                                        <input value="${requestScope.user.address}" type="text" name="address" placeholder="Enter your address" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
                                                     </span>
                                                     <span class="gi-bill-wrap w-full px-[15px]">
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Comment</label>

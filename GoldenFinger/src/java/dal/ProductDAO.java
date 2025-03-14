@@ -24,6 +24,38 @@ public class ProductDAO extends DBConnect {
     private SupplierDAO sd = new SupplierDAO();
 
     // Gets all products by category ID 
+    public List<Product> getAllProductByCidForUser(int cid) { // param cid Category ID (0 for all categories)
+        List<Product> listProduct = new ArrayList<>();
+
+        if (connection == null) { // check db connection
+            LOGGER.log(Level.WARNING, "Database connection is null");
+            return listProduct; // return empty list if db connection is null
+        }
+
+        StringBuilder sqlQuery = new StringBuilder("SELECT * FROM Products WHERE 1=1 AND Status = 1 "); // always true (all product)
+
+        if (cid != 0) {
+            sqlQuery.append(" AND CategoryID = ?");
+        }
+
+        try (PreparedStatement stm = connection.prepareStatement(sqlQuery.toString())) {
+            if (cid != 0) {
+                stm.setInt(1, cid);
+            }
+
+            try (ResultSet res = stm.executeQuery()) {
+                while (res.next()) {
+                    Product p = mapResultSetToProduct(res);
+                    listProduct.add(p);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error fetching products", e);
+        }
+
+        return listProduct; // return List of products matching the category, or empty list if error occurs
+    }
+    // Gets all products by category ID 
     public List<Product> getAllProductByCid(int cid) { // param cid Category ID (0 for all categories)
         List<Product> listProduct = new ArrayList<>();
 
@@ -32,7 +64,7 @@ public class ProductDAO extends DBConnect {
             return listProduct; // return empty list if db connection is null
         }
 
-        StringBuilder sqlQuery = new StringBuilder("SELECT * FROM Products WHERE 1=1"); // always true (all product)
+        StringBuilder sqlQuery = new StringBuilder("SELECT * FROM Products WHERE 1=1 "); // always true (all product)
 
         if (cid != 0) {
             sqlQuery.append(" AND CategoryID = ?");
@@ -82,7 +114,7 @@ public class ProductDAO extends DBConnect {
             return listProduct; // return empty list if db connection is null
         }
 
-        String sqlQuery = "SELECT TOP 5 * FROM Products ORDER BY UnitPrice * Discount;";
+        String sqlQuery = "SELECT TOP 5 * FROM Products WHERE Status = 1 ORDER BY UnitPrice * Discount;";
 
         try (PreparedStatement stm = connection.prepareStatement(sqlQuery); ResultSet res = stm.executeQuery()) {
 
@@ -106,7 +138,7 @@ public class ProductDAO extends DBConnect {
             return listProduct; // return empty list if db connection is null
         }
 
-        String sqlQuery = "SELECT TOP 10 * FROM Products ORDER BY ProductID DESC";
+        String sqlQuery = "SELECT TOP 10 * FROM Products WHERE Status = 1 ORDER BY ProductID DESC";
 
         try (PreparedStatement stm = connection.prepareStatement(sqlQuery); ResultSet res = stm.executeQuery()) {
 
@@ -130,7 +162,7 @@ public class ProductDAO extends DBConnect {
             return listProduct; // return empty list if db connection is null
         }
 
-        String sqlQuery = "SELECT * FROM Products WHERE SupplierID = ?";
+        String sqlQuery = "SELECT * FROM Products WHERE SupplierID = ? WHERE Status = 1";
 
         try (PreparedStatement stm = connection.prepareStatement(sqlQuery)) {
             stm.setInt(1, sid);
@@ -177,7 +209,7 @@ public class ProductDAO extends DBConnect {
             return listProduct; // return empty list if db connection is null
         }
 
-        String sql = "SELECT * FROM Products WHERE ProductName LIKE ?";
+        String sql = "SELECT * FROM Products WHERE ProductName LIKE ? AND Status = 1";
 
         try (PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setString(1, "%" + txtSearch + "%");
@@ -215,7 +247,7 @@ public class ProductDAO extends DBConnect {
 
     public List<Product> getFilteredProducts(int cid, int sid, int minPrice, int maxPrice, int sort, int page, int productPerPage) {
         List<Product> listProduct = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("SELECT * FROM Products WHERE 1=1");
+        StringBuilder sql = new StringBuilder("SELECT * FROM Products WHERE 1=1 AND Status = 1 ");
         List<Object> params = new ArrayList<>();
 
         // category filter
@@ -357,7 +389,7 @@ public class ProductDAO extends DBConnect {
                 + "FROM Products P\n"
                 + "JOIN OrderDetails OD ON P.ProductID = OD.ProductID\n"
                 + "JOIN Orders O ON OD.OrderID = O.OrderID\n"
-                + "WHERE O.Date >= DATEADD(MONTH, -2, GETDATE())  -- Lọc đơn hàng trong 2 tháng gần nhất\n"
+                + "WHERE O.Date >= DATEADD(MONTH, -2, GETDATE()) AND Status = 1  -- Lọc đơn hàng trong 2 tháng gần nhất\n"
                 + "GROUP BY \n"
                 + "    P.ProductID, P.ProductName, P.UnitPrice, P.UnitsInStock, \n"
                 + "    P.Discontinued, P.Image, P.Include, P.Warranty, \n"
@@ -418,7 +450,7 @@ public class ProductDAO extends DBConnect {
                 + "    SUM(OD.Quantity) AS TotalSold\n"
                 + "FROM Products P\n"
                 + "JOIN OrderDetails OD ON P.ProductID = OD.ProductID\n"
-                + "JOIN Orders O ON OD.OrderID = O.OrderID\n"
+                + "JOIN Orders O ON OD.OrderID = O.OrderID WHERE Status = 1 "
                 + "GROUP BY \n"
                 + "    P.ProductID, P.ProductName, P.UnitPrice, P.UnitsInStock, \n"
                 + "    P.Discontinued, P.Image, P.Include, P.Warranty, \n"

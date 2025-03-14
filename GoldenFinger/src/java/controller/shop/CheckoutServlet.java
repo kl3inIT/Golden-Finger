@@ -33,8 +33,8 @@ public class CheckoutServlet extends HttpServlet {
         ProductDAO pd = new ProductDAO();
         CategoryDAO cd = new CategoryDAO();
 
-        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
-        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCidForUser(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCidForUser(0));
 
         if (cart.getSizeCart() == 0) {
             response.sendRedirect("shop");

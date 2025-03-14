@@ -27,8 +27,8 @@ public class HomeServlet extends HttpServlet {
         CategoryDAO cd = new CategoryDAO();
         SupplierDAO sd = new SupplierDAO();
 
-        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
-        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCid(0));
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCidForUser(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCidForUser(0));
         
         //Get list trending
         List<Product> listProductsTrending = pd.getTrendingProducts();

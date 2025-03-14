@@ -44,8 +44,8 @@ public class ProfileServlet extends HttpServlet {
                 txt2 = c.getValue();
             }
         }
-        Cart cart = new Cart(txt, pd.getAllProductByCid(0));
-        WishList wishlist = new WishList(txt2, pd.getAllProductByCid(0));
+        Cart cart = new Cart(txt, pd.getAllProductByCidForUser(0));
+        WishList wishlist = new WishList(txt2, pd.getAllProductByCidForUser(0));
 
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
