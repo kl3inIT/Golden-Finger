@@ -516,8 +516,20 @@ public class ProductDAO extends DBConnect {
         for (Product product : lp) {
             System.out.println(product.getName());
             
-
+    public boolean updateStatusOfProduct(int id) {
+        try {
+            String sql = "UPDATE Products\n"
+                    + "SET Status = 0\n"
+                    + "WHERE ProductID = ?;";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
+
+    }
 }

@@ -1,21 +1,12 @@
-<%-- 
-    Document   : dashboard
-    Created on : Mar 10, 2025, 11:23:45 AM
-    Author     : nhudi
---%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!-----------------------------------------------------------------------------------
-Item Name: Grabit - Multipurpose eCommerce HTML Template.
-Author: Maraviya Infotech
-Version: 3.0.2
-Copyright 2024
------------------------------------------------------------------------------------>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:33:51 GMT -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,7 +75,6 @@ Copyright 2024
                                         <img class="user" src="dashboard/assets/img/user/1.jpg" alt="user">
                                     </div>
                                     <div class="gi-hover-drop-panel right">
-
                                         <ul class="">
                                             <li><a href="team-profile.html">Profile</a></li>
                                             <li><a href="faq.html">Help</a></li>
@@ -103,60 +93,60 @@ Copyright 2024
                 </div>
             </header>
 
-           <!-- sidebar -->
-            <div class="gi-sidebar-overlay"></div>
-            <div class="gi-sidebar" data-mode="dark">
-                <div class="gi-sb-logo">
-                    <a href="admin" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                    <a href="admin" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                </div>
-                <div class="gi-sb-wrapper">
-                    <div class="gi-sb-content">
-                        <ul class="gi-sb-list">
-                            <li class="gi-sb-item">
-                                <a href="admin" class="gi-page-link">
-                                    <i class="ri-dashboard-3-line"></i><span class="condense"><span
-                                            class="hover-title">Dashboard</span> </span>
-                                </a>
-                            </li>
-                            <li class="gi-sb-item-separator"></li>
-                            <li class="gi-sb-title condense">Apps</li>
+            <!-- sidebar -->
+            <div class="gi-sidebar-overlay">
+                <div class="gi-sidebar" data-mode="dark">
+                    <div class="gi-sb-logo">
+                        <a href="home" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                        <a href="home" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                    </div>
+                    <div class="gi-sb-wrapper">
+                        <div class="gi-sb-content">
+                            <ul class="gi-sb-list">
+                                <li class="gi-sb-item">
+                                    <a href="admin" class="gi-page-link">
+                                        <i class="ri-dashboard-3-line"></i><span class="condense"><span
+                                                class="hover-title">Dashboard</span> </span>
+                                    </a>
+                                </li>
+                                <li class="gi-sb-item-separator"></li>
+                                <li class="gi-sb-title condense">Apps</li>
 
-                            <li class="gi-sb-item">
+                                <li class="gi-sb-item">
 
-                            </li>
-                            <li class="gi-sb-item sb-drop-item">
-                                <a href="javascript:void(0)" class="gi-drop-toggle">
-                                    <i class="ri-shopping-cart-line"></i><span class="condense">eCommerce<i
-                                            class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-                                <ul class="gi-sb-drop condense">
-                                    <li><a href="productlist" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
-                                    <li><a href="addproduct" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
-                                    <li><a href="orderlist" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
+                                </li>
+                                <li class="gi-sb-item sb-drop-item">
+                                    <a href="javascript:void(0)" class="gi-drop-toggle">
+                                        <i class="ri-shopping-cart-line"></i><span class="condense">eCommerce<i
+                                                class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                                    <ul class="gi-sb-drop condense">
+                                        <li><a href="productlist" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
+                                        <li><a href="addproduct" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
+                                        <li><a href="orderlist" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
 
-                                </ul>
-                            </li>
-                            <li class="gi-sb-item sb-drop-item">
-                                <a href="javascript:void(0)" class="gi-drop-toggle">
-                                    <i class="mdi mdi-account"></i><span class="condense">Account<i
-                                            class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-                                <ul class="gi-sb-drop condense">
-                                    <li><a href="accountlist" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Account list</a></li>
-                                    <li><a href="addaccount" class="gi-page-link drop"><i
-                                                class="ri-checkbox-blank-circle-line"></i>Add Account</a></li>
-                                </ul>
-                            </li>
+                                    </ul>
+                                </li>
+                                <li class="gi-sb-item sb-drop-item">
+                                    <a href="javascript:void(0)" class="gi-drop-toggle">
+                                        <i class="mdi mdi-account"></i><span class="condense">Account<i
+                                                class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                                    <ul class="gi-sb-drop condense">
+                                        <li><a href="accountlist" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Account list</a></li>
+                                        <li><a href="addaccount" class="gi-page-link drop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Add Account</a></li>
+                                    </ul>
+                                </li>
 
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <!-- main content -->
             <div class="gi-main-content">
                 <div class="container-fluid">
@@ -165,7 +155,7 @@ Copyright 2024
                         <div class="gi-breadcrumb">
                             <h5>Product List</h5>
                             <ul>
-                                <li><a href="index.html">Grabit</a></li>
+                                <li><a href="admin">Dashboard</a></li>
                                 <li>Product List</li>
                             </ul>
                         </div>
@@ -183,13 +173,13 @@ Copyright 2024
                                                     <th>Price</th>
                                                     <th>Offer</th>
                                                     <th>Purchased</th>
+                                                    <th>Discount</th>
                                                     <th>Stock</th>
                                                     <th>Status</th>
                                                     <th>Date</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-
                                             <tbody>
                                                 <tr>
                                                     <td><img class="tbl-thumb" src="assets/img/product/1.jpg"
@@ -595,7 +585,57 @@ Copyright 2024
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                <c:forEach var="p" items="${requestScope.listProduct}">
+                                                    <tr>
+                                                        <td><img class="tbl-thumb" src="${p.image[0]}" alt="Product Image"></td>
+                                                        <td>${p.name}</td>
+                                                        <td>${p.category.name}</td>
+                                                        <td>
+                                                            $<fmt:formatNumber value="${p.price}" maxFractionDigits="2" minFractionDigits="0" />
+                                                        </td>
+                                                        <td>
+                                                            <fmt:formatNumber value="${p.discount * 100}" maxFractionDigits="2" minFractionDigits="0" />%
+                                                        </td>
+                                                        <td>${p.unitInStock}</td>
+
+                                                        <c:if test="${p.status == 1}"> 
+                                                            <td> <span class="active">Enable</span></td>
+                                                        </c:if>
+                                                        <c:if test="${p.status != 1}"> 
+                                                            <td class="active">Disable</td>
+                                                        </c:if>
+
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <button type="button"
+                                                                        class="btn btn-outline-success dropdown-toggle"
+                                                                        data-bs-toggle="dropdown"
+                                                                        aria-haspopup="true"
+                                                                        aria-expanded="false">
+                                                                    <i class="ri-settings-3-line"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <form action="productlist" method="post" id="deleteForm">
+                                                                        <input type="hidden" name="action" value="update">
+                                                                        <input type="hidden" name="id" id="deleteProductId">
+                                                                    </form>
+
+                                                                    <script>
+                                                                        function updateStatusProduct(id) {
+                                                                            document.getElementById("deleteProductId").value = id;
+                                                                            document.getElementById("deleteForm").submit();
+                                                                        }
+                                                                    </script>
+                                                                    <a class="dropdown-item" href="#" onclick="updateStatusProduct(${p.id})">Disable</a>
+
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>
@@ -612,6 +652,7 @@ Copyright 2024
 
 
         </main>
+
 
         <!-- Vendor Custom -->
         <script src="dashboard/assets/js/vendor/jquery-3.6.4.min.js"></script>
@@ -637,6 +678,4 @@ Copyright 2024
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
     </body>
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:34:21 GMT -->
 </html>

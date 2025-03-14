@@ -7,6 +7,8 @@ import model.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import utils.PasswordUtils;
 
 public class UserDAO extends DBConnect {
@@ -68,10 +70,7 @@ public class UserDAO extends DBConnect {
         }
     }
 
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        System.out.println(dao.isAccountExists("nhat", "nhudinhnhat2004@gmail.co", "098222637"));
-    }
+    
 
     public boolean createUser(String username, String fullName, String password, String email, String phone, String birthDate, String address) {
         if (connection == null) {
@@ -223,4 +222,54 @@ public class UserDAO extends DBConnect {
         }
     }
 
+    public List<User> getUsersByRole(int roleId) {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT * FROM Users WHERE RoleID = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, roleId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("UserID"));
+                user.setUsername(rs.getString("UserName"));
+                user.setFullName(rs.getString("FullName"));
+                user.setPassword(rs.getString("Password"));
+                user.setSalt(rs.getString("Salt"));
+                user.setRoleId(rs.getInt("RoleID"));
+                user.setImage(rs.getString("Image"));
+                user.setEmail(rs.getString("Email"));
+                user.setBirthDate(rs.getString("BirthDay"));
+                user.setAddress(rs.getString("Address"));
+                user.setPhone(rs.getString("Phone"));
+                user.setStatus(rs.getInt("status"));
+
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    public boolean updateStatusOfUser(int userId) {
+        String sql = "UPDATE Users SET Status = 0 WHERE UserID = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAO();
+        System.out.println(dao.updateStatusOfUser(0));
+       
+    }
 }
