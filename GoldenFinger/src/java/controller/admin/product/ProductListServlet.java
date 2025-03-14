@@ -2,7 +2,6 @@ package controller.admin.product;
 
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,19 +27,15 @@ public class ProductListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if ("update".equals(action)) {
-            String idParam = request.getParameter("id");
 
-            if (idParam != null) {
-                int id = Integer.parseInt(idParam);
-                boolean success = pd.updateStatusOfProduct(id);
-            }// Xử lý thêm thông báo đê
+        String pid = request.getParameter("productId");
+        String type = request.getParameter("type");
+        if (type.equals("disable")) {
+            pd.disableStatus(pid);          
+        }
+        else{
+            pd.enableStatus(pid);
 
-            List<Product> listProduct = pd.getAllProductByCid(0);
-
-            request.setAttribute("listProduct", listProduct);
-            request.getRequestDispatcher("dashboard/productlist.jsp").forward(request, response);
         }
     }
 

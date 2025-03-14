@@ -1,8 +1,15 @@
 
+
+=======
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!-----------------------------------------------------------------------------------
+Item Name: Grabit - Multipurpose eCommerce HTML Template.
+Author: Maraviya Infotech
+Version: 3.0.2
+Copyright 2024
+----------------------------------------------------------------------------------->
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -94,588 +101,196 @@
             </header>
 
             <!-- sidebar -->
-            <div class="gi-sidebar-overlay">
-                <div class="gi-sidebar" data-mode="dark">
-                    <div class="gi-sb-logo">
-                        <a href="home" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                        <a href="home" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
-                    </div>
-                    <div class="gi-sb-wrapper">
-                        <div class="gi-sb-content">
-                            <ul class="gi-sb-list">
-                                <li class="gi-sb-item">
-                                    <a href="admin" class="gi-page-link">
-                                        <i class="ri-dashboard-3-line"></i><span class="condense"><span
-                                                class="hover-title">Dashboard</span> </span>
-                                    </a>
-                                </li>
-                                <li class="gi-sb-item-separator"></li>
-                                <li class="gi-sb-title condense">Apps</li>
 
-                                <li class="gi-sb-item">
-
-                                </li>
-                                <li class="gi-sb-item sb-drop-item">
-                                    <a href="javascript:void(0)" class="gi-drop-toggle">
-                                        <i class="ri-shopping-cart-line"></i><span class="condense">eCommerce<i
-                                                class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-                                    <ul class="gi-sb-drop condense">
-                                        <li><a href="productlist" class="gi-page-link drop"><i
-                                                    class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
-                                        <li><a href="addproduct" class="gi-page-link drop"><i
-                                                    class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
-                                        <li><a href="orderlist" class="gi-page-link drop"><i
-                                                    class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
-
-                                    </ul>
-                                </li>
-                                <li class="gi-sb-item sb-drop-item">
-                                    <a href="javascript:void(0)" class="gi-drop-toggle">
-                                        <i class="mdi mdi-account"></i><span class="condense">Account<i
-                                                class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-                                    <ul class="gi-sb-drop condense">
-                                        <li><a href="accountlist" class="gi-page-link drop"><i
-                                                    class="ri-checkbox-blank-circle-line"></i>Account list</a></li>
-                                        <li><a href="addaccount" class="gi-page-link drop"><i
-                                                    class="ri-checkbox-blank-circle-line"></i>Add Account</a></li>
-                                    </ul>
-                                </li>
+            <div class="gi-sidebar-overlay"></div>
+            <div class="gi-sidebar" data-mode="dark">
+                <div class="gi-sb-logo">
+                    <a href="admin" class="sb-full"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                    <a href="admin" class="sb-collapse"><img src="dashboard/assets/img/logo/logo.png" alt="logo"></a>
+                </div>
+                <div class="gi-sb-wrapper">
+                    <div class="gi-sb-content">
+                        <ul class="gi-sb-list">
+                            <li class="gi-sb-item">
+                                <a href="admin" class="gi-page-link">
+                                    <i class="ri-dashboard-3-line"></i><span class="condense"><span
+                                            class="hover-title">Dashboard</span> </span>
+                                </a>
+                            </li>
+                            <li class="gi-sb-item-separator"></li>
+                            <li class="gi-sb-title condense">Apps</li>
 
 
-                            </ul>
-                        </div>
+                            <li class="gi-sb-item">
+
+                            </li>
+                            <li class="gi-sb-item sb-drop-item">
+                                <a href="javascript:void(0)" class="gi-drop-toggle">
+                                    <i class="ri-shopping-cart-line"></i><span class="condense">eCommerce<i
+                                            class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                                <ul class="gi-sb-drop condense">
+                                    <li><a href="productlist" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
+                                    <li><a href="addproduct" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
+                                    <li><a href="orderlist" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="gi-sb-item sb-drop-item">
+                                <a href="javascript:void(0)" class="gi-drop-toggle">
+                                    <i class="mdi mdi-account"></i><span class="condense">Account<i
+                                            class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                                <ul class="gi-sb-drop condense">
+                                    <li><a href="accountlist" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Account list</a></li>
+                                    <li><a href="addaccount" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Add Account</a></li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
                     </div>
                 </div>
             </div>
-            <!-- main content -->
-            <div class="gi-main-content">
-                <div class="container-fluid">
-                    <!-- Page title & breadcrumb -->
-                    <div class="gi-page-title gi-page-title-2">
-                        <div class="gi-breadcrumb">
-                            <h5>Product List</h5>
-                            <ul>
-                                <li><a href="admin">Dashboard</a></li>
-                                <li>Product List</li>
-                            </ul>
-                        </div>
+        </div>
+        <!-- main content -->
+        <div class="gi-main-content">
+            <div class="container-fluid">
+                <!-- Page title & breadcrumb -->
+                <div class="gi-page-title gi-page-title-2">
+                    <div class="gi-breadcrumb">
+                        <h5>Product List</h5>
+                        <ul>
+                            <li><a href="admin">Dashboard</a></li>
+                            <li>Product List</li>
+                        </ul>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="gi-card card-default product-list">
-                                <div class="gi-card-content ">
-                                    <div class="table-responsive">
-                                        <table id="product_list" class="table" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th>Name</th>
-                                                    <th>Price</th>
-                                                    <th>Offer</th>
-                                                    <th>Purchased</th>
-                                                    <th>Discount</th>
-                                                    <th>Stock</th>
-                                                    <th>Status</th>
-                                                    <th>Date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/1.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Mens t-shirt</td>
-                                                    <td>$20</td>
-                                                    <td>25% OFF</td>
-                                                    <td>61</td>
-                                                    <td>5421</td>
-                                                    <td><span class="active">active</span></td>
-                                                    <td>05/11/2023</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="gi-card card-default product-list">
+                            <div class="gi-card-content ">
+                                <div class="table-responsive">
+                                    <table id="product_list" class="table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Offer</th>
+                                                <th>Purchased</th>
+                                                <th>Discount</th>
+                                                <th>Stock</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
+                                            <c:forEach var="p" items="${requestScope.listProduct}">
                                                 <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/2.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Sofa seat furniture</td>
-                                                    <td>$400</td>
-                                                    <td>30% OFF</td>
-                                                    <td>80</td>
-                                                    <td>25</td>
-                                                    <td><span class="pending">pending</span></td>
-                                                    <td>12/08/2022</td>
                                                     <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
 
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/3.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Night lamp bedroom</td>
-                                                    <td>$59</td>
-                                                    <td>30% OFF</td>
-                                                    <td>100</td>
-                                                    <td>56</td>
-                                                    <td><span class="disable">disable</span></td>
-                                                    <td>25/05/2021</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
+                                                        <img class="tbl-thumb" src="${p.image[0]}"
+                                                             alt="Product Image">
                                                     </td>
-                                                </tr>
+                                                    <td>${p.name}</td>
+                                                    <td>${p.category.name}</td>
+                                                    <td>$<fmt:formatNumber value="${p.price}" maxFractionDigits="2" minFractionDigits="0" /></td>
 
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/4.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Round Cap hoodies</td>
-                                                    <td>$10</td>
-                                                    <td>30% OFF</td>
-                                                    <td>250</td>
-                                                    <td>568</td>
-                                                    <td><span class="active">active</span></td>
-                                                    <td>13/09/2019</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/5.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Digital watch black</td>
-                                                    <td>$582</td>
-                                                    <td>30% OFF</td>
-                                                    <td>220</td>
-                                                    <td>264</td>
-                                                    <td><span class="pending">pending</span></td>
-                                                    <td>18/02/2023</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/6.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Digital camera dslr</td>
-                                                    <td>$1254</td>
-                                                    <td>20% OFF</td>
-                                                    <td>154</td>
-                                                    <td>365</td>
-                                                    <td><span class="disable">disable</span></td>
-                                                    <td>16/11/2021</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/7.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Headphone beater m3</td>
-                                                    <td>$68</td>
-                                                    <td>30% OFF</td>
-                                                    <td>159</td>
-                                                    <td>789</td>
-                                                    <td><span class="active">active</span></td>
-                                                    <td>23/04/2024</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/8.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Camera dron fly b2</td>
-                                                    <td>$120</td>
-                                                    <td>80% OFF</td>
-                                                    <td>12</td>
-                                                    <td>325</td>
-                                                    <td><span class="active">active</span></td>
-                                                    <td>21/06/2023</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/9.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Drill machine dregon g1</td>
-                                                    <td>$20</td>
-                                                    <td>10% OFF</td>
-                                                    <td>254</td>
-                                                    <td>36</td>
-                                                    <td><span class="pending">pending</span></td>
-                                                    <td>12/12/2022</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/10.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Fly cry dron camera</td>
-                                                    <td>$548</td>
-                                                    <td>50% OFF</td>
-                                                    <td>25</td>
-                                                    <td>12</td>
-                                                    <td><span class="disable">disable</span></td>
-                                                    <td>12/05/2023</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/5.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Black watches s20</td>
-                                                    <td>$254</td>
-                                                    <td>30% OFF</td>
-                                                    <td>65</td>
-                                                    <td>12</td>
-                                                    <td><span class="active">active</span></td>
-                                                    <td>15/06/2012</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/6.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Dslr digital camera</td>
-                                                    <td>$325</td>
-                                                    <td>40% OFF</td>
-                                                    <td>265</td>
-                                                    <td>21</td>
-                                                    <td><span class="active">active</span></td>
-                                                    <td>25/04/2019</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/7.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Headphone drag g9</td>
-                                                    <td>$65</td>
-                                                    <td>40% OFF</td>
-                                                    <td>487</td>
-                                                    <td>35</td>
-                                                    <td><span class="disable">disable</span></td>
-                                                    <td>25/08/2022</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/8.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Orbite dron ss2</td>
-                                                    <td>$754</td>
-                                                    <td>40% OFF</td>
-                                                    <td>12</td>
-                                                    <td>48</td>
-                                                    <td><span class="active">active</span></td>
-                                                    <td>15/06/2015</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><img class="tbl-thumb" src="assets/img/product/9.jpg"
-                                                             alt="Product Image"></td>
-                                                    <td>Drill machine br6</td>
-                                                    <td>$548</td>
-                                                    <td>30% OFF</td>
-                                                    <td>250</td>
-                                                    <td>84</td>
-                                                    <td><span class="active">active</span></td>
-                                                    <td>16/11/2023</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Edit</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <c:forEach var="p" items="${requestScope.listProduct}">
-                                                    <tr>
-                                                        <td><img class="tbl-thumb" src="${p.image[0]}" alt="Product Image"></td>
-                                                        <td>${p.name}</td>
-                                                        <td>${p.category.name}</td>
+                                                    <td><fmt:formatNumber value="${p.discount * 100}" maxFractionDigits="0" minFractionDigits="0" />%</td>
+                                                    <td><span class="active">${p.unitInStock}</span></td>
+                                                        <c:if test="${p.status == 1}">
                                                         <td>
-                                                            $<fmt:formatNumber value="${p.price}" maxFractionDigits="2" minFractionDigits="0" />
+                                                            <span class="active">Enable</span>
                                                         </td>
+                                                    </c:if>
+                                                    <c:if test="${p.status == 0}">
                                                         <td>
-                                                            <fmt:formatNumber value="${p.discount * 100}" maxFractionDigits="2" minFractionDigits="0" />%
+                                                            <span style="color: #ff4f7f;">Disable</span>
                                                         </td>
-                                                        <td>${p.unitInStock}</td>
-
-                                                        <c:if test="${p.status == 1}"> 
-                                                            <td> <span class="active">Enable</span></td>
-                                                        </c:if>
-                                                        <c:if test="${p.status != 1}"> 
-                                                            <td class="active">Disable</td>
-                                                        </c:if>
-
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button type="button"
-                                                                        class="btn btn-outline-success dropdown-toggle"
-                                                                        data-bs-toggle="dropdown"
-                                                                        aria-haspopup="true"
-                                                                        aria-expanded="false">
-                                                                    <i class="ri-settings-3-line"></i>
-                                                                </button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                                    <form action="productlist" method="post" id="deleteForm">
-                                                                        <input type="hidden" name="action" value="update">
-                                                                        <input type="hidden" name="id" id="deleteProductId">
-                                                                    </form>
-
-                                                                    <script>
-                                                                        function updateStatusProduct(id) {
-                                                                            document.getElementById("deleteProductId").value = id;
-                                                                            document.getElementById("deleteForm").submit();
-                                                                        }
-                                                                    </script>
-                                                                    <a class="dropdown-item" href="#" onclick="updateStatusProduct(${p.id})">Disable</a>
-
-                                                                </div>
+                                                    </c:if>
+                                                    <td>
+                                                        <div class="d-flex justify-content-start">
+                                                            <button type="button"
+                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false" data-display="static">
+                                                                <span class="sr-only"><i
+                                                                        class="ri-settings-3-line"></i></span>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="updateproduct?pid=${p.id}">Edit</a>
+                                                                <a class="dropdown-item" onclick="action(${p.id}, 'disable')" href="javascript:void(0)">Disable</a>
+                                                                <a class="dropdown-item" onclick="action(${p.id}, 'enable')"  href="javascript:void(0)">Enable</a>
                                                             </div>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
 
-                                        </table>
-                                    </div>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Footer -->
-            <footer>
+        <!-- Footer -->
+        <footer>
 
-            </footer>
-
-
-        </main>
+        </footer>
 
 
-        <!-- Vendor Custom -->
-        <script src="dashboard/assets/js/vendor/jquery-3.6.4.min.js"></script>
-        <script src="dashboard/assets/js/vendor/simplebar.min.js"></script>
-        <script src="dashboard/assets/js/vendor/bootstrap.bundle.min.js"></script>
-        <script src="dashboard/assets/js/vendor/apexcharts.min.js"></script>
-        <script src="dashboard/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="dashboard/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
-        <script src="dashboard/assets/js/vendor/owl.carousel.min.js"></script>
-        <!-- Data Tables -->
-        <script src='dashboard/assets/js/vendor/jquery.datatables.min.js'></script>
-        <script src='dashboard/assets/js/vendor/datatables.bootstrap5.min.js'></script>
-        <script src='dashboard/assets/js/vendor/datatables.responsive.min.js'></script>
-        <!-- Caleddar -->
-        <script src="dashboard/assets/js/vendor/jquery.simple-calendar.js"></script>
-        <!-- Date Range Picker -->
-        <script src="dashboard/assets/js/vendor/moment.min.js"></script>
-        <script src="dashboard/assets/js/vendor/daterangepicker.js"></script>
-        <script src="dashboard/assets/js/vendor/date-range.js"></script>
+    </main>
 
-        <!-- Main Custom -->
-        <script src="dashboard/assets/js/main.js"></script>
-        <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
-    </body>
+
+    <!-- Vendor Custom -->
+    <script src="dashboard/assets/js/vendor/jquery-3.6.4.min.js"></script>
+    <script src="dashboard/assets/js/vendor/simplebar.min.js"></script>
+    <script src="dashboard/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="dashboard/assets/js/vendor/apexcharts.min.js"></script>
+    <script src="dashboard/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="dashboard/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="dashboard/assets/js/vendor/owl.carousel.min.js"></script>
+    <!-- Data Tables -->
+    <script src='dashboard/assets/js/vendor/jquery.datatables.min.js'></script>
+    <script src='dashboard/assets/js/vendor/datatables.bootstrap5.min.js'></script>
+    <script src='dashboard/assets/js/vendor/datatables.responsive.min.js'></script>
+    <!-- Caleddar -->
+    <script src="dashboard/assets/js/vendor/jquery.simple-calendar.js"></script>
+    <!-- Date Range Picker -->
+    <script src="dashboard/assets/js/vendor/moment.min.js"></script>
+    <script src="dashboard/assets/js/vendor/daterangepicker.js"></script>
+    <script src="dashboard/assets/js/vendor/date-range.js"></script>
+
+    <!-- Main Custom -->
+    <script src="dashboard/assets/js/main.js"></script>
+    <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
+    <script>
+                                                                    function action(productId, type) {
+                                                                        $.ajax({
+                                                                            type: "POST",
+                                                                            url: "productlist",
+                                                                            data: {
+                                                                                productId: productId,
+                                                                                type: type
+                                                                            },
+                                                                            success: function () {
+                                                                                window.location.reload();
+                                                                            }
+                                                                        });
+                                                                    }
+
+
+    </script>
+</body>
 
 </html>
