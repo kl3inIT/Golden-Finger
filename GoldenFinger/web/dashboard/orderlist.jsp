@@ -1,21 +1,8 @@
-<%-- 
-    Document   : dashboard
-    Created on : Mar 10, 2025, 11:23:45 AM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!-----------------------------------------------------------------------------------
-Item Name: Grabit - Multipurpose eCommerce HTML Template.
-Author: Maraviya Infotech
-Version: 3.0.2
-Copyright 2024
------------------------------------------------------------------------------------>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:33:51 GMT -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -270,6 +257,4 @@ Copyright 2024
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
     </body>
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:34:21 GMT -->
 </html>

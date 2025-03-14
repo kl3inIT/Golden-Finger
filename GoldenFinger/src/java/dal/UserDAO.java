@@ -71,7 +71,6 @@ public class UserDAO extends DBConnect {
     }
 
     
-
     public boolean createUser(String username, String fullName, String password, String email, String phone, String birthDate, String address) {
         if (connection == null) {
             LOGGER.severe("Database connection is null");

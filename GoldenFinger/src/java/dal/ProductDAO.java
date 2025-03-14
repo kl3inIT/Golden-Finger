@@ -17,7 +17,6 @@ import model.Item;
 
 import model.Product;
 
-
 public class ProductDAO extends DBConnect {
 
     private static final Logger LOGGER = Logger.getLogger(ProductDAO.class.getName());
@@ -478,7 +477,7 @@ public class ProductDAO extends DBConnect {
             String status,
             String categoryId,
             String supplierId) {
-        
+
         if (connection != null) {
             try {
                 String sql = "INSERT INTO Products "
@@ -510,12 +509,6 @@ public class ProductDAO extends DBConnect {
 
     }
 
-    public static void main(String[] args) {
-        ProductDAO pd = new ProductDAO();
-        List<Product> lp = pd.getFilteredProducts(1, 2, 0, 10000, 2, 1, 3);
-        for (Product product : lp) {
-            System.out.println(product.getName());
-            
     public boolean updateStatusOfProduct(int id) {
         try {
             String sql = "UPDATE Products\n"
@@ -530,6 +523,4 @@ public class ProductDAO extends DBConnect {
         }
     }
 
-
-    }
 }
