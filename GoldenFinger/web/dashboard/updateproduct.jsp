@@ -28,7 +28,7 @@ Copyright 2024
         <meta name="description" content="Grabit - Admin.">
         <meta name="author" content="Maraviya Infotech">
 
-        <title>Add Product</title>
+        <title>Edit Product</title>
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/img/favicon/favicon.png">
@@ -172,7 +172,7 @@ Copyright 2024
                         </div>
                     </div>
                     <c:set var="p" value="${requestScope.product}"/>
-                    <form action="addproduct" method="POST" enctype="multipart/form-data">
+                    <form action="updateproduct?pid=${p.id}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="gi-card card-default">
@@ -184,7 +184,7 @@ Copyright 2024
                                                         <div class="avatar-upload">
                                                             <div class="avatar-edit">
                                                                 <input type='file' id="product_main" class="gi-image-upload"
-                                                                       accept=".png, .jpg, .jpeg" name="file" required>
+                                                                       accept=".png, .jpg, .jpeg" name="file" >
                                                                 <label><i class="ri-pencil-line"></i></label>
                                                             </div>
                                                             <div class="avatar-preview gi-preview">
@@ -197,7 +197,7 @@ Copyright 2024
                                                         <div class="avatar-upload">
                                                             <div class="avatar-edit">
                                                                 <input type='file' id="product_main" class="gi-image-upload"
-                                                                       accept=".png, .jpg, .jpeg" name="file" required>
+                                                                       accept=".png, .jpg, .jpeg" name="file" >
                                                                 <label><i class="ri-pencil-line"></i></label>
                                                             </div>
                                                             <div class="avatar-preview gi-preview">
@@ -210,7 +210,7 @@ Copyright 2024
                                                         <div class="avatar-upload">
                                                             <div class="avatar-edit">
                                                                 <input type='file' id="product_main" class="gi-image-upload"
-                                                                       accept=".png, .jpg, .jpeg" name="file" required>
+                                                                       accept=".png, .jpg, .jpeg" name="file" >
                                                                 <label><i class="ri-pencil-line"></i></label>
                                                             </div>
                                                             <div class="avatar-preview gi-preview">
@@ -263,7 +263,7 @@ Copyright 2024
                                                         <div class="col-md-6">
                                                             <label class="form-label">Price <span>( In USD
                                                                     )</span></label>
-                                                            <input type="number" class="form-control" id="price1" name="pirce" value="${p.price}" required>
+                                                            <input type="number" class="form-control" id="price1" name="price" value="${p.price}" required>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label class="form-label">Discount</label>
@@ -353,7 +353,22 @@ Copyright 2024
                     input.setAttribute("max", today);
                 });
             });
+
+
+            document.querySelector("form").addEventListener("submit", function (e) {
+                let fileInput = document.querySelector("input[name='file']");
+                let hiddenInput = document.createElement("input");
+
+               
+                if (fileInput.files.length === 0) {
+                    hiddenInput.type = "hidden";
+                    hiddenInput.name = "oldImage";
+                    hiddenInput.value = document.querySelector(".gi-image-preview").src; 
+                    this.appendChild(hiddenInput);
+                }
+            });
         </script>
+
 
     </body>
 

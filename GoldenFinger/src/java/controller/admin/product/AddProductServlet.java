@@ -45,7 +45,7 @@ public class AddProductServlet extends HttpServlet {
         String quantity = request.getParameter("quantity");
         String category = request.getParameter("category");
         String supplier = request.getParameter("supplier");
-        String pirce = request.getParameter("pirce");
+        String pirce = request.getParameter("price");
         String discount = request.getParameter("discount");
         String include = request.getParameter("include");
         String warranty = request.getParameter("warranty");

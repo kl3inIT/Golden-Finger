@@ -55,6 +55,7 @@ public class ProductDAO extends DBConnect {
 
         return listProduct; // return List of products matching the category, or empty list if error occurs
     }
+
     // Gets all products by category ID 
     public List<Product> getAllProductByCid(int cid) { // param cid Category ID (0 for all categories)
         List<Product> listProduct = new ArrayList<>();
@@ -575,6 +576,67 @@ public class ProductDAO extends DBConnect {
             return stmt.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateProduct(
+            int id,
+            String name,
+            String price,
+            String unitInStock,
+            String discontinue,
+            String include,
+            String warranty,
+            String dimensions,
+            String speakerPower,
+            String starRating,
+            String weight,
+            String describe,
+            String releaseDate,
+            String discount,
+
+            String categoryId,
+            String supplierId) {
+        try {
+            String sql = "UPDATE Products "
+                    + " SET ProductName = ?, "
+                    + "    UnitPrice = ?, "
+                    + "    UnitsInStock = ?, "
+                    + "    Discontinued = ?, "
+                    + "    Include = ?, "
+                    + "    Warranty = ?, "
+                    + "    Dimensions = ? , "
+                    + "    SpeakerPower = ?, "
+                    + "    StarRating = ? , "
+                    + "    Weight = ?, "
+                    + "    Describe = ?, "
+                    + "    ReleaseDate = ?, "
+                    + "    Discount = ?, "
+                    + "    CategoryID = ?, "
+                    + "    SupplierID = ? "
+                    + " WHERE ProductID = ?;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, price);
+            ps.setString(3, unitInStock);
+            ps.setString(4, discontinue);
+            ps.setString(5, include);
+            ps.setString(6, warranty);
+            ps.setString(7, dimensions);
+            ps.setString(8, speakerPower);
+            ps.setString(9, starRating);
+            ps.setString(10, weight);
+            ps.setString(11, describe);
+            ps.setString(12, releaseDate);
+            ps.setString(13, discount);
+  
+            ps.setString(14, categoryId);
+            ps.setString(15, supplierId);
+            ps.setInt(16, id);
+            ps.execute();
+            return true;
+        } catch (Exception e) {
             return false;
         }
     }
