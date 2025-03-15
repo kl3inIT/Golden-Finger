@@ -116,8 +116,8 @@ Copyright 2024
                                                 </h5>
                                             </div>
                                             <div class="block">
-                                                <h6>Quantity</h6>
-                                                <h5>30
+                                                <h6>Quantity</h6>        
+                                                <h5>${requestScope.totalQuantity}
                                                 </h5>
                                             </div>
                                             <div class="block">

@@ -214,7 +214,7 @@ Copyright 2024
                                                                             class="ri-settings-3-line"></i></span>
                                                                 </button>
                                                                 <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    
                                                                     <form action="accountlist" method="post" id="updateForm">                               
                                                                         <input type="hidden" name="id" id="userId">
                                                                         <input type="hidden" name="type" id="typeId">
@@ -224,9 +224,7 @@ Copyright 2024
                                                                         function updateStatusUser(id, type) {
                                                                             document.getElementById("userId").value = id;
                                                                             document.getElementById("typeId").value = type;
-                                                                            document.getElementById("updateForm").submit();
-                                                                            
-                                     
+                                                                            document.getElementById("updateForm").submit();                                                                                                              
                                                                         }
                                                                     </script>
                                                                     <a class="dropdown-item" href="#" onclick="updateStatusUser(${u.id}, 'enable')">Enable</a>
