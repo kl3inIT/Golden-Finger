@@ -1,6 +1,6 @@
 <%-- 
-    Document   : wishlist
-    Created on : Mar 4, 2025, 11:34:39 AM
+    Document   : dashboard
+    Created on : Mar 10, 2025, 11:23:45 AM
     Author     : nhudi
 --%>
 
@@ -8,201 +8,250 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!-----------------------------------------------------------------------------------
+Item Name: Grabit - Multipurpose eCommerce HTML Template.
+Author: Maraviya Infotech
+Version: 3.0.2
+Copyright 2024
+----------------------------------------------------------------------------------->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:03 GMT -->
+    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:33:51 GMT -->
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-
-        <title>Order Detail</title>
-        <meta name="keywords" content="tailwindcss, ecommerce, farming, food market, grocery market, grocery shop, grocery store, grocery supper market, multi vendor, organic food, supermarket, supermarket grocery">
-        <meta name="description" content="Multipurpose eCommerce Tailwind CSS Template">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords"
+              content="admin, dashboard, crm, analytics, ecommerce, team, vendor, ai chat bot, backend, panel" />
+        <meta name="description" content="Grabit - Admin.">
         <meta name="author" content="Maraviya Infotech">
 
-        <!-- site Favicon -->
-        <link rel="icon" href="assets/img/favicon/favicon.png" sizes="32x32">
+        <title>Order detail</title>
 
-        <!-- css Icon Font -->
-        <link rel="stylesheet" href="assets/css/vendor/gicons.css">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/img/favicon/favicon.png">
 
-        <!-- css All Plugins Files -->
-        <link rel="stylesheet" href="assets/css/plugins/animate.css">
-        <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css">
-        <link rel="stylesheet" href="assets/css/plugins/owl.carousel.min.css">
-        <link rel="stylesheet" href="assets/css/plugins/owl.theme.default.min.css">
-        <link rel="stylesheet" href="assets/css/plugins/slick.min.css">
-        <link rel="stylesheet" href="assets/css/plugins/nouislider.css">
+        <!-- Icon CSS -->
+        <link href="dashboard/assets/css/vendor/materialdesignicons.min.css" rel="stylesheet">
+        <link href="dashboard/assets/css/vendor/remixicon.css" rel="stylesheet">
+        <link href="dashboard/assets/css/vendor/owl.carousel.min.css" rel="stylesheet">
 
-        <!-- Tailwindcss -->
-        <script src="assets/js/plugins/tailwindcss3.4.1"></script>
+        <!-- Vendor CSS -->
+        <link href='dashboard/assets/css/vendor/datatables.bootstrap5.min.css' rel='stylesheet'>
+        <link href='dashboard/assets/css/vendor/responsive.datatables.min.css' rel='stylesheet'>
+        <link href='dashboard/assets/css/vendor/daterangepicker.css' rel='stylesheet'>
+        <link href="dashboard/assets/css/vendor/simplebar.css" rel="stylesheet">
+        <link href="dashboard/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
+        <link href="dashboard/assets/css/vendor/apexcharts.css" rel="stylesheet">
+        <link href="dashboard/assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet">
 
-        <!-- Main Style -->
-        <link rel="stylesheet" id="main_style" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/responsive.css">
-
+        <!-- Main CSS -->
+        <link id="main-css" href="dashboard/assets/css/style.css" rel="stylesheet">
+        <style>
+            .option{
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px
+            }
+        </style>
     </head>
 
-    <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">
+    <body>
+        <main class="wrapper sb-default ecom">
 
 
-        <jsp:include page="header.jsp" />
+            <!-- main content -->
+            <div class="">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="gi-card gi-invoice max-width-1170">
 
-        <!-- Breadcrumb start -->
-        <div class="gi-breadcrumb mb-[40px]">
-            <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
-                <div class="flex flex-wrap w-full">
-                    <div class="w-full px-[12px]">
-                        <div class="flex flex-wrap m-0 p-[15px] border-[1px] border-solid border-[#eee] rounded-b-[5px] border-t-[0] gi_breadcrumb_inner">
-                            <div class="min-[768px]:w-[50%] w-full px-[12px]">
-                                <h2 class="gi-breadcrumb-title text-[#4b5966] block text-[15px] font-Poppins leading-[22px] font-semibold my-[0] mx-auto capitalize max-[767px]:mb-[5px] max-[767px]:text-center">Order Detail Page</h2>
-                            </div>
-                            <div class="min-[768px]:w-[50%] w-full px-[12px]">
-                                <!-- gi-breadcrumb-list start -->
-                                <ul class="gi-breadcrumb-list text-right max-[767px]:text-center">
-                                    <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize"><a href="index.html" class="relative text-[#4b5966]">Home</a></li>
-                                    <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize active">Order Detail Page</li>
-                                </ul>
-                                <!-- gi-breadcrumb-list end -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Breadcrumb end -->
+                                <div class="gi-card-content card-default">
 
-        <!-- Wishlist section -->
-        <section class="gi-faq py-[40px] max-[767px]:py-[30px] gi-wishlist">
-            <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+                                    <div class="invoice-wrapper">
 
-                <div class="flex flex-wrap w-full">
-                    <div class="w-full px-[12px]">
-                        <div class="gi-vendor-dashboard-card border-[1px] border-solid border-[#eee] rounded-[5px] overflow-y-auto">
-                            <div class="gi-vendor-card-header min-w-[700px] p-[30px] border-b-[1px] border-solid border-[#eee] flex justify-between items-center">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-4 col-sm-6">
+                                                <img src="assets/img/logo/logo.png" alt="logo" style="height: 100px; width: 200px;">
 
-                                <h5 class="m-[0] text-[18px] uppercase font-bold text-[#777] tracking-[0.01rem] leading-[1.2]">
-                                    Order ${requestScope.order.id} :    <span class="max-[767px]:text-[14px] py-[14px]  text-[#5caf90] tracking-[0.02rem]">
-                                        $<fmt:formatNumber value="${requestScope.order.totalAmount}" maxFractionDigits="2" minFractionDigits="0" />
-                                    </span>
+                                                <address>
+                                                    <br> Khu cong nghe cao Hoa Lac - Km29, ĐCT08, Thach Hoa, Thach That, Ha Noi, Viet Nam
+                                                </address>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 col-sm-6">
+                                                <p class="text-dark mb-2">From</p>
 
-                                </h5>
-                                <c:if test="${requestScope.order.status.id == 1 || requestScope.order.status.id == 2}">
-                                    <div class="gi-header-btn">
-                                        <a onclick="sendOrderId(${requestScope.order.id})"  class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#FF0000] text-[#fff] text-center rounded-[5px] hover:bg-[#FF6666] hover:text-[#fff]" href="javascript:void(0)">Cancel order</a>
+                                                <address>
+                                                    <span>Golden Finger</span>
+                                                    <br> FPT University - PRJ301
+                                                    <br> <span>Email:</span> chande36@gmail.com
+                                                    <br> <span>Phone:</span> 0982226376
+                                                </address>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 col-sm-6">
+                                                <p class="text-dark mb-2">To</p>
+
+                                                <address>
+                                                    <span>${requestScope.order.fullName}</span>
+                                                    <br> ${requestScope.order.address}                                    
+                                                    <br> <span>Phone:</span> ${requestScope.order.phone}
+                                                    <br> <span>Status</span>: ${requestScope.order.status.statusName}
+                                                </address>
+                                            </div>
+
+                                        </div>
+                                        <div class="gi-chart-header">
+                                            <div class="block">
+                                                <h6>Invoice</h6>
+                                                <h5>#${requestScope.order.id}
+                                                </h5>
+                                            </div>
+                                            <div class="block">
+                                                <h6>Amount</h6>
+                                                <h5>
+                                                    $<fmt:formatNumber value="${requestScope.order.totalAmount}" maxFractionDigits="2" minFractionDigits="0" />
+                                                </h5>
+                                            </div>
+                                            <div class="block">
+                                                <h6>Quantity</h6>
+                                                <h5>30
+                                                </h5>
+                                            </div>
+                                            <div class="block">
+                                                <h6>Date</h6>
+                                                <h5>${requestScope.order.date}
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive tbl-800">
+                                            <div>
+                                                <table class="table-invoice table-striped" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Product</th>
+                                                            <th>Name</th>
+                                                            <th>Category</th>
+                                                            <th>Quantity</th>
+                                                            <th>Unit_Cost</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <c:forEach var="item" items="${requestScope.orderDetailList}" varStatus="loop">
+                                                            <tr>
+                                                                <td>${loop.index + 1}</td>
+                                                                <td><img class="invoice-item-img" src="${item.product.image[0]}"
+                                                                         alt="product-image"></td>
+                                                                <td>${item.product.name} </td>
+                                                                <td>${item.product.category.name}</td>
+                                                                <td>${item.quantity}</td>
+                                                                <td> $<fmt:formatNumber value="${(item.unitPrice - item.unitPrice * item.discount)}" maxFractionDigits="2" minFractionDigits="0" /></td>
+                                                                <td>$<fmt:formatNumber value="${(item.unitPrice - item.unitPrice * item.discount) * item.quantity}" maxFractionDigits="2" minFractionDigits="0" /></td>
+                                                            </tr>
+                                                        </c:forEach>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-end inc-total">
+                                            <div class="col-lg-9 order-lg-1 order-md-2 order-sm-2">
+                                                <div class="note">
+                                                    <label>Comment</label>
+                                                    <p>${requestScope.order.comment}</p>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 order-lg-2 order-md-1 order-sm-1">
+                                                <ul class="list-unstyled">
+                                                    <li class="mid pb-3 text-dark"> Subtotal
+                                                        <span
+                                                            class="d-inline-block float-right text-default">$<fmt:formatNumber value="${requestScope.order.totalAmount}" maxFractionDigits="2" minFractionDigits="0" /></span>
+                                                    </li>
+
+                                                    <li class="mid pb-3 text-dark">Vat(0%)
+                                                        <span class="d-inline-block float-right text-default">$0.00</span>
+                                                    </li>
+
+                                                    <li class="text-dark">Total
+                                                        <span class="d-inline-block float-right">$<fmt:formatNumber value="${requestScope.order.totalAmount}" maxFractionDigits="2" minFractionDigits="0" /></span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                </c:if>
-                            </div>
-                            <div class="gi-vendor-card-body min-w-[700px] p-[30px]">
-                                <div class="gi-vendor-card-table">
-                                    <table class="table gi-table w-full mb-[1rem]">
-                                        <thead>
-                                            <tr>
-
-                                                <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Product</th>
-                                                <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Name</th>
-
-                                                <th scope="col" class="p-[0.5rem] text-left text-[#4b5966] text-center">Quantity</th>
-                                                <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Price</th>
-                                                <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="wish-empt border-t-[3px] border-solid border-[#eee] border-solid border-[#dee2e6]">
-                                            <c:forEach var="odd" items="${requestScope.orderDetailList}">
-
-
-                                                <tr class="pro-gl-content">
-
-                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
-                                                        <a href="product?pid=${odd.product.id}">
-                                                            <c:if test="${not empty odd.product.image[0]}">
-                                                                <img class="prod-img h-[58px] w-[58px]" src="${odd.product.image[0]}" alt="product image">
-                                                            </c:if>
-
-                                                        </a>
-                                                    </td>
-                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">${odd.product.name}</span></td>
-
-                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6] text-center">
-                                                        <span class="max-[767px]:text-[14px] py-[14px] flex justify-center text-[#777] tracking-[0.02rem]">
-                                                            ${odd.quantity}
-                                                        </span>
-                                                    </td>
-
-                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
-                                                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">
-                                                            $<fmt:formatNumber value="${odd.unitPrice - odd.unitPrice * odd.discount}" maxFractionDigits="2" minFractionDigits="0" />
-                                                        </span>
-                                                    </td>
-
-
-
-                                                    <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
-                                                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">
-                                                            $<fmt:formatNumber value="${(odd.unitPrice - odd.unitPrice * odd.discount) * odd.quantity}" maxFractionDigits="2" minFractionDigits="0" />
-                                                        </span>
-                                                    </td>
-                                                </tr>  
-                                            </c:forEach>
-
-                                        </tbody>
-                                    </table>
+                                    <div class="col-md-12 option">
+                                        <c:if test="${requestScope.order.status.id == 1}">
+                                            <button onclick="sendOrderId(${requestScope.order.id})" class="gi-btn default-btn color-secondary">Cancel Order</button>
+                                        </c:if>
+                                      
+                                            <a href="orderhistory">
+                                                <button class="gi-btn default-btn color-success">Back</button>
+                                            </a>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Wishlist section End -->
 
 
 
 
 
-        <jsp:include page="footer.jsp" />
 
 
+        </main>
 
+        <!-- Vendor Custom -->
+        <script src="dashboard/assets/js/vendor/jquery-3.6.4.min.js"></script>
+        <script src="dashboard/assets/js/vendor/simplebar.min.js"></script>
+        <script src="dashboard/assets/js/vendor/bootstrap.bundle.min.js"></script>
+        <script src="dashboard/assets/js/vendor/apexcharts.min.js"></script>
+        <script src="dashboard/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="dashboard/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="dashboard/assets/js/vendor/owl.carousel.min.js"></script>
+        <!-- Data Tables -->
+        <script src='dashboard/assets/js/vendor/jquery.datatables.min.js'></script>
+        <script src='dashboard/assets/js/vendor/datatables.bootstrap5.min.js'></script>
+        <script src='dashboard/assets/js/vendor/datatables.responsive.min.js'></script>
+        <!-- Caleddar -->
+        <script src="dashboard/assets/js/vendor/jquery.simple-calendar.js"></script>
+        <!-- Date Range Picker -->
+        <script src="dashboard/assets/js/vendor/moment.min.js"></script>
+        <script src="dashboard/assets/js/vendor/daterangepicker.js"></script>
+        <script src="dashboard/assets/js/vendor/date-range.js"></script>
 
-        <!-- Plugins JS -->
-        <script src="assets/js/plugins/jquery-3.7.1.min.js"></script>
-        <script src="assets/js/plugins/popper.min.js"></script>
-        <script src="assets/js/plugins/swiper-bundle.min.js"></script>
-        <script src="assets/js/plugins/fontawesome.js"></script>
-        <script src="assets/js/plugins/owl.carousel.min.js"></script>
-        <script src="assets/js/plugins/infiniteslidev2.js"></script>
-        <script src="assets/js/plugins/jquery.zoom.min.js"></script>
-        <script src="assets/js/plugins/slick.min.js"></script>
-        <script src="assets/js/plugins/nouislider.js"></script>
-        <script src="assets/js/plugins/wow.js"></script>
-
-        <!-- Main Js -->
-        <script src="assets/js/main.js"></script>
-
-
+        <!-- Main Custom -->
+        <script src="dashboard/assets/js/main.js"></script>
+        <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
         <script>
-                                            function sendOrderId(orderId) {
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "cancel",
-                                                    data: {orderId: orderId},
-                                                    success: function (response) {
-                                                        window.location.href = "orderhistory"; // ✅ Chuyển hướng đúng sau khi hủy đơn
-                                                    },
-                                                    error: function () {
-                                                        alert("error");
-                                                    }
-                                                });
-                                            }
+                                              function sendOrderId(orderId) {
+                                                  $.ajax({
+                                                      type: "POST",
+                                                      url: "cancel",
+                                                      data: {orderId: orderId},
+                                                      success: function (response) {
+                                                          window.location.href = "orderhistory"; // ✅ Chuyển hướng đúng sau khi hủy đơn
+                                                      },
+                                                      error: function () {
+                                                          alert("error");
+                                                      }
+                                                  });
+                                              }
 
         </script>
-
     </body>
 
 
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:03 GMT -->
+    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:34:21 GMT -->
 </html>

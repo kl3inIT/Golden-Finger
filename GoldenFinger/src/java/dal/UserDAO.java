@@ -70,7 +70,6 @@ public class UserDAO extends DBConnect {
         }
     }
 
-    
     public boolean createUser(String username, String fullName, String password, String email, String phone, String birthDate, String address) {
         if (connection == null) {
             LOGGER.severe("Database connection is null");
@@ -91,6 +90,37 @@ public class UserDAO extends DBConnect {
             stm.setString(6, birthDate);
             stm.setString(7, address);
             stm.setString(8, phone);
+
+            int rowsAffected = stm.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error creating user", e);
+            return false;
+        }
+    }
+
+    public boolean createUserByAdmin(String username, String fullName, String password, String email, String phone, String birthDate, String address, String status, String role) {
+        if (connection == null) {
+            LOGGER.severe("Database connection is null");
+            return false;
+        }
+
+        // Generate salt and hash password with SHA-256
+        String salt = PasswordUtils.generateSalt();
+        String hashedPassword = PasswordUtils.hashPassword(password, salt);
+
+        String sql = "INSERT INTO Users(Username, FullName, Password, Salt, Email, BirthDay, Address, Phone, RoleID, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stm = connection.prepareStatement(sql)) {
+            stm.setString(1, username);
+            stm.setString(2, fullName);
+            stm.setString(3, hashedPassword);
+            stm.setString(4, salt);
+            stm.setString(5, email);
+            stm.setString(6, birthDate);
+            stm.setString(7, address);
+            stm.setString(8, phone);
+            stm.setString(9, role);
+            stm.setString(10, status);
 
             int rowsAffected = stm.executeUpdate();
             return rowsAffected > 0;
@@ -253,11 +283,11 @@ public class UserDAO extends DBConnect {
         return users;
     }
 
-    public boolean updateStatusOfUser(int userId) {
+    public boolean disableUser(String userId) {
         String sql = "UPDATE Users SET Status = 0 WHERE UserID = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, userId);
+            stmt.setString(1, userId);
             return stmt.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -265,10 +295,16 @@ public class UserDAO extends DBConnect {
         }
     }
 
-    
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        System.out.println(dao.updateStatusOfUser(0));
-       
+    public boolean enableUser(String userId) {
+        String sql = "UPDATE Users SET Status = 1 WHERE UserID = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, userId);
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+
 }

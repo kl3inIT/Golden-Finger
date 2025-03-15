@@ -630,7 +630,7 @@ public class ProductDAO extends DBConnect {
             ps.setString(11, describe);
             ps.setString(12, releaseDate);
             ps.setString(13, discount);
-  
+ 
             ps.setString(14, categoryId);
             ps.setString(15, supplierId);
             ps.setInt(16, id);

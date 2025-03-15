@@ -27,20 +27,17 @@ public class AccountListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-
-        if ("update".equals(action)) {
-            String idParam = request.getParameter("id");
-
-            if (idParam != null) {
-                int id = Integer.parseInt(idParam);
-                boolean success = ud.updateStatusOfUser(id);
-            }// Cũng thế
-
-            List<User> listUser = ud.getUsersByRole(1);
-            request.setAttribute("listUser", listUser);
-            request.getRequestDispatcher("dashboard/accountlist.jsp").forward(request, response);
+        String idParam = request.getParameter("id");
+        String type = request.getParameter("type");
+        if (type.equals("disable")) {
+            ud.disableUser(idParam);
         }
+        if (type.equals("enable")) {
+            ud.enableUser(idParam);
+        }
+        List<User> listUser = ud.getUsersByRole(1);
+        request.setAttribute("listUser", listUser);
+        request.getRequestDispatcher("dashboard/accountlist.jsp").forward(request, response);
     }
 
     @Override

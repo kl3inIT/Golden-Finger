@@ -263,7 +263,7 @@ Copyright 2024
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label class="form-label">Discount</label>
-                                                            <input type="number" min="0" max="1" step="0.1" class="form-control" id="quantity1" name="discount" required>
+                                                            <input type="number" min="0" max="1" step="0.01" class="form-control" id="quantity1" name="discount" required>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label class="form-label">Include</label>

@@ -38,7 +38,7 @@
 
     </head>
 
-    <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">
+    <body class="w-full h-full relative font-Quicksand font-normal overflow-x-hidden">
 
 
         <jsp:include page="header.jsp" />
@@ -164,16 +164,49 @@
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Phone*</label>
                                                         <input value="${requestScope.user.phone}" type="text" name="phone" placeholder="Enter your phone" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
                                                     </span>
-                                                    <span class="gi-bill-wrap w-full px-[15px]">
-                                                        <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Address*</label>
-                                                        <input value="${requestScope.user.address}" type="text" name="address" placeholder="Enter your address" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
+
+
+
+
+                                                    <span class="gi-bill-wrap w-full px-[15px]" style="margin-bottom: 15px">
+                                                        <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Province/City*</label>
+                                                        <select class="mb-[7px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block" id="province" name="province" required>
+                                                            <option  value="">Select Province</option>
+                                                        </select>
                                                     </span>
+
+                                                    <span class="gi-bill-wrap w-full px-[15px]" style="margin-bottom: 15px">
+                                                        <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">District*</label>
+                                                        <select class="mb-[7px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block" id="district" name="district" required>
+                                                            <option value="">Select District</option>
+                                                        </select>
+                                                    </span>
+
+                                                    <span class="gi-bill-wrap w-full px-[15px]" style="margin-bottom: 15px">
+                                                        <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Ward*</label>
+                                                        <select class="mb-[7px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block" id="ward" name="ward" required>
+                                                            <option value="">Select Ward</option>
+                                                        </select>
+                                                    </span>
+
+                                                    <span class="gi-bill-wrap w-full px-[15px]">
+                                                        <input type="hidden" name="provinceName">
+                                                        <input type="hidden" name="districtName">
+                                                        <input type="hidden" name="wardName">
+                                                    </span>
+                                                    
+                                                    <span class="gi-bill-wrap w-full px-[15px]">
+                                                        <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Street name, building, house number*</label>
+                                                        <input value="" type="text" name="address" placeholder="Enter your street..." class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required>
+                                                    </span>
+
                                                     <span class="gi-bill-wrap w-full px-[15px]">
                                                         <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Comment</label>
                                                         <input type="text" name="comment" placeholder="Enter your comment" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]">
                                                     </span>
+
                                                     <input type="hidden" name="totalBill" value="${requestScope.totalAmount}">
-                                                           <input type="hidden" name="paymentMethod" id="paymentMethod" value="COD">
+                                                    <input type="hidden" name="paymentMethod" id="paymentMethod" value="COD">
                                                     <!-- Payment Method Section -->
                                                     <div class="w-full px-[15px] mb-[30px]">
                                                         <h4 class="text-[#4b5966] text-[16px] font-semibold mb-[15px]">Payment Method</h4>
@@ -309,6 +342,97 @@
                                                                 document.querySelector('form[action="payment"]').onsubmit = function (e) {
                                                                     return validateAndSubmitForm();
                                                                 };
+
+
+                                                                document.addEventListener("DOMContentLoaded", function () {
+                                                                    let provinceSelect = document.getElementById("province");
+                                                                    let districtSelect = document.getElementById("district");
+                                                                    let wardSelect = document.getElementById("ward");
+
+                                                                    let provinceNameInput = document.querySelector("input[name='provinceName']");
+                                                                    let districtNameInput = document.querySelector("input[name='districtName']");
+                                                                    let wardNameInput = document.querySelector("input[name='wardName']");
+
+                                                                    // Load danh sách tỉnh/thành
+                                                                    fetch("https://provinces.open-api.vn/api/p/")
+                                                                            .then(response => response.json())
+                                                                            .then(data => {
+                                                                                provinceSelect.innerHTML = '<option value="">Select Province</option>';
+                                                                                data.forEach(province => {
+                                                                                    let option = document.createElement("option");
+                                                                                    option.value = province.code;
+                                                                                    option.textContent = province.name;
+                                                                                    provinceSelect.appendChild(option);
+                                                                                });
+                                                                            })
+                                                                            .catch(error => console.error("❌ Lỗi khi tải danh sách tỉnh/thành:", error));
+
+                                                                    // Khi chọn tỉnh/thành -> Cập nhật input ẩn & load quận/huyện
+                                                                    provinceSelect.addEventListener("change", function () {
+                                                                        let provinceCode = this.value.trim();
+                                                                        let selectedOption = this.options[this.selectedIndex];
+                                                                        provinceNameInput.value = selectedOption.textContent; // Cập nhật tên tỉnh
+
+                                                                        if (!provinceCode)
+                                                                            return;
+
+                                                                        districtSelect.innerHTML = '<option value="">Select District</option>';
+                                                                        wardSelect.innerHTML = '<option value="">Select Ward</option>';
+                                                                        districtSelect.disabled = true;
+                                                                        wardSelect.disabled = true;
+
+                                                                        let apiUrl = "https://provinces.open-api.vn/api/p/" + provinceCode + "?depth=2";
+                                                                        fetch(apiUrl)
+                                                                                .then(response => response.json())
+                                                                                .then(data => {
+                                                                                    data.districts.forEach(district => {
+                                                                                        let option = document.createElement("option");
+                                                                                        option.value = district.code;
+                                                                                        option.textContent = district.name;
+                                                                                        districtSelect.appendChild(option);
+                                                                                    });
+
+                                                                                    districtSelect.disabled = false;
+                                                                                })
+                                                                                .catch(error => console.error("❌ Lỗi khi tải danh sách quận/huyện:", error));
+                                                                    });
+
+                                                                    // Khi chọn quận/huyện -> Cập nhật input ẩn & load phường/xã
+                                                                    districtSelect.addEventListener("change", function () {
+                                                                        let districtCode = this.value.trim();
+                                                                        let selectedOption = this.options[this.selectedIndex];
+                                                                        districtNameInput.value = selectedOption.textContent; // Cập nhật tên quận/huyện
+
+                                                                        if (!districtCode)
+                                                                            return;
+
+                                                                        wardSelect.innerHTML = '<option value="">Select Ward</option>';
+                                                                        wardSelect.disabled = true;
+
+                                                                        let apiUrl = "https://provinces.open-api.vn/api/d/" + districtCode + "?depth=2";
+                                                                        fetch(apiUrl)
+                                                                                .then(response => response.json())
+                                                                                .then(data => {
+                                                                                    data.wards.forEach(ward => {
+                                                                                        let option = document.createElement("option");
+                                                                                        option.value = ward.code;
+                                                                                        option.textContent = ward.name;
+                                                                                        wardSelect.appendChild(option);
+                                                                                    });
+
+                                                                                    wardSelect.disabled = false;
+                                                                                })
+                                                                                .catch(error => console.error(" Lỗi khi tải danh sách phường/xã:", error));
+                                                                    });
+
+                                                                    // Khi chọn phường/xã -> Cập nhật input ẩn
+                                                                    wardSelect.addEventListener("change", function () {
+                                                                        let selectedOption = this.options[this.selectedIndex];
+                                                                        wardNameInput.value = selectedOption.textContent; // Cập nhật tên phường/xã
+                                                                    });
+                                                                });
+
+
         </script>
 
     </body>

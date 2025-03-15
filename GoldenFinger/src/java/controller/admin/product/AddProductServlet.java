@@ -97,6 +97,8 @@ public class AddProductServlet extends HttpServlet {
     }
     
     
+ 
+    
 
     /**
      * Returns a short description of the servlet.

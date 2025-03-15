@@ -64,7 +64,12 @@ public class PaymentServlet extends HttpServlet {
 
         String fullName = req.getParameter("fullname");
         String phone = req.getParameter("phone");
-        String address = req.getParameter("address");
+        
+        String provinceName = req.getParameter("provinceName");
+        String districtName = req.getParameter("districtName");
+        String wardName = req.getParameter("wardName");      
+        String adressDetail = req.getParameter("address");
+        String address = adressDetail + ", " + wardName + ", " + districtName + ", " + provinceName;
         String comment = req.getParameter("comment");
         String bankCode = req.getParameter("bankCode");
 

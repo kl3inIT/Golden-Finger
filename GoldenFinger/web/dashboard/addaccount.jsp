@@ -43,7 +43,7 @@ Copyright 2024
         <link href="dashboard/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
         <link href="dashboard/assets/css/vendor/apexcharts.css" rel="stylesheet">
         <link href="dashboard/assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <!-- Main CSS -->
         <link id="main-css" href="dashboard/assets/css/style.css" rel="stylesheet">
 
@@ -176,71 +176,58 @@ Copyright 2024
                             <div class="gi-card card-default">
                                 <div class="gi-card-content">
                                     <div class="row gi-product-uploads">
-                                        <div class="col-lg-2 mb-991">
-                                            <div class="gi-vendor-img-upload">
-                                                <div class="gi-vendor-main-img">
-                                                    <div class="avatar-upload">
-                                                        <div class="avatar-edit">
-                                                            <input type='file' id="product_main" class="gi-image-upload"
-                                                                   accept=".png, .jpg, .jpeg">
-                                                            <label><i class="ri-pencil-line"></i></label>
-                                                        </div>
-                                                        <div class="avatar-preview gi-preview">
-                                                            <div class="imagePreview gi-div-preview">
-                                                                <img class="gi-image-preview"
-                                                                     src="dashboard/assets/img/product/preview.jpg" alt="edit">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-10">
+
+                                        <div class="col-lg-12">
                                             <div class="gi-vendor-upload-detail">
-                                                <form class="row g-3">
+                                                <form class="row g-3" action="addaccount" method="post">
                                                     <div class="col-md-6">
                                                         <label for="" class="form-label">Full name</label>
-                                                        <input type="text" class="form-control slug-title" id="">
+                                                        <input type="text" name="name" class="form-control slug-title" id="" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Select Role</label>
-                                                        <select class="form-control form-select">
+                                                        <select class="form-control form-select" name="role" required>
                                                             <option value="1">User</option>
                                                             <option value="2">Admin</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Username</label>
-                                                        <input type="text" class="form-control" id="userInfoDisplay">
+                                                        <input type="text" name="username" class="form-control" id="userInfoDisplay" required>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Password <span>(At least 6 characters)
-                                                            </span></label>
-                                                        <input type="text" class="form-control" id="passwordStrength">
+                                                        <label class="form-label">Password <span>(At least 6 characters)</span></label>
+                                                        <div style="position: relative;">
+                                                            <input type="password" name="password" class="form-control" minlength="6" id="passwordStrength" required 
+                                                                   style="padding-right: 40px;">
+                                                            <i id="toggleIcon" class="fa fa-eye" onclick="togglePassword()" 
+                                                               style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px;">
+                                                            </i>
+                                                        </div>
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <label class="form-label">Email</label>
-                                                        <input type="email" class="form-control" id="emailVerificationForm">
+                                                        <input type="email" name="email" class="form-control" id="emailVerificationForm" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="" class="form-label">Address</label>
-                                                        <input type="text" class="form-control slug-title" id="">
+                                                        <input type="text" name="address" class="form-control slug-title" id="" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Status</label>
-                                                        <select class="form-control form-select">
+                                                        <select class="form-control form-select" name="status" required>
                                                             <option value="1">Enable</option>
-                                                            <option value="2">Disable</option>
+                                                            <option value="0">Disable</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="" class="form-label">Phone</label>
-                                                        <input type="text" class="form-control slug-title" id="">
+                                                        <input type="text" name="phone" class="form-control slug-title" id="" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="" class="form-label">Birth Day</label>
-                                                        <input type="date" class="form-control slug-title" id="">
+                                                        <input type="date" name="dob" class="form-control slug-title" id="" required>
                                                     </div>
 
                                                     <div class="col-md-12">
@@ -287,6 +274,29 @@ Copyright 2024
         <!-- Main Custom -->
         <script src="dashboard/assets/js/main.js"></script>
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
+        <script>
+                                                                document.addEventListener("DOMContentLoaded", function () {
+                                                                    let today = new Date().toISOString().split("T")[0];
+                                                                    document.querySelectorAll("input[type='date']").forEach(input => {
+                                                                        input.setAttribute("max", today);
+                                                                    });
+                                                                });
+
+                                                                function togglePassword() {
+                                                                    let passwordInput = document.getElementById("passwordStrength");
+                                                                    let icon = document.getElementById("toggleIcon");
+
+                                                                    if (passwordInput.type === "password") {
+                                                                        passwordInput.type = "text";
+                                                                        icon.classList.remove("fa-eye");
+                                                                        icon.classList.add("fa-eye-slash");
+                                                                    } else {
+                                                                        passwordInput.type = "password";
+                                                                        icon.classList.remove("fa-eye-slash");
+                                                                        icon.classList.add("fa-eye");
+                                                                    }
+                                                                }
+        </script>
     </body>
 
 

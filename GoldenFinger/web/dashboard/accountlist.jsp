@@ -215,18 +215,22 @@ Copyright 2024
                                                                 </button>
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item" href="#">Edit</a>
-                                                                    <form action="accountlist" method="post" id="updateForm">
-                                                                        <input type="hidden" name="action" value="update">
+                                                                    <form action="accountlist" method="post" id="updateForm">                               
                                                                         <input type="hidden" name="id" id="userId">
+                                                                        <input type="hidden" name="type" id="typeId">
                                                                     </form>
 
                                                                     <script>
-                                                                        function updateStatusUser(id) {
+                                                                        function updateStatusUser(id, type) {
                                                                             document.getElementById("userId").value = id;
+                                                                            document.getElementById("typeId").value = type;
                                                                             document.getElementById("updateForm").submit();
+                                                                            
+                                     
                                                                         }
                                                                     </script>
-                                                                    <a class="dropdown-item" href="#" onclick="updateStatusUser(${u.id})">Disable</a>
+                                                                    <a class="dropdown-item" href="#" onclick="updateStatusUser(${u.id}, 'enable')">Enable</a>
+                                                                    <a class="dropdown-item" href="#" onclick="updateStatusUser(${u.id}, 'disable')">Disable</a>
                                                                 </div>
                                                             </div>
                                                         </td>

@@ -4078,7 +4078,6 @@ table.dataTable td {
     font-size: 13px;
     font-weight: 400;
     vertical-align: middle;
-    text-transform: capitalize;
 }
 table.dataTable td .btn-outline-success.dropdown-toggle.show:focus, table.dataTable td .btn-outline-success.dropdown-toggle.show:active, table.dataTable td .btn-group > :not(.btn-check) + .btn:focus, table.dataTable td .btn-group > :not(.btn-check) + .btn:active, table.dataTable td .btn-group > .btn:not(:last-child):not(.dropdown-toggle):focus, table.dataTable td .btn-group > .btn:not(:last-child):not(.dropdown-toggle):active {
     -webkit-box-shadow: none;
@@ -7055,6 +7054,8 @@ div.dataTables_wrapper div.dataTables_info {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
+
+
 .gi-buttons .gi-btn {
     margin: 5px;
 }

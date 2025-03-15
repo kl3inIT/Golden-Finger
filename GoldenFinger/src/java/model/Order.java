@@ -11,6 +11,8 @@ public class Order {
     private int userId;
     private String fullName;
     private String phone;
+    private String address;
+    private String comment;
     private float totalAmount;
 
     public float getTotalAmount() {
@@ -28,8 +30,7 @@ public class Order {
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
-    private String address;
-    private String comment;
+    
 
     public String getComment() {
         return comment;
