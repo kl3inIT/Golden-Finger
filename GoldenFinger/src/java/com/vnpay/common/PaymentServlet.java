@@ -116,7 +116,7 @@ public class PaymentServlet extends HttpServlet {
                     resp.addCookie(c);
                 }
             }
-            resp.sendRedirect("orderhistory");
+            resp.sendRedirect("orderdetail?oid=" + orderId);
         } else {
             req.setAttribute("error", "Failed to create order. Please try again.");
             req.getRequestDispatcher("checkout").forward(req, resp);

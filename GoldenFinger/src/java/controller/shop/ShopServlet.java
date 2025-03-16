@@ -18,7 +18,7 @@ import utils.ServletUtils;
 @WebServlet(name = "ShopServlet", urlPatterns = {"/shop"})
 public class ShopServlet extends HttpServlet {
 
-    private static final int PRODUCTS_PER_PAGE = 3;
+    private static final int PRODUCTS_PER_PAGE = 8;
     private final ProductDAO pd = new ProductDAO();
     private final SupplierDAO sd = new SupplierDAO();
     private final CategoryDAO cd = new CategoryDAO();

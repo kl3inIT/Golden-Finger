@@ -223,7 +223,7 @@ Copyright 2024
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="" class="form-label">Phone</label>
-                                                        <input type="text" name="phone" class="form-control slug-title" id="" required>
+                                                        <input type="number" name="phone" class="form-control slug-title" id="" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="" class="form-label">Birth Day</label>

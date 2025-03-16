@@ -75,8 +75,9 @@ Copyright 2024
 
                                         <div class="row">
                                             <div class="col-md-6 col-lg-4 col-sm-6">
-                                                <img src="assets/img/logo/logo.png" alt="logo" style="height: 100px; width: 200px;">
-
+                                                <a href="home">
+                                                    <img src="assets/img/logo/logo.png" alt="logo" style="height: 100px; width: 200px;">
+                                                </a>                                               
                                                 <address>
                                                     <br> Khu cong nghe cao Hoa Lac - Km29, ĐCT08, Thach Hoa, Thach That, Ha Noi, Viet Nam
                                                 </address>
