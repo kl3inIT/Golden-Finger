@@ -1,21 +1,10 @@
-<%-- 
-    Document   : dashboard
-    Created on : Mar 10, 2025, 11:23:45 AM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!-----------------------------------------------------------------------------------
-Item Name: Grabit - Multipurpose eCommerce HTML Template.
-Author: Maraviya Infotech
-Version: 3.0.2
-Copyright 2024
------------------------------------------------------------------------------------>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:33:51 GMT -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,10 +63,6 @@ Copyright 2024
                             </div>
                         </div>
                         <div class="right-header">
-
-
-
-
                             <div class="gi-right-tool gi-user-drop">
                                 <div class="gi-hover-drop">
                                     <div class="gi-hover-tool">
@@ -157,7 +142,6 @@ Copyright 2024
                 </div>
             </div>
 
-
             <!-- main content -->
             <div class="gi-main-content">
                 <div class="container-fluid">
@@ -173,12 +157,12 @@ Copyright 2024
                                                 <span class="icon"><i class="ri-shield-user-line"></i></span>
                                                 <div class="growth-numbers">
                                                     <h4>Customers</h4>
-                                                    <h5>698k</h5>
+                                                    <h5>${totalCustomers}</h5>
                                                 </div>
                                             </div>
-                                            <p class="card-groth up">
-                                                <i class="ri-arrow-up-line"></i>
-                                                25%
+                                            <p class="card-groth ${customerGrowth >= 0 ? 'up' : 'down'}">
+                                                <i class="${customerGrowth >= 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line'}"></i>
+                                                <fmt:formatNumber value="${customerGrowth}" maxFractionDigits="1" minFractionDigits="0" />%
                                                 <span>Last Month</span>
                                             </p>
                                         </div>
@@ -191,12 +175,12 @@ Copyright 2024
                                                 <span class="icon"><i class="ri-shopping-bag-3-line"></i></span>
                                                 <div class="growth-numbers">
                                                     <h4>Order</h4>
-                                                    <h5>10.63k</h5>
+                                                    <h5>${totalOrders}</h5>
                                                 </div>
                                             </div>
-                                            <p class="card-groth down">
-                                                <i class="ri-arrow-down-line"></i>
-                                                .5%
+                                            <p class="card-groth ${orderGrowth >= 0 ? 'up' : 'down'}">
+                                                <i class="${orderGrowth >= 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line'}"></i>
+                                                <fmt:formatNumber value="${orderGrowth}" maxFractionDigits="1" minFractionDigits="0" />%
                                                 <span>Last Month</span>
                                             </p>
                                         </div>
@@ -209,12 +193,12 @@ Copyright 2024
                                                 <span class="icon"><i class="ri-money-dollar-circle-line"></i></span>
                                                 <div class="growth-numbers">
                                                     <h4>Revenue</h4>
-                                                    <h5>$85420</h5>
+                                                    <h5>$${String.format("%.0f", totalRevenue)}</h5>
                                                 </div>
                                             </div>
-                                            <p class="card-groth down">
-                                                <i class="ri-arrow-down-line"></i>
-                                                2.1%
+                                            <p class="card-groth ${revenueGrowth >= 0 ? 'up' : 'down'}">
+                                                <i class="${revenueGrowth >= 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line'}"></i>
+                                                <fmt:formatNumber value="${revenueGrowth}" maxFractionDigits="1" minFractionDigits="0" />%
                                                 <span>Last Month</span>
                                             </p>
                                         </div>
@@ -232,29 +216,35 @@ Copyright 2024
                                     <div class="header-tools">
                                         <a href="javascript:void(0)" class="m-r-10 gi-full-card" title="Full Screen"><i
                                                 class="ri-fullscreen-line"></i></a>
-                                        <div class="gi-date-range date">
-                                            <span></span>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="gi-card-content">
                                     <div class="gi-chart-header">
                                         <div class="block">
                                             <h6>Orders</h6>
-                                            <h5>825
-                                                <span class="up"><i class="ri-arrow-up-line"></i>24%</span>
+                                            <h5>${totalOrders}
+                                                <span class="${orderGrowth >= 0 ? 'up' : 'down'}">
+                                                    <i class="${orderGrowth >= 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line'}"></i>
+                                                    <fmt:formatNumber value="${orderGrowth}" maxFractionDigits="1" minFractionDigits="0" />%
+                                                </span>
                                             </h5>
                                         </div>
                                         <div class="block">
                                             <h6>Revenue</h6>
-                                            <h5>$89k
-                                                <span class="up"><i class="ri-arrow-up-line"></i>24%</span>
+                                            <h5>$${String.format("%.2f", totalRevenue/1000)}k
+                                                <span class="${revenueGrowth >= 0 ? 'up' : 'down'}">
+                                                    <i class="${revenueGrowth >= 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line'}"></i>
+                                                    <fmt:formatNumber value="${revenueGrowth}" maxFractionDigits="1" minFractionDigits="0" />%
+                                                </span>
                                             </h5>
                                         </div>
                                         <div class="block">
                                             <h6>Customers</h6>
-                                            <h5>$68k
-                                                <span class="down"><i class="ri-arrow-down-line"></i>24%</span>
+                                            <h5>${totalCustomers}
+                                                <span class="${customerGrowth >= 0 ? 'up' : 'down'}">
+                                                    <i class="${customerGrowth >= 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line'}"></i>
+                                                    <fmt:formatNumber value="${customerGrowth}" maxFractionDigits="1" minFractionDigits="0" />%
+                                                </span>
                                             </h5>
                                         </div>
                                     </div>
@@ -271,7 +261,7 @@ Copyright 2024
                                 <div class="gi-card-header">
                                     <h4 class="gi-card-title">Recent Orders</h4>
                                     <div class="header-tools">
-                                        <a href="javascript:void(0)" class="m-r-10 gi-full-card" title="Full Screen"><i
+                                        <a href="javascript:void(0)" class="m-r-10 gi-full-card"><i
                                                 class="ri-fullscreen-line"></i></a>
                                         <div class="gi-date-range dots">
                                             <span></span>
@@ -280,30 +270,41 @@ Copyright 2024
                                 </div>
                                 <div class="gi-card-content card-default">
                                     <div class="order-table">
-                                        <div class="table-responsive">
-                                            <table id="recent_order_data_table" class="table">
+                                        <div class="table-responsive tbl-1200">
+                                            <table id="recent_order" class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
-                                                        <th>Product</th>
                                                         <th>Customer</th>
                                                         <th>Amount</th>
+                                                        <th>Date</th>
                                                         <th>Status</th>
-                                                        <th>vendor</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="token">#fx2650</td>
-                                                        <td><img class="cat-thumb" src="dashboard/assets/img/product/1.jpg"
-                                                                 alt="clients Image"><span class="name">Mens t-shirt</span>
-                                                        </td>
-                                                        <td>Avira Venusio</td>
-                                                        <td>$15</td>
-                                                        <td class="cod">COD</td>
-                                                        <td>Melborn Fashion</td>
-                                                    </tr>
-
+                                                    <c:forEach items="${recentOrders}" var="order">
+                                                        <tr>
+                                                            <td class="token">#${order.id}</td>
+                                                            <td>${order.fullName}</td>
+                                                            <td>$${String.format("%.2f", order.totalAmount)}</td>
+                                                            <td>${order.date}</td>
+                                                            <td class="paid">
+                                                                <div class="dropdown">
+                                                                    <span class="dropdown-toggle">${order.status.statusName}</span>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><a class="canceled" href="#">Canceled</a></li>
+                                                                        <li><a class="pending" href="#">Pending</a></li>
+                                                                        <li><a class="comfirmed" href="#">Comfirmed</a></li>
+                                                                        <li><a class="shipping" href="#">Shipping</a></li>
+                                                                        <li><a class="delivered" href="#">Delivered</a></li>
+                                                                        <li><a class="failed" href="#">Failed</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                            <td><a href="orderdetail?id=${order.id}" class="gi-btn default-btn color-info">view</a></td>
+                                                        </tr>
+                                                    </c:forEach>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -314,7 +315,7 @@ Copyright 2024
                     </div>
                     <div class="row">
 
-                        <div class="col-xxl-12 col-xl-12">
+                        <div class="col-xxl- col-xl-12">
                             <div class="gi-card" id="top_product_tbl">
                                 <div class="gi-card-header">
                                     <h4 class="gi-card-title">Top Product</h4>
@@ -340,60 +341,36 @@ Copyright 2024
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td><img class="cat-thumb" src="dashboard/assets/img/product/1.jpg"
-                                                                 alt="clients Image"><span class="name">Mens t-shirt</span>
-                                                        </td>
-                                                        <td>$16</td>
-                                                        <td>162</td>
-                                                        <td>456</td>
-                                                        <td>$3524</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img class="cat-thumb" src="dashboard/assets/img/product/2.jpg"
-                                                                 alt="clients Image"><span class="name">Sofa chair</span>
-                                                        </td>
-                                                        <td>$52</td>
-                                                        <td>178</td>
-                                                        <td>958</td>
-                                                        <td>$8654</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img class="cat-thumb" src="dashboard/assets/img/product/3.jpg"
-                                                                 alt="clients Image"><span class="name">Night Lamp</span>
-                                                        </td>
-                                                        <td>$70</td>
-                                                        <td>198</td>
-                                                        <td>1524</td>
-                                                        <td>$1152</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img class="cat-thumb" src="dashboard/assets/img/product/4.jpg"
-                                                                 alt="clients Image"><span class="name">Mens hoodie</span>
-                                                        </td>
-                                                        <td>$16</td>
-                                                        <td>205</td>
-                                                        <td>253</td>
-                                                        <td>$5645</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img class="cat-thumb" src="dashboard/assets/img/product/5.jpg"
-                                                                 alt="clients Image"><span class="name">Digital Watch</span>
-                                                        </td>
-                                                        <td>$559</td>
-                                                        <td>209</td>
-                                                        <td>456</td>
-                                                        <td>$20546</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img class="cat-thumb" src="dashboard/assets/img/product/6.jpg"
-                                                                 alt="clients Image"><span class="name">DSLR Camera.</span>
-                                                        </td>
-                                                        <td>$1546</td>
-                                                        <td>212</td>
-                                                        <td>98</td>
-                                                        <td>$33500</td>
-                                                    </tr>
+                                                    <c:forEach items="${topProducts}" var="product">
+                                                        <tr>
+                                                            <td>
+                                                                <img class="cat-thumb" src="${product.image[0]}" alt="Product Image">
+                                                                <span class="name">${product.name}</span>
+                                                            </td>
+                                                            <td>$${String.format("%.2f", product.price)}</td>
+                                                            <td>
+                                                                <c:choose>
+                                                                    <c:when test="${orderCountByProductId[product.id] != null}">
+                                                                        ${orderCountByProductId[product.id]}
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        0
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </td>
+                                                            <td>${product.unitInStock}</td>
+                                                            <td>
+                                                                <c:choose>
+                                                                    <c:when test="${totalRevenueByProductId[product.id] != null}">
+                                                                        $${String.format("%.2f", totalRevenueByProductId[product.id])}
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        $0.00
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -409,7 +386,6 @@ Copyright 2024
             <footer>
 
             </footer>
-
 
         </main>
 
@@ -432,11 +408,16 @@ Copyright 2024
         <script src="dashboard/assets/js/vendor/daterangepicker.js"></script>
         <script src="dashboard/assets/js/vendor/date-range.js"></script>
 
+        <script>
+            var revenueData = ${revenueData};
+            var ordersData = ${ordersData};
+            var customersData = ${customersData};
+        </script>
+
         <!-- Main Custom -->
         <script src="dashboard/assets/js/main.js"></script>
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
     </body>
 
 
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:34:21 GMT -->
 </html>
