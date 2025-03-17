@@ -64,10 +64,10 @@ public class PaymentServlet extends HttpServlet {
 
         String fullName = req.getParameter("fullname");
         String phone = req.getParameter("phone");
-        
+
         String provinceName = req.getParameter("provinceName");
         String districtName = req.getParameter("districtName");
-        String wardName = req.getParameter("wardName");      
+        String wardName = req.getParameter("wardName");
         String adressDetail = req.getParameter("address");
         String address = adressDetail + ", " + wardName + ", " + districtName + ", " + provinceName;
         String comment = req.getParameter("comment");
@@ -129,7 +129,13 @@ public class PaymentServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("fullName", req.getParameter("fullname"));
         session.setAttribute("phone", req.getParameter("phone"));
-        session.setAttribute("address", req.getParameter("address"));
+        String provinceName = req.getParameter("provinceName");
+        String districtName = req.getParameter("districtName");
+        String wardName = req.getParameter("wardName");
+        String adressDetail = req.getParameter("address");
+        String address = adressDetail + ", " + wardName + ", " + districtName + ", " + provinceName;
+
+        session.setAttribute("address", address);
         session.setAttribute("comment", req.getParameter("comment"));
 
         long amountVnd = ServletUtils.convertUsdToVnd(amountUsd);
