@@ -291,14 +291,14 @@
                                                             <td>${order.date}</td>
                                                             <td class="paid">
                                                                 <div class="dropdown">
-                                                                    <span class="dropdown-toggle">${order.status.statusName}</span>
+                                                                    <span class="dropdown-toggle ${order.status.toLowerCase()} ">${order.status.statusName}</span>
                                                                     <ul class="dropdown-menu">
-                                                                        <li><a class="canceled" href="#">Canceled</a></li>
-                                                                        <li><a class="pending" href="#">Pending</a></li>
-                                                                        <li><a class="comfirmed" href="#">Comfirmed</a></li>
-                                                                        <li><a class="shipping" href="#">Shipping</a></li>
-                                                                        <li><a class="delivered" href="#">Delivered</a></li>
-                                                                        <li><a class="failed" href="#">Failed</a></li>
+                                                                        <li><a class="canceled" href="javascript:void(0)" onclick="updateStatus(0, ${order.id})">Canceled</a></li>
+                                                                        <li><a class="pending" href="javascript:void(0)" onclick="updateStatus(1, ${order.id})">Pending</a></li>
+                                                                        <li><a class="confirmed" href="javascript:void(0)" onclick="updateStatus(2, ${order.id})">Confirmed</a></li>
+                                                                        <li><a class="shipping" href="javascript:void(0)" onclick="updateStatus(3, ${order.id})">Shipping</a></li>
+                                                                        <li><a class="delivered" href="javascript:void(0)" onclick="updateStatus(4, ${order.id})">Delivered</a></li>
+                                                                        <li><a class="failed" href="javascript:void(0)" onclick="updateStatus(5, ${order.id})">Failed</a></li>
                                                                     </ul>
                                                                 </div>
                                                             </td>
@@ -413,7 +413,24 @@
             var ordersData = ${ordersData};
             var customersData = ${customersData};
         </script>
+        <script>
+            function updateStatus(statusId, orderId) {
+                $.ajax({
+                    type: "POST",
+                    url: "admin",
+                    data: {statusId: statusId,
+                        orderId: orderId
+                    },
+                    success: function (response) {
+                        window.location.href = "orderlist";
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
 
+        </script>
         <!-- Main Custom -->
         <script src="dashboard/assets/js/main.js"></script>
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>

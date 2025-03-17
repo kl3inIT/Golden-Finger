@@ -80,7 +80,10 @@ public class AdminHomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        OrderDAO od = new OrderDAO();
+        String statusId = request.getParameter("statusId");
+        String orderId = request.getParameter("orderId");
+        od.updateStatusOrder(orderId, statusId);
     }
 
     /**

@@ -1,6 +1,8 @@
 package controller.shop;
 
 import dal.OrderDAO;
+import dal.OrderDetailDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -8,6 +10,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.OrderDetail;
 
 
 @WebServlet(name="CancelOrderServlet", urlPatterns={"/cancel"})
@@ -48,8 +52,12 @@ public class CancelOrderServlet extends HttpServlet {
     throws ServletException, IOException {
         try {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
+            ProductDAO pd = new ProductDAO();
             OrderDAO od = new OrderDAO();
-            od.cancelOrder(orderId);
+            OrderDetailDAO odd = new OrderDetailDAO();
+            List<OrderDetail> orderDetailList = odd.getOrderDetailByOrderId(orderId);
+            pd.updateUnitInStock(orderDetailList);
+            od.cancelOrder(orderId);           
             response.sendRedirect("orderhistory");
         } catch (Exception e) {
             e.printStackTrace();

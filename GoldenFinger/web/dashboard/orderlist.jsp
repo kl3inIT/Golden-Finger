@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -90,7 +91,7 @@
                 </div>
             </header>
 
-           <!-- sidebar -->
+            <!-- sidebar -->
             <div class="gi-sidebar-overlay"></div>
             <div class="gi-sidebar" data-mode="dark">
                 <div class="gi-sb-logo">
@@ -186,31 +187,33 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="token">#fx2650</td>
+                                                    <c:forEach var="order" items="${requestScope.orders}">
 
-                                                        <td>Avira Venusio</td>
-                                                        <td>$15</td>
-                                                        <td>2025-01-01</td>
 
-                                                        <td class="paid">
-                                                            <div class="dropdown">
-                                                                <span class="dropdown-toggle ">Pending</span>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a class="canceled" href="#">Canceled</a></li>
-                                                                    <li><a class="pending" href="#">Pending</a></li>
-                                                                    <li><a class="comfirmed" href="#">Comfirmed</a></li>
-                                                                    <li><a class="shipping" href="#">Shipping</a></li>
-                                                                    <li><a class="delivered" href="#">Delivered</a></li>
-                                                                    <li><a class="failed" href="#">Failed</a></li>
+                                                        <tr>
+                                                            <td class="token">#${order.id}</td>
 
-                                                                </ul>
-                                                            </div>
+                                                            <td>${order.fullName}</td>
+                                                            <td>$${String.format("%.0f", order.totalAmount)}</td>
+                                                            <td>${order.date}</td>
 
-                                                        </td>
-                                                        <td><button class="gi-btn default-btn color-info">view</button></td>
-                                                    </tr>
+                                                            <td class="paid">
+                                                                <div class="dropdown">
+                                                                    <span class="dropdown-toggle ${order.status.toLowerCase()} ">${order.status.statusName}</span>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><a class="canceled" href="javascript:void(0)" onclick="updateStatus(0, ${order.id})">Canceled</a></li>
+                                                                        <li><a class="pending" href="javascript:void(0)" onclick="updateStatus(1, ${order.id})">Pending</a></li>
+                                                                        <li><a class="confirmed" href="javascript:void(0)" onclick="updateStatus(2, ${order.id})">Confirmed</a></li>
+                                                                        <li><a class="shipping" href="javascript:void(0)" onclick="updateStatus(3, ${order.id})">Shipping</a></li>
+                                                                        <li><a class="delivered" href="javascript:void(0)" onclick="updateStatus(4, ${order.id})">Delivered</a></li>
+                                                                        <li><a class="failed" href="javascript:void(0)" onclick="updateStatus(5, ${order.id})">Failed</a></li>
+                                                                    </ul>
+                                                                </div>
 
+                                                            </td>
+                                                            <td><a href="invoice?oid=${order.id}"><button class="gi-btn default-btn color-info">view</button></a></td>
+                                                        </tr>
+                                                    </c:forEach>
 
                                                 </tbody>
                                             </table>
@@ -255,6 +258,24 @@
         <!-- Main Custom -->
         <script src="dashboard/assets/js/main.js"></script>
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
+        <script>
+            function updateStatus(statusId, orderId) {
+                $.ajax({
+                    type: "POST",
+                    url: "orderlist",
+                    data: {statusId: statusId,
+                        orderId: orderId
+                    }, 
+                    success: function (response) {
+                        window.location.href = "orderlist"; 
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
+
+        </script>
     </body>
 
 </html>

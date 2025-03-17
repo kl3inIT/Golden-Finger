@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import model.Cart;
 
 import model.Item;
+import model.OrderDetail;
 
 import model.Product;
 
@@ -367,6 +368,25 @@ public class ProductDAO extends DBConnect {
                 PreparedStatement stm = connection.prepareStatement(sql);
 
                 for (Item i : cart.getListItems()) {
+                    stm.setInt(1, i.getQuantity());
+                    stm.setInt(2, i.getProduct().getId());
+                    stm.execute();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public void updateUnitInStock(List<OrderDetail> listOrderDetail) {
+        if (connection != null) {
+            try {
+                String sql = "UPDATE Products "
+                        + " SET UnitsInStock = UnitsInStock + ? "
+                        + " WHERE ProductID  = ?;";
+                PreparedStatement stm = connection.prepareStatement(sql);
+
+                for (OrderDetail i : listOrderDetail) {
                     stm.setInt(1, i.getQuantity());
                     stm.setInt(2, i.getProduct().getId());
                     stm.execute();

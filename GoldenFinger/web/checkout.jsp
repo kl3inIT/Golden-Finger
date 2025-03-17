@@ -99,7 +99,7 @@
                                                 <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
                                                     <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
                                                         <div class="gi-pro-image overflow-hidden">
-                                                            <a href="product-left-sidebar.html" class="image relative block overflow-hidden pointer-events-none">
+                                                            <a href="product?pid=${cart.product.id}" class="image relative block overflow-hidden pointer-events-none">
                                                                 <c:if test="${not empty cart.product.image[0]}">
                                                                     <img class="main-image max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="${cart.product.image[0]}" alt="Product">
                                                                 </c:if>
@@ -111,7 +111,7 @@
                                                     </div>
                                                     <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
                                                         <h5 class="gi-pro-title h-full mb-[10px] text-[16px]">
-                                                            <a href="product-left-sidebar.html" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">Dates Value Pack Pouch</a>
+                                                            <a href="product?pid=${cart.product.id}" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">${cart.product.name}</a>
                                                         </h5>
                                                         <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
                                                             <c:forEach var="i" begin="1" end="${cart.product.starRating}" step="1">

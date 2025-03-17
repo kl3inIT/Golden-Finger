@@ -194,4 +194,48 @@ public class OrderDAO extends DBConnect {
         }
     }
 
+    public List<Order> getAllOrders() {
+        if (connection == null) {
+            LOGGER.severe("Database connection is null");
+            return new ArrayList<>();
+        }
+
+        List<Order> recentOrders = new ArrayList<>();
+        String sql = "SELECT * From Orders "
+                + "ORDER BY Date DESC";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Order order = mapResultSetToOrder(rs);
+                    recentOrders.add(order);
+                }
+            }
+            return recentOrders;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error fetching recent orders", e);
+            return recentOrders;
+        }
+    }
+
+    public boolean updateStatusOrder(String orderId, String statusId) {
+        if (connection == null) {
+            LOGGER.severe("Database connection is null");
+            return false;
+        }
+        String sql = "UPDATE Orders "
+                  + " SET StatusID = ? "
+                  + " WHERE OrderID = ?;";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, statusId);
+            ps.setString(2, orderId);
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error fetching recent orders", e);
+            return false;
+        }
+    }
+
 }

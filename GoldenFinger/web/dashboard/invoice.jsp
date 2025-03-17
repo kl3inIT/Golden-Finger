@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!-----------------------------------------------------------------------------------
 Item Name: Grabit - Multipurpose eCommerce HTML Template.
 Author: Maraviya Infotech
@@ -46,7 +49,15 @@ Copyright 2024
 
         <!-- Main CSS -->
         <link id="main-css" href="dashboard/assets/css/style.css" rel="stylesheet">
-
+        
+        <style>
+            .option{
+                display: flex;
+                justify-content: end;
+                margin-top: 20px
+            }
+        </style>
+        
     </head>
 
     <body>
@@ -189,10 +200,10 @@ Copyright 2024
                                                 <p class="text-dark mb-2">To</p>
 
                                                 <address>
-                                                    <span>John Marle</span>
-                                                    <br> 58 Jamie Ways, North Faye, Q5 5ZP
-                                                    <br> <span>Email</span>: example@gmail.com
-                                                    <br> <span>Phone:</span> +91 5264 521 943
+                                                    <span>${requestScope.order.fullName}</span>
+                                                    <br> ${requestScope.order.address}                                    
+                                                    <br> <span>Phone:</span> ${requestScope.order.phone}
+                                                    <br> <span>Status</span>: ${requestScope.order.status.statusName}
                                                 </address>
                                             </div>
 
@@ -200,22 +211,23 @@ Copyright 2024
                                         <div class="gi-chart-header">
                                             <div class="block">
                                                 <h6>Invoice</h6>
-                                                <h5>#FX6874
+                                                <h5>#${requestScope.order.id}
                                                 </h5>
                                             </div>
                                             <div class="block">
                                                 <h6>Amount</h6>
-                                                <h5>$8954.00
+                                                <h5>
+                                                    $<fmt:formatNumber value="${requestScope.order.totalAmount}" maxFractionDigits="2" minFractionDigits="0" />
                                                 </h5>
                                             </div>
                                             <div class="block">
-                                                <h6>Quantity</h6>
-                                                <h5>30
+                                                <h6>Quantity</h6>        
+                                                <h5>${requestScope.totalQuantity}
                                                 </h5>
                                             </div>
                                             <div class="block">
                                                 <h6>Date</h6>
-                                                <h5>25/05/2023
+                                                <h5>${requestScope.order.date}
                                                 </h5>
                                             </div>
                                         </div>
@@ -235,49 +247,18 @@ Copyright 2024
                                                     </thead>
 
                                                     <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td><img class="invoice-item-img" src="assets/img/product/1.jpg"
-                                                                     alt="product-image"></td>
-                                                            <td>Man T-Shirt with Cap Style </td>
-                                                            <td>Half Sleeve men T-shirt with cap in Dark Blue Color.</td>
-                                                            <td>4</td>
-                                                            <td>$50.00</td>
-                                                            <td>$200.00</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td><img class="invoice-item-img" src="assets/img/product/2.jpg"
-                                                                     alt="product-image"></td>
-                                                            <td>Sofa seat</td>
-                                                            <td>Pure Leather sofa seat for office furniture.</td>
-                                                            <td>10</td>
-                                                            <td>$50.00</td>
-                                                            <td>$500.00</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td><img class="invoice-item-img" src="assets/img/product/3.jpg"
-                                                                     alt="product-image"></td>
-                                                            <td>Night lamp</td>
-                                                            <td>Best night lamp for bedroom frniture.</td>
-                                                            <td>10</td>
-                                                            <td>$20.00</td>
-                                                            <td>$200.00</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>4</td>
-                                                            <td><img class="invoice-item-img" src="assets/img/product/4.jpg"
-                                                                     alt="product-image"></td>
-                                                            <td>Men black hoodie</td>
-                                                            <td>Cotton fabric best hoodie for mens and womens.</td>
-                                                            <td>6</td>
-                                                            <td>$50.00</td>
-                                                            <td>$300.00</td>
-                                                        </tr>
+                                                        <c:forEach var="item" items="${requestScope.orderDetailList}" varStatus="loop">
+                                                            <tr>
+                                                                <td>${loop.index + 1}</td>
+                                                                <td><img class="invoice-item-img" src="${item.product.image[0]}"
+                                                                         alt="product-image"></td>
+                                                                <td>${item.product.name} </td>
+                                                                <td>${item.product.category.name}</td>
+                                                                <td>${item.quantity}</td>
+                                                                <td> $<fmt:formatNumber value="${(item.unitPrice - item.unitPrice * item.discount)}" maxFractionDigits="2" minFractionDigits="0" /></td>
+                                                                <td>$<fmt:formatNumber value="${(item.unitPrice - item.unitPrice * item.discount) * item.quantity}" maxFractionDigits="2" minFractionDigits="0" /></td>
+                                                            </tr>
+                                                        </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -287,8 +268,7 @@ Copyright 2024
                                             <div class="col-lg-9 order-lg-1 order-md-2 order-sm-2">
                                                 <div class="note">
                                                     <label>Comment</label>
-                                                    <p>Your country territory tax has been apply.</p>
-                                                    <p>Your voucher cannot be applied, because you enter wrong code.</p>
+                                                    <p>${requestScope.order.comment}</p>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 order-lg-2 order-md-1 order-sm-1">
@@ -308,6 +288,13 @@ Copyright 2024
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div class="col-md-12 option">
+
+                                            <a href="orderlist">
+                                                <button class="gi-btn default-btn color-success">Back</button>
+                                            </a>
+
+                                        </div>         
                                     </div>
                                 </div>
                             </div>

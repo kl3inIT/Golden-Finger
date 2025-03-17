@@ -8,7 +8,7 @@ delete
 from OrderDetails
 where OrderID > 1
 
-<<<<<<< HEAD
+
 
 
 DBCC CHECKIDENT ('Orders', RESEED, 0);
@@ -30,7 +30,16 @@ DISABLE TRIGGER ALL ON Users;
 
 
 
-=======
+
 DBCC CHECKIDENT ('Orders', RESEED, 0);
 
->>>>>>> develop-1
+
+
+------------------------new query
+update OrderStatus
+ set StatusName = 'Pending'
+ where StatusID = 1
+
+ update OrderStatus
+ set StatusName = 'Failed'
+ where StatusID = 5

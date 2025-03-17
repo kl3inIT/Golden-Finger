@@ -28,4 +28,8 @@ public class OrderStatus {
     }
     
     
+    public String toLowerCase(){
+        return statusName.toLowerCase();
+    }
+    
 }
