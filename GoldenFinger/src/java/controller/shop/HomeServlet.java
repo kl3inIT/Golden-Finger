@@ -33,7 +33,7 @@ public class HomeServlet extends HttpServlet {
         //Get list trending
         List<Product> listProductsTrending = pd.getTrendingProducts();
         List<Product> listProductsRate = pd.getTopRatedProducts();
-        List<Product> listProductsSelling = pd.getTopSellingProducts();
+        List<Product> listProductsSelling = pd.getTopSellingProducts(6);
 
         request.setAttribute("listProductsTrending", listProductsTrending);
         request.setAttribute("listProductsRate", listProductsRate);

@@ -401,13 +401,7 @@ public class ProductDAO extends DBConnect {
                 + "";
         try (PreparedStatement ps = connection.prepareStatement(sql); ResultSet res = ps.executeQuery()) {
             while (res.next()) {
-                Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
-                        res.getInt(4), res.getInt(5), getImage(res.getString(6)),
-                        res.getString(7), res.getString(8), res.getString(9),
-                        res.getString(10), res.getFloat(11), res.getString(12),
-                        res.getString(13), res.getString(14), res.getFloat(15),
-                        res.getInt(16), cd.getCategoryById(res.getInt(17)),
-                        sd.getSupplierById(res.getInt(1)));
+                Product p = mapResultSetToProduct(res);
                 listProduct.add(p);
             }
         } catch (SQLException e) {
@@ -424,13 +418,7 @@ public class ProductDAO extends DBConnect {
                 + "ORDER BY P.StarRating DESC;";
         try (PreparedStatement ps = connection.prepareStatement(sql); ResultSet res = ps.executeQuery()) {
             while (res.next()) {
-                Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
-                        res.getInt(4), res.getInt(5), getImage(res.getString(6)),
-                        res.getString(7), res.getString(8), res.getString(9),
-                        res.getString(10), res.getFloat(11), res.getString(12),
-                        res.getString(13), res.getString(14), res.getFloat(15),
-                        res.getInt(16), cd.getCategoryById(res.getInt(17)),
-                        sd.getSupplierById(res.getInt(1)));
+                Product p = mapResultSetToProduct(res);
                 listProduct.add(p);
             }
         } catch (SQLException e) {
@@ -440,9 +428,9 @@ public class ProductDAO extends DBConnect {
     }
 
     //Top 6 Products selling
-    public List<Product> getTopSellingProducts() {
+    public List<Product> getTopSellingProducts(int limit) {
         List<Product> listProduct = new ArrayList<>();
-        String sql = "SELECT TOP 6\n"
+        String sql = "SELECT TOP (?)\n"
                 + "    P.ProductID, P.ProductName, P.UnitPrice, P.UnitsInStock, \n"
                 + "    P.Discontinued, P.Image, P.Include, P.Warranty, \n"
                 + "    P.Dimensions, P.SpeakerPower, P.StarRating, P.Weight, \n"
@@ -459,22 +447,20 @@ public class ProductDAO extends DBConnect {
                 + "    CAST(P.Describe AS NVARCHAR(MAX)), \n"
                 + "    P.ReleaseDate, P.Discount, P.Status, P.CategoryID, P.SupplierID\n"
                 + "ORDER BY TotalSold DESC;";
-        try (PreparedStatement ps = connection.prepareStatement(sql); ResultSet res = ps.executeQuery()) {
-            while (res.next()) {
-                Product p = new Product(res.getInt(1), res.getString(2), res.getFloat(3),
-                        res.getInt(4), res.getInt(5), getImage(res.getString(6)),
-                        res.getString(7), res.getString(8), res.getString(9),
-                        res.getString(10), res.getFloat(11), res.getString(12),
-                        res.getString(13), res.getString(14), res.getFloat(15),
-                        res.getInt(16), cd.getCategoryById(res.getInt(17)),
-                        sd.getSupplierById(res.getInt(1)));
-                listProduct.add(p);
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, limit);
+            try (ResultSet res = ps.executeQuery()) {
+                while (res.next()) {
+                    Product p = mapResultSetToProduct(res);
+                    listProduct.add(p);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return listProduct;
     }
+
 
     public int getHighestProductId() {
         if (connection != null) {
@@ -639,6 +625,7 @@ public class ProductDAO extends DBConnect {
         } catch (Exception e) {
             return false;
         }
+
     }
 
 }

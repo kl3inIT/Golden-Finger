@@ -2,7 +2,11 @@
 
 (function ($) {
     "use strict";
+
     function newrevenueChart() {
+        // Đảm bảo dữ liệu revenue đã được chuyển đổi
+        var revenueDataK = revenueData ? revenueData.map(value => parseFloat((value / 1000).toFixed(2))) : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        
         var options = {
             chart: {
                 height: 365,
@@ -30,24 +34,24 @@
             },
             series: [
                 {
-                    name: 'Revenue',
-                    data: [9, 16, 17, 15, 16, 17, 15, 18, 15, 17, 20],
+                    name: 'Revenue (k$)',
+                    data: revenueDataK
                 }, {
                     name: 'Orders',
-                    data: [8, 13, 15, 13, 13, 15, 13, 16, 14, 16, 18],
+                    data: ordersData || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 }, {
                     name: 'Customers',
-                    data: [7, 11, 12, 10, 9, 12, 10, 12, 13, 12, 14],
+                    data: customersData || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 },
             ],
             plotOptions: {
                 bar: {
-                  horizontal: false,
-                  columnWidth: '20%',
+                    horizontal: false,
+                    columnWidth: '20%',
                 }
-              },
-              stroke: {
-                width: [2, 2, 2],
+            },
+            stroke: {
+                width: [3, 2, 2], // Tăng độ rộng cho đường Revenue
                 curve: "smooth",
             },
             fill: {
@@ -71,12 +75,27 @@
                     show: !1
                 }
             },
+            // Cài đặt y axis đơn giản
             yaxis: {
                 labels: {
-                    formatter: function (e) {
-                        return e + "k"
-                    },
-                    offsetX: -15
+                    formatter: function (val) {
+                        return val;
+                    }
+                },
+                title: {
+                    text: "Value"
+                }
+            },
+            tooltip: {
+                shared: true,
+                intersect: false,
+                y: {
+                    formatter: function (y, { seriesIndex, dataPointIndex, w }) {
+                        if (seriesIndex === 0) {
+                            return "$" + y + "k";
+                        }
+                        return y;
+                    }
                 }
             },
             legend: {
@@ -128,55 +147,9 @@
         var newrevenueChart = new ApexCharts(document.querySelector("#newrevenueChart"), options);
         newrevenueChart.render();
     }
-    function newcampaignsChart() {
-        var options = {
-            series: [{
-                name: 'Social',
-                data: [80, 50, 60, 40, 100, 50],
-            }, {
-                name: 'Referral',
-                data: [40, 100, 50, 80, 60, 90],
-            }, {
-                name: 'Organic',
-                data: [30, 70, 20, 60, 30, 30],
-            }
-            ],
-            chart: {
-                height: 300,
-                type: 'radar',
-                toolbar: {
-                    show: false,
-                },
-            },
-            colors: ["#556fbd", "#ff4f7f", "#5caf90"],
-            title: {
-                text: undefined,
-                align: 'left',
-                margin: 10,
-                offsetX: 0,
-                offsetY: 0,
-                floating: false,
-                style: {
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    fontFamily: undefined,
-                    color: '#263238'
-                },
-            },
-            legend: {
-                show: false,
-            },
-            xaxis: {
-                categories: ['January', 'February', 'March', 'April', 'May', 'June']
-            }
-        };
-        var newcampaignsChart = new ApexCharts(document.querySelector("#newcampaignsChart"), options);
-        newcampaignsChart.render();
-    }
 
     jQuery(window).on('load', function () {
         newrevenueChart();
-        newcampaignsChart();
     });
 
 })(jQuery);
