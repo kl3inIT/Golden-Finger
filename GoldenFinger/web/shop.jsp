@@ -218,10 +218,10 @@
                             <!-- Pagination Start -->
                             <div class="gi-pro-pagination pt-[15px] flex justify-between items-center border-t-[1px] border-solid border-[#eee] max-[575px]:flex-col">
                                 <span class="text-[14px] text-[#777] max-[575px]:mb-[10px]">
-                                    <c:if test="${totalProducts ge 3}">
-                                        Showing 3 of ${totalProducts} products
+                                    <c:if test="${totalProducts ge 8}">
+                                        Showing 8 of ${totalProducts} products
                                     </c:if>
-                                    <c:if test="${totalProducts lt 3}">
+                                    <c:if test="${totalProducts lt 8}">
                                         Showing ${totalProducts} of ${totalProducts} products
                                     </c:if>    
                                 </span>

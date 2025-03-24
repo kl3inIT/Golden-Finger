@@ -275,7 +275,7 @@ Copyright 2024
                                                 <ul class="list-unstyled">
                                                     <li class="mid pb-3 text-dark"> Subtotal
                                                         <span
-                                                            class="d-inline-block float-right text-default">$1200.00</span>
+                                                            class="d-inline-block float-right text-default">$<fmt:formatNumber value="${requestScope.order.totalAmount}" maxFractionDigits="2" minFractionDigits="0" /></span>
                                                     </li>
 
                                                     <li class="mid pb-3 text-dark">Vat(0%)
@@ -283,7 +283,7 @@ Copyright 2024
                                                     </li>
 
                                                     <li class="text-dark">Total
-                                                        <span class="d-inline-block float-right">$1300.00</span>
+                                                        <span class="d-inline-block float-right">$<fmt:formatNumber value="${requestScope.order.totalAmount}" maxFractionDigits="2" minFractionDigits="0" /></span>
                                                     </li>
                                                 </ul>
                                             </div>
