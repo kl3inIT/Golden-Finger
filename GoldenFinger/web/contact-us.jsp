@@ -159,11 +159,10 @@
                                 <div class="info text-center">
                                     <h3 class="title text-[20px] font-semibold text-[#4b5966] capitalize tracking-[0.01rem] leading-[1.2] mb-[6px]">Mail & Website</h3>
                                     <p class="m-[0] text-[14px] text-[#777] leading-[28px] font-light tracking-[0.02rem]">
-                                        <i class="fa fa-envelope text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; mail.example@gmail.com
+                                        <i class="fa fa-envelope text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; nhatanh@gmail.com
                                     </p>
                                     <p class="m-[0] text-[14px] text-[#777] leading-[28px] font-light tracking-[0.02rem]">
-                                        <i class="fa fa-globe text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; www.yourdomain.com
-                                    </p>
+                                        <i class="fa fa-globe text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; fap.fpt.edu.vn                                    </p>
                                 </div>
                             </div>
                             <div class="space"></div>
@@ -178,10 +177,10 @@
                                 <div class="info text-center">
                                     <h3 class="title text-[20px] font-semibold text-[#4b5966] capitalize tracking-[0.01rem] leading-[1.2] mb-[6px]">Contact</h3>
                                     <p class="m-[0] text-[14px] text-[#777] leading-[28px] font-light tracking-[0.02rem]">
-                                        <i class="fa fa-mobile text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; (+91)-9876XXXXX
+                                        <i class="fa fa-mobile text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; (+84) 923849999
                                     </p>
                                     <p class="m-[0] text-[14px] text-[#777] leading-[28px] font-light tracking-[0.02rem]">
-                                        <i class="fa fa-mobile text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; (+91)-987654XXXX
+                                        <i class="fa fa-mobile text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; (+84) 923849999
                                     </p>
                                 </div>
                             </div>
@@ -207,7 +206,7 @@
                 </div>
                 <div class="w-full flex flex-wrap pt-[80px] max-[576px]:pt-[60px]">
                     <div class="min-[768px]:w-[50%] w-full px-[12px]">
-                        <iframe src="http://maps.google.com/maps?q=-12.942227,-38.480291&amp;z=15&amp;output=embed" class="h-full w-full mb-[-7px] border-[1px] border-solid border-[#eee] rounded-[5px] max-[767px]:h-[300px]" allowfullscreen=""></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4582.888509081189!2d105.52271427596938!3d21.01242168833815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abc60e7d3f19%3A0x2be9d7d0b5abcbf4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBGUFQgSMOgIE7hu5lp!5e1!3m2!1svi!2s!4v1742805427166!5m2!1svi!2s" class="h-full w-full mb-[-7px] border-[1px] border-solid border-[#eee] rounded-[5px] max-[767px]:h-[300px]" allowfullscreen=""></iframe>
                     </div>
                     <div class="min-[768px]:w-[50%] w-full px-[12px]">
                         <form class="max-[767px]:mt-[50px]">
