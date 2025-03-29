@@ -281,9 +281,22 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
         <img src="https://github.com/NhatNhuDinh.png" width="100px;" alt="Nhat Nhu Dinh"/><br />
         <sub><b>Nhat Nhu Dinh</b></sub>
       </a><br />
-      <sub>Project Lead</sub>
+      <sub>Developer</sub>
     </td>
-    <!-- Add more contributors in the same format if needed -->
+    <td align="center">
+      <a href="https://github.com/kl3inIT">
+        <img src="https://github.com/kl3inIT.png" width="100px;" alt="Contributor 2"/><br />
+        <sub><b>Contributor 2</b></sub>
+      </a><br />
+      <sub>Developer</sub>
+    </td>
+    <td align="center">
+      <a href="https://github.com/NhanhAnhXtanh">
+        <img src="https://github.com/NhanhAnhXtanh.png" width="100px;" alt="Contributor 3"/><br />
+        <sub><b>Contributor 3</b></sub>
+      </a><br />
+      <sub>Developer</sub>
+    </td>
   </tr>
 </table>
 
