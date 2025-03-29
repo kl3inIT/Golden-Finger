@@ -281,21 +281,21 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
         <img src="https://github.com/NhatNhuDinh.png" width="100px;" alt="Nhat Nhu Dinh"/><br />
         <sub><b>Nhat Nhu Dinh</b></sub>
       </a><br />
-      <sub>Developer</sub>
+      <sub>Chan đê</sub>
     </td>
     <td align="center">
       <a href="https://github.com/kl3inIT">
         <img src="https://github.com/kl3inIT.png" width="100px;" alt="Contributor 2"/><br />
-        <sub><b>Contributor 2</b></sub>
+        <sub><b>Phan Hong Dat</b></sub>
       </a><br />
-      <sub>Developer</sub>
+      <sub>dep trai co gi sai</sub>
     </td>
     <td align="center">
       <a href="https://github.com/NhanhAnhXtanh">
         <img src="https://github.com/NhanhAnhXtanh.png" width="100px;" alt="Contributor 3"/><br />
-        <sub><b>Contributor 3</b></sub>
+        <sub><b>Pham Nhat Anh</b></sub>
       </a><br />
-      <sub>Developer</sub>
+      <sub>shark</sub>
     </td>
   </tr>
 </table>
