@@ -12,15 +12,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/NhatNhuDinh/Golden-Finger">
-    <img src="img/logo.png" alt="Logo" width="80" height="80">
+    <img src="image/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Golden Finger</h3>
 
   <p align="center">
     A comprehensive e-commerce platform built with Jakarta EE
-    <br />
-    <a href="https://github.com/NhatNhuDinh/Golden-Finger"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/NhatNhuDinh/Golden-Finger">View Demo</a>
@@ -224,7 +222,7 @@ GoldenFinger/
 
 2. **Admin** (RoleID = 2)
    - Full access to admin dashboard
-   - Manage products, categories, and inventory
+   - Manage products, categories, and suppliers
    - Process and fulfill customer orders
    - Manage user accounts and access permissions
    - View sales analytics and generate reports
@@ -285,18 +283,17 @@ Project Link: [https://github.com/NhatNhuDinh/Golden-Finger](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/GoldenFinger/GoldenFinger.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/NhatNhuDinh/Golden-Finger.svg?style=for-the-badge
 [contributors-url]: https://github.com/NhatNhuDinh/Golden-Finger/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/GoldenFinger/GoldenFinger.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/NhatNhuDinh/Golden-Finger.svg?style=for-the-badge
 [forks-url]: https://github.com/NhatNhuDinh/Golden-Finger/network/members
-[stars-shield]: https://img.shields.io/github/stars/GoldenFinger/GoldenFinger.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/NhatNhuDinh/Golden-Finger.svg?style=for-the-badge
 [stars-url]: https://github.com/NhatNhuDinh/Golden-Finger/stargazers
-[issues-shield]: https://img.shields.io/github/issues/GoldenFinger/GoldenFinger.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/NhatNhuDinh/Golden-Finger.svg?style=for-the-badge
 [issues-url]: https://github.com/NhatNhuDinh/Golden-Finger/issues
-[license-shield]: https://img.shields.io/github/license/GoldenFinger/GoldenFinger.svg?style=for-the-badge
-[license-url]: https://github.com/NhatNhuDinh/Golden-Finger/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/NhatNhuDinh/Golden-Finger.svg?style=for-the-badge
+[license-url]: https://github.com/NhatNhuDinh/Golden-Finger/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/your-linkedin
 [product-screenshot]: web/assets/img/screenshot.png
 [Java.com]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
 [Java-url]: https://www.oracle.com/java/
