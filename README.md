@@ -54,8 +54,7 @@
     <li><a href="#security-features">Security Features</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-
+    <li><a href="#contributor">CONTRIBUTORS</a></li>
   </ol>
 </details>
 
@@ -270,11 +269,23 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTACT -->
+<!-- CONTRIBUTORS -->
 
-## Contact
 
-Project Link: [https://github.com/NhatNhuDinh/Golden-Finger](https://github.com/NhatNhuDinh/Golden-Finger)
+## Contributors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/NhatNhuDinh">
+        <img src="https://github.com/NhatNhuDinh.png" width="100px;" alt="Nhat Nhu Dinh"/><br />
+        <sub><b>Nhat Nhu Dinh</b></sub>
+      </a><br />
+      <sub>Project Lead</sub>
+    </td>
+    <!-- Add more contributors in the same format if needed -->
+  </tr>
+</table>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
