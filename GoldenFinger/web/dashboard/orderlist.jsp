@@ -10,8 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords"
               content="admin, dashboard, crm, analytics, ecommerce, team, vendor, ai chat bot, backend, panel" />
-        <meta name="description" content="Grabit - Admin.">
-        <meta name="author" content="Maraviya Infotech">
+        <meta name="description" content="GoldenFinger - Admin.">
 
         <title>Order List</title>
 

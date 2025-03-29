@@ -67,9 +67,9 @@ public class CategoryListServlet extends HttpServlet {
                 boolean success = categoryDAO.updateCategory(category);
 
                 if (success) {
-                    LOGGER.info("Category updated successfully: " + categoryName);
+                    LOGGER.log(Level.INFO, "Category updated successfully: {0}", categoryName);
                 } else {
-                    LOGGER.warning("Failed to update category: " + categoryName);
+                    LOGGER.log(Level.WARNING, "Failed to update category: {0}", categoryName);
                 }
             } else if ("delete".equals(action)) {
                 // Xử lý xóa danh mục
@@ -77,10 +77,10 @@ public class CategoryListServlet extends HttpServlet {
                 boolean success = categoryDAO.deleteCategory(categoryId);
 
                 if (success) {
-                    LOGGER.info("Category deleted successfully: ID " + categoryId);
+                    LOGGER.log(Level.INFO, "Category deleted successfully: ID {0}", categoryId);
                     // Không trả về nội dung nếu thành công
                 } else {
-                    LOGGER.warning("Failed to delete category: ID " + categoryId);
+                    LOGGER.log(Level.WARNING, "Failed to delete category: ID {0}", categoryId);
                     response.getWriter().write("Cannot delete this category because it is used by products");
                 }
 
@@ -91,13 +91,9 @@ public class CategoryListServlet extends HttpServlet {
             // Chuyển hướng về trang danh sách danh mục
             response.sendRedirect("categorylist");
         } catch (IOException | NumberFormatException e) {
-            LOGGER.log(Level.SEVERE, "Error processing category action: " + action, e);
+            LOGGER.log(Level.SEVERE, "Error processing category action", e);
             response.sendRedirect("categorylist");
         }
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Category List Servlet handles CRUD operations for product categories";
-    }
 }

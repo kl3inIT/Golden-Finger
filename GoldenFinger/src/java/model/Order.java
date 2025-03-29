@@ -1,10 +1,7 @@
 package model;
 
-/**
- *
- * @author nhudi
- */
 public class Order {
+
     private int id;
     private String date;
     private OrderStatus status;
@@ -30,7 +27,6 @@ public class Order {
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
-    
 
     public String getComment() {
         return comment;
@@ -58,8 +54,6 @@ public class Order {
     public void setDate(String date) {
         this.date = date;
     }
-
-  
 
     public int getUserId() {
         return userId;
@@ -93,5 +87,4 @@ public class Order {
         this.address = address;
     }
 
-   
 }

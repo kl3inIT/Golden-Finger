@@ -1,9 +1,5 @@
 package model;
 
-/**
- *
- * @author nhudi
- */
 public class Category {
     private int id;
     private String name;
@@ -41,10 +37,5 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getCategoryName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
     
 }

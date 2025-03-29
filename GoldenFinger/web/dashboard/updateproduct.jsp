@@ -1,24 +1,10 @@
-<%-- 
-    Document   : dashboard
-    Created on : Mar 10, 2025, 11:23:45 AM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!-----------------------------------------------------------------------------------
-Item Name: Grabit - Multipurpose eCommerce HTML Template.
-Author: Maraviya Infotech
-Version: 3.0.2
-Copyright 2024
------------------------------------------------------------------------------------>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:33:51 GMT -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -240,26 +226,17 @@ Copyright 2024
                                                         <div class="col-md-6">
                                                             <label class="form-label">Select Categories</label>
                                                             <select class="form-control form-select" name="category">
-                                                                <option value="1" ${p.category.id eq 1 ? 'selected' : ''}>Grand Piano</option>
-                                                                <option value="2" ${p.category.id eq 2 ? 'selected' : ''}>Upright Piano</option>
-                                                                <option value="3" ${p.category.id eq 3 ? 'selected' : ''}>Digital Piano</option>
-                                                                <option value="4" ${p.category.id eq 4 ? 'selected' : ''}>Stage Piano</option>
-                                                                <option value="5" ${p.category.id eq 5 ? 'selected' : ''}>Hybrid Piano</option>
-                                                                <option value="6" ${p.category.id eq 6 ? 'selected' : ''}>Player Piano</option>
-
+                                                                <c:forEach items="${categories}" var="category">
+                                                                    <option value="${category.id}" ${p.category.id eq category.id ? 'selected' : ''}>${category.name}</option>
+                                                                </c:forEach>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label class="form-label">Select Suppliers</label>
                                                             <select class="form-control form-select" name="supplier">
-
-                                                                <option value="1" ${p.supplier.id eq 1 ? 'selected' : ''}>Yamaha</option>
-                                                                <option value="2" ${p.supplier.id eq 2 ? 'selected' : ''}>Roland</option>
-                                                                <option value="3" ${p.supplier.id eq 3 ? 'selected' : ''}>Casio</option>
-                                                                <option value="4" ${p.supplier.id eq 4 ? 'selected' : ''}>Korg</option>
-                                                                <option value="5" ${p.supplier.id eq 5 ? 'selected' : ''}>Steinway & Son</option>
-                                                                <option value="6" ${p.supplier.id eq 6 ? 'selected' : ''}>Kawai</option>
-
+                                                                <c:forEach items="${suppliers}" var="supplier">
+                                                                    <option value="${supplier.id}" ${p.supplier.id eq supplier.id ? 'selected' : ''}>${supplier.companyName}</option>
+                                                                </c:forEach>
                                                             </select>
                                                         </div>
 
@@ -372,9 +349,6 @@ Copyright 2024
             });
         </script>
 
-
     </body>
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:34:21 GMT -->
 </html>

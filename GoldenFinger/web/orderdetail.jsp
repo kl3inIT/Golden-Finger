@@ -1,24 +1,10 @@
-<%-- 
-    Document   : dashboard
-    Created on : Mar 10, 2025, 11:23:45 AM
-    Author     : nhudi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!-----------------------------------------------------------------------------------
-Item Name: Grabit - Multipurpose eCommerce HTML Template.
-Author: Maraviya Infotech
-Version: 3.0.2
-Copyright 2024
------------------------------------------------------------------------------------>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:33:51 GMT -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -191,11 +177,11 @@ Copyright 2024
                                         <c:if test="${requestScope.order.status.id == 1}">
                                             <button onclick="sendOrderId(${requestScope.order.id})" class="gi-btn default-btn color-secondary">Cancel Order</button>
                                         </c:if>
-                                      
-                                            <a href="orderhistory">
-                                                <button class="gi-btn default-btn color-success">Back</button>
-                                            </a>
-                                        
+
+                                        <a href="orderhistory">
+                                            <button class="gi-btn default-btn color-success">Back</button>
+                                        </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -236,23 +222,21 @@ Copyright 2024
         <script src="dashboard/assets/js/main.js"></script>
         <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
         <script>
-                                              function sendOrderId(orderId) {
-                                                  $.ajax({
-                                                      type: "POST",
-                                                      url: "cancel",
-                                                      data: {orderId: orderId},
-                                                      success: function (response) {
-                                                          window.location.href = "orderhistory"; // ✅ Chuyển hướng đúng sau khi hủy đơn
-                                                      },
-                                                      error: function () {
-                                                          alert("error");
-                                                      }
-                                                  });
-                                              }
+                                                function sendOrderId(orderId) {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "cancel",
+                                                        data: {orderId: orderId},
+                                                        success: function (response) {
+                                                            window.location.href = "orderhistory"; // ✅ Chuyển hướng đúng sau khi hủy đơn
+                                                        },
+                                                        error: function () {
+                                                            alert("error");
+                                                        }
+                                                    });
+                                                }
 
         </script>
     </body>
 
-
-    <!-- Mirrored from maraviyainfotech.com/wrapbootstrap/grabit-html/admin-html/admin by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Mar 2025 05:34:21 GMT -->
 </html>

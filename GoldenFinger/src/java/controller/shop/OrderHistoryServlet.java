@@ -2,7 +2,6 @@ package controller.shop;
 
 import dal.CategoryDAO;
 import dal.OrderDAO;
-import dal.OrderDetailDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -13,18 +12,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Cart;
-import model.Order;
 import model.OrderDetail;
 import model.User;
 import model.WishList;
- 
+
 @WebServlet(name = "OrderHistoryServlet", urlPatterns = {"/orderhistory"})
 public class OrderHistoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession(false); // Không tạo session mới nếu chưa có
         if (session == null || session.getAttribute("account") == null) {
@@ -60,15 +57,5 @@ public class OrderHistoryServlet extends HttpServlet {
         request.setAttribute("categoryList", cd.getAllCategory());
         request.getRequestDispatcher("orderhistory.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

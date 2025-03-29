@@ -14,13 +14,6 @@ public class User {
     private String address;
     private String phone;
     private int status;
-    
-    //ALTER TABLE Users 
-//ALTER COLUMN Password VARCHAR(100);
-//
-//ALTER TABLE Users 
-//ADD Salt VARCHAR(100);
-
 
     public User() {
     }

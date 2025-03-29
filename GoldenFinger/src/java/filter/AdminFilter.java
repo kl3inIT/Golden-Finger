@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.User;
 
-@WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*", "/accountlist", "/addaccount", "/productlist", "/addproduct", "/orderlist"})
+@WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*", "/accountlist", "/addaccount", "/productlist", "/addproduct", "/orderlist", "/supplierlist", "/categorylist", "/updateproduct"})
 public class AdminFilter implements Filter {
 
     private static final boolean debug = true;
@@ -53,10 +53,17 @@ public class AdminFilter implements Filter {
             // Nếu không có quyền, chuyển hướng đến trang đăng nhập hoặc trang từ chối
             String contextPath = httpRequest.getContextPath();
 
-            // Lưu URL hiện tại để sau khi đăng nhập có thể quay lại
+            // Lưu URL đầy đủ hiện tại để sau khi đăng nhập có thể quay lại
             String requestURI = httpRequest.getRequestURI();
+            String queryString = httpRequest.getQueryString();
+            String fullURL = requestURI.substring(contextPath.length());
+            
+            if (queryString != null && !queryString.isEmpty()) {
+                fullURL += "?" + queryString;
+            }
+            
             if (session != null) {
-                session.setAttribute("redirectURL", requestURI.substring(contextPath.length()));
+                session.setAttribute("redirectURL", fullURL);
             }
 
             if (session != null && session.getAttribute("account") != null) {

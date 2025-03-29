@@ -1,10 +1,7 @@
 package model;
 
-/**
- *
- * @author nhudi
- */
 public class Supplier {
+
     private int id;
     private String companyName;
     private String contactName;
@@ -25,12 +22,13 @@ public class Supplier {
         this.homePage = homePage;
         this.image = image;
     }
-    
+
     public Supplier(int id, String companyName, String image) {
         this.id = id;
         this.companyName = companyName;
         this.image = image;
     }
+
     public String getImage() {
         return image;
     }
@@ -38,7 +36,7 @@ public class Supplier {
     public void setImage(String image) {
         this.image = image;
     }
- 
+
     public int getId() {
         return id;
     }
@@ -86,6 +84,5 @@ public class Supplier {
     public void setHomePage(String homePage) {
         this.homePage = homePage;
     }
-    
-    
+
 }

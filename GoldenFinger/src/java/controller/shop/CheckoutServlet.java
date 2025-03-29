@@ -22,7 +22,6 @@ public class CheckoutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-
         HttpSession session = request.getSession(false); // Không tạo session mới nếu chưa có
         if (session == null || session.getAttribute("account") == null) {
             response.sendRedirect("login");
@@ -49,16 +48,5 @@ public class CheckoutServlet extends HttpServlet {
         }
 
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

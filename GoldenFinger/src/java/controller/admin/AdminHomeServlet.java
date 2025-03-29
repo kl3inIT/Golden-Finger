@@ -21,7 +21,6 @@ public class AdminHomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
         DashboardDAO db = new DashboardDAO();
         OrderDAO od = new OrderDAO();
@@ -85,15 +84,5 @@ public class AdminHomeServlet extends HttpServlet {
         String orderId = request.getParameter("orderId");
         od.updateStatusOrder(orderId, statusId);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

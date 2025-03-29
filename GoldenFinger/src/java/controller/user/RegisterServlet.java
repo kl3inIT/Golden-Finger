@@ -55,9 +55,4 @@ public class RegisterServlet extends HttpServlet {
 
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

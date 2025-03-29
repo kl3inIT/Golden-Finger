@@ -39,7 +39,7 @@ public class OrderDetailServlet extends HttpServlet {
         ProductDAO pd = new ProductDAO();
         OrderDAO od = new OrderDAO();
         OrderDetailDAO odd = new OrderDetailDAO();
-        
+
         //get cart and wishlist from cookie
         String txt = "";
         String txt2 = "";
@@ -52,14 +52,12 @@ public class OrderDetailServlet extends HttpServlet {
                 txt2 = c.getValue();
             }
         }
-        
+
         List<OrderDetail> orderDetailList = odd.getOrderDetailByOrderId(orderId);
         int totalQuantity = orderDetailList.stream()
-                                   .mapToInt(OrderDetail::getQuantity)
-                                   .sum();
+                .mapToInt(OrderDetail::getQuantity)
+                .sum();
 
-        
-        
         Cart cart = new Cart(txt, pd.getAllProductByCidForUser(0));
         WishList wishlist = new WishList(txt2, pd.getAllProductByCidForUser(0));
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
@@ -70,11 +68,6 @@ public class OrderDetailServlet extends HttpServlet {
         request.setAttribute("totalQuantity", totalQuantity);
         request.setAttribute("order", od.getOrderById(orderId));
         request.getRequestDispatcher("orderdetail.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
     }
 
 }

@@ -179,7 +179,7 @@
                                         <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="logout">Log out</a></li>
                                         </c:if>
                                         <c:if test="${sessionScope.account != null && sessionScope.account.roleId == 2}">
-                                        
+
                                         <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="admin">Management</a></li>
                                         <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="profile">Profile</a></li>
                                         <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="checkout">Checkout</a></li>

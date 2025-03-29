@@ -5,8 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:03 GMT -->
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -107,7 +105,7 @@
                                                             <c:if test="${not empty w.product.image[0]}">
                                                                 <img class="prod-img h-[58px] w-[58px]" src="${w.product.image[0]}" alt="product image">
                                                             </c:if>
-                                                            
+
                                                         </a>
                                                     </td>
                                                     <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">${w.product.name}</span></td>
@@ -120,7 +118,7 @@
                                                     <c:if test="${w.product.unitInStock > 0}">
                                                         <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">Available</span></td>
                                                     </c:if>
-                                                    
+
                                                     <c:if test="${w.product.unitInStock <= 0}">
                                                         <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#e9abab] tracking-[0.02rem]">Out Of Stock</span></td>
                                                     </c:if>
@@ -129,7 +127,7 @@
                                                             <a onclick="addToCart(${w.product.id}, 1)" class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart">
                                                                 <i class="fi-rr-shopping-basket leading-[10px]"></i>
                                                             </a>
-                                                                <a onclick="removeFromWishlist(${w.product.id}, 'remove')" class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal btn w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">
+                                                            <a onclick="removeFromWishlist(${w.product.id}, 'remove')" class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal btn w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">
                                                                 ×
                                                             </a>
                                                         </span>
@@ -171,36 +169,34 @@
 
         <!-- Main Js -->
         <script src="assets/js/main.js"></script>
-        
+
         <script>
-            function addToCart(productId, quantity) {
-                $.ajax({
-                    type: "POST",
-                    url: "cart",
-                    data: {
-                        productId: productId,
-                        quantity: quantity
-                    }
-                });
-            }
-            
-            function removeFromWishlist(productId, type) {
-                $.ajax({
-                    type: "POST",
-                    url: "wishlist",
-                    data: {
-                        productId: productId,
-                        type: type
-                    },
-                    success: function() {
-                    window.location.reload(); // Tải lại trang sau khi thêm vào giỏ hàng
-                    }
-                });
-            }
-                      
+                                                                    function addToCart(productId, quantity) {
+                                                                        $.ajax({
+                                                                            type: "POST",
+                                                                            url: "cart",
+                                                                            data: {
+                                                                                productId: productId,
+                                                                                quantity: quantity
+                                                                            }
+                                                                        });
+                                                                    }
+
+                                                                    function removeFromWishlist(productId, type) {
+                                                                        $.ajax({
+                                                                            type: "POST",
+                                                                            url: "wishlist",
+                                                                            data: {
+                                                                                productId: productId,
+                                                                                type: type
+                                                                            },
+                                                                            success: function () {
+                                                                                window.location.reload(); // Tải lại trang sau khi thêm vào giỏ hàng
+                                                                            }
+                                                                        });
+                                                                    }
+
         </script>
     </body>
 
-
-    <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Feb 2025 11:03:03 GMT -->
 </html>

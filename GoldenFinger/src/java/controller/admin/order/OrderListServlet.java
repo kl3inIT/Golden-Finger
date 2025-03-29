@@ -2,7 +2,6 @@ package controller.admin.order;
 
 import dal.OrderDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,10 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Order;
 
-/**
- *
- * @author nhudi
- */
 @WebServlet(name = "OrderListServlet", urlPatterns = {"/orderlist"})
 public class OrderListServlet extends HttpServlet {
 
@@ -28,7 +23,6 @@ public class OrderListServlet extends HttpServlet {
         List<Order> orders = od.getAllOrders();
         request.setAttribute("orders", orders);
         request.getRequestDispatcher("dashboard/orderlist.jsp").forward(request, response);
-        //request.getRequestDispatcher("dashboard/orderlist.jsp").forward(request, response);
     }
 
     @Override
@@ -38,10 +32,5 @@ public class OrderListServlet extends HttpServlet {
         String orderId = request.getParameter("orderId");
         od.updateStatusOrder(orderId, statusId);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }

@@ -185,16 +185,19 @@
                                                                     <td>${category.name}</td>
                                                                     <td>${category.description}</td>
                                                                     <td>
-                                                                        <button class="gi-btn default-btn color-info" 
-                                                                                data-bs-toggle="modal" 
-                                                                                data-bs-target="#editCategoryModal" 
-                                                                                onclick="editCategory(${category.id}, '${category.name}', '${category.description}')">
-                                                                            <i class="ri-edit-line"></i>
-                                                                        </button>
-                                                                        <button class="gi-btn default-btn color-danger" 
-                                                                                onclick="deleteCategory(${category.id})">
-                                                                            <i class="ri-delete-bin-line"></i>
-                                                                        </button>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <button type="button"
+                                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                                    aria-expanded="false" data-display="static">
+                                                                                <span class="sr-only"><i class="ri-settings-3-line"></i></span>
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editCategoryModal" 
+                                                                                   onclick="editCategory(${category.id}, '${category.name}', '${category.description}')">Edit</a>
+                                                                                <a class="dropdown-item" onclick="deleteCategory(${category.id})" href="javascript:void(0)">Delete</a>
+                                                                            </div>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             </c:forEach>

@@ -549,16 +549,16 @@
         <script src="assets/js/demo-1.js"></script>
 
         <script>
-                                                                    function addToCart(productId, quantity) {
-                                                                        $.ajax({
-                                                                            type: "POST",
-                                                                            url: "cart",
-                                                                            data: {
-                                                                                productId: productId,
-                                                                                quantity: quantity
-                                                                            }
-                                                                        });
-                                                                    }
+                                                function addToCart(productId, quantity) {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "cart",
+                                                        data: {
+                                                            productId: productId,
+                                                            quantity: quantity
+                                                        }
+                                                    });
+                                                }
 
         </script>
     </body>

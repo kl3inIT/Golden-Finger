@@ -1,10 +1,7 @@
 package model;
 
-/**
- *
- * @author nhudi
- */
 public class OrderStatus {
+
     private int id;
     private String statusName;
 
@@ -26,10 +23,9 @@ public class OrderStatus {
     public void setStatusName(String statusName) {
         this.statusName = statusName;
     }
-    
-    
-    public String toLowerCase(){
+
+    public String toLowerCase() {
         return statusName.toLowerCase();
     }
-    
+
 }

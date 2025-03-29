@@ -174,7 +174,7 @@
                                                                         <c:set var="isActive" value="true"/>
                                                                     </c:if>
                                                                 </c:forEach>
-                                                                
+
                                                                 <a data-product-id="${p.id}" class="${isActive ? 'active' : ''} gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist">
                                                                     <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i>
                                                                 </a>
@@ -385,7 +385,7 @@
                 // Lấy tất cả checkbox category
                 const categoryCheckboxes = document.querySelectorAll('input[name="categories"]');
                 let selectedCategoryId = null;
-                
+
                 // Kiểm tra xem có checkbox nào được chọn không
                 for (let i = 0; i < categoryCheckboxes.length; i++) {
                     if (categoryCheckboxes[i].checked) {
@@ -393,11 +393,11 @@
                         break;
                     }
                 }
-                
+
                 // Lấy tất cả checkbox supplier
                 const supplierCheckboxes = document.querySelectorAll('input[name="supplier"]');
                 let selectedSupplierId = null;
-                
+
                 // Kiểm tra xem có checkbox nào được chọn không
                 for (let i = 0; i < supplierCheckboxes.length; i++) {
                     if (supplierCheckboxes[i].checked) {
@@ -405,7 +405,7 @@
                         break;
                     }
                 }
-                
+
                 // Get price range
                 const minPrice = document.getElementById('minPrice').value;
                 const maxPrice = document.getElementById('maxPrice').value;
@@ -417,23 +417,23 @@
 
                 // Build query string
                 let queryParams = new URLSearchParams(window.location.search);
-                
+
                 // Xóa các tham số cũ
                 queryParams.delete('cid');
                 queryParams.delete('sid');
                 queryParams.delete('minPrice');
                 queryParams.delete('maxPrice');
-                
+
                 // Thêm category nếu được chọn
                 if (selectedCategoryId) {
                     queryParams.set('cid', selectedCategoryId);
                 }
-                
+
                 // Thêm supplier nếu được chọn
                 if (selectedSupplierId) {
                     queryParams.set('sid', selectedSupplierId);
                 }
-                
+
                 // Thêm price range
                 if (minPrice && minPrice.trim() !== '')
                     queryParams.set('minPrice', minPrice);
@@ -444,7 +444,7 @@
                 if (sortValue && !isSortBySelected) {
                     queryParams.set('sort', sortValue);
                 }
-                
+
                 // Reset page về 1 khi thay đổi filter
                 queryParams.set('page', '1');
 
@@ -487,16 +487,16 @@
                 });
             }
 
-                                                                    function addToCart(productId, quantity) {
-                                                                        $.ajax({
-                                                                            type: "POST",
-                                                                            url: "cart",
-                                                                            data: {
-                                                                                productId: productId,
-                                                                                quantity: quantity
-                                                                            }
-                                                                        });
-                                                                    }
+            function addToCart(productId, quantity) {
+                $.ajax({
+                    type: "POST",
+                    url: "cart",
+                    data: {
+                        productId: productId,
+                        quantity: quantity
+                    }
+                });
+            }
 
 
         </script>
@@ -505,53 +505,53 @@
             // Đảm bảo chỉ một checkbox category được chọn
             function setupCategoryCheckboxes() {
                 const categoryCheckboxes = document.querySelectorAll('input[name="categories"]');
-                
+
                 categoryCheckboxes.forEach(checkbox => {
-                    checkbox.addEventListener('click', function() {
+                    checkbox.addEventListener('click', function () {
                         // Bỏ chọn tất cả các checkbox khác
                         categoryCheckboxes.forEach(cb => {
                             if (cb !== this) {
                                 cb.checked = false;
                             }
                         });
-                        
+
                         // Nếu checkbox này đã được chọn trước đó và được click lại, cho phép bỏ chọn
                         if (!this.checked) {
                             this.checked = false;
                         }
-                        
+
                         // Áp dụng filter
                         setTimeout(applyFilters, 100);
                     });
                 });
             }
-            
+
             // Đảm bảo chỉ một checkbox supplier được chọn
             function setupSupplierCheckboxes() {
                 const supplierCheckboxes = document.querySelectorAll('input[name="supplier"]');
-                
+
                 supplierCheckboxes.forEach(checkbox => {
-                    checkbox.addEventListener('click', function() {
+                    checkbox.addEventListener('click', function () {
                         // Bỏ chọn tất cả các checkbox khác
                         supplierCheckboxes.forEach(cb => {
                             if (cb !== this) {
                                 cb.checked = false;
                             }
                         });
-                        
+
                         // Nếu checkbox này đã được chọn trước đó và được click lại, cho phép bỏ chọn
                         if (!this.checked) {
                             this.checked = false;
                         }
-                        
+
                         // Áp dụng filter
                         setTimeout(applyFilters, 100);
                     });
                 });
             }
-            
+
             // Thiết lập các checkbox khi trang được tải
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 setupCategoryCheckboxes();
                 setupSupplierCheckboxes();
             });

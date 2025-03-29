@@ -37,7 +37,7 @@ public class CartServlet extends HttpServlet {
                 }
             }
             // Chuyển hướng lại trang giỏ hàng
-        cart.removeAllItem();
+            cart.removeAllItem();
             response.sendRedirect("cart");
             return;
         }
@@ -118,15 +118,5 @@ public class CartServlet extends HttpServlet {
         }
 
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

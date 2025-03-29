@@ -31,18 +31,11 @@ public class ProductListServlet extends HttpServlet {
         String pid = request.getParameter("productId");
         String type = request.getParameter("type");
         if (type.equals("disable")) {
-            pd.disableStatus(pid);          
-        }
-        else{
+            pd.disableStatus(pid);
+        } else {
             pd.enableStatus(pid);
 
         }
     }
-
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }

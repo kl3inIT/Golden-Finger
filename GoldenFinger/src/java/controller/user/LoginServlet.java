@@ -23,6 +23,15 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        // Kiểm tra nếu người dùng đã đăng nhập
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("account") != null) {
+            // Người dùng đã đăng nhập, chuyển hướng về trang chính
+            response.sendRedirect("home");
+            return;
+        }
+        
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
@@ -57,24 +66,27 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(rememberCookie);
 
             LOGGER.log(Level.INFO, "User logged in: {0}", username);
+            
+            // Kiểm tra và chuyển hướng đến trang đã lưu trước đó
+            String redirectURL = (String) session.getAttribute("redirectURL");
+            if (redirectURL != null && !redirectURL.isEmpty()) {
+                // Xóa URL đã lưu để tránh redirect sai trong tương lai
+                session.removeAttribute("redirectURL");
+                // Kiểm tra xem người dùng có quyền truy cập không
+                if (user.getRoleId() == 2 || !redirectURL.startsWith("/admin")) {
+                    response.sendRedirect(request.getContextPath() + redirectURL);
+                    return;
+                }
+            }
+            
+            
+            // Mặc định: chuyển hướng đến trang chủ
             response.sendRedirect("home");
         } else {
             LOGGER.log(Level.WARNING, "Fail to login for user: {0}", username);
             request.setAttribute("error", "Invalid Information!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-
     }
-    
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

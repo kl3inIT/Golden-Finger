@@ -168,8 +168,4 @@ public class ProfileServlet extends HttpServlet {
         return true;
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Profile management servlet";
-    }
 }

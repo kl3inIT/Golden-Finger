@@ -38,7 +38,7 @@
 
     <body class="w-full h-full relative font-Poppins font-normal overflow-x-hidden">
 
-       <!-- Header -->
+        <!-- Header -->
         <jsp:include page="header.jsp" />
 
         <!-- Cart sidebar Start -->

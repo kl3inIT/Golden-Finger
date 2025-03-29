@@ -18,7 +18,6 @@ public class AccountListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         List<User> listUser = ud.getUsersByRole(1);
 
         request.setAttribute("listUser", listUser);
@@ -39,10 +38,5 @@ public class AccountListServlet extends HttpServlet {
         request.setAttribute("listUser", listUser);
         request.getRequestDispatcher("dashboard/accountlist.jsp").forward(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -3,16 +3,23 @@ package controller.admin.suppliers;
 import dal.SupplierDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Supplier;
 
 @WebServlet(name = "SupplierListServlet", urlPatterns = {"/supplierlist"})
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, // 1 MB
+        maxFileSize = 1024 * 1024 * 5, // 5 MB
+        maxRequestSize = 1024 * 1024 * 10 // 10 MB
+)
 public class SupplierListServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(SupplierListServlet.class.getName());
@@ -35,22 +42,52 @@ public class SupplierListServlet extends HttpServlet {
         }
     }
 
+    private String uploadFile(Part part) throws IOException {
+        String uploadPath = getServletContext().getRealPath("") + File.separator + "dashboard/assets/img/supplier";
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        String fileName = System.currentTimeMillis() + "_" + getFileName(part);
+        String filePath = uploadPath + File.separator + fileName;
+        part.write(filePath);
+
+        return "dashboard/assets/img/supplier/" + fileName;
+    }
+
+    private String getFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] tokens = contentDisp.split(";");
+        for (String token : tokens) {
+            if (token.trim().startsWith("filename")) {
+                return token.substring(token.indexOf("=") + 2, token.length() - 1);
+            }
+        }
+        return "";
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String action = request.getParameter("action");
 
         try {
             if ("add".equals(action)) {
-                // Xử lý thêm mới nhà cung cấp
                 String companyName = request.getParameter("supplierName");
                 String contactName = request.getParameter("contactName");
                 String phone = request.getParameter("phone");
                 String email = request.getParameter("email");
                 String country = request.getParameter("country");
                 String homePage = request.getParameter("homePage");
-                String image = request.getParameter("image");
+
+                // Xử lý upload ảnh
+                Part imagePart = request.getPart("image");
+                String imageUrl = "dashboard/assets/img/supplier/default.png"; // Default image
+
+                if (imagePart != null && imagePart.getSize() > 0) {
+                    imageUrl = uploadFile(imagePart);
+                }
 
                 Supplier newSupplier = new Supplier();
                 newSupplier.setCompanyName(companyName);
@@ -58,41 +95,53 @@ public class SupplierListServlet extends HttpServlet {
                 newSupplier.setPhone(phone);
                 newSupplier.setHomePage(homePage != null ? homePage : email);
                 newSupplier.setCountry(country);
-                newSupplier.setImage(image != null ? image : "dashboard/assets/img/supplier/default.png");
+                newSupplier.setImage(imageUrl);
 
                 boolean success = supplierDAO.addSupplier(newSupplier);
 
                 if (success) {
-                    LOGGER.info("Supplier added successfully: " + companyName);
+                    LOGGER.log(Level.INFO, "Supplier added successfully: {0}", companyName);
                 } else {
-                    LOGGER.warning("Failed to add supplier: " + companyName);
+                    LOGGER.log(Level.WARNING, "Failed to add supplier: {0}", companyName);
                 }
+
             } else if ("update".equals(action)) {
-                // Xử lý cập nhật nhà cung cấp
                 int supplierId = Integer.parseInt(request.getParameter("supplierId"));
                 String companyName = request.getParameter("supplierName");
                 String contactName = request.getParameter("contactName");
                 String phone = request.getParameter("phone");
-                String email = request.getParameter("email");
                 String country = request.getParameter("country");
                 String homePage = request.getParameter("homePage");
-                String image = request.getParameter("image");
+
+                // Xử lý upload ảnh mới
+                Part imagePart = request.getPart("image");
+                String imageUrl = null;
+
+                if (imagePart != null && imagePart.getSize() > 0) {
+                    imageUrl = uploadFile(imagePart);
+                } else {
+                    // Giữ nguyên ảnh cũ
+                    Supplier existingSupplier = supplierDAO.getSupplierById(supplierId);
+                    if (existingSupplier != null) {
+                        imageUrl = existingSupplier.getImage();
+                    }
+                }
 
                 Supplier supplier = new Supplier();
                 supplier.setId(supplierId);
                 supplier.setCompanyName(companyName);
                 supplier.setContactName(contactName);
                 supplier.setPhone(phone);
-                supplier.setHomePage(homePage != null ? homePage : email);
+                supplier.setHomePage(homePage);
                 supplier.setCountry(country);
-                supplier.setImage(image != null ? image : "dashboard/assets/img/supplier/default.png");
+                supplier.setImage(imageUrl);
 
                 boolean success = supplierDAO.updateSupplier(supplier);
 
                 if (success) {
-                    LOGGER.info("Supplier updated successfully: " + companyName);
+                    LOGGER.log(Level.INFO, "Supplier updated successfully: {0}", companyName);
                 } else {
-                    LOGGER.warning("Failed to update supplier: " + companyName);
+                    LOGGER.log(Level.WARNING, "Failed to update supplier: {0}", companyName);
                 }
             } else if ("delete".equals(action)) {
                 // Xử lý xóa nhà cung cấp
@@ -100,10 +149,10 @@ public class SupplierListServlet extends HttpServlet {
                 boolean success = supplierDAO.deleteSupplier(supplierId);
 
                 if (success) {
-                    LOGGER.info("Supplier deleted successfully: ID " + supplierId);
+                    LOGGER.log(Level.INFO, "Supplier deleted successfully: ID {0}", supplierId);
                     // Không trả về nội dung nếu thành công
                 } else {
-                    LOGGER.warning("Failed to delete supplier: ID " + supplierId);
+                    LOGGER.log(Level.WARNING, "Failed to delete supplier: ID {0}", supplierId);
                     response.getWriter().write("Cannot delete this supplier because it is used by products");
                 }
 
@@ -113,14 +162,11 @@ public class SupplierListServlet extends HttpServlet {
 
             // Chuyển hướng về trang danh sách nhà cung cấp
             response.sendRedirect("supplierlist");
-        } catch (IOException | NumberFormatException e) {
+        } catch (ServletException | IOException | NumberFormatException e) {
             LOGGER.log(Level.SEVERE, "Error processing supplier action: " + action, e);
             response.sendRedirect("supplierlist");
         }
+
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Supplier List Servlet handles CRUD operations for suppliers";
-    }
 }

@@ -19,7 +19,7 @@ import model.OrderDetail;
 import model.Product;
 
 public class ProductDAO extends DBConnect {
-
+    
     private static final Logger LOGGER = Logger.getLogger(ProductDAO.class.getName());
     private CategoryDAO cd = new CategoryDAO();
     private SupplierDAO sd = new SupplierDAO();
@@ -40,7 +40,7 @@ public class ProductDAO extends DBConnect {
         }
 
         try (PreparedStatement stm = connection.prepareStatement(sqlQuery.toString())) {
-            if (cid != 0) {
+                if (cid != 0) {
                 stm.setInt(1, cid);
             }
 
@@ -150,8 +150,8 @@ public class ProductDAO extends DBConnect {
             }
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Error fetching products", e);
-        }
-        return listProduct;
+                }
+                return listProduct;
     }
 
     // GET NUMBER OF PRODUCT BY SUPPLIER ID
@@ -174,8 +174,8 @@ public class ProductDAO extends DBConnect {
                     listProduct.add(p);
                 }
             }
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Error fetching products", e);
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Error fetching products", e);
         }
         return listProduct;
     }
@@ -477,8 +477,8 @@ public class ProductDAO extends DBConnect {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        return listProduct;
+                }
+                return listProduct;
     }
 
 

@@ -3,10 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author nhudi
- */
 public class WishList {
 
     private List<Item> listItems;
@@ -15,7 +11,7 @@ public class WishList {
         listItems = new ArrayList<>();
         String[] items = txt.split("/");
         for (String x : items) {
-            if (!x.isEmpty() && !x.isBlank()) { 
+            if (!x.isEmpty() && !x.isBlank()) {
                 try {
                     int pid = Integer.parseInt(x);
                     Product p = getProductById(pid, productList);

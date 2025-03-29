@@ -321,23 +321,23 @@
         <!-- Custom JS for profile page -->
         <script>
             // Show/hide edit profile form
-            document.getElementById('editProfileBtn').addEventListener('click', function() {
+            document.getElementById('editProfileBtn').addEventListener('click', function () {
                 document.getElementById('userInfoDisplay').classList.add('hidden');
                 document.getElementById('editProfileForm').classList.remove('hidden');
             });
 
-            document.getElementById('cancelEditBtn').addEventListener('click', function() {
+            document.getElementById('cancelEditBtn').addEventListener('click', function () {
                 document.getElementById('userInfoDisplay').classList.remove('hidden');
                 document.getElementById('editProfileForm').classList.add('hidden');
             });
 
             // Show/hide change password form
-            document.getElementById('changePasswordBtn').addEventListener('click', function() {
+            document.getElementById('changePasswordBtn').addEventListener('click', function () {
                 document.getElementById('changePasswordDisplay').classList.add('hidden');
                 document.getElementById('changePasswordForm').classList.remove('hidden');
             });
 
-            document.getElementById('cancelPasswordBtn').addEventListener('click', function() {
+            document.getElementById('cancelPasswordBtn').addEventListener('click', function () {
                 document.getElementById('changePasswordDisplay').classList.remove('hidden');
                 document.getElementById('changePasswordForm').classList.add('hidden');
             });

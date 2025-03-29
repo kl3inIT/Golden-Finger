@@ -11,8 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords"
               content="admin, dashboard, crm, analytics, ecommerce, team, vendor, ai chat bot, backend, panel" />
-        <meta name="description" content="Grabit - Admin.">
-        <meta name="author" content="Maraviya Infotech">
+        <meta name="description" content="GoldenFinger - Admin.">
 
         <title>Supplier List</title>
 
@@ -202,19 +201,22 @@
                                                                         </a>
                                                                     </td>
                                                                     <td>
-                                                                        <button class="gi-btn default-btn color-info" 
-                                                                                data-bs-toggle="modal" 
-                                                                                data-bs-target="#editSupplierModal" 
-                                                                                onclick="editSupplier(${supplier.id}, '${supplier.companyName}', 
-                                                                                    '${supplier.contactName}', '${supplier.country}', 
-                                                                                    '${supplier.phone}', '${supplier.homePage}', 
-                                                                                    '${supplier.image}')">
-                                                                            <i class="ri-edit-line"></i>
-                                                                        </button>
-                                                                        <button class="gi-btn default-btn color-danger" 
-                                                                                onclick="deleteSupplier(${supplier.id})">
-                                                                            <i class="ri-delete-bin-line"></i>
-                                                                        </button>
+                                                                        <div class="d-flex justify-content-start">
+                                                                            <button type="button"
+                                                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                                    aria-expanded="false" data-display="static">
+                                                                                <span class="sr-only"><i class="ri-settings-3-line"></i></span>
+                                                                            </button>
+                                                                            <div class="dropdown-menu">
+                                                                                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editSupplierModal" 
+                                                                                   onclick="editSupplier(${supplier.id}, '${supplier.companyName}',
+                                                                                                   '${supplier.contactName}', '${supplier.country}',
+                                                                                                   '${supplier.phone}', '${supplier.homePage}',
+                                                                                                   '${supplier.image}')">Edit</a>
+                                                                                <a class="dropdown-item" onclick="deleteSupplier(${supplier.id})" href="javascript:void(0)">Delete</a>
+                                                                            </div>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             </c:forEach>
@@ -249,7 +251,7 @@
                         <h5 class="modal-title" id="addSupplierModalLabel">Add New Supplier</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="supplierlist" method="post">
+                    <form action="supplierlist" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <input type="hidden" name="action" value="add">
                             <div class="mb-3">
@@ -277,9 +279,12 @@
                                 <input type="url" class="form-control" id="homePage" name="homePage" placeholder="http://www.example.com">
                             </div>
                             <div class="mb-3">
-                                <label for="image" class="form-label">Image URL</label>
-                                <input type="text" class="form-control" id="image" name="image" placeholder="URL to company logo">
-                                <small class="text-muted">Leave empty to use default image</small>
+                                <label for="image" class="form-label">Company Logo</label>
+                                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                                <small class="text-muted">Accepted formats: .jpg, .jpeg, .png (Max size: 5MB)</small>
+                                <div class="mt-2">
+                                    <img id="previewImage" src="" alt="Preview logo" style="max-width: 100px; display: none;">
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -299,7 +304,7 @@
                         <h5 class="modal-title" id="editSupplierModalLabel">Edit Supplier</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="supplierlist" method="post">
+                    <form action="supplierlist" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <input type="hidden" name="action" value="update">
                             <input type="hidden" id="editSupplierId" name="supplierId">
@@ -324,9 +329,12 @@
                                 <input type="text" class="form-control" id="editHomePage" name="homePage">
                             </div>
                             <div class="mb-3">
-                                <label for="editImage" class="form-label">Image URL</label>
-                                <input type="text" class="form-control" id="editImage" name="image">
-                                <small class="text-muted">Leave empty to use default image</small>
+                                <label for="editImage" class="form-label">Company Logo</label>
+                                <input type="file" class="form-control" id="editImage" name="image" accept="image/*">
+                                <small class="text-muted">Accepted formats: .jpg, .jpeg, .png (Max size: 5MB)</small>
+                                <div class="mt-2">
+                                    <img id="currentImage" src="" alt="Current logo" style="max-width: 100px; display: none;">
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -356,44 +364,78 @@
         <script src="dashboard/assets/js/main.js"></script>
 
         <script>
-            $(document).ready(function () {
-                $('#supplier_table').DataTable({
-                    "order": [[0, "desc"]]
-                });
-            });
+                                                                                    $(document).ready(function () {
+                                                                                        $('#supplier_table').DataTable({
+                                                                                            "order": [[0, "desc"]]
+                                                                                        });
+                                                                                    });
 
-            function editSupplier(id, companyName, contactName, country, phone, homePage, image) {
-                $('#editSupplierId').val(id);
-                $('#editSupplierName').val(companyName);
-                $('#editContactName').val(contactName);
-                $('#editCountry').val(country);
-                $('#editPhone').val(phone);
-                $('#editHomePage').val(homePage);
-                $('#editImage').val(image);
-            }
 
-            function deleteSupplier(id) {
-                if (confirm('Are you sure you want to delete this supplier?')) {
-                    $.ajax({
-                        type: "POST",
-                        url: "supplierlist",
-                        data: {
-                            action: "delete",
-                            supplierId: id
-                        },
-                        success: function (response) {
-                            if (response.trim() === "") {
-                                window.location.reload();
-                            } else {
-                                alert(response);
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            alert("Error deleting supplier: " + error);
-                        }
-                    });
-                }
-            }
+                                                                                    function deleteSupplier(id) {
+                                                                                        if (confirm('Are you sure you want to delete this supplier?')) {
+                                                                                            $.ajax({
+                                                                                                type: "POST",
+                                                                                                url: "supplierlist",
+                                                                                                data: {
+                                                                                                    action: "delete",
+                                                                                                    supplierId: id
+                                                                                                },
+                                                                                                success: function (response) {
+                                                                                                    if (response.trim() === "") {
+                                                                                                        window.location.reload();
+                                                                                                    } else {
+                                                                                                        alert(response);
+                                                                                                    }
+                                                                                                },
+                                                                                                error: function (xhr, status, error) {
+                                                                                                    alert("Error deleting supplier: " + error);
+                                                                                                }
+                                                                                            });
+                                                                                        }
+                                                                                    }
+
+                                                                                    function previewImage(input, previewElement) {
+                                                                                        if (input.files && input.files[0]) {
+                                                                                            var reader = new FileReader();
+                                                                                            reader.onload = function (e) {
+                                                                                                $(previewElement).attr('src', e.target.result);
+                                                                                                $(previewElement).show();
+                                                                                            }
+                                                                                            reader.readAsDataURL(input.files[0]);
+                                                                                        }
+                                                                                    }
+
+                                                                                    // Xử lý preview ảnh khi chọn file
+                                                                                    $('#image').change(function () {
+                                                                                        previewImage(this, '#previewImage');
+                                                                                    });
+
+                                                                                    $('#editImage').change(function () {
+                                                                                        previewImage(this, '#currentImage');
+                                                                                    });
+
+                                                                                    // Xử lý preview ảnh khi chọn file
+                                                                                    $('#image').change(function () {
+                                                                                        previewImage(this, '#previewImage');
+                                                                                    });
+
+                                                                                    $('#editImage').change(function () {
+                                                                                        previewImage(this, '#currentImage');
+                                                                                    });
+
+                                                                                    // Sửa hàm editSupplier để hiển thị ảnh hiện tại
+                                                                                    function editSupplier(id, companyName, contactName, country, phone, homePage, image) {
+                                                                                        $('#editSupplierId').val(id);
+                                                                                        $('#editSupplierName').val(companyName);
+                                                                                        $('#editContactName').val(contactName);
+                                                                                        $('#editCountry').val(country);
+                                                                                        $('#editPhone').val(phone);
+                                                                                        $('#editHomePage').val(homePage);
+
+                                                                                        // Hiển thị ảnh hiện tại
+                                                                                        $('#currentImage').attr('src', image);
+                                                                                        $('#currentImage').show();
+                                                                                    }
         </script>
     </body>
 </html>

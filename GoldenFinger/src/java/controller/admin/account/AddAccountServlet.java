@@ -2,7 +2,6 @@ package controller.admin.account;
 
 import dal.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,7 +16,6 @@ public class AddAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         request.getRequestDispatcher("dashboard/addaccount.jsp").forward(request, response);
     }
 
@@ -36,10 +34,5 @@ public class AddAccountServlet extends HttpServlet {
         ud.createUserByAdmin(username, name, password, email, phone, dob, address, status, role);
         response.sendRedirect("accountlist");
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

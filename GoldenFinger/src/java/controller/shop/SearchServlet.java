@@ -50,9 +50,5 @@ public class SearchServlet extends HttpServlet {
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -1,10 +1,7 @@
 package model;
 
-/**
- *
- * @author nhudi
- */
 public class OrderDetail {
+
     private Order order;
     private Product product;
     private int quantity;
@@ -50,6 +47,5 @@ public class OrderDetail {
     public void setDiscount(float discount) {
         this.discount = discount;
     }
-    
-    
+
 }

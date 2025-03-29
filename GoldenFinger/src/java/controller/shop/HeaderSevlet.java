@@ -2,7 +2,6 @@ package controller.shop;
 
 import dal.CategoryDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,15 +19,5 @@ public class HeaderSevlet extends HttpServlet {
         request.setAttribute("categoryList", cd.getAllCategory());
         request.getRequestDispatcher("header.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -12,12 +12,12 @@ import model.Cart;
 import model.WishList;
 import utils.ServletUtils;
 
-@WebServlet(name="ContactUsServlet", urlPatterns={"/contactus"})
+@WebServlet(name = "ContactUsServlet", urlPatterns = {"/contactus"})
 public class ContactUsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         CategoryDAO cd = new CategoryDAO();
         ProductDAO pd = new ProductDAO();
@@ -28,16 +28,6 @@ public class ContactUsServlet extends HttpServlet {
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
         request.getRequestDispatcher("contact-us.jsp").forward(request, response);
-    } 
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
