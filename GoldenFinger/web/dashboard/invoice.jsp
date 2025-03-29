@@ -147,7 +147,10 @@ Copyright 2024
                                                 class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
                                     <li><a href="orderlist" class="gi-page-link drop"><i
                                                 class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
-
+                                    <li><a href="supplierlist" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Supplier List</a></li>
+                                    <li><a href="categorylist" class="gi-page-link drop"><i
+                                                class="ri-checkbox-blank-circle-line"></i>Category List</a></li>
                                 </ul>
                             </li>
                             <li class="gi-sb-item sb-drop-item">

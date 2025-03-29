@@ -218,14 +218,21 @@ public class OrderDAO extends DBConnect {
         }
     }
 
+    public static void main(String[] args) {
+        OrderDAO od = new OrderDAO();
+        for (Order oder : od.getAllOrders()) {
+            System.out.println(oder.getFullName());
+        }
+    }
+
     public boolean updateStatusOrder(String orderId, String statusId) {
         if (connection == null) {
             LOGGER.severe("Database connection is null");
             return false;
         }
         String sql = "UPDATE Orders "
-                  + " SET StatusID = ? "
-                  + " WHERE OrderID = ?;";
+                + " SET StatusID = ? "
+                + " WHERE OrderID = ?;";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, statusId);

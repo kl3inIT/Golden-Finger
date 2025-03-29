@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -13,7 +14,7 @@
         <meta name="description" content="Grabit - Admin.">
         <meta name="author" content="Maraviya Infotech">
 
-        <title>Order List</title>
+        <title>Category List</title>
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/img/favicon/favicon.png">
@@ -39,10 +40,6 @@
 
     <body>
         <main class="wrapper sb-default ecom">
-            <!-- Loader -->
-            <div id="gi-overlay">
-                <div class="loader"></div>
-            </div>
 
             <!-- Header -->
             <header class="gi-header">
@@ -62,10 +59,6 @@
                             </div>
                         </div>
                         <div class="right-header">
-
-
-
-
                             <div class="gi-right-tool gi-user-drop">
                                 <div class="gi-hover-drop">
                                     <div class="gi-hover-tool">
@@ -74,14 +67,11 @@
                                     <div class="gi-hover-drop-panel right">
 
                                         <ul class="">
-                                            <li><a href="team-profile.html">Profile</a></li>
-                                            <li><a href="faq.html">Help</a></li>
-                                            <li><a href="chatapp.html">Messages</a></li>
-                                            <li><a href="project-overview.html">Projects</a></li>
-                                            <li><a href="team-update.html">Settings</a></li>
+                                            <li><a href="home">Home</a></li>
+                                            <li><a href="shop">Shop</a></li>                                                                            
                                         </ul>
                                         <ul class="border-top">
-                                            <li><a href="signin.html"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
+                                            <li><a href="logout"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -154,70 +144,67 @@
                     <!-- Page title & breadcrumb -->
                     <div class="gi-page-title gi-page-title-2">
                         <div class="gi-breadcrumb">
-                            <h5>Order List</h5>
+                            <h5>Category List</h5>
                             <ul>
                                 <li><a href="admin">Dashboard</a></li>
-                                <li>Order List</li>
+                                <li>Category List</li>
                             </ul>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="gi-card" id="ordertbl">
+                            <div class="gi-card" id="categorytbl">
                                 <div class="gi-card-header">
-                                    <h4 class="gi-card-title">Recent Orders</h4>
+                                    <h4 class="gi-card-title">Categories</h4>
                                     <div class="header-tools">
+                                        <button class="gi-btn default-btn color-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                                            <i class="ri-add-line"></i> Add Category
+                                        </button>
                                         <a href="javascript:void(0)" class="m-r-10 gi-full-card"><i
                                                 class="ri-fullscreen-line"></i></a>
-                                        <div class="gi-date-range dots">
-                                            <span></span>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="gi-card-content card-default">
-                                    <div class="order-table">
-                                        <div class="table-responsive tbl-1200">
-                                            <table id="recent_order" class="table">
+                                    <div class="category-table">
+                                        <div class="table-responsive">
+                                            <table id="category_table" class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
-
-                                                        <th>Customer</th>
-                                                        <th>Amount</th>
-                                                        <th>Date</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
+                                                        <th>Category Name</th>
+                                                        <th>Description</th>
+                                                        <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach var="order" items="${requestScope.orders}">
-
-
-                                                        <tr>
-                                                            <td class="token">#${order.id}</td>
-
-                                                            <td>${order.fullName}</td>
-                                                            <td>$${String.format("%.0f", order.totalAmount)}</td>
-                                                            <td>${order.date}</td>
-
-                                                            <td class="paid">
-                                                                <div class="dropdown">
-                                                                    <span class="dropdown-toggle ${order.status.toLowerCase()} ">${order.status.statusName}</span>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><a class="canceled" href="javascript:void(0)" onclick="updateStatus(0, ${order.id})">Canceled</a></li>
-                                                                        <li><a class="pending" href="javascript:void(0)" onclick="updateStatus(1, ${order.id})">Pending</a></li>
-                                                                        <li><a class="confirmed" href="javascript:void(0)" onclick="updateStatus(2, ${order.id})">Confirmed</a></li>
-                                                                        <li><a class="shipping" href="javascript:void(0)" onclick="updateStatus(3, ${order.id})">Shipping</a></li>
-                                                                        <li><a class="delivered" href="javascript:void(0)" onclick="updateStatus(4, ${order.id})">Delivered</a></li>
-                                                                        <li><a class="failed" href="javascript:void(0)" onclick="updateStatus(5, ${order.id})">Failed</a></li>
-                                                                    </ul>
-                                                                </div>
-
-                                                            </td>
-                                                            <td><a href="invoice?oid=${order.id}"><button class="gi-btn default-btn color-info">view</button></a></td>
-                                                        </tr>
-                                                    </c:forEach>
-
+                                                    <c:choose>
+                                                        <c:when test="${not empty categories}">
+                                                            <c:forEach items="${categories}" var="category">
+                                                                <tr>
+                                                                    <td>${category.id}</td>
+                                                                    <td>${category.name}</td>
+                                                                    <td>${category.description}</td>
+                                                                    <td>
+                                                                        <button class="gi-btn default-btn color-info" 
+                                                                                data-bs-toggle="modal" 
+                                                                                data-bs-target="#editCategoryModal" 
+                                                                                onclick="editCategory(${category.id}, '${category.name}', '${category.description}')">
+                                                                            <i class="ri-edit-line"></i>
+                                                                        </button>
+                                                                        <button class="gi-btn default-btn color-danger" 
+                                                                                onclick="deleteCategory(${category.id})">
+                                                                            <i class="ri-delete-bin-line"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <tr>
+                                                                <td colspan="4" class="text-center">No categories found</td>
+                                                            </tr>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -229,15 +216,69 @@
                 </div>
             </div>
 
-
-
             <!-- Footer -->
             <footer>
-
             </footer>
-
-
         </main>
+
+        <!-- Add Category Modal -->
+        <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="categorylist" method="post">
+                        <div class="modal-body">
+                            <input type="hidden" name="action" value="add">
+                            <div class="mb-3">
+                                <label for="categoryName" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Category Modal -->
+        <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="categorylist" method="post">
+                        <div class="modal-body">
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" id="editCategoryId" name="categoryId">
+                            <div class="mb-3">
+                                <label for="editCategoryName" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="editCategoryName" name="categoryName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="editDescription" name="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <!-- Vendor Custom -->
         <script src="dashboard/assets/js/vendor/jquery-3.6.4.min.js"></script>
@@ -247,38 +288,50 @@
         <script src="dashboard/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="dashboard/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
         <script src="dashboard/assets/js/vendor/owl.carousel.min.js"></script>
+        
         <!-- Data Tables -->
         <script src='dashboard/assets/js/vendor/jquery.datatables.min.js'></script>
         <script src='dashboard/assets/js/vendor/datatables.bootstrap5.min.js'></script>
         <script src='dashboard/assets/js/vendor/datatables.responsive.min.js'></script>
-        <!-- Caleddar -->
-        <script src="dashboard/assets/js/vendor/jquery.simple-calendar.js"></script>
-        <!-- Date Range Picker -->
-        <script src="dashboard/assets/js/vendor/moment.min.js"></script>
-        <script src="dashboard/assets/js/vendor/daterangepicker.js"></script>
-        <script src="dashboard/assets/js/vendor/date-range.js"></script>
-
+        
         <!-- Main Custom -->
         <script src="dashboard/assets/js/main.js"></script>
-        <script src="dashboard/assets/js/data/ecommerce-chart-data.js"></script>
+        
         <script>
-                                                                            function updateStatus(statusId, orderId) {
-                                                                                $.ajax({
-                                                                                    type: "POST",
-                                                                                    url: "orderlist",
-                                                                                    data: {statusId: statusId,
-                                                                                        orderId: orderId
-                                                                                    },
-                                                                                    success: function (response) {
-                                                                                        window.location.href = "orderlist";
-                                                                                    },
-                                                                                    error: function () {
-                                                                                        alert("error");
-                                                                                    }
-                                                                                });
-                                                                            }
-
+            $(document).ready(function() {
+                $('#category_table').DataTable({
+                    "order": [[0, "desc"]]
+                });
+            });
+            
+            function editCategory(id, name, description) {
+                $('#editCategoryId').val(id);
+                $('#editCategoryName').val(name);
+                $('#editDescription').val(description);
+            }
+            
+            function deleteCategory(id) {
+                if (confirm('Are you sure you want to delete this category?')) {
+                    $.ajax({
+                        type: "POST",
+                        url: "categorylist",
+                        data: {
+                            action: "delete",
+                            categoryId: id
+                        },
+                        success: function(response) {
+                            if (response.trim() === "") {
+                                window.location.reload();
+                            } else {
+                                alert(response);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Error deleting category: " + error);
+                        }
+                    });
+                }
+            }
         </script>
     </body>
-
 </html>

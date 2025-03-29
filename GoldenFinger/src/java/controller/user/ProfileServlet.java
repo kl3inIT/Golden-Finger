@@ -2,12 +2,10 @@ package controller.user;
 
 import dal.CategoryDAO;
 import dal.ProductDAO;
-import dal.SupplierDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,6 +14,7 @@ import model.Cart;
 import model.User;
 import model.WishList;
 import utils.PasswordUtils;
+import utils.ServletUtils;
 
 @WebServlet(name = "ProfileServlet", urlPatterns = {"/profile"})
 public class ProfileServlet extends HttpServlet {
@@ -31,21 +30,9 @@ public class ProfileServlet extends HttpServlet {
         }
         ProductDAO pd = new ProductDAO();
         CategoryDAO cd = new CategoryDAO();
-        SupplierDAO sd = new SupplierDAO();
 
-        String txt = "";
-        String txt2 = "";
-        Cookie[] cookies = request.getCookies();
-        for (Cookie c : cookies) {
-            if (c.getName().equals("cart")) {
-                txt = c.getValue();
-            }
-            if (c.getName().equals("wishlist")) {
-                txt2 = c.getValue();
-            }
-        }
-        Cart cart = new Cart(txt, pd.getAllProductByCidForUser(0));
-        WishList wishlist = new WishList(txt2, pd.getAllProductByCidForUser(0));
+        Cart cart = ServletUtils.getCartFromCookie(request, pd.getAllProductByCid(0));
+        WishList wishlist = ServletUtils.getWishlistFromCookie(request, pd.getAllProductByCidForUser(0));
 
         request.setAttribute("sizeCart", cart.getSizeCart());
         request.setAttribute("sizeWishlist", wishlist.getSizeWishList());
