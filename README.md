@@ -79,13 +79,13 @@ Key highlights:
 
 <div align="center">
   <h4>Customer FontEnd</h4>
-  <img src="image/home/home1.png" style="border-radius:3%" width="33%" height="150">
-  <img src="image/home/home2.png" style="border-radius:3%" width="33%" height="150">
-  <img src="image/home/home3.png" style="border-radius:3%" width="33%" height="150">
-  <img src="image/home/home4.png" style="border-radius:3%" width="33%" height="150">
-  <img src="image/shop/shop1.png" style="border-radius:3%" width="33%" height="150">
-  <img src="image/shop/shop2.png" style="border-radius:3%" width="33%" height="150">
-  <img src="image/shop/shop3.png" style="border-radius:3%" width="33%" height="150">
+  <img src="image/home/home1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/home/home2.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/home/home3.png" style="border-radius:3%" width="30" height="150">
+  <img src="image/home/home4.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/shop1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/shop2.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/shop3.png" style="border-radius:3%" width="30%" height="150">
    <h4>Product Display</h4>
   <img src="image/product/product.png" width="33%">
   <img src="image/shop/shop2.pn" width="33%">
