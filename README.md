@@ -78,12 +78,14 @@ Key highlights:
 ### Preview Screenshots
 
 <div align="center">
-  <h4>Customer Frontend</h4>
-  <img src="web/assets/img/common/about.png" alt="Frontend Screenshot" width="800">
-  
-  <h4>Product Display</h4>
-  <img src="web/assets/img/product-images/8_1.jpg" alt="Product Display" width="300">
-  <img src="web/assets/img/product-images/9_1.jpg" alt="Product Display" width="300">
+  <h4>Home Page</h4>
+  <img src="image/home/home1.png" width="33%">
+  <img src="image/home/home2.png" width="33%">
+  <img src="image/home/home3.png" width="33%">
+  <h4>Shop Page</h4>
+  <img src="image/shop/shop1.png" width="33%">
+  <img src="image/shop/shop2.png" width="33%">
+  <img src="image/shop/shop3.png" width="33%">
   
   <h4>Admin Dashboard</h4>
   <img src="web/assets/img/common/login.png" alt="Admin Login" width="800">
@@ -93,14 +95,14 @@ Key highlights:
 
 ### Built With
 
-- [![Java][Java.com]][Java-url]
-- [![Jakarta EE][JakartaEE.com]][JakartaEE-url]
-- [![SQL Server][SQLServer.com]][SQLServer-url]
-- [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-- [![Tailwind CSS][TailwindCSS.com]][TailwindCSS-url]
-- [![jQuery][jQuery.com]][jQuery-url]
-- [![ApexCharts][ApexCharts.com]][ApexCharts-url]
-- [![VNPay][VNPay.com]][VNPay-url]
+ [![Java][Java.com]][Java-url]
+ [![Jakarta EE][JakartaEE.com]][JakartaEE-url]
+ [![SQL Server][SQLServer.com]][SQLServer-url]
+ [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+ [![Tailwind CSS][TailwindCSS.com]][TailwindCSS-url]
+ [![jQuery][jQuery.com]][jQuery-url]
+ [![ApexCharts][ApexCharts.com]][ApexCharts-url]
+ [![VNPay][VNPay.com]][VNPay-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -213,6 +215,7 @@ GoldenFinger/
 ## User Roles
 
 1. **Customer** (RoleID = 1)
+
    - Browse and search products
    - Add items to cart and wishlist
    - Place and track orders
@@ -270,7 +273,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTORS -->
-
 
 ## Contributors
 
