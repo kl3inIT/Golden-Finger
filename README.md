@@ -46,6 +46,7 @@
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#database-configuration">Database Configuration</a></li>
+        <li><a href="#vnpay-test-information">VNPAY Test Information</a></li>
       </ul>
     </li>
     <li><a href="#features">Features</a></li>
@@ -78,20 +79,36 @@ Key highlights:
 ### Preview Screenshots
 
 <div align="center">
-  <h4>Customer FontEnd</h4>
-  <img src="image/home/home1.png" style="border-radius:3%" width="30%" height="150">
-  <img src="image/home/home2.png" style="border-radius:3%" width="30%" height="150">
-  <img src="image/home/home3.png" style="border-radius:3%" width="30%" height="150">
-  <img src="image/home/home4.png" style="border-radius:3%" width="30%" height="150">
+  <h4>Customer Interface</h4>
+  <img src="image/shop/home1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/home2.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/home3.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/home4.png" style="border-radius:3%" width="30%" height="150">
   <img src="image/shop/shop1.png" style="border-radius:3%" width="30%" height="150">
   <img src="image/shop/shop2.png" style="border-radius:3%" width="30%" height="150">
   <img src="image/shop/shop3.png" style="border-radius:3%" width="30%" height="150">
-   <h4>Product Display</h4>
-  <img src="image/product/product.png" width="33%">
-  <img src="image/shop/shop2.pn" width="33%">
-  <img src="image/shop/shop3.pn" width="33%">
+  <img src="image/shop/product.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/order1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/order2.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/ab1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/ct1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/profile.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/wishlist.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/checkout1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/checkout2.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/payment1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/shop/payment2.png" style="border-radius:3%" width="30%" height="150">
+
   <h4>Admin Dashboard</h4>
-  <img src="web/assets/img/common/login.png" alt="Admin Login" width="800">
+  <img src="image/admin/home1.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/admin/home2.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/admin/productlist.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/admin/addproduct.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/admin/orderlist.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/admin/supplierlist.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/admin/addsupplier.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/admin/categorylist.png" style="border-radius:3%" width="30%" height="150">
+  <img src="image/admin/accountlist.png" style="border-radius:3%" width="30%" height="150">
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -152,9 +169,43 @@ private String userID = "your_username";     // Your SQL Server username
 private String password = "your_password";   // Your SQL Server password
 ```
 
-4. If you're using VNPay for payment, configure the payment settings in `src/java/com/vnpay/common/Config.java`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### VNPAY Test Information
+If you're using VNPay for payment, configure the payment settings in `src/java/com/vnpay/common/Config.java`
+
+For testing VNPAY payment integration, you can use the test cards available at [VNPAY Sandbox](https://sandbox.vnpayment.vn/apis/vnpay-demo/). Here are some example test cards:
+
+1. **Successful Payment**
+   ```
+   Bank: NCB
+   Card Number: 9704198526191432198
+   Card Holder: NGUYEN VAN A
+   Issue Date: 07/15
+   OTP: 123456
+   ```
+
+2. **Insufficient Balance**
+   ```
+   Bank: NCB
+   Card Number: 9704195798459170488
+   Card Holder: NGUYEN VAN A
+   Issue Date: 07/15
+   ```
+
+3. **International Cards**
+   ```
+   VISA (No 3DS)
+   Card Number: 4456530000001005
+   CVC/CVV: 123
+   Card Holder: NGUYEN VAN A
+   Expiry Date: 12/26
+   ```
+
+For more test cards and detailed testing scenarios, please visit [VNPAY Sandbox Demo](https://sandbox.vnpayment.vn/apis/vnpay-demo/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- FEATURES -->
 
