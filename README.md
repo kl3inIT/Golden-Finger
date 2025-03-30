@@ -78,20 +78,32 @@ Key highlights:
 ### Preview Screenshots
 
 <div align="center">
-  <h4>Customer FontEnd</h4>
-  <img src="image/home/home1.png" style="border-radius:3%" width="30%" height="150">
-  <img src="image/home/home2.png" style="border-radius:3%" width="30%" height="150">
-  <img src="image/home/home3.png" style="border-radius:3%" width="30" height="150">
-  <img src="image/home/home4.png" style="border-radius:3%" width="30%" height="150">
-  <img src="image/shop/shop1.png" style="border-radius:3%" width="30%" height="150">
-  <img src="image/shop/shop2.png" style="border-radius:3%" width="30%" height="150">
-  <img src="image/shop/shop3.png" style="border-radius:3%" width="30%" height="150">
-   <h4>Product Display</h4>
-  <img src="image/product/product.png" width="33%">
-  <img src="image/shop/shop2.pn" width="33%">
-  <img src="image/shop/shop3.pn" width="33%">
+  <h4>Customer Frontend</h4>
+  <p float="left">
+    <img src="image/home/home1.png" width="400" style="margin: 10px; border-radius: 10px"/>
+    <img src="image/home/home2.png" width="400" style="margin: 10px; border-radius: 10px"/>
+  </p>
+  <p float="left">
+    <img src="image/home/home3.png" width="400" style="margin: 10px; border-radius: 10px"/>
+    <img src="image/home/home4.png" width="400" style="margin: 10px; border-radius: 10px"/>
+  </p>
+  
+  <h4>Shop Interface</h4>
+  <p float="left">
+    <img src="image/shop/shop1.png" width="300" style="margin: 10px; border-radius: 10px"/>
+    <img src="image/shop/shop2.png" width="300" style="margin: 10px; border-radius: 10px"/>
+    <img src="image/shop/shop3.png" width="300" style="margin: 10px; border-radius: 10px"/>
+  </p>
+
+  <h4>Product Display</h4>
+  <p float="left">
+    <img src="image/product/product.png" width="800" style="margin: 10px; border-radius: 10px"/>
+  </p>
+
   <h4>Admin Dashboard</h4>
-  <img src="web/assets/img/common/login.png" alt="Admin Login" width="800">
+  <p float="left">
+    <img src="web/assets/img/common/login.png" width="800" style="margin: 10px; border-radius: 10px"/>
+  </p>
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
