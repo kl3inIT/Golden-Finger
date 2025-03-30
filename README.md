@@ -135,7 +135,7 @@ Follow these steps to set up and run the Golden Finger e-commerce platform local
 
 1. Create a new database in SQL Server named `GoldenFinger`
 2. Execute the SQL script `script.sql` located in the root directory to create all required tables and initial data
-3. Configure the database connection in `src/java/utils/DBConnect.java`:
+3. Configure the database connection in `src/java/com/vnpay/common/DBConnect.java`:
 
 ```java
 // Modify these values to match your SQL Server configuration
