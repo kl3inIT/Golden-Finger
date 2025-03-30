@@ -54,7 +54,7 @@
     <li><a href="#security-features">Security Features</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contributor">CONTRIBUTORS</a></li>
+    <li><a href="#Contributors">Contributors</a></li>
   </ol>
 </details>
 
@@ -121,7 +121,7 @@ Follow these steps to set up and run the Golden Finger e-commerce platform local
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/yourusername/Golden-Finger.git
+   git clone https://github.com/NhatNhuDinh/Golden-Finger.git
    ```
 2. Open the project in NetBeans IDE or your preferred Java IDE
 3. Build the project using the IDE's built-in tools or with Ant
@@ -147,7 +147,7 @@ private String userID = "your_username";     // Your SQL Server username
 private String password = "your_password";   // Your SQL Server password
 ```
 
-4. If you're using VNPay for payment, configure the payment settings in `src/java/utils/Config.java`
+4. If you're using VNPay for payment, configure the payment settings in `src/java/com/vnpay/common/Config.java`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
